@@ -1,18 +1,398 @@
 1:"$Sreact.fragment"
 2:I[36064,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
 3:I[81497,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
-4:I[61578,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"ClientPageRoot"]
-5:I[86324,["/modal-benchmark/_next/static/chunks/5158d1d28afdcafb.js","/modal-benchmark/_next/static/chunks/6ffca2f1ebcedeed.js","/modal-benchmark/_next/static/chunks/7c29030d3481c5b7.js"],"default"]
-8:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
-9:"$Sreact.suspense"
-b:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"ViewportBoundary"]
-d:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"MetadataBoundary"]
-f:I[9986,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
-:HL["/modal-benchmark/_next/static/chunks/dfd1cd0d690787c3.css","style"]
+4:I[42654,["/modal-benchmark/_next/static/chunks/4be82211a5ee94b6.js","/modal-benchmark/_next/static/chunks/a2b113fdb2df3922.js","/modal-benchmark/_next/static/chunks/6ccd90c2c09f1387.js"],"TasksPageClient"]
+13:I[9986,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
+:HL["/modal-benchmark/_next/static/chunks/baa8276ed8d0857c.css","style"]
 :HL["/modal-benchmark/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-0:{"P":null,"b":"wJSN1CulSzdXBDxdHty0H","c":["","tasks",""],"q":"","i":false,"f":[[["",{"children":["tasks",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/modal-benchmark/_next/static/chunks/dfd1cd0d690787c3.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"dark","children":["$","body",null,{"className":"inter_5972bc34-module__OU16Qa__className antialiased","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[["$","$L4",null,{"Component":"$5","serverProvidedParams":{"searchParams":{},"params":{},"promises":["$@6","$@7"]}}],[["$","script","script-0",{"src":"/modal-benchmark/_next/static/chunks/5158d1d28afdcafb.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/modal-benchmark/_next/static/chunks/6ffca2f1ebcedeed.js","async":true,"nonce":"$undefined"}],["$","script","script-2",{"src":"/modal-benchmark/_next/static/chunks/7c29030d3481c5b7.js","async":true,"nonce":"$undefined"}]],["$","$L8",null,{"children":["$","$9",null,{"name":"Next.MetadataOutlet","children":"$@a"}]}]]}],{},null,false,false]},null,false,false]},null,false,false],["$","$1","h",{"children":[null,["$","$Lb",null,{"children":"$Lc"}],["$","div",null,{"hidden":true,"children":["$","$Ld",null,{"children":["$","$9",null,{"name":"Next.Metadata","children":"$Le"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}],false]],"m":"$undefined","G":["$f",[]],"S":true}
-6:{}
-7:"$0:f:0:1:1:children:1:children:0:props:children:0:props:serverProvidedParams:params"
-c:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-a:null
-e:[["$","title","0",{"children":"Modal Benchmark"}],["$","meta","1",{"name":"description","content":"Performance results of AI coding models on Modal tasks, measuring success rate and execution time with high precision."}]]
+5:T674,# Task: Batch Text Processor with Modal `.map()`
+
+You are a data scientist who needs to process a large collection of text samples in parallel using Modal's serverless platform.
+
+A starter file already exists at `/home/user/modal_batch/app.py` with a basic Modal App definition. Your job is to extend it into a fully functional batch text processing pipeline.
+
+## Your Goal
+
+Implement a Modal app at `/home/user/modal_batch/app.py` that:
+
+1. Defines a function `process_text` that analyses a single string and returns a dictionary with its **word count** and **character count**.
+2. Defines a function `run_batch` that takes a list of strings and uses Modal's **`.map()`** method to run `process_text` on each string in parallel, returning all results as a list.
+
+Both functions must be registered with the Modal app using the `@app.function()` decorator.
+
+## Constraints
+
+- The app file must be located at `/home/user/modal_batch/app.py`
+- The Modal App must be named **`batch-processor`**
+- Both `process_text` and `run_batch` must use the `@app.function()` decorator
+- `run_batch` must use `.map()` to distribute processing across Modal containers
+- Do **not** use `modal deploy` or connect to Modal cloud — the implementation is verified locally via code structure
+
+## Acceptance Criteria
+
+- `/home/user/modal_batch/app.py` exists and is valid Python
+- The Modal App is defined with the name `batch-processor`
+- `process_text` exists and is decorated with `@app.function()`
+- `run_batch` exists, is decorated with `@app.function()`, and uses `.map()` internally
+- `process_text` returns a dictionary containing a word count and a character count
+6:T865,# Modal Class with Lifecycle Methods — Model Cache
+
+## Background
+
+You are an ML ops engineer managing model serving infrastructure on Modal. A common pattern when serving ML models on Modal is to use a **Modal class** with lifecycle hooks: one hook loads the model once when the container starts (caching it in memory), and a method uses that cached model for fast predictions.
+
+## Your Task
+
+A starter file exists at `/home/user/modal_class/app.py`. It currently contains only a `modal.App` definition. You must extend this file to implement a fully functional Modal class for model serving.
+
+## Requirements
+
+### 1. Modal App Name
+The `modal.App` must be named **`"model-server"`**.
+
+### 2. Class Definition
+Define a class called **`ModelServer`** and register it with the app using the `@app.cls()` decorator.
+
+### 3. Container Startup Hook
+Inside `ModelServer`, implement a method called **`load_model`** that:
+- Is decorated with `@modal.enter()` so it runs once when the container starts.
+- Initializes `self.model` as a dictionary with model metadata (the exact structure is part of the implementation).
+
+### 4. Prediction Method
+Inside `ModelServer`, implement a method called **`predict`** that:
+- Is decorated with `@modal.method()` to expose it as a callable Modal method.
+- Accepts a single string argument (in addition to `self`).
+- Returns a prediction string that incorporates the input and uses the model loaded by `load_model`.
+
+### 5. Code Quality
+- The file must be valid Python with no syntax errors.
+- All Modal constructs must be correctly imported from the `modal` package.
+- Do **not** run `modal deploy` or connect to Modal cloud — the task is verified by static analysis.
+
+## File to Modify
+
+`/home/user/modal_class/app.py`
+
+## Verification
+
+Your solution will be checked by:
+1. Confirming `/home/user/modal_class/app.py` exists and is valid Python.
+2. Verifying a `modal.App` is defined with the correct name.
+3. AST-checking that class `ModelServer` exists with `@app.cls()`.
+4. AST-checking that method `load_model` exists with `@modal.enter()`.
+5. AST-checking that method `predict` exists with `@modal.method()`.
+7:T7a5,# Task: Schedule a Modal Cron Job for Periodic Execution
+
+## Context
+
+You are a DevOps engineer setting up scheduled data jobs on the Modal serverless cloud platform. A starter file already exists at `/home/user/modal_cron/cron_app.py` with a basic Modal App definition. Your job is to extend this file to implement a scheduled function that runs every hour.
+
+## Objective
+
+Extend `/home/user/modal_cron/cron_app.py` to add a scheduled Modal function that:
+
+1. Is named **`run_hourly_job`**
+2. Runs automatically **every hour** using a Modal schedule decorator
+3. Appends a **timestamp log entry** to `/home/user/modal_cron/logs/run.log` on each invocation
+
+## Requirements
+
+- The Modal App must be named **`"cron-logger"`** (it is already defined in the starter file)
+- The function must be decorated with `@app.function(schedule=...)` using either:
+  - `modal.Period(hours=1)` — runs every 1 hour
+  - `modal.Cron("0 * * * *")` — equivalent cron expression for every hour
+- The function body must write a timestamp to `/home/user/modal_cron/logs/run.log`
+  - Create the `/home/user/modal_cron/logs/` directory if it does not exist
+  - Each invocation should append a new line with the current date/time
+
+## File to Edit
+
+```
+/home/user/modal_cron/cron_app.py
+```
+
+## Starter File Contents
+
+The file currently contains:
+
+```python
+import modal
+
+app = modal.App("cron-logger")
+```
+
+## Expected Final State
+
+After completing this task, `cron_app.py` should contain a function `run_hourly_job` with a schedule decorator that writes a timestamped entry to the log file on every run. The log file path `/home/user/modal_cron/logs/run.log` must be referenced in the code.
+
+## Hints
+
+- Use Python's `datetime` module to generate the timestamp
+- Use `pathlib.Path.mkdir(parents=True, exist_ok=True)` to ensure the log directory exists
+- A cron schedule of `"0 * * * *"` means "at minute 0 of every hour"
+- `modal.Period(hours=1)` is the Modal-native equivalent
+8:T91a,# Task: Build a Custom Modal Image with NumPy and Pandas
+
+## Context
+
+You are an ML engineer setting up a data processing endpoint on the Modal serverless platform. Your goal is to extend an existing starter Modal app so that it runs inside a custom container image with the scientific Python libraries it needs.
+
+## Environment
+
+- A starter file already exists at `/home/user/modal_image/app.py`.
+- The `modal` Python SDK is pre-installed and importable.
+- `python3` and `pytest` are available in PATH.
+- `numpy` and `pandas` are **not** pre-installed in the host environment — they must be declared as part of the Modal image definition.
+
+## Your Task
+
+Modify `/home/user/modal_image/app.py` so that it satisfies all of the following requirements:
+
+### 1. Custom Modal Image
+
+Define a custom Modal container image using `modal.Image.debian_slim()` with both `numpy` and `pandas` installed via `.pip_install()`. Assign this image to a variable.
+
+### 2. Modal App
+
+The Modal App must be named `"data-processing"`.
+
+### 3. Function: `process_data`
+
+Define a Modal function named `process_data` that:
+
+- Is attached to the app via the `@app.function()` decorator and references the custom image defined above via the `image=` argument.
+- Accepts a single argument: a list of numbers.
+- Uses **numpy** to compute the mean of the input list.
+- Uses **pandas** to create a DataFrame from the input list.
+- Returns a dictionary containing:
+  - The computed mean value.
+  - The DataFrame represented as a list of records.
+
+Both `numpy` and `pandas` must be imported in the file (at module level or inside the function body).
+
+## Constraints
+
+- The file must remain valid Python with no syntax errors.
+- Do **not** run `modal deploy` or connect to Modal cloud — the solution is verified by static code analysis only.
+- Do not add a `local_entrypoint`.
+
+## Acceptance Criteria
+
+Your solution will be evaluated by checking:
+
+1. `/home/user/modal_image/app.py` exists and parses without syntax errors.
+2. A `modal.App` named `"data-processing"` is defined.
+3. A `modal.Image.debian_slim().pip_install(...)` image is configured with both `numpy` and `pandas`.
+4. A function `process_data` exists in the file.
+5. `process_data` is decorated with `@app.function(image=...)`.
+6. Both `numpy` and `pandas` are imported somewhere in the file.
+9:T63c,# Task: Create a Modal FastAPI Web Endpoint
+
+You are a full-stack developer adding a serverless API layer using Modal.
+
+## Context
+
+A starter project already exists at `/home/user/modal_api/app.py`. It contains basic imports and a Modal App definition, but has no HTTP routes or web endpoint configuration yet.
+
+## Your Goal
+
+Complete `/home/user/modal_api/app.py` so that it defines a fully functional FastAPI application served through Modal with the following HTTP routes:
+
+1. **`GET /health`** — returns a JSON response `{"status": "ok"}`
+2. **`GET /items/{item_id}`** — accepts an `item_id` path parameter and returns a JSON response containing at minimum `{"item_id": <value>}`
+
+## Requirements
+
+- The Modal App must be named `"fastapi-api"`.
+- Use Modal's web integration decorators to expose the FastAPI application — for example `@modal.fastapi_endpoint()` or `@modal.asgi_app()`.
+- `fastapi` must be imported and a `FastAPI()` instance must be used to define the routes.
+- The final file must be syntactically valid Python.
+- All code must remain in `/home/user/modal_api/app.py`.
+- Do **not** run `modal deploy` — the task is verified by static analysis of your code.
+- Do **not** use `sudo`.
+
+## Acceptance Criteria
+
+- `/home/user/modal_api/app.py` exists and is valid Python.
+- A `modal.App` named `"fastapi-api"` is defined.
+- `fastapi` is imported.
+- A `/health` route handler is present.
+- An `/items/{item_id}` route handler with `item_id` parameter is present.
+- At least one Modal web endpoint decorator (`@modal.fastapi_endpoint()` or `@modal.asgi_app()`) is applied.
+a:T80e,# GPU Matrix Compute with Modal
+
+You are a researcher running GPU experiments at scale. Your task is to extend a Modal application with a GPU-accelerated matrix multiplication function using PyTorch.
+
+## Environment
+
+A starter project has been set up for you at `/home/user/modal_gpu/app.py`. The file currently contains a basic Modal App definition. You will extend it to add GPU-accelerated computation.
+
+## Your Task
+
+Edit `/home/user/modal_gpu/app.py` to implement the following:
+
+### 1. Custom Container Image
+
+Define a custom Modal Image using `debian_slim` as the base, with `torch` (PyTorch) installed via pip. Assign this image to a variable so you can reference it in your function decorator.
+
+### 2. GPU-Accelerated Function
+
+Implement a function called `matrix_multiply` that:
+
+- Is registered with the Modal App using the appropriate function decorator
+- Requests a **T4 GPU** for execution
+- Uses the custom image you defined above
+- Accepts two input parameters representing matrices (as flat lists of numbers)
+- Performs matrix multiplication using **PyTorch** (`torch`) — not numpy or plain Python arithmetic
+- Returns the result of the multiplication
+
+## Constraints
+
+- The app file must remain at `/home/user/modal_gpu/app.py`
+- The Modal App must keep the name `"gpu-compute"`
+- You must use exactly a **T4** GPU (not A10G, A100, H100, or any other type)
+- The image must be built from `modal.Image.debian_slim()` with `torch` added via `.pip_install()`
+- PyTorch (`torch`) must be used for the actual computation inside the function
+- Do not run `modal deploy` — the task is verified by code structure only
+
+## Acceptance Criteria
+
+When complete, `/home/user/modal_gpu/app.py` must:
+
+1. Contain valid Python syntax
+2. Define a `modal.App` named `"gpu-compute"`
+3. Define a custom image from `modal.Image.debian_slim().pip_install("torch")`
+4. Define a function `matrix_multiply` decorated with `@app.function(gpu=..., image=...)` specifying a T4 GPU and the custom image
+5. Use `torch` inside `matrix_multiply` for matrix multiplication
+b:T40f,# Task: Define a Modal Greeting Function
+
+You are working in a project directory at `/home/user/modal_app/`. A starter `app.py` file already exists with a basic Modal App definition.
+
+## Your Goal
+
+Extend `/home/user/modal_app/app.py` to add a function named `greet` that:
+
+1. Is decorated with `@app.function()` so it is registered as a Modal serverless function.
+2. Prints a greeting message (e.g., `"Hello, world!"`) when invoked.
+
+## Requirements
+
+- The file must be located at `/home/user/modal_app/app.py`.
+- The Modal app must be named `"hello-world"` (this is already set up in the starter file).
+- The function must be named **`greet`**.
+- The function must use the **`@app.function()`** decorator.
+- The function body must contain a **`print()`** call that outputs a greeting message.
+
+## Example
+
+```python
+import modal
+
+app = modal.App("hello-world")
+
+@app.function()
+def greet():
+    print("Hello, world!")
+```
+
+Do not rename the app or the function. Do not remove the existing `import modal` or `app = modal.App(...)` lines.
+c:T913,# Task: Set Up Modal Secrets for API Keys and Credentials
+
+## Overview
+
+You are a startup founder prototyping a product backend that needs to securely access third-party API credentials at runtime. Your task is to extend a starter Modal application to use Modal Secrets for injecting API keys as environment variables into serverless functions — without hardcoding any credentials in your source code.
+
+## Environment
+
+- **Working directory**: `/home/user/modal_secrets/`
+- **Starter file**: `/home/user/modal_secrets/app.py` — already contains a basic `import modal` statement and a Modal App definition
+- **Python 3** and the `modal` SDK are pre-installed
+
+## Task
+
+Modify the existing file at `/home/user/modal_secrets/app.py` to:
+
+1. **Add `import os`** at the top of the file alongside the existing `import modal`.
+
+2. **Define a Modal Secret reference** using `modal.Secret.from_name(...)`, referencing a pre-existing Modal Secret by name. Assign the result to a variable so it can be passed to a function decorator.
+
+3. **Implement a function called `fetch_api_data`** that:
+   - Is decorated with `@app.function(...)` with the `secrets` argument set to a list containing your secret reference
+   - Reads the environment variable `API_KEY` using `os.environ.get(...)` (or equivalent) — this is the credential injected by the Modal Secret
+   - Returns a status message string indicating whether the API key was successfully retrieved
+
+## Constraints
+
+- The app file must remain at `/home/user/modal_secrets/app.py`
+- The Modal App must keep the name `"secrets-demo"`
+- Do **not** hardcode any API key value in the source code
+- The `secrets` parameter in `@app.function(...)` must be a list
+- Do **not** run `modal deploy` — verification is done by code structure analysis only
+
+## Acceptance Criteria
+
+Your solution will be verified automatically by checking:
+
+- `/home/user/modal_secrets/app.py` exists and is syntactically valid Python
+- `import os` is present
+- A `modal.App` is defined with the name `"secrets-demo"`
+- `modal.Secret.from_name(...)` is called with a named secret
+- A function named `fetch_api_data` exists
+- `fetch_api_data` is decorated with `@app.function(secrets=[...])`
+- The string `"API_KEY"` is referenced in the code
+- `os.environ` (or `os.getenv`) is used to read the credential
+d:T8b2,# Task: Modal Volume File Storage
+
+You are a data engineer building a batch processing pipeline that requires persistent shared storage between Modal functions.
+
+## Setup
+
+A starter project exists at `/home/user/modal_volume/` containing an `app.py` file with a bare Modal App definition. Your job is to extend it into a working Modal application that uses a Modal Volume for persistent file storage.
+
+## What You Must Do
+
+Open `/home/user/modal_volume/app.py` and complete the Modal application so it satisfies all of the following:
+
+1. **Name the Modal App** — the `modal.App` must be given the correct application name string.
+
+2. **Define a Modal Volume** — create a `modal.Volume` at module level using `modal.Volume.from_name(...)`. The volume must be configured so that it is automatically created if it does not already exist (i.e., pass `create_if_missing=True`).
+
+3. **Implement a `write_data` function** that:
+   - Is decorated with `@app.function()`, with the volume mounted inside the container at a specific path.
+   - Writes a JSON payload to a file located on the mounted volume path.
+
+4. **Implement a `read_data` function** that:
+   - Is decorated with `@app.function()`, with the same volume mounted at the same path.
+   - Opens the JSON file written by `write_data` and returns its contents.
+
+5. Both functions must reference the same volume mount path and the same JSON file path.
+
+## Constraints
+
+- All code must live in `/home/user/modal_volume/app.py`.
+- Do **not** call `modal deploy` — verification is done by static analysis only.
+- Do **not** use root or `sudo`.
+- The file must be syntactically valid Python.
+- Use only the `modal` SDK and Python standard library (`json`, `os`, etc.) — no extra dependencies needed.
+
+## Acceptance Criteria
+
+- `/home/user/modal_volume/app.py` exists and is valid Python.
+- A named `modal.App` is defined at module level.
+- A `modal.Volume.from_name(...)` call with `create_if_missing=True` is present.
+- Functions `write_data` and `read_data` are both defined and decorated with `@app.function(volumes=...)`.
+- The `volumes` dict maps a specific container path to the volume object.
+- The JSON file path (under the mount point) is referenced in the code.
+0:{"P":null,"b":"YzHmrMWxpIE9mIlAe0fi1","c":["","tasks",""],"q":"","i":false,"f":[[["",{"children":["tasks",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/modal-benchmark/_next/static/chunks/baa8276ed8d0857c.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}]],["$","html",null,{"lang":"en","className":"dark","children":["$","body",null,{"className":"inter_5972bc34-module__OU16Qa__className antialiased","children":["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L2",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L3",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$L4",null,{"tasksData":[{"taskName":"modal_batch_text_processor","instruction":"$5","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_batch_text_processor__Gz3HQpf","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":64.816,"latency_breakdown":{"env_setup":5.293,"agent_setup":16.598,"agent_exec":28.33,"verifier":3.923},"taskName":"modal_batch_text_processor","jobId":"Gz3HQpf","exec_duration":28.33}]},{"taskName":"modal_class_model_cache","instruction":"$6","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_class_model_cache__2685LRo","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":58.089,"latency_breakdown":{"env_setup":1.468,"agent_setup":8.285,"agent_exec":33.314,"verifier":4.334},"taskName":"modal_class_model_cache","jobId":"2685LRo","exec_duration":33.314}]},{"taskName":"modal_cron_job_scheduler","instruction":"$7","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_cron_job_scheduler__S5c8Dn4","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":55.841,"latency_breakdown":{"env_setup":4.379,"agent_setup":7.865,"agent_exec":27.874,"verifier":4.805},"taskName":"modal_cron_job_scheduler","jobId":"S5c8Dn4","exec_duration":27.874}]},{"taskName":"modal_custom_image_numpy_pandas","instruction":"$8","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_custom_image_numpy_pandas__K9hnatD","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":73.79,"latency_breakdown":{"env_setup":1.224,"agent_setup":10.174,"agent_exec":47.513,"verifier":4.239},"taskName":"modal_custom_image_numpy_pandas","jobId":"K9hnatD","exec_duration":47.513}]},{"taskName":"modal_document_pipeline","instruction":"# Document Processing Pipeline\n\nBuild a Modal document processing pipeline at `/home/user/modal_pipeline/app.py`.\n\nThe app (named `\"doc-pipeline\"`) should have three chained Modal functions:\n\n1. **`extract_text`** — given a file path, reads and returns the file's content as a string.\n2. **`tokenize_text`** — given a string, returns a deduplicated list of lowercased words.\n3. **`analyze_document`** — orchestrates the pipeline: calls the other two functions remotely, then writes a JSON results file to `/home/user/modal_pipeline/output/results.json` with the word count and unique words.\n\nUse a custom Modal image with `nltk` and `chardet` installed. Create a Modal Volume named `\"pipeline-data\"` and mount it inside `analyze_document`.\n\nThe output JSON must contain the keys `\"word_count\"` and `\"unique_words\"`.\n","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_document_pipeline__9sMTKC2","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":85.592,"latency_breakdown":{"env_setup":3.983,"agent_setup":7.635,"agent_exec":59.682,"verifier":3.667},"taskName":"modal_document_pipeline","jobId":"9sMTKC2","exec_duration":59.682}]},{"taskName":"modal_fastapi_web_endpoint","instruction":"$9","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_fastapi_web_endpoint__44NuHUk","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":65.217,"latency_breakdown":{"env_setup":2.079,"agent_setup":8.476,"agent_exec":39.68,"verifier":4.228},"taskName":"modal_fastapi_web_endpoint","jobId":"44NuHUk","exec_duration":39.68}]},{"taskName":"modal_gpu_matrix_compute","instruction":"$a","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_gpu_matrix_compute__ogsNets","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":51.346,"latency_breakdown":{"env_setup":1.227,"agent_setup":8.16,"agent_exec":26.912,"verifier":4.272},"taskName":"modal_gpu_matrix_compute","jobId":"ogsNets","exec_duration":26.912}]},{"taskName":"modal_hello_world_function","instruction":"$b","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_hello_world_function__qxcC7eH","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":59.919,"latency_breakdown":{"env_setup":6.542,"agent_setup":20.136,"agent_exec":17.881,"verifier":4.164},"taskName":"modal_hello_world_function","jobId":"qxcC7eH","exec_duration":17.881}]},{"taskName":"modal_secrets_env_function","instruction":"$c","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_secrets_env_function__amZ2Xod","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":72.802,"latency_breakdown":{"env_setup":5.3,"agent_setup":15.935,"agent_exec":36.408,"verifier":4.467},"taskName":"modal_secrets_env_function","jobId":"amZ2Xod","exec_duration":36.408}]},{"taskName":"modal_volume_file_storage","instruction":"$d","trials":[{"job_name":"2026-03-18__17-25-51","trial_name":"modal_volume_file_storage__7gEd4u3","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":68.627,"latency_breakdown":{"env_setup":5.31,"agent_setup":17.515,"agent_exec":31.233,"verifier":3.925},"taskName":"modal_volume_file_storage","jobId":"7gEd4u3","exec_duration":31.233}]}]}]]}],["$Le","$Lf","$L10"],"$L11"]}],{},null,false,false]},null,false,false]},null,false,false],"$L12",false]],"m":"$undefined","G":["$13",[]],"S":true}
+14:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
+15:"$Sreact.suspense"
+17:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"ViewportBoundary"]
+19:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"MetadataBoundary"]
+e:["$","script","script-0",{"src":"/modal-benchmark/_next/static/chunks/4be82211a5ee94b6.js","async":true,"nonce":"$undefined"}]
+f:["$","script","script-1",{"src":"/modal-benchmark/_next/static/chunks/a2b113fdb2df3922.js","async":true,"nonce":"$undefined"}]
+10:["$","script","script-2",{"src":"/modal-benchmark/_next/static/chunks/6ccd90c2c09f1387.js","async":true,"nonce":"$undefined"}]
+11:["$","$L14",null,{"children":["$","$15",null,{"name":"Next.MetadataOutlet","children":"$@16"}]}]
+12:["$","$1","h",{"children":[null,["$","$L17",null,{"children":"$L18"}],["$","div",null,{"hidden":true,"children":["$","$L19",null,{"children":["$","$15",null,{"name":"Next.Metadata","children":"$L1a"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+18:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+16:null
+1a:[["$","title","0",{"children":"Modal Benchmark"}],["$","meta","1",{"name":"description","content":"Performance results of AI coding models on Modal tasks, measuring success rate and execution time with high precision."}]]
