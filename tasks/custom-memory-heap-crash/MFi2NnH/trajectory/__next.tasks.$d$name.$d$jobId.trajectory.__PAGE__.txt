@@ -1,0 +1,6 @@
+1:"$Sreact.fragment"
+3:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
+4:"$Sreact.suspense"
+0:{"buildId":"T1B30Lxg_XzviyGZrOEE3","rsc":["$","$1","c",{"children":["$L2",[["$","script","script-0",{"src":"/modal-benchmark/_next/static/chunks/f0f998b18d7b90cb.js","async":true}],["$","script","script-1",{"src":"/modal-benchmark/_next/static/chunks/fd19b71087c11892.js","async":true}],["$","script","script-2",{"src":"/modal-benchmark/_next/static/chunks/6ccd90c2c09f1387.js","async":true}]],["$","$L3",null,{"children":["$","$4",null,{"name":"Next.MetadataOutlet","children":"$@5"}]}]]}],"loading":null,"isPartial":false}
+5:null
+2:E{"digest":"NEXT_REDIRECT;replace;https://github.com/DESU-CLUB/modal-benchmark/blob/main/jobs/2026-02-25__17-33-37/custom-memory-heap-crash__MFi2NnH/result.json;307;"}
