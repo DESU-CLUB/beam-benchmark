@@ -1,0 +1,83 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 7,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774295800.8023643,
+            "stop": 1774295818.7683332
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.0002996989933308214,
+                "start": 1774295800.8094885,
+                "stop": 1774295800.8099308,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 16.551187774981372,
+                "start": 1774295800.8100011,
+                "stop": 1774295817.3614213,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.6016651210084092,
+                "start": 1774295817.3615332,
+                "stop": 1774295817.9634776,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_results_file_exists",
+                "status": "passed",
+                "duration": 0.0006413559603970498,
+                "start": 1774295817.9636035,
+                "stop": 1774295817.9643738,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_total_runs",
+                "status": "passed",
+                "duration": 0.0002754080342128873,
+                "start": 1774295817.9644387,
+                "stop": 1774295817.964816,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_devices_used",
+                "status": "passed",
+                "duration": 0.0002504920121282339,
+                "start": 1774295817.9648738,
+                "stop": 1774295817.96624,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_all_benchmarks",
+                "status": "passed",
+                "duration": 0.801411696971627,
+                "start": 1774295817.9662924,
+                "stop": 1774295818.767796,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

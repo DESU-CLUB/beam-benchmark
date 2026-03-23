@@ -1,8 +1,8 @@
-# Jujutsu Benchmark
+# Modal Benchmark
 
-This repository contains benchmarks for [Jujutsu (jj)](https://github.com/martinvonz/jj), a next-generation version control system.
+This repository contains benchmarks for [Modal](https://modal.com/), a cloud platform for running AI and data workloads.
 
-You can view the evaluation reports at [tabbyml.github.io/jj-benchmark](https://tabbyml.github.io/jj-benchmark/).
+You can view the evaluation reports at [tabbyml.github.io/modal-benchmark](https://tabbyml.github.io/modal-benchmark/).
 
 ## Project Structure
 

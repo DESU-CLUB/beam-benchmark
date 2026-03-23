@@ -1,0 +1,22 @@
+# Task: GPU Benchmark Pipeline on Modal
+
+Create a Modal app at `/home/user/modal_project/benchmark.py` named `gpu-benchmark`.
+
+## Requirements
+
+- Build a custom image from `debian_slim` with `torch` installed.
+- Define `run_benchmark` with `@app.function(image=image, gpu='T4', timeout=120)` that:
+  - Checks `torch.cuda.is_available()`.
+  - Creates a 1000x1000 random tensor, performs `torch.mm(t, t)` on the available device.
+  - Returns `{'device': ..., 'cuda_available': ..., 'matrix_shape': [1000, 1000], 'benchmark': 'matrix_multiply_1000x1000'}`.
+- Define `aggregate_results(results: list)` with `@app.function(image=image)` that returns `{'total_runs': len, 'devices_used': [...], 'all_benchmarks': [...]}`.
+- `@app.local_entrypoint()` named `main` maps `run_benchmark` over `[None, None, None]`, calls `aggregate_results.remote()`, writes to `/home/user/modal_project/benchmark_results.json`.
+
+## Deployment
+
+```
+modal deploy /home/user/modal_project/benchmark.py --env modal-vsdatagen
+modal run /home/user/modal_project/benchmark.py --env modal-vsdatagen
+```
+
+Verify `benchmark_results.json` has `total_runs=3`.

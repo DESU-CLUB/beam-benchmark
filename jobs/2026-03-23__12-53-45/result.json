@@ -1,0 +1,38 @@
+{
+    "id": "c60f1793-a122-4cf8-900a-13e35fad2dc3",
+    "started_at": "2026-03-23T12:53:45.822591",
+    "finished_at": "2026-03-23T13:07:59.765063",
+    "n_total_trials": 10,
+    "stats": {
+        "n_trials": 10,
+        "n_errors": 0,
+        "evals": {
+            "pochi__gemini-3-flash__new_tasks": {
+                "n_trials": 10,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 1.0
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "modal_cron_data_snapshot__eduMtR3",
+                            "modal_volume_checkpoint_restore__WrUxoxw",
+                            "modal_gpu_benchmark_pipeline__p35Y87t",
+                            "modal_web_endpoint_json_transfor__RMMMAnc",
+                            "modal_nfs_shared_storage__egopN7K",
+                            "modal_class_warm_pool__DfZXbSa",
+                            "modal_dict_queue_state__GYhm5mB",
+                            "modal_parallel_text_summarizer__RGHMjcs",
+                            "modal_multi_app_orchestrator__oVqzNGr",
+                            "modal_retries_timeout_policy__kzih49H"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}
