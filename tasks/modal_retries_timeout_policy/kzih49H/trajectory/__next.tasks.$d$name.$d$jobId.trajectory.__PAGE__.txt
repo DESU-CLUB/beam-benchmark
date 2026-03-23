@@ -1,0 +1,178 @@
+1:"$Sreact.fragment"
+2:I[55425,["/modal-benchmark/_next/static/chunks/22e80cc4342926d5.js","/modal-benchmark/_next/static/chunks/2ad5122eae704b1a.js","/modal-benchmark/_next/static/chunks/87e640d76e7f8413.js","/modal-benchmark/_next/static/chunks/05a7af9c95a62091.js"],"TrajectoryPage"]
+8:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
+9:"$Sreact.suspense"
+3:T6c4b,[37m2026-03-23 20:00:39.880[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:1[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.2
+[37m2026-03-23 20:00:40.302[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:503187[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 5 custom agents (5 valid, 0 invalid)
+[37m2026-03-23 20:00:40.303[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:503188[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 2 skills (2 valid, 0 invalid)
+[37m2026-03-23 20:00:40.326[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:439420[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-03-23 20:00:41.399[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:415701[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-03-23 20:00:41.399[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:415813[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-03-23 20:00:41.446[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:502613[39m[0m[0m[1m[37m	TaskRunner[39m[22m[0m[0m	Starting TaskRunner...
+[37m2026-03-23 20:00:41.507[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:00:41.910[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:00:41.938[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:496640[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: # Task: Configure Modal Function Retries and Timeout
+[37m2026-03-23 20:01:01.248[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:01:01.650[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:01:05.617[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:496640[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: # Task: Configure Modal Function Retries and Timeout, new: Configure Modal function retries and timeout for retry-demo app
+[37m2026-03-23 20:01:06.562[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:01:06.872[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:01:12.655[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:01:13.060[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:01:26.109[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:01:26.468[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:01:33.543[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:01:33.780[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:01:39.995[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:01:40.282[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:01:46.896[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:01:47.238[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:01:51.692[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:01:52.061[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:01:57.604[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:01:57.917[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:00.898[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:01.166[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:05.986[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:06.491[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:12.312[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:12.728[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:16.237[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:16.674[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:20.431[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:20.745[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:25.349[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:25.653[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:28.522[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:28.908[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:35.649[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:35.986[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:39.950[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:40.186[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:45.928[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:46.300[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:49.483[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:49.824[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:52.681[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:53.063[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:02:55.850[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:02:56.176[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:03:00.645[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:03:00.962[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:03:06.490[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:03:06.868[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:03:12.143[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:03:12.517[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:03:15.827[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:03:16.160[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:03:23.988[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:03:24.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:03:33.167[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:03:33.512[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:03:51.323[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:03:51.586[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:03:57.189[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:03:57.547[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:02.203[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:02.803[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:07.062[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:07.388[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:10.572[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:10.784[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:15.479[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:15.852[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:20.194[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:20.558[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:23.667[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:24.032[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:27.167[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:27.511[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:30.864[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:31.245[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:34.460[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:34.837[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:40.349[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:40.749[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:44.122[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:44.511[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:04:48.169[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:04:48.525[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:05:01.794[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:05:02.133[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:05:06.859[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:05:07.149[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:05:14.799[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:05:15.153[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:05:18.711[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:05:19.082[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:05:23.879[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:05:24.229[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:05:28.561[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:05:28.938[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:05:34.347[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:05:34.713[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:06:07.472[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:06:07.864[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:06:14.144[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:06:14.524[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:06:20.625[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:06:20.938[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:06:25.451[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:06:25.826[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:06:32.007[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:06:32.344[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:07:00.980[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:07:01.309[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:07:06.329[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:07:06.615[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:07:13.277[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:07:13.560[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:07:20.053[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:07:20.389[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-23 20:07:26.656[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-23 20:07:27.011[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+4:T681,Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (8.5.0-2ubuntu10.8).
+0 upgraded, 0 newly installed, 0 to remove and 12 not upgraded.
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 6 packages in 5ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 5 items
+
+tests/test_final_state.py .....                                          [100%]
+
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_file_exists
+PASSED tests/test_final_state.py::test_deploy_succeeds
+PASSED tests/test_final_state.py::test_app_listed
+PASSED tests/test_final_state.py::test_result_file_exists
+PASSED tests/test_final_state.py::test_result_success
+============================== 5 passed in 12.13s ==============================
+0:{"buildId":"jcqFAUyp4GnqnpYC4Oyc1","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"flex h-screen w-full flex-col overflow-hidden bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","div",null,{"className":"z-40 shrink-0 bg-background/85 backdrop-blur-sm","children":["$","div",null,{"className":"mx-auto w-full max-w-[1400px] px-4 py-6 sm:px-7 sm:py-8 lg:px-10","children":["$","div",null,{"className":"flex flex-col gap-1","children":[["$","div",null,{"className":"flex flex-col gap-2 sm:flex-row sm:items-center sm:justify-start sm:gap-2","children":[["$","h1",null,{"className":"min-w-0 truncate whitespace-nowrap font-bold text-2xl","children":"modal_retries_timeout_policy__kzih49H"}],["$","a",null,{"href":"https://github.com/TabbyML/modal-benchmark/tree/main/tasks/modal_retries_timeout_policy","target":"_blank","rel":"noopener noreferrer","className":"group inline-flex w-fit shrink-0 items-center gap-1.5 whitespace-nowrap rounded-md border border-border/70 bg-background/40 px-2.5 py-1 text-xs text-muted-foreground transition-colors hover:bg-secondary/45 hover:text-foreground sm:text-sm","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-external-link h-4 w-4","aria-hidden":"true","children":[["$","path","1q9fwt",{"d":"M15 3h6v6"}],["$","path","gplh6r",{"d":"M10 14 21 3"}],["$","path","a6xqqp",{"d":"M18 13v6a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V8a2 2 0 0 1 2-2h6"}],"$undefined"]}],["$","span",null,{"children":"Task"}]]}]]}],["$","div",null,{"className":"mt-2 text-xs sm:text-sm","children":["$","div",null,{"className":"flex flex-col gap-1 sm:flex-row sm:gap-4","children":[["$","span",null,{"className":"inline-flex shrink-0 items-center gap-0 font-medium","children":[["$","svg",null,{"xmlns":"http://www.w3.org/2000/svg","width":24,"height":24,"viewBox":"0 0 24 24","fill":"none","stroke":"currentColor","strokeWidth":2,"strokeLinecap":"round","strokeLinejoin":"round","className":"lucide lucide-check h-3.5 w-3.5 text-emerald-400","aria-hidden":"true","children":[["$","path","1gmf2c",{"d":"M20 6 9 17l-5-5"}],"$undefined"]}],["$","span",null,{"className":"text-emerald-400 ml-0.5","children":"Passed"}],["$","span",null,{"className":"text-muted-foreground ml-0.5","children":["@","3/23/2026, 12:53:45 PM"]}]]}],["$","span",null,{"className":"text-muted-foreground truncate","children":["Duration: ","6m 53.2s"]}]]}]}]]}]}]}],["$","div",null,{"className":"min-h-0 flex-1","children":["$","$L2",null,{"trajectoryUrl":"https://fletch.getpochi.com/f/raw.githubusercontent.com/TabbyML/modal-benchmark/refs/heads/main/jobs/2026-03-23__12-53-45/modal_retries_timeout_policy__kzih49H/agent/pochi/trajectory.jsonl?title=modal_retries_timeout_policy","fallbackUrl":"https://github.com/TabbyML/modal-benchmark/blob/main/jobs/2026-03-23__12-53-45/modal_retries_timeout_policy__kzih49H/result.json","stderrText":"$3","verifierText":"$4"}]}]]}],["$L5","$L6"],"$L7"]}],"loading":null,"isPartial":false}
+5:["$","script","script-0",{"src":"/modal-benchmark/_next/static/chunks/87e640d76e7f8413.js","async":true}]
+6:["$","script","script-1",{"src":"/modal-benchmark/_next/static/chunks/05a7af9c95a62091.js","async":true}]
+7:["$","$L8",null,{"children":["$","$9",null,{"name":"Next.MetadataOutlet","children":"$@a"}]}]
+a:null
