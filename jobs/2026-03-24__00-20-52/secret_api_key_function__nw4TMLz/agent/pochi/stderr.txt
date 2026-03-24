@@ -1,0 +1,2524 @@
+[37m2026-03-24 07:26:33.142[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:1[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.2
+[37m2026-03-24 07:26:33.576[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:503187[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 5 custom agents (5 valid, 0 invalid)
+[37m2026-03-24 07:26:33.578[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:503188[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 2 skills (2 valid, 0 invalid)
+[37m2026-03-24 07:26:33.613[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:439420[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-03-24 07:26:34.591[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:415701[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-03-24 07:26:34.592[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:415813[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-03-24 07:26:34.629[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:502613[39m[0m[0m[1m[37m	TaskRunner[39m[22m[0m[0m	Starting TaskRunner...
+[37m2026-03-24 07:26:34.636[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:26:34.940[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:26:34.955[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:496640[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: # Modal Secret API Key Function
+[37m2026-03-24 07:26:45.813[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:26:46.129[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:26:49.646[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:26:49.984[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:26:59.150[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:26:59.374[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:27:04.702[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:27:04.973[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:27:08.103[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:496640[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: # Modal Secret API Key Function, new: Create a Modal app that accesses an API key using Modal Secrets
+[37m2026-03-24 07:27:24.335[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:27:24.659[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:27:37.507[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:27:37.837[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:27:45.998[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:27:46.307[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:27:55.573[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:27:55.856[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:28:17.998[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:28:18.287[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:28:23.109[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:28:23.415[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:28:28.984[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:28:29.239[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:28:35.010[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:28:35.213[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:28:45.227[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:28:45.525[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:28:53.717[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:28:54.000[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:29:41.987[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:29:42.300[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:30:04.236[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:30:04.508[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:30:16.701[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:30:16.992[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:30:34.458[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:30:34.737[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:31:06.041[39m[0m[0m	[31m[1mERROR[22m[39m[0m[0m	[37m$bunfs/root/pochi:432009[39m[0m[0m[1m[37m	LiveChatKit[39m[22m[0m[0m	onError
+
+[97m[101m[1m AI_APICallError [22m[49m[39m[0m[0m Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details., AI_APICallError, , https://app.getpochi.com/api/chat/stream, [object Object], 429, [object Object], , true, , 442061, 31, 442061, 31, /$bunfs/root/pochi[0m[0m
+error stack:
+  • [33mpochi[39m[0m[0m	<anonymous>[0m[0m
+	[37m$bunfs/root/pochi:442061[39m[0m[0m
+  • [33mnative[39m[0m[0m	processTicksAndRejections[0m[0m
+	[37mnative:7[39m[0m[0m[0m[0m
+[37m2026-03-24 07:31:06.065[39m[0m[0m	[31m[1mERROR[22m[39m[0m[0m	[37m$bunfs/root/pochi:502753[39m[0m[0m[1m[37m	TaskRunner[39m[22m[0m[0m	Task is failed, trying to resend last message to resume it. {
+  kind: [32m'APICallError'[39m,
+  isRetryable: [33mtrue[39m,
+  message: [32m'Resource exhausted. Please try again later. Please refer to https://cloud.google.com/vertex-ai/generative-ai/docs/error-code-429 for more details.'[39m,
+  requestBodyValues: {
+    model: [32m'google/gemini-3.1-pro'[39m,
+    callOptions: {
+      prompt: [
+        {
+          role: [32m'system'[39m,
+          content: [32m'You are Pochi, a highly skilled software engineer with extensive knowledge in many programming languages, frameworks, design patterns, and best practices.\n'[39m +
+            [32m'\n'[39m +
+            [32m'IMPORTANT: You must NEVER generate or guess URLs for the user unless you are confident that the URLs are for helping the user with programming. You may use URLs provided by the user in their messages or local files.\n'[39m +
+            [32m'\n'[39m +
+            [32m'If the user asks for help or wants to give feedback inform them of the following:\n'[39m +
+            [32m'- Join the discord channel at https://getpochi.com/discord to ask questions and get help\n'[39m +
+            [32m'- To report bugs, users should report the issue at https://github.com/TabbyML/pochi/issues\n'[39m +
+            [32m'\n'[39m +
+            [32m"When the user directly asks about Pochi (eg 'can Pochi do...', 'does Pochi have...') or asks in second person (eg 'are you able...', 'can you do...'), first use curl to gather information to answer the question from Pochi docs at https://docs.getpochi.com/llms.txt\n"[39m +
+            [32m'\n'[39m +
+            [32m'====\n'[39m +
+            [32m'\n'[39m +
+            [32m'TASK MANAGEMENT\n'[39m +
+            [32m'\n'[39m +
+            [32m'You have access to the todoWrite tool to help you manage and plan tasks. Use these tools VERY frequently to ensure that you are tracking your tasks and giving the user visibility into your progress.\n'[39m +
+            [32m'These tools are also EXTREMELY helpful for planning tasks, and for breaking down larger complex tasks into smaller steps. If you do not use this tool when planning, you may forget to do important tasks - and that is unacceptable.\n'[39m +
+            [32m'\n'[39m +
+            [32m'It is critical that you mark todos as completed as soon as you are done with a task. Do not batch up multiple tasks before marking them as completed.\n'[39m +
+            [32m'\n'[39m +
+            [32m'====\n'[39m +
+            [32m'\n'[39m +
+            [32m'RULES\n'[39m +
+            [32m'\n'[39m +
+            [32m"- User messages may include <system-reminder> tags. <system-reminder> tags contain useful information and reminders. They are NOT part of the user's provided input or the tool result. You shall pay close attention to information in these tags and use it to inform you actions.\n"[39m +
+            [32m"- When the user initially gives you a task, a recursive list of all filepaths in the current working directory will be included in <system-reminder> tag. This provides an overview of the project's file structure, offering key insights into the project from directory/file names (how developers conceptualize and organize their code) and file extensions (the language used). This can also guide decision-making on which files to explore further. If you need to further explore directories such as outside the current working directory, you can use the listFiles tool. If you pass 'true' for the recursive parameter, it will list files recursively.\n"[39m +
+            [32m'- All file paths used by tools must be relative to current working directory, do not use the ~ character or $HOME to refer to the home directory in file paths used by tools.\n'[39m +
+            [32m"- You can use `pochi://` URI schema to access the Pochi virtual file system. This allows you to read and write files that are stored in Pochi's internal storage.\n"[39m +
+            [32m"- Be sure to consider the type of project (e.g. Python, JavaScript, web application) when determining the appropriate structure and files to include. Also consider what files may be most relevant to accomplishing the task, for example looking at a project's manifest file would help you understand the project's dependencies, which you could incorporate into any code you write.\n"[39m +
+            [32m"- Do not ask for more information than necessary. Use the tools provided to accomplish the user's request efficiently and effectively. When you've completed your task, you must use the attemptCompletion tool to present the result to the user. The user may provide feedback, which you can use to make improvements and try again.\n"[39m +
+            [32m'- You are only allowed to ask the user questions using the askFollowupQuestion tool. Use this tool only when you need additional details to complete a task, and be sure to use a clear and concise question that will help you move forward with the task. However if you can use the available tools to avoid having to ask the user questions, you should do so. For example, if the user mentions a file that may be in an outside directory like the Desktop, you should use the listFiles tool to list the files in the Desktop and check if the file they are talking about is there, rather than asking the user to provide the file path themselves.\n'[39m +
+            [32m`- You are STRICTLY FORBIDDEN from starting your messages with "Great", "Certainly", "Okay", "Sure". You should NOT be conversational in your responses, but rather direct and to the point. For example you should NOT say "Great, I've updated the CSS" but instead something like "I've updated the CSS". It is important you be clear and technical in your messages.\n`[39m +
+            [32m"- Once you've completed the user's task, you MUST use the attemptCompletion tool to present the result of the task to the user. It is STRICTLY FORBIDDEN to complete the task without using this tool.\n"[39m +
+            [32m'- When planning large-scale changes, create a high-level diagram using mermaid in Markdown. This helps explain your plan and allows you to gather user feedback before implementation.'[39m
+        },
+        {
+          role: [32m'user'[39m,
+          content: [
+            {
+              type: [32m'text'[39m,
+              text: [32m'<system-reminder># System Information\n'[39m +
+                [32m'\n'[39m +
+                [32m'Operating System: linux\n'[39m +
+                [32m'Default Shell: \n'[39m +
+                [32m'Home Directory: /root\n'[39m +
+                [32m'Current Working Directory: /\n'[39m +
+                [32m'Current Time: Tue Mar 24 2026 07:26:34 GMT+0000 (Coordinated Universal Time)\n'[39m +
+                [32m'\n'[39m +
+                [32m'# Current Working Directory (/) Files\n'[39m +
+                [32m'boot\n'[39m +
+                [32m'media\n'[39m +
+                [32m'usr\n'[39m +
+                [32m'tmp\n'[39m +
+                [32m'root\n'[39m +
+                [32m'proc\n'[39m +
+                [32m'etc\n'[39m +
+                [32m'mnt\n'[39m +
+                [32m'sys\n'[39m +
+                [32m'home\n'[39m +
+                [32m'var\n'[39m +
+                [32m'dev\n'[39m +
+                [32m'opt\n'[39m +
+                [32m'run\n'[39m +
+                [32m'srv\n'[39m +
+                [32m'logs\n'[39m +
+                [32m'installed-agent\n'[39m +
+                [32m'.dockerenv\n'[39m +
+                [32m'usr/sbin\n'[39m +
+                [32m'usr/games\n'[39m +
+                [32m'usr/lib\n'[39m +
+                [32m'usr/share\n'[39m +
+                [32m'usr/local\n'[39m +
+                [32m'usr/src\n'[39m +
+                [32m'usr/libexec\n'[39m +
+                [32m'usr/include\n'[39m +
+                [32m'tmp/tmp.eY4DVWaK8N\n'[39m +
+                [32m'root/.profile\n'[39m +
+                [32m'root/.bashrc\n'[39m +
+                [32m'root/.pochi\n'[39m +
+                [32m'proc/fb\n'[39m +
+                [32m'proc/fs\n'[39m +
+                [32m'proc/bus\n'[39m +
+                [32m'proc/irq\n'[39m +
+                [32m'proc/sys\n'[39m +
+                [32m'proc/tty\n'[39m +
+                [32m'proc/acpi\n'[39m +
+                [32m'proc/keys\n'[39m +
+                [32m'proc/kmsg\n'[39m +
+                [32m'proc/misc\n'[39m +
+                [32m'proc/scsi\n'[39m +
+                [32m'proc/stat\n'[39m +
+                [32m'proc/iomem\n'[39m +
+                [32m'proc/kcore\n'[39m +
+                [32m'proc/locks\n'[39m +
+                [32m'proc/swaps\n'[39m +
+                [32m'proc/crypto\n'[39m +
+                [32m'proc/driver\n'[39m +
+                [32m'proc/mdstat\n'[39m +
+                [32m'proc/uptime\n'[39m +
+                [32m'proc/vmstat\n'[39m +
+                [32m'proc/cgroups\n'[39m +
+                [32m'proc/cmdline\n'[39m +
+                [32m'proc/cpuinfo\n'[39m +
+                [32m'proc/devices\n'[39m +
+                [32m'proc/ioports\n'[39m +
+                [32m'proc/loadavg\n'[39m +
+                [32m'proc/meminfo\n'[39m +
+                [32m'proc/modules\n'[39m +
+                [32m'proc/sysvipc\n'[39m +
+                [32m'proc/version\n'[39m +
+                [32m'proc/consoles\n'[39m +
+                [32m'proc/kallsyms\n'[39m +
+                [32m'proc/pressure\n'[39m +
+                [32m'proc/slabinfo\n'[39m +
+                [32m'proc/softirqs\n'[39m +
+                [32m'proc/zoneinfo\n'[39m +
+                [32m'proc/buddyinfo\n'[39m +
+                [32m'proc/diskstats\n'[39m +
+                [32m'proc/key-users\n'[39m +
+                [32m'proc/schedstat\n'[39m +
+                [32m'proc/bootconfig\n'[39m +
+                [32m'proc/interrupts\n'[39m +
+                [32m'proc/kpagecount\n'[39m +
+                [32m'proc/kpageflags\n'[39m +
+                [32m'proc/partitions\n'[39m +
+                [32m'proc/timer_list\n'[39m +
+                [32m'proc/execdomains\n'[39m +
+                [32m'proc/filesystems\n'[39m +
+                [32m'proc/kpagecgroup\n'[39m +
+                [32m'proc/vmallocinfo\n'[39m +
+                [32m'proc/pagetypeinfo\n'[39m +
+                [32m'proc/dynamic_debug\n'[39m +
+                [32m'proc/latency_stats\n'[39m +
+                [32m'proc/sysrq-trigger\n'[39m +
+                [32m'proc/version_signature\n'[39m +
+                [32m'proc/1\n'[39m +
+                [32m'proc/7\n'[39m +
+                [32m'proc/225\n'[39m +
+                [32m'proc/231\n'[39m +
+                [32m'proc/232\n'[39m +
+                [32m'proc/233\n'[39m +
+                [32m'etc/selinux\n'[39m +
+                [32m'etc/hostname\n'[39m +
+                [32m'etc/environment\n'[39m +
+                [32m'etc/alternatives\n'[39m +
+                [32m'etc/legal\n'[39m +
+                [32m'etc/skel\n'[39m +
+                [32m'etc/xattr.conf\n'[39m +
+                [32m'etc/bindresvport.blacklist\n'[39m +
+                [32m'etc/host.conf\n'[39m +
+                [32m'etc/rcS.d\n'[39m +
+                [32m'etc/cron.d\n'[39m +
+                [32m'etc/terminfo\n'[39m +
+                [32m'etc/rc3.d\n'[39m +
+                [32m'etc/rc4.d\n'[39m +
+                [32m'etc/logrotate.d\n'[39m +
+                [32m'etc/login.defs\n'[39m +
+                [32m'etc/security\n'[39m +
+                [32m'etc/default\n'[39m +
+                [32m'etc/pam.d\n'[39m +
+                [32m'etc/networks\n'[39m +
+                [32m'etc/profile.d\n'[39m +
+                [32m'etc/issue.net\n'[39m +
+                [32m'etc/ld.so.conf\n'[39m +
+                [32m'etc/resolv.conf\n'[39m +
+                [32m'etc/debconf.conf\n'[39m +
+                [32m'etc/apt\n'[39m +
+                [32m'etc/pam.conf\n'[39m +
+                [32m'etc/shells\n'[39m +
+                [32m'etc/gnutls\n'[39m +
+                [32m'etc/subgid-\n'[39m +
+                [32m'etc/update-motd.d\n'[39m +
+                [32m'etc/hosts\n'[39m +
+                [32m'etc/subuid-\n'[39m +
+                [32m'etc/passwd-\n'[39m +
+                [32m'etc/subuid\n'[39m +
+                [32m'etc/ld.so.conf.d\n'[39m +
+                [32m'etc/libaudit.conf\n'[39m +
+                [32m'etc/machine-id\n'[39m +
+                [32m'etc/profile\n'[39m +
+                [32m'etc/sysctl.d\n'[39m +
+                [32m'etc/cron.daily\n'[39m +
+                [32m'etc/rc6.d\n'[39m +
+                [32m'etc/shadow\n'[39m +
+                [32m'etc/debian_version\n'[39m +
+                [32m'etc/group\n'[39m +
+                [32m'etc/group-\n'[39m +
+                [32m'etc/e2scrub.conf\n'[39m +
+                [32m'etc/nsswitch.conf\n'[39m +
+                [32m'etc/gai.conf\n'[39m +
+                [32m'etc/mke2fs.conf\n'[39m +
+                [32m'etc/subgid\n'[39m +
+                [32m'etc/opt\n'[39m +
+                [32m'etc/dpkg\n'[39m +
+                [32m'etc/systemd\n'[39m +
+                [32m'etc/passwd\n'[39m +
+                [32m'etc/kernel\n'[39m +
+                [32m'etc/gshadow-\n'[39m +
+                [32m'etc/sysctl.conf\n'[39m +
+                [32m'etc/lsb-release\n'[39m +
+                [32m'etc/init.d\n'[39m +
+                [32m'etc/rc0.d\n'[39m +
+                [32m'etc/gshadow\n'[39m +
+                [32m'etc/shadow-\n'[39m +
+                [32m'etc/cloud\n'[39m +
+                [32m'etc/rc1.d\n'[39m +
+                [32m'etc/rc2.d\n'[39m +
+                [32m'etc/issue\n'[39m +
+                [32m'etc/fstab\n'[39m +
+                [32m'etc/rc5.d\n'[39m +
+                [32m'etc/bash.bashrc\n'[39m +
+                [32m'etc/ca-certificates\n'[39m +
+                [32m'etc/ssh\n'[39m +
+                [32m'etc/X11\n'[39m +
+                [32m'etc/python3\n'[39m +
+                [32m'etc/perl\n'[39m +
+                [32m'etc/inputrc\n'[39m +
+                [32m'etc/lighttpd\n'[39m +
+                [32m'etc/deluser.conf\n'[39m +
+                [32m'etc/gprofng.rc\n'[39m +
+                [32m'etc/timezone\n'[39m +
+                [32m'etc/gss\n'[39m +
+                [32m'etc/apache2\n'[39m +
+                [32m'etc/python3.12\n'[39m +
+                [32m'etc/rpc\n'[39m +
+                [32m'etc/adduser.conf\n'[39m +
+                [32m'etc/protocols\n'[39m +
+                [32m'etc/bash_completion.d\n'[39m +
+                [32m'etc/mime.types\n'[39m +
+                [32m'etc/ldap\n'[39m +
+                [32m'etc/ssl\n'[39m +
+                [32m'etc/services\n'[39m +
+                [32m'etc/ethertypes\n'[39m +
+                [32m'etc/fonts\n'[39m +
+                [32m'etc/ca-certificates.conf\n'[39m +
+                [32m'etc/logcheck\n'[39m +
+                [32m'sys/kernel\n'[39m +
+                [32m'sys/power\n'[39m +
+                [32m'sys/class\n'[39m +
+                [32m'sys/devices\n'[39m +
+                [32m'sys/dev\n'[39m +
+                [32m'sys/hypervisor\n'[39m +
+                [32m'sys/fs\n'[39m +
+                [32m'sys/bus\n'[39m +
+                [32m'sys/firmware\n'[39m +
+                [32m'sys/block\n'[39m +
+                [32m'sys/module\n'[39m +
+                [32m'home/ubuntu\n'[39m +
+                [32m'home/user\n'[39m +
+                [32m'var/tmp\n'[39m +
+                [32m'var/lib\n'[39m +
+                [32m'var/local\n'[39m +
+                [32m'var/spool\n'[39m +
+                [32m'var/mail\n'[39m +
+                [32m'var/opt\n'[39m +
+                [32m'var/log\n'[39m +
+                [32m'var/cache\n'[39m +
+                [32m'var/backups\n'[39m +
+                [32m'dev/shm\n'[39m +
+                [32m'dev/mqueue\n'[39m +
+                [32m'dev/pts\n'[39m +
+                [32m'run/lock\n'[39m +
+                [32m'run/systemd\n'[39m +
+                [32m'run/adduser\n'[39m +
+                [32m'logs/artifacts\n'[39m +
+                [32m'logs/verifier\n'[39m +
+                [32m'logs/agent\n'[39m +
+                [32m'installed-agent/install.sh\n'[39m +
+                [32m'usr/sbin/e4defrag\n'[39m +
+                [32m'usr/sbin/dpkg-preconfigure\n'[39m +
+                [32m'usr/sbin/invoke-rc.d\n'[39m +
+                [32m'usr/sbin/pam_timestamp_check\n'[39m +
+                [32m'usr/sbin/update-passwd\n'[39m +
+                [32m'usr/sbin/switch_root\n'[39m +
+                [32m'usr/sbin/readprofile\n'[39m +
+                [32m'usr/sbin/e2undo\n'[39m +
+                [32m'usr/sbin/shadowconfig\n'[39m +
+                [32m'usr/sbin/pam-auth-update\n'[39m +
+                [32m'usr/sbin/fsck.minix\n'[39m +
+                [32m'usr/sbin/tune2fs\n'[39m +
+                [32m'usr/sbin/cppw\n'[39m +
+                [32m'usr/sbin/chcpu\n'[39m +
+                [32m'usr/sbin/pam_extrausers_chkpwd\n'[39m +
+                [32m'usr/sbin/fsck\n'[39m +
+                [32m'usr/sbin/killall5\n'[39m +
+                [32m'usr/sbin/blockdev\n'[39m +
+                [32m'usr/sbin/zramctl\n'[39m +
+                [32m'usr/sbin/newusers\n'[39m +
+                [32m'usr/sbin/fsck.cramfs\n'[39m +
+                [32m'usr/sbin/swaplabel\n'[39m +
+                [32m'usr/sbin/usermod\n'[39m +
+                [32m'usr/sbin/iconvconfig\n'[39m +
+                [32m'usr/sbin/ldconfig.real\n'[39m +
+                [32m'usr/sbin/dpkg-reconfigure\n'[39m +
+                [32m'usr/sbin/chmem\n'[39m +
+                [32m'usr/sbin/grpck\n'[39m +
+                [32m'usr/sbin/e2scrub\n'[39m +
+                [32m'usr/sbin/unix_chkpwd\n'[39m +
+                [32m'usr/sbin/pam_namespace_helper\n'[39m +
+                [32m'usr/sbin/rtcwake\n'[39m +
+                [32m'usr/sbin/sysctl\n'[39m +
+                [32m'usr/sbin/sulogin\n'[39m +
+                [32m'usr/sbin/chgpasswd\n'[39m +
+                [32m'usr/sbin/mklost+found\n'[39m +
+                [32m'usr/sbin/service\n'[39m +
+                [32m'usr/sbin/mke2fs\n'[39m +
+                [32m'usr/sbin/ctrlaltdel\n'[39m +
+                [32m'usr/sbin/logsave\n'[39m +
+                [32m'usr/sbin/pwconv\n'[39m +
+                [32m'usr/sbin/pam_getenv\n'[39m +
+                [32m'usr/sbin/vipw\n'[39m +
+                [32m'usr/sbin/wipefs\n'[39m +
+                [32m'usr/sbin/chroot\n'[39m +
+                [32m'usr/sbin/pwhistory_helper\n'[39m +
+                [32m'usr/sbin/groupadd\n'[39m +
+                [32m'usr/sbin/findfs\n'[39m +
+                [32m'usr/sbin/grpconv\n'[39m +
+                [32m'usr/sbin/resize2fs\n'[39m +
+                [32m'usr/sbin/swapon\n'[39m +
+                [32m'usr/sbin/swapoff\n'[39m +
+                [32m'usr/sbin/fsfreeze\n'[39m +
+                [32m'usr/sbin/filefrag\n'[39m +
+                [32m'usr/sbin/mkfs.bfs\n'[39m +
+                [32m'usr/sbin/pwunconv\n'[39m +
+                [32m'usr/sbin/update-rc.d\n'[39m +
+                [32m'usr/sbin/isosize\n'[39m +
+                [32m'usr/sbin/mkswap\n'[39m +
+                [32m'usr/sbin/e2image\n'[39m +
+                [32m'usr/sbin/useradd\n'[39m +
+                [32m'usr/sbin/chpasswd\n'[39m +
+                [32m'usr/sbin/add-shell\n'[39m +
+                [32m'usr/sbin/faillock\n'[39m +
+                [32m'usr/sbin/remove-shell\n'[39m +
+                [32m'usr/sbin/blkid\n'[39m +
+                [32m'usr/sbin/groupmod\n'[39m +
+                [32m'usr/sbin/grpunconv\n'[39m +
+                [32m'usr/sbin/tarcat\n'[39m +
+                [32m'usr/sbin/e2fsck\n'[39m +
+                [32m'usr/sbin/pivot_root\n'[39m +
+                [32m'usr/sbin/mkhomedir_helper\n'[39m +
+                [32m'usr/sbin/fstab-decode\n'[39m +
+                [32m'usr/sbin/ldconfig\n'[39m +
+                [32m'usr/sbin/agetty\n'[39m +
+                [32m'usr/sbin/policy-rc.d\n'[39m +
+                [32m'usr/sbin/rmt-tar\n'[39m +
+                [32m'usr/sbin/e2freefrag\n'[39m +
+                [32m'usr/sbin/unix_update\n'[39m +
+                [32m'usr/sbin/badblocks\n'[39m +
+                [32m'usr/sbin/groupdel\n'[39m +
+                [32m'usr/sbin/groupmems\n'[39m +
+                [32m'usr/sbin/mkfs\n'[39m +
+                [32m'usr/sbin/start-stop-daemon\n'[39m +
+                [32m'usr/sbin/initctl\n'[39m +
+                [32m'usr/sbin/fstrim\n'[39m +
+                [32m'usr/sbin/ldattach\n'[39m +
+                [32m'usr/sbin/debugfs\n'[39m +
+                [32m'usr/sbin/e2scrub_all\n'[39m +
+                [32m'usr/sbin/runuser\n'[39m +
+                [32m'usr/sbin/zic\n'[39m +
+                [32m'usr/sbin/update-shells\n'[39m +
+                [32m'usr/sbin/blkdiscard\n'[39m +
+                [32m'usr/sbin/nologin\n'[39m +
+                [32m'usr/sbin/losetup\n'[39m +
+                [32m'usr/sbin/userdel\n'[39m +
+                [32m'usr/sbin/mkfs.minix\n'[39m +
+                [32m'usr/sbin/mkfs.cramfs\n'[39m +
+                [32m'usr/sbin/installkernel\n'[39m +
+                [32m'usr/sbin/e4crypt\n'[39m +
+                [32m'usr/sbin/blkzone\n'[39m +
+                [32m'usr/sbin/pwck\n'[39m +
+                [32m'usr/sbin/dumpe2fs\n'[39m +
+                [32m'usr/sbin/pam_extrausers_update\n'[39m +
+                [32m'usr/sbin/addgnupghome\n'[39m +
+                [32m'usr/sbin/adduser\n'[39m +
+                [32m'usr/sbin/update-ca-certificates\n'[39m +
+                [32m'usr/sbin/applygnupgdefaults\n'[39m +
+                [32m'usr/sbin/deluser\n'[39m +
+                [32m'usr/lib/init\n'[39m +
+                [32m'usr/lib/aarch64-linux-gnu\n'[39m +
+                [32m'usr/lib/lsb\n'[39m +
+                [32m'usr/lib/udev\n'[39m +
+                [32m'usr/lib/apt\n'[39m +
+                [32m'usr/lib/os-release\n'[39m +
+                [32m'usr/lib/sysctl.d\n'[39m +
+                [32m'usr/lib/dpkg\n'[39m +
+                [32m'usr/lib/systemd\n'[39m +
+                [32m'usr/lib/mime\n'[39m +
+                [32m'usr/lib/locale\n'[39m +
+                [32m'usr/lib/tmpfiles.d\n'[39m +
+                [32m'usr/lib/sasl2\n'[39m +
+                [32m'usr/lib/python3\n'[39m +
+                [32m'usr/lib/gnupg\n'[39m +
+                [32m'usr/lib/gold-ld\n'[39m +
+                [32m'usr/lib/compat-ld\n'[39m +
+                [32m'usr/lib/gnupg2\n'[39m +
+                [32m'usr/lib/python3.12\n'[39m +
+                [32m'usr/lib/bfd-plugins\n'[39m +
+                [32m'usr/lib/gcc\n'[39m +
+                [32m'usr/lib/openssh\n'[39m +
+                [32m'usr/lib/valgrind\n'[39m +
+                [32m'usr/lib/ssl\n'[39m +
+                [32m'usr/lib/git-core\n'[39m +
+                [32m'usr/lib/binfmt.d\n'[39m +
+                [32m'usr/share/man\n'[39m +
+                [32m'usr/share/bug\n'[39m +
+                [32m'usr/share/keyrings\n'[39m +
+                [32m'usr/share/misc\n'[39m +
+                [32m'usr/share/apport\n'[39m +
+                [32m'usr/share/menu\n'[39m +
+                [32m'usr/share/dot.bashrc\n'[39m +
+                [32m'usr/share/dot.profile\n'[39m +
+                [32m'usr/share/debianutils\n'[39m +
+                [32m'usr/share/terminfo\n'[39m +
+                [32m'usr/share/doc\n'[39m +
+                [32m'usr/share/dot.profile.md5sums\n'[39m +
+                [32m'usr/share/gdb\n'[39m +
+                [32m'usr/share/doc-base\n'[39m +
+                [32m'usr/share/profile.md5sums\n'[39m +
+                [32m'usr/share/networks\n'[39m +
+                [32m'usr/share/lintian\n'[39m +
+                [32m'usr/share/pixmaps\n'[39m +
+                [32m'usr/share/sensible-utils\n'[39m +
+                [32m'usr/share/info\n'[39m +
+                [32m'usr/share/libgcrypt20\n'[39m +
+                [32m'usr/share/bash-completion\n'[39m +
+                [32m'usr/share/perl5\n'[39m +
+                [32m'usr/share/debconf\n'[39m +
+                [32m'usr/share/profile\n'[39m +
+                [32m'usr/share/motd\n'[39m +
+                [32m'usr/share/pam\n'[39m +
+                [32m'usr/share/gcc\n'[39m +
+                [32m'usr/share/libc-bin\n'[39m +
+                [32m'usr/share/dpkg\n'[39m +
+                [32m'usr/share/common-licenses\n'[39m +
+                [32m'usr/share/staff-group-for-usr-local\n'[39m +
+                [32m'usr/share/tabset\n'[39m +
+                [32m'usr/share/locale\n'[39m +
+                [32m'usr/share/polkit-1\n'[39m +
+                [32m'usr/share/base-passwd\n'[39m +
+                [32m'usr/share/base-files\n'[39m +
+                [32m'usr/share/info.dir\n'[39m +
+                [32m'usr/share/dict\n'[39m +
+                [32m'usr/share/util-linux\n'[39m +
+                [32m'usr/share/pam-configs\n'[39m +
+                [32m'usr/share/zsh\n'[39m +
+                [32m'usr/share/ca-certificates\n'[39m +
+                [32m'usr/share/applications\n'[39m +
+                [32m'usr/share/X11\n'[39m +
+                [32m'usr/share/binfmts\n'[39m +
+                [32m'usr/share/javascript\n'[39m +
+                [32m'usr/share/python3\n'[39m +
+                [32m'usr/share/gnupg\n'[39m +
+                [32m'usr/share/perl\n'[39m +
+                [32m'usr/share/lto-disabled-list\n'[39m +
+                [32m'usr/share/build-essential\n'[39m +
+                [32m'usr/share/aclocal\n'[39m +
+                [32m'usr/share/zoneinfo\n'[39m +
+                [32m'usr/share/python-wheels\n'[39m +
+                [32m'usr/share/git-core\n'[39m +
+                [32m'usr/share/fontconfig\n'[39m +
+                [32m'usr/share/publicsuffix\n'[39m +
+                [32m'usr/share/readline\n'[39m +
+                [32m'usr/share/xml\n'[39m +
+                [32m'usr/share/fonts\n'[39m +
+                [32m'usr/share/gitweb\n'[39m +
+                [32m'usr/local/sbin\n'[39m +
+                [32m'usr/local/games\n'[39m +
+                [32m'usr/local/etc\n'[39m +
+                [32m'usr/local/lib\n'[39m +
+                [32m'usr/local/share\n'[39m +
+                [32m'usr/local/src\n'[39m +
+                [32m'usr/local/include\n'[39m +
+                [32m'usr/src/python3.12\n'[39m +
+                [32m'usr/libexec/dpkg\n'[39m +
+                [32m'usr/libexec/coreutils\n'[39m +
+                [32m'usr/libexec/gcc\n'[39m +
+                [32m'usr/include/setjmp.h\n'[39m +
+                [32m'usr/include/video\n'[39m +
+                [32m'usr/include/stdint.h\n'[39m +
+                [32m'usr/include/aio.h\n'[39m +
+                [32m'usr/include/memory.h\n'[39m +
+                [32m'usr/include/rpcsvc\n'[39m +
+                [32m'usr/include/pty.h\n'[39m +
+                [32m'usr/include/termio.h\n'[39m +
+                [32m'usr/include/dlfcn.h\n'[39m +
+                [32m'usr/include/grp.h\n'[39m +
+                [32m'usr/include/netatalk\n'[39m +
+                [32m'usr/include/misc\n'[39m +
+                [32m'usr/include/iconv.h\n'[39m +
+                [32m'usr/include/glob.h\n'[39m +
+                [32m'usr/include/stdio.h\n'[39m +
+                [32m'usr/include/printf.h\n'[39m +
+                [32m'usr/include/argp.h\n'[39m +
+                [32m'usr/include/aarch64-linux-gnu\n'[39m +
+                [32m'usr/include/c++\n'[39m +
+                [32m'usr/include/wordexp.h\n'[39m +
+                [32m'usr/include/gconv.h\n'[39m +
+                [32m'usr/include/locale.h\n'[39m +
+                [32m'usr/include/gnumake.h\n'[39m +
+                [32m'usr/include/expat_external.h\n'[39m +
+                [32m'usr/include/proc_service.h\n'[39m +
+                [32m'usr/include/drm\n'[39m +
+                [32m'usr/include/fenv.h\n'[39m +
+                [32m'usr/include/poll.h\n'[39m +
+                [32m'usr/include/stdbit.h\n'[39m +
+                [32m'usr/include/stab.h\n'[39m +
+                [32m'usr/include/sgtty.h\n'[39m +
+                [32m'usr/include/ulimit.h\n'[39m +
+                [32m'usr/include/netinet\n'[39m +
+                [32m'usr/include/ar.h\n'[39m +
+                [32m'usr/include/tar.h\n'[39m +
+                [32m'usr/include/execinfo.h\n'[39m +
+                [32m'usr/include/inttypes.h\n'[39m +
+                [32m'usr/include/fnmatch.h\n'[39m +
+                [32m'usr/include/obstack.h\n'[39m +
+                [32m'usr/include/uchar.h\n'[39m +
+                [32m'usr/include/ftw.h\n'[39m +
+                [32m'usr/include/fts.h\n'[39m +
+                [32m'usr/include/netpacket\n'[39m +
+                [32m'usr/include/langinfo.h\n'[39m +
+                [32m'usr/include/err.h\n'[39m +
+                [32m'usr/include/fstab.h\n'[39m +
+                [32m'usr/include/sound\n'[39m +
+                [32m'usr/include/mntent.h\n'[39m +
+                [32m'usr/include/nfs\n'[39m +
+                [32m'usr/include/sched.h\n'[39m +
+                [32m'usr/include/sysexits.h\n'[39m +
+                [32m'usr/include/stdio_ext.h\n'[39m +
+                [32m'usr/include/elf.h\n'[39m +
+                [32m'usr/include/strings.h\n'[39m +
+                [32m'usr/include/thread_db.h\n'[39m +
+                [32m'usr/include/neteconet\n'[39m +
+                [32m'usr/include/xen\n'[39m +
+                [32m'usr/include/stdlib.h\n'[39m +
+                [32m'usr/include/pwd.h\n'[39m +
+                [32m'usr/include/features-time64.h\n'[39m +
+                [32m'usr/include/mcheck.h\n'[39m +
+                [32m'usr/include/stdc-predef.h\n'[39m +
+                [32m'usr/include/zlib.h\n'[39m +
+                [32m'usr/include/wchar.h\n'[39m +
+                [32m'usr/include/netdb.h\n'[39m +
+                [32m'usr/include/paths.h\n'[39m +
+                [32m'usr/include/lastlog.h\n'[39m +
+                [32m'usr/include/utmp.h\n'[39m +
+                [32m'usr/include/mtd\n'[39m +
+                [32m'usr/include/gshadow.h\n'[39m +
+                [32m'usr/include/fmtmsg.h\n'[39m +
+                [32m'usr/include/fcntl.h\n'[39m +
+                [32m'usr/include/envz.h\n'[39m +
+                [32m'(Note: The list of files is truncated. Use listFiles tool to explore if needed)\n'[39m +
+                [32m'\n'[39m +
+                [32m'# GIT STATUS\n'[39m +
+                [32m'Current branch: \n'[39m +
+                [32m'Main branch (you will usually use this for PRs): \n'[39m +
+                [32m'\n'[39m +
+                [32m'Recent commits:\n'[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m'# TODOs\n'[39m +
+                [32m'No TODOs yet, if you are working on tasks that would benefit from a todo list please use the todoWrite tool to create one.</system-reminder>'[39m
+            },
+            {
+              type: [32m'text'[39m,
+              text: [32m'# Modal Secret API Key Function\n'[39m +
+                [32m'\n'[39m +
+                [32m'You are an ML ops engineer managing model serving infrastructure. Your goal is to create a Modal app that securely accesses an API key using Modal Secrets.\n'[39m +
+                [32m'\n'[39m +
+                [32m'## Steps\n'[39m +
+                [32m'\n'[39m +
+                [32m'### 1. Create a Modal Secret\n'[39m +
+                [32m'\n'[39m +
+                [32m'First, create a Modal Secret named `my-api-credentials` with an `API_KEY` value:\n'[39m +
+                [32m'\n'[39m +
+                [32m'```bash\n'[39m +
+                [32m'modal secret create my-api-credentials API_KEY=test-key-1234 -e modal-vsdatagen\n'[39m +
+                [32m'```\n'[39m +
+                [32m'\n'[39m +
+                [32m'### 2. Implement the App\n'[39m +
+                [32m'\n'[39m +
+                [32m'A starter file already exists at `/home/user/modal_secrets/app.py` with basic imports and an app definition. Extend it to:\n'[39m +
+                [32m'\n'[39m +
+                [32m'- Define a Modal image using `modal.Image.debian_slim()`\n'[39m +
+                [32m'- Add a function `fetch_with_key` that:\n'[39m +
+                [32m'  - Is decorated with `@app.function(secrets=[modal.Secret.from_name("my-api-credentials")])`\n'[39m +
+                [32m'  - Reads the `API_KEY` from the environment using `os.environ["API_KEY"]`\n'[39m +
+                [32m'  - Returns the first 4 characters of the key\n'[39m +
+                [32m'  - Stores the masked key in Modal Dict `"secret-api-key-output"` under the key `"masked_key"`\n'[39m +
+                [32m'  - Stores `True` in Modal Dict `"secret-api-key-output"` under the key `"verified"`\n'[39m +
+                [32m'- Add a `@app.local_entrypoint()` that calls `fetch_with_key.remote()` and prints the result\n'[39m +
+                [32m'\n'[39m +
+                [32m'### 3. Deploy the App\n'[39m +
+                [32m'\n'[39m +
+                [32m'```bash\n'[39m +
+                [32m'modal deploy /home/user/modal_secrets/app.py -e modal-vsdatagen\n'[39m +
+                [32m'```\n'[39m +
+                [32m'\n'[39m +
+                [32m'### 4. Run the App\n'[39m +
+                [32m'\n'[39m +
+                [32m'```bash\n'[39m +
+                [32m'modal run /home/user/modal_secrets/app.py -e modal-vsdatagen\n'[39m +
+                [32m'```'[39m
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Analyzing Modal Secrets Implementation**\n'[39m +
+                [32m'\n'[39m +
+                [32m"I'm currently working on structuring the Modal app to securely access the API key. The initial plan involves creating a Modal secret named `my-api-credentials` and storing the `API_KEY`. I'm focusing on the implementation details for step 2, ensuring that the app correctly retrieves and utilizes the secret within the Modal environment. This is crucial for maintaining security.\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            },
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'FIPInr9d5tQY3Q16'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'mkdir -p /home/user/modal_secrets && ls -la /home/user/modal_secrets'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'CmMBjz1rX61UEgDhe54331OTC+lnai78GPgZC6ywlIKaYGjWZYyYkbcE41OcrusR0Rks3+gIpI28tB3SVpqI+cqvJ9f8M7tnoG/l0Iom9YoKcfjLcQEoajBrkPFUtdhJPrRuk+EKUgGPPWtfHt5APVJs5T6K8A2enWNHQ9R8kCKTYS4nJeavhaXu2TwCxH779DtblC8x3OsEHX52U5CzSm1yY5IJ/QYImV4bJBhlDyVzoju38T9PVzsKewGPPWtf4H+XcoUyNGOe4sqB4c4swvcWGEx+LAd9MtRDck7yL8j6IIil8TRPccNkZVaGhellDdIxqEAqi3s+YIdEaB680H089aDPIBySDIVKGYvYNe6Ou2Rh0ZhlhIQk5kpfJj2wdGcqAvJysTWXi6cY/e0RSqvm6qSqDQp+AY89a19J4HyggWCCdI3p67KsNi0FXlwwmzRebhjbp5YFaI8pnw5JkdBgDuiSsK96Exy/ngFWJqJOL44wL1OUbnliiYhSRpaccqwTNfCB/4nM4hBBPLvKB7QBSVNqhaId97+vC8QXqR8MUNlCPXWUlMLeOw4nqlx3nfPefejYClQBjz1rXwb00dDKdc6VREEuy05Zr3wKGupWBUg0oVrUMwmh9RMKz0b16PyMb4oX5/1wPhCmERaPXam2KTzflX7hVfyHkKpwzmmmZa9hMyHzENc1tag='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'FIPInr9d5tQY3Q16'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'total 12\r\n'[39m +
+                    [32m'drwxr-xr-x 2 root root 4096 Mar 24 04:08 .\r\n'[39m +
+                    [32m'drwxr-xr-x 1 root root 4096 Mar 24 04:08 ..\r\n'[39m +
+                    [32m'-rw-r--r-- 1 root root   58 Mar 24 04:08 app.py\r\n'[39m +
+                    [32m''[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'WMCas62rkKgDsGWC'[39m,
+              toolName: [32m'readFile'[39m,
+              input: {
+                path: [32m'/home/user/modal_secrets/app.py'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'Cj4Bjz1rXzlCl3tNbTL9g6CtSbaDWJy/LwVB/1iXhU1VxqOvjV11IMWlE/7quM5S7T2eBprdMLFAC3KHBZ3vBw=='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'WMCas62rkKgDsGWC'[39m,
+              toolName: [32m'readFile'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  content: [32m'import modal\nimport os\n\napp = modal.App("secret-api-key")\n'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Investigating Modal Secrets**\n'[39m +
+                [32m'\n'[39m +
+                [32m'I\'m currently trying to establish the feasibility of creating a "Modal secret" within this environment. The initial step is to ascertain if the necessary `modal` CLI tool is even installed. My immediate action is to verify the ability to execute the `modal secret create` command.\n'[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            },
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'eSTVGUgt7gOraOGu'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal secret create my-api-credentials API_KEY=test-key-1234 -e modal-vsdatagen'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'CmABjz1rX7Xx3//kvs84+eYro7yR9+zVV4OIPyPF7vcNTUs4BiExQnZJujwuod1b67BOcG2qlI/eUe2I47uIM6G0SWMjC3wZnLIXCjGNkbWtYoGhm+cOTfXqvSAhViBv3HcKXAGPPWtf4Gd27dcyysRi0tuPWnGV2umdzcEcOpDwSpjOyO+x1b0kxlKyubuGcWCkSFFZd88CO3VRRJcMhfqEaMSANCuhzU46I8VSrXsd/6lyNuubZtxIEOuDPpl7CjcBjz1rX8SZpXlwp56GVImPts5ZIyUzjDC/t/k9uwbj/UDnSZT2SLa5QvXNswS1Cw/Ol9Qy99jP'[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'eSTVGUgt7gOraOGu'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'\nCommand exited with code 1'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'W8DkTarbgaIPtHMI'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal secret create my-api-credentials API_KEY=test-key-1234 -e modal-vsdatagen 2>&1'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'ClYBjz1rX07Ee7yUe68OO8bbImnpMedzCW7lIMtsuVc1b2qFnsG5ZWa/DWFVAoGTRReph4Pwu6HI91jQp0L1pFen/+8H7z6MiTkQApiOZAXlL/YWgdVEhAo3AY89a1/cdm/IYfK2+SrA/IGyibVyFtfAQEzJQfUdsWa9hsa7XUdD+WcxzZzMq4SVENHXCWozNg=='[39m
+                }
+              }
+            },
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Inspecting the Error**\n'[39m +
+                [32m'\n'[39m +
+                [32m"The command `modal secret create` failed, and I need to figure out why. I'm going to look closely at the error output now to understand what went wrong. Hopefully, the problem is straightforward to diagnose.\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'W8DkTarbgaIPtHMI'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'\nCommand exited with code 1'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'ghMbrTjgo1PJ3kXv'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'which modal'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'CkMBjz1rXwt0NBHCeKhzqOTefTtPwH6Td4+EcS9ohLWj6EekcZ8JvYxe8ewF4y9GdwOOpKoJDqeXdpHLzvDPpe+9j/qW'[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'ghMbrTjgo1PJ3kXv'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'/usr/local/bin/modal\r\n'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Examining the Modal Version**\n'[39m +
+                [32m'\n'[39m +
+                [32m"Right now, I'm simply trying to execute `modal --version` and see what comes back. This is the very first step, just checking the environment. I need to know what version of Modal I'm dealing with.\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            },
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'jZXQOOM90gNqr9fF'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal --version'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'CkcBjz1rX0rrgsWtbnGWXduoowVck05S1Rhjwxmqlzct1l3oxIfE4kSho/ASISfrDnlNH7zZyOYcBb7h/Jh34/xudlXn5dBwqg=='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'jZXQOOM90gNqr9fF'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'modal client version: 1.3.5\r\n'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Checking Command Syntax**\n'[39m +
+                [32m'\n'[39m +
+                [32m"I'm currently focused on the command-line syntax for creating a Modal secret. I'm wondering if omitting the `-e` flag and simply using `API_KEY= test-key-1234` in the `modal secret create` command is correct. To confirm, I should review the help documentation for the `modal secret create` command.\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            },
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'UpRrJ1Ya4JxrVaEC'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal secret create --help'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'CiYBjz1rX1vvGht8Fx8FBoPsK4+8qwRxipNX5t+oDlXlW1WMusNwzApXAY89a1/9nIqDaRQBhCxiW4bD2bj8ko/sEgm5TrxVYKj/pDZZZM4yQBrHtnjT6RGzlb32ZkdR19yzvClviP4CbgoXKWrtbLexu1/OwnVd2U/ID6dW8YmKCkIBjz1rX/quBPfiEjDwL5mGd+dnJTnsY1/V0mdT162d9uSfrDnWTtTNTteAekKY7xIk9yQS/1LpInYjcUe5KvuRukUKRgGPPWtffHLVYOdC5QZfF1fD/x1GXqZd+TIzg7NcrZ1fE/qv+eSSCa599ar8mmYCeI71EfNKwztcxXZ2nLTvoc8iNmdZdY0='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'UpRrJ1Ya4JxrVaEC'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'                                                                                \r\n'[39m +
+                    [32m' Usage: modal secret create [OPTIONS] SECRET_NAME [KEYVALUES]...                \r\n'[39m +
+                    [32m'                                                                                \r\n'[39m +
+                    [32m' Create a new secret.                                                           \r\n'[39m +
+                    [32m'                                                                                \r\n'[39m +
+                    [32m'╭─ Arguments ──────────────────────────────────────────────────────────────────╮\r\n'[39m +
+                    [32m'│ *    secret_name      TEXT            [required]                             │\r\n'[39m +
+                    [32m'│      keyvalues        [KEYVALUES]...  Space-separated KEY=VALUE items.       │\r\n'[39m +
+                    [32m'╰──────────────────────────────────────────────────────────────────────────────╯\r\n'[39m +
+                    [32m'╭─ Options ────────────────────────────────────────────────────────────────────╮\r\n'[39m +
+                    [32m'│ --env          -e      TEXT  Environment to interact with. If not specified, │\r\n'[39m +
+                    [32m'│                              Modal will use the default environment of your  │\r\n'[39m +
+                    [32m'│                              current profile, or the MODAL_ENVIRONMENT       │\r\n'[39m +
+                    [32m'│                              variable. Otherwise, raises an error if the     │\r\n'[39m +
+                    [32m'│                              workspace has multiple environments.            │\r\n'[39m +
+                    [32m'│ --from-dotenv          PATH  Path to a .env file to load secrets from.       │\r\n'[39m +
+                    [32m'│ --from-json            PATH  Path to a JSON file to load secrets from.       │\r\n'[39m +
+                    [32m'│ --force                      Overwrite the secret if it already exists.      │\r\n'[39m +
+                    [32m'│ --help         -h            Show this message and exit.                     │\r\n'[39m +
+                    [32m'╰──────────────────────────────────────────────────────────────────────────────╯\r\n'[39m +
+                    [32m'\r\n'[39m +
+                    [32m''[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Troubleshooting the Environment**\n'[39m +
+                [32m'\n'[39m +
+                [32m"I'm currently trying to troubleshoot the environment. I suspect a missing or unauthenticated `modal-vsdatagen` setup. My next step will be to verify this using `modal token` to confirm my authentication status and see if the environment exists.\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            },
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'Jcq1gD1iJZ9vv2A5'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal profile current'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'ClgBjz1rX+qCUwR24/qPGvoqDuHB3i29l60kdu7SGbTtj+7v4giUIwkmvud/b7OvzLNKL/wePSnoa1afVgt7YPR1w8zmNbOlZANtlhkWcV/bONee+4GlJD3iCl8Bjz1rX0uZtMgqmdNar1Hsf3CAz81lREsgPY7gGbT59gl1rkmGyQ0vT4lfuQgyHf5focF4UJi3uaKVljuUzwbRgrvcMh+HnlUnf/maWeUJQn/nXn2/TQVp03f1ln7s5A=='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'Jcq1gD1iJZ9vv2A5'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'default\r\n'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'7A1V0GFXShDnNDVb'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal secret create my-api-credentials API_KEY=test-key-1234'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'ClwBjz1rXzzQEzQQfQU6jL5cCzgAb5A5Mjs+zdFBexybWYEmS+5nCtcxPVGW2xmIrpXw84jx7pa99IQiJh+4/KCmrQjeVA18xTC9iP95e2CSLixNjXvZxQIl8OF6BgpIAY89a1+7eQMzKWXo3/iuofak5aA1kZCnzw2+pDFE91vcCV/vhvyW9wdbsxLy2U5N0qZA8iLu+tF0xltZJKJrJZm8lu//yb2gCoUBAY89a1/7IR0NTwIxAtfVuZMW77NzJ3aIqHivPBOvLrWoR3fREjAE+SfUashoJvaH7c1Zmi/erey6Op4ZCr1v6u+1cLhC8jHSaVM7PuX9gg/lKkZEi0P+wgQdOqvaGyNmPmtJHqBHMNK1sPHXTy2oz1IfIVqpm9nOjyhuG8WHtkRsIlGx6AqSAQGPPWtf8ENmLlTIdhq/oTUxtiplNyutPvNCxx49kh3rBwSG085bWpVPMR795udJ90VAFPzzpZ7/iKB1Fu4LV8weqCwALoGqLLXTAOZZt/BNMNZmpLYw0Rlh8BuOLWhv/dNPz/m2b38mbm63pYCeUX8q5F9mkKZcaVf1WdEa9OOo9pz8QnPZRqOBuuuH8se6byAaCjkBjz1rXx+OWUAGEVhZw5sP+V7dYxWqTRWS9M1D90gCLeLemJMFeLfSbfy6c7BDo5uAmP0B0xBVdNY='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'7A1V0GFXShDnNDVb'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'\nCommand exited with code 1'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Inspecting Potential Interactions**\n'[39m +
+                [32m'\n'[39m +
+                [32m"Okay, it seems like `modal secret create` could be playing with a mock or potentially needs a token for authentication. I'm going to dig a little deeper, and check for the presence of any token that might be involved.\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            },
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'Kgt4axmZBPnTdKSA'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'env | grep MODAL'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'CmABjz1rX9PTFCtl5pL3aDyfXpaLMCmYRLCg5L6WQOGIqJdJ0BYpkAe4U3bvY4Fp/agsDEMSTR9ts2RPpHT961r6xpRgHKS3hPwxrZR4tOtzxdB0Efj+CStfsDA3ySf05lwKUgGPPWtfwkF6RF59+w0nWzq5UxrCBnICBEMK0hwyYCJZ/xVUmF7NV54uEKO2+MRhcAjmOG/DgUSocOTAFg36UukFNJ49T/TF+8JAg5QaydO6cn8='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'Kgt4axmZBPnTdKSA'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'MODAL_TOKEN_ID=ak-AFtiEvc1M038bwe1rqz3Vy\r\n'[39m +
+                    [32m'MODAL_TOKEN_SECRET=as-DiXPHD6pXzR1T4V1oZnuKu\r\n'[39m +
+                    [32m''[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'm4eFOosf2vIfbA97'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'python -m modal secret create my-api-credentials API_KEY=test-key-1234 -e modal-vsdatagen'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'ClsBjz1rX1PtDgRZB8zfOubDzXm+Nx8r2IHbBES9r43EYwhohVvkYOzSZVI+0XjlxFt1mAjzsvO1tWxb3SHLiP+oRDHVOFr0ERHIt/ik8t+kAKJP2Q/dNVjAzuqjCiMBjz1rX1dHuHSguuM7581cMleFc9z3xEYdoURPxJc/hOmJWg=='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'm4eFOosf2vIfbA97'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'\nCommand exited with code 127'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'zMF8lwqyBuuXYsUv'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'python3 -m modal secret create my-api-credentials API_KEY=test-key-1234 -e modal-vsdatagen'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'ClABjz1rX/OfTpExglJy8MLyDHFfHTWBCrel0Xxvyk1xQryaAoNN3Lv2XhhVNcUHL5rPCA6E79ynD/2T/xluyHnoytYt/+AO352bM+uqrsH6JAo1AY89a1+MrxXxc6t+AWHi3tYzB2snm1cOT0LB2JdRHSjB6pZv6Q5vKRRZZCWHLa2W+wwQNrs='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'zMF8lwqyBuuXYsUv'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'\nCommand exited with code 1'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'3H1tZlOsHG3DSlWB'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal secret create my-api-credentials API_KEY=test-key-1234 --env modal-vsdatagen -v'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'CmQBjz1rX+br4NeMrjXt0vMWWHAaYoiYf5hNye2tHGbEH5FfqxjKJzxEXDOuBvbFqHp21WQCUPGo6pldBfbU3MMJY5nSBh8HwGzG0d2loItI5owbpqO5IZKvvIN3GpolOqmB1z+qCkkBjz1rX9soMrzsO81z59mxCFI54Y8QHpLYpeujAZ/crYJm7pYhP1w1XKaaX0R01Z8QhUeF/ecOG2vAVvkL98t6ryu4ZEvlMUPaCjYBjz1rX4gObH9/7xnApTLXf7CuR6BPmPERO3EflueIPOFIiFXcNkOCMY0FrbeLAjlzciz13sg='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'3H1tZlOsHG3DSlWB'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'\nCommand exited with code 2'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'l72qt6V5SGLKuHZ7'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal secret create my-api-credentials API_KEY=test-key-1234 --env=modal-vsdatagen'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'ClsBjz1rX3zGecil+YoCsgikvgNnOMh/HBFr+7iCMVMWub2d7QU6+CAHkR8NRQ3nvrd+rZTt2P427XqVFV7XI48fSisAMsP1tI00j1VrZY+0xhUGZuVd8iBmmW2NCkABjz1rX2QSKI9aSCzNk0eJZp+xqZ2c6HZbUSEVJNBeEOCbU2ZIy6qYR25BQS5UbtYoHJvb+fh2eWX74C5FgvNcCiwBjz1rX4nXJTJD0oaZ2QZ0PyTXJOGEi3KXqqlQ3yrHQrn/Hob/7RN9qImsXw=='[39m
+                }
+              }
+            },
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Contemplating Command Construction**\n'[39m +
+                [32m'\n'[39m +
+                [32m"I'm currently trying to formulate the correct `modal secret create` command. I'm exploring the structure, specifically the arguments and flags, to ensure it properly generates API credentials. I'm focused on the correct environment and key assignment syntax, but I'm still trying to iron it out.\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'l72qt6V5SGLKuHZ7'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'\nCommand exited with code 1'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Executing the Code**\n'[39m +
+                [32m'\n'[39m +
+                [32m"I've attempted to run the command directly, but it failed. So, I'm now writing the `app.py` file, incorporating the instructions and creating the necessary Modal image, function, and local entrypoint. I'll define a function that retrieves the API key and masks it, then store masked key and verification status in a Modal Dict.\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            },
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'SIPgiygkpDSu1Em9'[39m,
+              toolName: [32m'writeToFile'[39m,
+              input: {
+                path: [32m'/home/user/modal_secrets/app.py'[39m,
+                content: [32m'import modal\n'[39m +
+                  [32m'import os\n'[39m +
+                  [32m'\n'[39m +
+                  [32m'app = modal.App("secret-api-key")\n'[39m +
+                  [32m'\n'[39m +
+                  [32m'image = modal.Image.debian_slim()\n'[39m +
+                  [32m'\n'[39m +
+                  [32m'@app.function(image=image, secrets=[modal.Secret.from_name("my-api-credentials")])\n'[39m +
+                  [32m'def fetch_with_key():\n'[39m +
+                  [32m'    api_key = os.environ["API_KEY"]\n'[39m +
+                  [32m'    masked_key = api_key[:4]\n'[39m +
+                  [32m'    \n'[39m +
+                  [32m'    d = modal.Dict.from_name("secret-api-key-output", create_if_missing=True)\n'[39m +
+                  [32m'    d["masked_key"] = masked_key\n'[39m +
+                  [32m'    d["verified"] = True\n'[39m +
+                  [32m'    \n'[39m +
+                  [32m'    return masked_key\n'[39m +
+                  [32m'\n'[39m +
+                  [32m'@app.local_entrypoint()\n'[39m +
+                  [32m'def main():\n'[39m +
+                  [32m'    result = fetch_with_key.remote()\n'[39m +
+                  [32m'    print(f"Masked key: {result}")\n'[39m +
+                  [32m''[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'CmEBjz1rXyItTen94tTL3dMryzBgrehWI3zHA+Q9rH6ttQ+IPtHmWIiHuae9sicU8TwycA3dDw3nUWGVXqHJY8dbeGiTNf37eCY0fAF2xh2ryTSGbPzoq6amTN9F4pBxi1+YCkcBjz1rX17K5DQX+71gUrU0O+5l0hsmQ7UOHuCT+6pSBtEcGfhrrNsSJtUHcObiNRAUh+Q+RczrkjzgExn7NpwJo2ZdpScI1gqTAQGPPWtfYQdSx5yDEGRdmNo3fNEsplN5es+CVkQxnkpe+SXy9ZS1n/2KN+1QrH0QZbqKRImn1p5l+bv1odmrOH/xWMFkreWBpQSU3m8aEIQzziXIoVg/kqfzBNxRvfc87BgFxi8rp7i/oUZiUAhOyCZ6Fx95MdMJ3JUmVTRBPfDIWFf5BG0LVpnXmmVVrTLO+C1IGgqCAQGPPWtfeOa9LodHW3kvmlTXHzenMM5jGB3jp1tCdrSQFZwnoxEHgEwzxn3PBqAE8bw5GyBvpFnHe4uwEOAXRqdJ+s3dcd3T2BtiZ88MsJp0LteIGv53y+z1rihkhpX4mnxV4ORYT6pJJ3m6Om8YE72mVm7nuOKc4i/mOob9Hop3CSgKvgEBjz1rX/73CYY6EWUVtynX87CTOq6PBYtiYbc0AnzrnU5nxYIQel58vrMOg6WenFJ1j0kbD+RbGs4U20TV+GZe7homUVPpQDy1oOCk6AOmEIoHzPN2skPWARh2o2TRNBSAzqlXemESYBRlXrWfZOCKMrPbJcOTWRI4XUXPXlliKRw7ZeUh4KE+mtCBqBaKlSJQUzA7sJfDvbuIu/2gyYL5cq6O7KqDuylthd3I0bM5kVX2mD+XwPM5XOP33nX+Cq4BAY89a19uZ15J8kxHCveJe5zfSeP6P40wHg84Kuh/UyduD7DA3WmuF0VcpEMlWX+Ws+TsyL7iq6ybVasSx/UhfHNJ1t0h9mZfpsDzBZIUhBSGzVyqohlxL6viALJs7Cnc9I4QqfX7h+oIG5t/lkDqjjcyuF6qbEmvczzKvS5yhoOnQWOlTUY8pMnGBf1p7CmjkhEw9GyEbO1Qj8ezjNhB2xqkRxppoEJXMqMuieQXCu8BAY89a19oa7a4YFtyi00MT0j3VriwsQKgO9+TBjXRBQTy/iILMrnopzTTQaB75ebkXi+yE969T9wHeC5eOFHpf7nO1/iw0giHYVf4CX20JJX4AFiTfmHcsvl2Tf3uLZHBxXNnYh3nO6prsQcX6QQitFkz++mS2ftd89fOYrdzi2q9CVlT0XZVs0xWukb5g6GRpq0v2WDJgYuxm3PLGLgtYdwdqhcKwzSxrfkKGTh5uiPHIR2AITRdAiAl183xfvcmM5jSVARaX9vahIyqc30yUIlxUAFgiBM1pCFSPV+rek4Bh/XoG64ce3woZC3toLMK4wEBjz1rX1kAwsKCXOEFRPBgGE4zSWR+HHcnwCTyCEsyO7SKEF8d1Q3dLwFu8aWyiZfbAfSo54TWmWQLE3/JZ7mR16BC2BShQiwYsm1Rml0UJkY+uI4DO+Pf1006DFvevdT/KhOCJJcF58B1g1BS1Ed9+20rC3qZiVtX6PFQKTasXBOtOKIpeOCWLXq9nr5G+2xC9bTfZR3tQ/e+DJb+QkW6yUKioCDtoRmGC6uPdfbeFA2dn5CfeunXTr1zMyn0ySAhWGAAa+OVijdjCxJBD7tT9CEUNkSaKPu515ngJLbtzktZbQrqAQGPPWtf1etDMe5JFv81zvlT5EQ3X9s1+Zep2bjkrvuNtH67RFWcrWCFeHHKnpNCUO4dMfmG8z7NbXWeZKNmEt1/1sBJ7QTDTymDoPsMQ5cyJpBdKHX43m8ahhQFCVa4EqQe+0bCXfCL7A5b8SGRAWbj3WhWU0GwrH0vkQmceU685bqznpdwRwq/bBUxu1lSNx7wajLvUqxvXBeW34G/InLrposposXQArZ7nYALOetfNm2QzIVq0WELJaQgNdf2F9zCWKjlKnZiA1jT7ZlWFY1L8bL/wBe4XefFM7EA3mVZWYHITBIoCuihlAruAQGPPWtf3dHFh91DcS4TPLYyvgYoxk+R38JQCAwmUCvThUv03r0wNqBIzAHrRSg/gX5aXVDcu3yGHoyaFP599o1NKLgv7V0eFlSgRdR2ahLvjlc38imCLZd5h/GTszGBAP3Kvg36pCCTzsEieqgHpeXsPMIWv6DY7RBMIz71qgELdNwNBQWhNL6gBta+kwikHXHjbNKDMzI7bfNnDvPyeqmicJhPgDdM8iE/mRMAag/lq7yoREYenpuA9nXeouk22YS+V8LZ9noP3kXwn6NwDMiz4YLoNFwVGZTcybhAjAocuYcTcKqN5Wvw2StBnn0K+QEBjz1rX7zPE3Vpur7CuY46ry17BG4CgElfvPCVAL8GU0gwNAOdZ5IDNFTLK1Le8C7/Zf+EbqQ7uKPh1piIkFOC3ayrR5zPxKX4bykcaLZLlcF6sR2zZwG8mWFM/lwq76DevPHD1TKypMrFHbj/afVrBJA2ZHFodYmQc1JeHiZM/Nk3Izd7yZ7N53wizQto0TCvbzZbyT4ezdvgNvhJDAKXlqd23lVJHDOx+TzDWDvf9f6+TBP2cSPExQcfboeXxsqOWq5AXPEMhEh1ddNnJI7BfYCpPesEha+Cphd56VQI+D9spcjnaA621PnuJ2ZlUQvgtl7wxtd2bvgKzAEBjz1rX4H+6y5cg44/VCjHCzcrqtSxSc04frKqkJvdqD7yh2HsS5KOyoBJFEFLA+vueXuYAxn/yRuM8rkBShCyKt4yrfgcPGT5YGX/fJ1+f46azQ2nY6SIMoh+mkxdbnN3pQ6/zLSDZTpdksiUNUHlvVdWqIxs2CJMYd0y3U8XAVvyNCukdA6n9jSLc0+hZzmbGGnjTo4QDX83f2mDpGOFcK5yycyP4ZAdqo3yYkoydTsNOX/zpFpwV8+KSBD1jDThBEHOMExylJu2oDs='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'SIPgiygkpDSu1Em9'[39m,
+              toolName: [32m'writeToFile'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  success: [33mtrue[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Deploying the Application**\n'[39m +
+                [32m'\n'[39m +
+                [32m"I'm currently trying to deploy the application. I'm using the `modal deploy` command, and I'm specifying the path to the application directory and the secrets I need. The environment is also set. Hopefully, this deployment will be successful!\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            },
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'p1AYXF5V238T6tIS'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal deploy /home/user/modal_secrets/app.py -e modal-vsdatagen'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'Ck4Bjz1rX/ZY0zdod2/3PDJ9w+z6Q62QmY0TgYRIGvmRAqnP0h1efsBuDphNHYO0svsJ/FtaWWvfrmTLhCc4swKn0HtVKqxf/mH1aPOBTfAKSwGPPWtf2URArlhksMEGn4jI9iIIoZRutFLv4nJyEYR440AhgIOE5ZgpCCwdz/YcbUQ8rvf0yBcj/HtnFFF0Wfcw4CFiCnwVbHlpOg=='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'p1AYXF5V238T6tIS'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'✓ Created objects.\r\n'[39m +
+                    [32m'├── 🔨 Created mount /home/user/modal_secrets/app.py\r\n'[39m +
+                    [32m'└── 🔨 Created function fetch_with_key.\r\n'[39m +
+                    [32m'✓ App deployed in 1.595s! 🎉\r\n'[39m +
+                    [32m'\r\n'[39m +
+                    [32m'View Deployment: \r\n'[39m +
+                    [32m'https://modal.com/apps/tabbyml/modal-vsdatagen/deployed/secret-api-key\r\n'[39m +
+                    [32m''[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'reasoning'[39m,
+              text: [32m'**Assessing the Deployment**\n'[39m +
+                [32m'\n'[39m +
+                [32m"The deployment worked, which is great. Now I'm checking if the secret creation went as planned. Need to verify its existence to avoid errors. I should run the `modal run` command to create the secret.\n"[39m +
+                [32m'\n'[39m +
+                [32m'\n'[39m +
+                [32m''[39m
+            },
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'bJ8kHlaPSN5q8N4y'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal run /home/user/modal_secrets/app.py -e modal-vsdatagen'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'CmMBjz1rX8PY4sTvVVNUF+L6MfYunp5AcQDZJo+jXseJCwbDJQCCcg3UI5ZggWxITd3IKVHo0TceOM00LrsJXIpPYdEyIeJXzOcX+bsAWJSCtH9F7MnQX3uOAD7strd142PiIUgKZQGPPWtfrAHQEF3+eY9C+c5BiwgILOVgg2M/2wbFl3f3K1MmajQcfJLXSLelN/tYqmHoNvc2ts02oPwwcSeSrFdmOo2m/4gSkBTM7xnWMffsOuZ9OnajK7ET1Fd2mU8SSpc3qUnJCmYBjz1rX/5b9IvCzuq3GMcv3OkswVfGd0usOs8FVaFUI9gY6twOA/a3HCzWIAV28vZDHhuEko/rzmAvAxARmuEJH2Le02dq/xeow7ivAFnKuTekPvlvgCvaF3+kWCtBuYMvJ1/ykqY='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'bJ8kHlaPSN5q8N4y'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'\nCommand exited with code 2'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'assistant'[39m,
+          content: [
+            {
+              type: [32m'tool-call'[39m,
+              toolCallId: [32m'7QQtrXhc3aUkMnmQ'[39m,
+              toolName: [32m'executeCommand'[39m,
+              input: {
+                command: [32m'modal run /home/user/modal_secrets/app.py -e modal-vsdatagen 2>&1'[39m
+              },
+              providerOptions: {
+                google: {
+                  thoughtSignature: [32m'ClIBjz1rX9xkJIrRjVFlI9ICYcYcOkvV+rhvD2LikQ3Vt9ZeO94L2w4qZd5NWkhkGaxf82Sb+uk6Uj6roZkJNgDva6ZYPuEYpMS+9si7BW7ndAfCCjYBjz1rX9/hIf5U9WHNjlpAo/JEFP6vRtfPBqehL0Z4nCfM4iCJVr4eOgJyW0rLEUzyWIw+eeY='[39m
+                }
+              }
+            }
+          ]
+        },
+        {
+          role: [32m'tool'[39m,
+          content: [
+            {
+              type: [32m'tool-result'[39m,
+              toolCallId: [32m'7QQtrXhc3aUkMnmQ'[39m,
+              toolName: [32m'executeCommand'[39m,
+              output: {
+                type: [32m'json'[39m,
+                value: {
+                  output: [32m'\nCommand exited with code 2'[39m,
+                  isTruncated: [33mfalse[39m
+                }
+              }
+            }
+          ]
+        }
+      ],
+      tools: [
+        {
+          type: [32m'function'[39m,
+          name: [32m'applyDiff'[39m,
+          description: [32m"This is a tool for editing files. For moving or renaming files, you should generally use the executeCommand tool with the 'mv' command instead. For larger edits, use the writeFile tool to overwrite files.\n"[39m +
+            [32m'\n'[39m +
+            [32m"Before using this tool, use the readFile tool to understand the file's contents and context\n"[39m +
+            [32m'\n'[39m +
+            [32m'To make a file edit, provide the following:\n'[39m +
+            [32m'1. path: The path to the file to modify (relative to the current working directory, or an absolute path)\n'[39m +
+            [32m'2. searchContent: The text to replace (must match the file contents exactly, including all whitespace and indentation)\n'[39m +
+            [32m'3. replaceContent: The edited text to replace the searchContent (must be different from searchContent)\n'[39m +
+            [32m'4. expectedReplacements: The number of replacements you expect to make. Defaults to 1 if not specified.\n'[39m +
+            [32m'\n'[39m +
+            [32m'By default, the tool will replace ONE occurrence of searchContent with replaceContent in the specified file. If you want to replace multiple occurrences, provide the expectedReplacements parameter with the exact number of occurrences you expect.\n'[39m +
+            [32m'\n'[39m +
+            [32m'CRITICAL REQUIREMENTS FOR USING THIS TOOL:\n'[39m +
+            [32m'\n'[39m +
+            [32m'1. UNIQUENESS (when expectedReplacements is not specified): The searchContent MUST uniquely identify the specific instance you want to change. This means:\n'[39m +
+            [32m'   - Include AT LEAST 3-5 lines of context BEFORE the change point\n'[39m +
+            [32m'   - Include AT LEAST 3-5 lines of context AFTER the change point\n'[39m +
+            [32m'   - Include all whitespace, indentation, and surrounding code exactly as it appears in the file\n'[39m +
+            [32m'\n'[39m +
+            [32m'2. EXPECTED MATCHES: If you want to replace multiple instances:\n'[39m +
+            [32m'   - Use the expectedReplacements parameter with the exact number of occurrences you expect to replace\n'[39m +
+            [32m'   - This will replace ALL occurrences of the searchContent with the replaceContent\n'[39m +
+            [32m"   - If the actual number of matches doesn't equal expectedReplacements, the edit will fail\n"[39m +
+            [32m'   - This is a safety feature to prevent unintended replacements\n'[39m +
+            [32m'\n'[39m +
+            [32m'3. VERIFICATION: Before using this tool:\n'[39m +
+            [32m'   - Check how many instances of the target text exist in the file\n'[39m +
+            [32m'   - If multiple instances exist, either:\n'[39m +
+            [32m'     a) Gather enough context to uniquely identify each one and make separate calls, OR\n'[39m +
+            [32m'     b) Use expectedReplacements parameter with the exact count of instances you expect to replace\n'[39m +
+            [32m'\n'[39m +
+            [32m'WARNING:\n'[39m +
+            [32m"- The tool will fail if searchContent matches multiple locations and expectedReplacements isn't specified\n"[39m +
+            [32m"- The tool will fail if the number of matches doesn't equal expectedReplacements when it's specified\n"[39m +
+            [32m"- The tool will fail if searchContent doesn't match the file contents exactly (including whitespace)\n"[39m +
+            [32m'- The tool will fail if searchContent and replaceContent are the same\n'[39m +
+            [32m'\n'[39m +
+            [32m'When making edits:\n'[39m +
+            [32m'   - Ensure the edit results in idiomatic, correct code\n'[39m +
+            [32m'   - Do not add trailing whitespace to lines (a newline at the end of a file is fine)\n'[39m +
+            [32m'   - Do not leave the code in a broken state\n'[39m +
+            [32m'\n'[39m +
+            [32m'If you want to create a new file, use:\n'[39m +
+            [32m'   - A new file path, including dir name if needed\n'[39m +
+            [32m'   - An empty searchContent\n'[39m +
+            [32m"   - The new file's contents as replaceContent\n"[39m +
+            [32m'\n'[39m +
+            [32m'Remember: when making multiple file edits in a row to the same file, you should prefer to send all edits in a single message with multiple calls to this tool, rather than multiple messages with a single call each.\n'[39m +
+            [32m'\n'[39m +
+            [32m'You may see the following fields in the result:\n'[39m +
+            [32m'- autoFormattingEdits: If the auto-formatter makes any changes, this field will contain a diff against the file content after your edits and any user edits have been applied.\n'[39m +
+            [32m'- newProblems: If any new problems are found after the edit, this field will contain information about them.'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              path: {
+                type: [32m'string'[39m,
+                description: [32m'The path of the file to modify (relative to the current working directory, or an absolute path).'[39m
+              },
+              searchContent: {
+                type: [32m'string'[39m,
+                description: [32m'The text to replace.'[39m
+              },
+              replaceContent: {
+                type: [32m'string'[39m,
+                description: [32m'The text to replace it with.'[39m
+              },
+              expectedReplacements: {
+                type: [32m'number'[39m,
+                description: [32m'The expected number of replacements to perform. Defaults to 1 if not specified.'[39m
+              }
+            },
+            required: [
+              [32m'path'[39m,
+              [32m'searchContent'[39m,
+              [32m'replaceContent'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'askFollowupQuestion'[39m,
+          description: [32m'Ask the user a question to gather additional information needed to complete the task. \n'[39m +
+            [32m'\n'[39m +
+            [32m'## When to Use This Tool\n'[39m +
+            [32m'Use this tool in the following scenarios:\n'[39m +
+            [32m"1. The user's request is ambiguous or unclear and requires clarification.\n"[39m +
+            [32m'2. You need more details to proceed effectively.\n'[39m +
+            [32m'3. You have made several unsuccessful attempts to solve the issue and need user guidance to move forward.\n'[39m +
+            [32m'4. Offer choices to the user about what direction to take.\n'[39m +
+            [32m'\n'[39m +
+            [32m'## Usage Notes\n'[39m +
+            [32m'- Users will always be able to select "Other" to provide custom text input\n'[39m +
+            [32m'- Use multiSelect: true to allow multiple answers to be selected for a question\n'[39m +
+            [32m'- If you recommend a specific option, make that the first option in the list and add "(Recommended)" at the end of the label\n'[39m +
+            [32m'- Provide 1-4 questions per call\n'[39m +
+            [32m'\n'[39m +
+            [32m'IMPORTANT: This tool CANNOT be used in combination with other tools (except todoWrite) in a single step. If you need to use other tools, you must do so in a separate step before calling this tool.'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              questions: {
+                type: [32m'array'[39m,
+                items: {
+                  type: [32m'object'[39m,
+                  properties: {
+                    question: {
+                      type: [32m'string'[39m,
+                      description: [32m'The complete question to ask the user. Should be clear, specific, and end with a question mark.'[39m
+                    },
+                    header: {
+                      type: [32m'string'[39m,
+                      maxLength: [33m12[39m,
+                      description: [32m'Very short label displayed as a chip/tag (max 12 chars). Examples: "Auth method", "Library", "Approach".'[39m
+                    },
+                    options: {
+                      type: [32m'array'[39m,
+                      items: {
+                        type: [32m'object'[39m,
+                        properties: {
+                          label: {
+                            type: [32m'string'[39m,
+                            description: [32m'Short button label shown to the user. Should be concise (1-5 words) and clearly describe the choice.'[39m
+                          },
+                          description: {
+                            type: [32m'string'[39m,
+                            description: [32m'Explanation of what this option means or what will happen if chosen. Useful for providing context about trade-offs or implications.'[39m
+                          }
+                        },
+                        required: [
+                          [32m'label'[39m
+                        ],
+                        additionalProperties: [33mfalse[39m
+                      },
+                      minItems: [33m2[39m,
+                      maxItems: [33m4[39m,
+                      description: [32m"The available choices for this question. Must have 2-4 options. Each option should be a distinct, mutually exclusive choice (unless multiSelect is enabled). There should be no 'Other' option, that will be provided automatically."[39m
+                    },
+                    multiSelect: {
+                      type: [32m'boolean'[39m,
+                      default: [33mfalse[39m,
+                      description: [32m'Set to true to allow the user to select multiple options instead of just one. Use when choices are not mutually exclusive.'[39m
+                    }
+                  },
+                  required: [
+                    [32m'question'[39m,
+                    [32m'header'[39m,
+                    [32m'options'[39m
+                  ],
+                  additionalProperties: [33mfalse[39m
+                },
+                minItems: [33m1[39m,
+                maxItems: [33m4[39m,
+                description: [32m'Questions to ask the user (1-4 questions).'[39m
+              }
+            },
+            required: [
+              [32m'questions'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'attemptCompletion'[39m,
+          description: [32m"Once you've received the results of tool uses and can confirm that the task is complete, use this tool to present the result of your work to the user.\n"[39m +
+            [32m'\n'[39m +
+            [32m'You MUST NOT generate any text before this tool call. All conclusion text must be included within the result parameter of the attemptCompletion tool.\n'[39m +
+            [32m'Never use this tool with a question or request to engage in further conversation! Formulate the end of your result in a way that is final and does not require further input from the user.\n'[39m +
+            [32m'\n'[39m +
+            [32m'IMPORTANT: This tool CANNOT be used in combination with other tools (except todoWrite) in a single step. If you need to use other tools, you must do so in a separate step before calling this tool.'[39m,
+          inputSchema: {
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m,
+            type: [32m'object'[39m,
+            properties: {
+              result: {
+                description: [32m'The result of the task. Formulate this result in a way that is final and does not require further input from the user.'[39m,
+                type: [32m'string'[39m
+              }
+            },
+            required: [
+              [32m'result'[39m
+            ],
+            additionalProperties: [33mfalse[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'executeCommand'[39m,
+          description: [32m'Executes a given bash command in a persistent shell session with optional timeout, ensuring proper handling and security measures.\n'[39m +
+            [32m'\n'[39m +
+            [32m'IMPORTANT: This tool is for terminal operations like git, npm, docker, etc. DO NOT use it for file operations (reading, writing, editing, searching, finding files) - use the specialized tools for this instead.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Before executing the command, please follow these steps:\n'[39m +
+            [32m'\n'[39m +
+            [32m'1. Directory Verification:\n'[39m +
+            [32m'   - If the command will create new directories or files, first use listFiles to verify the parent directory exists and is the correct location\n'[39m +
+            [32m'   - For example, before running "mkdir foo/bar", first use listFiles to check that "foo" exists and is the intended parent directory\n'[39m +
+            [32m'\n'[39m +
+            [32m'2. Command Execution:\n'[39m +
+            [32m'   - Always quote file paths that contain spaces with double quotes (e.g., cd "path with spaces/file.txt")\n'[39m +
+            [32m'   - Examples of proper quoting:\n'[39m +
+            [32m'     - cd "/Users/name/My Documents" (correct)\n'[39m +
+            [32m'     - cd /Users/name/My Documents (incorrect - will fail)\n'[39m +
+            [32m'     - python "/path/with spaces/script.py" (correct)\n'[39m +
+            [32m'     - python /path/with spaces/script.py (incorrect - will fail)\n'[39m +
+            [32m'   - After ensuring proper quoting, execute the command.\n'[39m +
+            [32m'   - Capture the output of the command.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Usage notes:\n'[39m +
+            [32m'- The command argument is required.\n'[39m +
+            [32m'- You can specify an optional timeout in seconds (up to 300s / 5 minutes). If not specified, commands will timeout after 60s (1 minute).\n'[39m +
+            [32m'- If the output exceeds 30000 characters, output will be truncated before being returned to you.\n'[39m +
+            [32m'- When issuing multiple commands:\n'[39m +
+            [32m'  - If the commands are independent and can run in parallel, make multiple executeCommand tool calls in a single message. For example, if you need to run "git status" and "git diff", send a single message with two executeCommand tool calls in parallel.\n'[39m +
+            [32m'  - If the commands depend on each other and must run sequentially, use a single executeCommand call with \'&&\' to chain them together (e.g., `git add . && git commit -m "message" && git push`). For instance, if one operation must complete before another starts (like mkdir before cp, Write before executeCommand for git operations, or git add before git commit), run these operations sequentially instead.\n'[39m +
+            [32m"  - Use ';' only when you need to run commands sequentially but don't care if earlier commands fail\n"[39m +
+            [32m'  - DO NOT use newlines to separate commands (newlines are ok in quoted strings)\n'[39m +
+            [32m"- You shall avoid use the markdown code block syntax (backtick, '`') in your command, as it will be interpreted as a command substitution.\n"[39m +
+            [32m"- Before using this tool, you must first think about the context provided in <system-reminder> to understand the user's environment and tailor your commands to ensure they are compatible with their system. You must also consider if the command you need to run should be executed in a specific directory rather than the current working directory, and properly set the `cwd` if necessary.\n"[39m +
+            [32m'\n'[39m +
+            [32m'# Committing changes with git\n'[39m +
+            [32m'\n'[39m +
+            [32m'Only create commits when requested by the user. If unclear, ask first. When the user asks you to create a new git commit, follow these steps carefully:\n'[39m +
+            [32m'\n'[39m +
+            [32m'Git Safety Protocol:\n'[39m +
+            [32m'- NEVER update the git config\n'[39m +
+            [32m"- NEVER run destructive git commands (push --force, reset --hard, checkout ., restore ., clean -f, branch -D) unless the user explicitly requests these actions. Taking unauthorized destructive actions is unhelpful and can result in lost work, so it's best to ONLY run these commands when given direct instructions \n"[39m +
+            [32m'- NEVER skip hooks (--no-verify, --no-gpg-sign, etc) unless the user explicitly requests it\n'[39m +
+            [32m'- NEVER run force push to main/master, warn the user if they request it\n'[39m +
+            [32m'- CRITICAL: Always create NEW commits rather than amending, unless the user explicitly requests a git amend. When a pre-commit hook fails, the commit did NOT happen  — so --amend would modify the PREVIOUS commit, which may result in destroying work or losing previous changes. Instead, after hook failure, fix the issue, re-stage, and create a NEW commit\n'[39m +
+            [32m'- When staging files, prefer adding specific files by name rather than using "git add -A" or "git add .", which can accidentally include sensitive files (.env, credentials) or large binaries\n'[39m +
+            [32m'- NEVER commit changes unless the user explicitly asks you to. It is VERY IMPORTANT to only commit when explicitly asked, otherwise the user will feel that you are being too proactive\n'[39m +
+            [32m'\n'[39m +
+            [32m'1. You can call multiple tools in a single response. When multiple independent pieces of information are requested and all commands are likely to succeed, run multiple tool calls in parallel for optimal performance. run the following bash commands in parallel, each using the executeCommand tool:\n'[39m +
+            [32m'  - Run a git status command to see all untracked files. IMPORTANT: Never use the -uall flag as it can cause memory issues on large repos.\n'[39m +
+            [32m'  - Run a git diff command to see both staged and unstaged changes that will be committed.\n'[39m +
+            [32m"  - Run a git log command to see recent commit messages, so that you can follow this repository's commit message style.\n"[39m +
+            [32m'2. Analyze all staged changes (both previously staged and newly added) and draft a commit message:\n'[39m +
+            [32m'  - Summarize the nature of the changes (eg. new feature, enhancement to an existing feature, bug fix, refactoring, test, docs, etc.). Ensure the message accurately reflects the changes and their purpose (i.e. "add" means a wholly new feature, "update" means an enhancement to an existing feature, "fix" means a bug fix, etc.).\n'[39m +
+            [32m'  - Do not commit files that likely contain secrets (.env, credentials.json, etc). Warn the user if they specifically request to commit those files\n'[39m +
+            [32m'  - Draft a concise (1-2 sentences) commit message that focuses on the "why" rather than the "what"\n'[39m +
+            [32m'  - Ensure it accurately reflects the changes and their purpose\n'[39m +
+            [32m'3. You can call multiple tools in a single response. When multiple independent pieces of information are requested and all commands are likely to succeed, run multiple tool calls in parallel for optimal performance. run the following commands:\n'[39m +
+            [32m'   - Add relevant untracked files to the staging area.\n'[39m +
+            [32m'   - Create the commit with a message ending with:\n'[39m +
+            [32m'   🤖 Generated with [Pochi](https://getpochi.com) | [Task](<Share URL>)\n'[39m +
+            [32m'\n'[39m +
+            [32m'   Co-Authored-By: Pochi <noreply@getpochi.com>\n'[39m +
+            [32m'\n'[39m +
+            [32m'   Note: Replace <Share URL> with the Share URL from system information if available. If not available, omit the " | [Task](...)" part.\n'[39m +
+            [32m'\n'[39m +
+            [32m'   - Run git status after the commit completes to verify success.\n'[39m +
+            [32m'   Note: git status depends on the commit completing, so run it sequentially after the commit.\n'[39m +
+            [32m'4. If the commit fails due to pre-commit hook changes, retry the commit ONCE to include these automated changes. If it fails again, it usually means a pre-commit hook is preventing the commit. If the commit succeeds but you notice that files were modified by the pre-commit hook, you MUST amend your commit to include them.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Important notes:\n'[39m +
+            [32m'- NEVER update the git config\n'[39m +
+            [32m'- NEVER run additional commands to read or explore code, besides git bash commands\n'[39m +
+            [32m'- DO NOT push to the remote repository unless the user explicitly asks you to do so\n'[39m +
+            [32m'- IMPORTANT: Never use git commands with the -i flag (like git rebase -i or git add -i) since they require interactive input which is not supported.\n'[39m +
+            [32m'- IMPORTANT: Do not use --no-edit with git rebase commands, as the --no-edit flag is not a valid option for git rebase.\n'[39m +
+            [32m'- If there are no changes to commit (i.e., no untracked files and no modifications), do not create an empty commit\n'[39m +
+            [32m'- In order to ensure good formatting, ALWAYS pass the commit message via a HEREDOC, a la this example:\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m`git commit -m "$(cat <<'EOF'\n`[39m +
+            [32m'Commit message here.\n'[39m +
+            [32m'\n'[39m +
+            [32m'🤖 Generated with [Pochi](https://getpochi.com) | [Task](<Share URL>)\n'[39m +
+            [32m'\n'[39m +
+            [32m'Co-Authored-By: Pochi <noreply@getpochi.com>\n'[39m +
+            [32m'EOF\n'[39m +
+            [32m')"\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'# Creating pull requests\n'[39m +
+            [32m'Use the gh command via the executeCommand tool for ALL GitHub-related tasks including working with issues, pull requests, checks, and releases. If given a Github URL use the gh command to get the information needed.\n'[39m +
+            [32m'\n'[39m +
+            [32m'IMPORTANT: When the user asks you to create a pull request, follow these steps carefully:\n'[39m +
+            [32m'\n'[39m +
+            [32m'1. You can call multiple tools in a single response. When multiple independent pieces of information are requested and all commands are likely to succeed, run multiple tool calls in parallel for optimal performance. run the following bash commands in parallel using the executeCommand tool, in order to understand the current state of the branch since it diverged from the main branch:\n'[39m +
+            [32m'   - Run a git status command to see all untracked files (never use -uall flag)\n'[39m +
+            [32m'   - Run a git diff command to see both staged and unstaged changes that will be committed\n'[39m +
+            [32m'   - Check if the current branch tracks a remote branch and is up to date with the remote, so you know if you need to push to the remote\n'[39m +
+            [32m'   - Run a git log command and `git diff [base-branch]...HEAD` to understand the full commit history for the current branch (from the time it diverged from the base branch)\n'[39m +
+            [32m'2. Analyze all changes that will be included in the pull request, making sure to look at all relevant commits (NOT just the latest commit, but ALL commits that will be included in the pull request!!!), and draft a pull request title and summary:\n'[39m +
+            [32m'   - Keep the PR title short (under 70 characters)\n'[39m +
+            [32m'   - Use the description/body for details, not the title\n'[39m +
+            [32m'3. You can call multiple tools in a single response. When multiple independent pieces of information are requested and all commands are likely to succeed, run multiple tool calls in parallel for optimal performance. run the following commands in parallel:\n'[39m +
+            [32m'   - Create new branch if needed\n'[39m +
+            [32m'   - Push to remote with -u flag if needed\n'[39m +
+            [32m'   - Create PR using gh pr create with the format below. Use a HEREDOC to pass the body to ensure correct formatting.\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m`gh pr create --title "the pr title" --body "$(cat <<'EOF'\n`[39m +
+            [32m'## Summary\n'[39m +
+            [32m'<1-3 bullet points>\n'[39m +
+            [32m'\n'[39m +
+            [32m'## Test plan\n'[39m +
+            [32m'[Checklist of TODOs for testing the pull request...]\n'[39m +
+            [32m'\n'[39m +
+            [32m'🤖 Generated with [Pochi](https://getpochi.com) | [Task](<Share URL>)\n'[39m +
+            [32m'EOF\n'[39m +
+            [32m')"\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'Important:\n'[39m +
+            [32m'- NEVER update the git confi'[39m... 355 more characters,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              command: {
+                type: [32m'string'[39m,
+                description: [32m'The CLI command to execute. This should be valid for the current operating system.'[39m
+              },
+              cwd: {
+                type: [32m'string'[39m,
+                description: [32m'The working directory to execute the command in.'[39m
+              },
+              timeout: {
+                type: [32m'number'[39m,
+                minimum: [33m1[39m,
+                maximum: [33m300[39m,
+                description: [32m'Optional timeout in seconds, max 300 seconds. By default the timeout is 120 seconds.'[39m
+              }
+            },
+            required: [
+              [32m'command'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'globFiles'[39m,
+          description: [32m'Request to find files matching a glob pattern within a specified directory. Use this to get a list of files based on a pattern.'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              path: {
+                type: [32m'string'[39m,
+                description: [32m'The path of the directory to search in (relative to the current working directory, or an absolute path)'[39m
+              },
+              globPattern: {
+                type: [32m'string'[39m,
+                description: [32m"The glob pattern to match files against (e.g., '*.ts', '**/*.js')"[39m
+              }
+            },
+            required: [
+              [32m'path'[39m,
+              [32m'globPattern'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'listFiles'[39m,
+          description: [32m'Request to list files and directories within the specified directory. If recursive is true, it will list all files and directories recursively. If recursive is false or not provided, it will only list the top-level contents. Do not use this tool to confirm the existence of files you may have created, as the user will let you know if the files were created successfully or not.'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              path: {
+                type: [32m'string'[39m,
+                description: [32m'The path of the directory to list contents for (relative to the current working directory, or an absolute path)'[39m
+              },
+              recursive: {
+                type: [32m'boolean'[39m,
+                description: [32m'Whether to list files and directories recursively.'[39m
+              }
+            },
+            required: [
+              [32m'path'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'readFile'[39m,
+          description: [32m'Request to read the contents of a file at the specified path. Use this when you need to examine the contents of an existing file you do not know the contents of, for example to analyze code, review text files, extract information from configuration files.\n'[39m +
+            [32m'Also supports reading media files (e.g. image, audio, video) with the following mime types: image/png, image/jpeg, image/webp, image/heic, image/heif, video/mp4, video/mpeg, video/mov, video/avi, video/x-flv, video/mpg, video/webm, video/wmv, video/3gpp, audio/wav, audio/mp3, audio/aiff, audio/aac, audio/ogg, audio/flac, application/pdf.'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              path: {
+                type: [32m'string'[39m,
+                description: [32m'The path of the file to read (relative to the current working directory, or an absolute path)'[39m
+              },
+              startLine: {
+                type: [32m'number'[39m,
+                description: [32m'The starting line number to read from (1-based). If not provided, it starts from the beginning of the file.'[39m
+              },
+              endLine: {
+                type: [32m'number'[39m,
+                description: [32m'The ending line number to read to (1-based, inclusive). If not provided, it reads to the end of the file.'[39m
+              }
+            },
+            required: [
+              [32m'path'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'useSkill'[39m,
+          description: [32m'Execute a skill within the main conversation\n'[39m +
+            [32m'\n'[39m +
+            [32m'When users ask you to perform tasks, check if any of the available skills below can help complete the task more effectively. Skills provide specialized capabilities and domain knowledge.\n'[39m +
+            [32m'\n'[39m +
+            [32m'When users ask about a SPECIFIC skill (e.g., "How does the pdf skill work?", "What does the commit skill do?"), you must call this tool to get detailed information about that skill.\n'[39m +
+            [32m'\n'[39m +
+            [32m'When users ask general questions like "What skills are available?" or "List all skills", simply refer to the "Available skills" section below - do NOT call this tool.\n'[39m +
+            [32m'\n'[39m +
+            [32m"This tool returns the skill's detailed instructions which you must then follow to complete the task. The instructions contain step-by-step guidance on how to perform the specific task or workflow.\n"[39m +
+            [32m'\n'[39m +
+            [32m'How to invoke:\n'[39m +
+            [32m'- Use this tool with the skill name\n'[39m +
+            [32m'- Example: `skill: "pdf-processing"` - invoke the pdf-processing skill\n'[39m +
+            [32m"- The tool will return the skill's instructions\n"[39m +
+            [32m'- Follow the returned instructions carefully to complete the task\n'[39m +
+            [32m'\n'[39m +
+            [32m'Important:\n'[39m +
+            [32m'- When a skill is relevant for a task OR when users ask about a SPECIFIC skill, you must invoke this tool IMMEDIATELY as your first action\n'[39m +
+            [32m'- For general questions about available skills, simply refer to the "Available skills" list below without calling this tool\n'[39m +
+            [32m'- NEVER just announce or mention a skill in your text response without actually calling this tool (except for general skill listing requests)\n'[39m +
+            [32m'- This is a BLOCKING REQUIREMENT: invoke the relevant Skill tool BEFORE generating any other response about a specific skill or task\n'[39m +
+            [32m'- Only use skills listed in "Available skills" below\n'[39m +
+            [32m'- Check compatibility requirements before using a skill - ensure the skill is compatible with the current OS/environment\n'[39m +
+            [32m'- After calling this tool, follow the returned instructions step by step\n'[39m +
+            [32m'- The skill file location is shown in the [Location: filepath] section of each skill listing below - use this information to understand where the skill is defined\n'[39m +
+            [32m"- Use the directory containing the skill's source file as the base directory for resolving any resource files mentioned in the instructions\n"[39m +
+            [32m'- Proactively explore the skill directory for optional resources that enhance task completion:\n'[39m +
+            [32m'  * scripts/ - executable code that agents can run (Python, Bash, JavaScript, etc.)\n'[39m +
+            [32m'  * references/ - on-demand documentation (REFERENCE.md, FORMS.md, domain-specific files)\n'[39m +
+            [32m'  * assets/ - static resources (templates, images, data files, schemas)\n'[39m +
+            [32m'  Use these resources when they exist and are relevant to the current task\n'[39m +
+            [32m'\n'[39m +
+            [32m'Available skills:\n'[39m +
+            [32m'\n'[39m +
+            [32m'- **find-skills**: Helps users discover and install agent skills when they ask questions like "how do I do X", "find a skill for X", "is there a skill that can...", or express interest in extending capabilities. This skill should be used when the user is looking for functionality that might exist as an installable skill. [Location: _builtIn_]\n'[39m +
+            [32m'- **create-skill**: Helps users create new custom agent skills. Use when the user wants to create a new skill, automate a workflow, or package specialized knowledge for reuse. [Location: _builtIn_]'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              skill: {
+                type: [32m'string'[39m,
+                description: [32m'The name of the skill to use.'[39m
+              }
+            },
+            required: [
+              [32m'skill'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'searchFiles'[39m,
+          description: [32m'- Fast content search tool that works with any codebase size\n'[39m +
+            [32m'- Searches file contents using regular expressions\n'[39m +
+            [32m'- Supports Rust regex syntax (eg. "log.*Error", "functions+w+", etc.)\n'[39m +
+            [32m'- Filter files by pattern with the include parameter (eg. "*.js", "*.{ts,tsx}")\n'[39m +
+            [32m'- Returns file paths with at least one match sorted by modification time\n'[39m +
+            [32m'- Use this tool when you need to find files containing specific patterns\n'[39m +
+            [32m'- Craft your regex patterns carefully to balance specificity and flexibility.\n'[39m +
+            [32m"- Based on the user's task you may use it to find code patterns, TODO comments, function definitions, or any text-based information across the project. The results include context, so analyze the surrounding code to better understand the matches. Leverage the this tool in combination with other tools for more comprehensive analysis. For example, use it to find specific code patterns, then use readFile to examine the full context of interesting matches before using applyDiff or writeToFile to make informed changes."[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              path: {
+                type: [32m'string'[39m,
+                description: [32m'The path of the directory to search in (relative to the current working directory, or an absolute path).'[39m
+              },
+              regex: {
+                type: [32m'string'[39m,
+                description: [32m'The regular expression pattern to search for in file contents. Uses Rust regex syntax.'[39m
+              },
+              filePattern: {
+                type: [32m'string'[39m,
+                description: [32m'File pattern to include in the search (e.g. "*.js", "*.{ts,tsx}"). If not provided, it will search all files.'[39m
+              }
+            },
+            required: [
+              [32m'path'[39m,
+              [32m'regex'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'todoWrite'[39m,
+          description: [32m'Use this tool to create and manage a structured task list for your current coding session. This helps you track progress, organize complex tasks, and demonstrate thoroughness to the user.\n'[39m +
+            [32m'It also helps the user understand the progress of the task and overall progress of their requests.\n'[39m +
+            [32m'\n'[39m +
+            [32m'## When to Use This Tool\n'[39m +
+            [32m'Use this tool proactively in these scenarios:\n'[39m +
+            [32m'\n'[39m +
+            [32m'1. Complex multi-step tasks - When a task requires 3 or more distinct steps or actions\n'[39m +
+            [32m'2. Non-trivial and complex tasks - Tasks that require careful planning or multiple operations\n'[39m +
+            [32m'3. User explicitly requests todo list - When the user directly asks you to use the todo list\n'[39m +
+            [32m'4. User provides multiple tasks - When users provide a list of things to be done (numbered or comma-separated)\n'[39m +
+            [32m'5. After receiving new instructions - Immediately capture user requirements as todos. Feel free to edit the todo list based on new information.\n'[39m +
+            [32m'6. After completing a task - Mark it complete and add any new follow-up tasks\n'[39m +
+            [32m'7. When you start working on a new task, mark the todo as in-progress. Ideally you should only have one todo as in-progress at a time. Complete existing tasks before starting new ones.\n'[39m +
+            [32m'\n'[39m +
+            [32m'## When NOT to Use This Tool\n'[39m +
+            [32m'\n'[39m +
+            [32m'Skip using this tool when:\n'[39m +
+            [32m'1. There is only a single, straightforward task\n'[39m +
+            [32m'2. The task is trivial and tracking it provides no organizational benefit\n'[39m +
+            [32m'3. The task can be completed in less than 3 trivial steps\n'[39m +
+            [32m'4. The task is purely conversational or informational\n'[39m +
+            [32m'\n'[39m +
+            [32m'NOTE that you should use should not use this tool if there is only one trivial task to do. In this case you are better off just doing the task directly.\n'[39m +
+            [32m'\n'[39m +
+            [32m'## Examples of When to Use the Todo List\n'[39m +
+            [32m'\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m"User: I want to add a dark mode toggle to the application settings. Make sure you run the tests and build when you're done!\n"[39m +
+            [32m"Assistant: I'll help add a dark mode toggle to your application settings. Let me create a todo list to track this implementation.\n"[39m +
+            [32m'*Creates todo list with the following items:*\n'[39m +
+            [32m'1. Create dark mode toggle component in Settings page\n'[39m +
+            [32m'2. Add dark mode state management (context/store)\n'[39m +
+            [32m'3. Implement CSS-in-JS styles for dark theme\n'[39m +
+            [32m'4. Update existing components to support theme switching\n'[39m +
+            [32m'5. Run tests and build process, addressing any failures or errors that occur\n'[39m +
+            [32m'*Begins working on the first task*\n'[39m +
+            [32m'\n'[39m +
+            [32m'<reasoning>\n'[39m +
+            [32m'The assistant used the todo list because:\n'[39m +
+            [32m'1. Adding dark mode is a multi-step feature requiring UI, state management, and styling changes\n'[39m +
+            [32m'2. The user explicitly requested tests and build be run afterward\n'[39m +
+            [32m'3. The assistant inferred that tests and build need to pass by adding "Ensure tests and build succeed" as the final task\n'[39m +
+            [32m'</reasoning>\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m'User: Help me rename the function getCwd to getCurrentWorkingDirectory across my project\n'[39m +
+            [32m"Assistant: Let me first search through your codebase to find all occurrences of 'getCwd'.\n"[39m +
+            [32m'*Uses grep or search tools to locate all instances of getCwd in the codebase*\n'[39m +
+            [32m"Assistant: I've found 15 instances of 'getCwd' across 8 different files. Let me create a todo list to track these changes.\n"[39m +
+            [32m'*Creates todo list with specific items for each file that needs updating*\n'[39m +
+            [32m'\n'[39m +
+            [32m'<reasoning>\n'[39m +
+            [32m'The assistant used the todo list because:\n'[39m +
+            [32m'1. First, the assistant searched to understand the scope of the task\n'[39m +
+            [32m'2. Upon finding multiple occurrences across different files, it determined this was a complex task with multiple steps\n'[39m +
+            [32m'3. The todo list helps ensure every instance is tracked and updated systematically\n'[39m +
+            [32m'4. This approach prevents missing any occurrences and maintains code consistency\n'[39m +
+            [32m'</reasoning>\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m'User: I need to implement these features for my e-commerce site: user registration, product catalog, shopping cart, and checkout flow.\n'[39m +
+            [32m"Assistant: I'll help implement these features. First, let's add all the features to the todo list.\n"[39m +
+            [32m'*Creates a todo list breaking down each feature into specific tasks based on the project architecture*\n'[39m +
+            [32m"Assistant: Let's start with user registration. This will involve creating database models, API endpoints, and frontend forms that integrate with your existing authentication system.\n"[39m +
+            [32m'\n'[39m +
+            [32m'<reasoning>\n'[39m +
+            [32m'The assistant used the todo list because:\n'[39m +
+            [32m'1. The user provided multiple complex features to implement in a comma separated list\n'[39m +
+            [32m'2. The todo list helps organize these large features into manageable tasks\n'[39m +
+            [32m'3. This approach allows for tracking progress across the entire implementation\n'[39m +
+            [32m'</reasoning>\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m"User: Can you help optimize my React application? It's rendering slowly and has performance issues.</user>\n"[39m +
+            [32m"Assistant: I'll help optimize your React application. First, let me examine your codebase to identify potential performance bottlenecks.\n"[39m +
+            [32m'*Reviews component structure, render patterns, state management, and data fetching*\n'[39m +
+            [32m"Assistant: After analyzing your codebase, I've identified several performance issues. Let me create a todo list to track our optimization efforts.\n"[39m +
+            [32m'*Creates todo list with items like: 1) Implement memoization for expensive calculations in ProductList, 2) Add virtualization for long lists in Dashboard, 3) Optimize image loading in Gallery component, 4) Fix state update loops in ShoppingCart, 5) Review bundle size and implement code splitting*\n'[39m +
+            [32m"Let's start by implementing memoization for the expensive calculations in your ProductList component.</assistant>\n"[39m +
+            [32m'\n'[39m +
+            [32m'<reasoning>\n'[39m +
+            [32m'The assistant used the todo list because:\n'[39m +
+            [32m'1. First, the assistant examined the codebase to identify specific performance issues\n'[39m +
+            [32m'2. Based on this analysis, it identified multiple optimization opportunities\n'[39m +
+            [32m'3. Performance optimization is a non-trivial task requiring multiple steps\n'[39m +
+            [32m'4. The todo list helps methodically track improvements across different components\n'[39m +
+            [32m'5. This systematic approach ensures all performance bottlenecks are addressed\n'[39m +
+            [32m'</reasoning>\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'## Examples of When NOT to Use the Todo List\n'[39m +
+            [32m'\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m"User: How do I print 'Hello World' in Python?\n"[39m +
+            [32m'Assistant: In Python, you can print "Hello World" with this simple code:\n'[39m +
+            [32m'\n'[39m +
+            [32m'python\n'[39m +
+            [32m'print("Hello World")\n'[39m +
+            [32m'\n'[39m +
+            [32m'This will output the text "Hello World" to the console when executed.</assistant>\n'[39m +
+            [32m'\n'[39m +
+            [32m'<reasoning>\n'[39m +
+            [32m"The assistant did not use the todo list because this is a single, trivial task that can be completed in one step. There's no need to track multiple tasks or steps for such a straightforward request.\n"[39m +
+            [32m'</reasoning>\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m'User: What does the git status command do?\n'[39m +
+            [32m"Assistant: The git status command shows the current state of your working directory and staging area. It displays which changes have been staged, which haven't, and which files aren't being tracked by Git. This is a fundamental command for understanding the current state of your repository before making commits.\n"[39m +
+            [32m'\n'[39m +
+            [32m'<reasoning>\n'[39m +
+            [32m'The assistant did not use the todo list because this is an informational request with no actual coding task to complete. The user is simply asking for an explanation, not for the assistant to perform multiple steps or tasks.\n'[39m +
+            [32m'</reasoning>\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m'User: Can you add a comment to the calculateTotal function to explain what it does?\n'[39m +
+            [32m'Assistant: Sure, let me add a comment to the calculateTotal function to explain what it does.\n'[39m +
+            [32m'* Uses the Edit tool to add a comment to the calculateTotal function *\n'[39m +
+            [32m'\n'[39m +
+            [32m'<reasoning>\n'[39m +
+            [32m"The assistant did not use the todo list because this is a single, straightforward task confined to one location in the code. Adding a comment doesn't require tracking multiple steps or systematic organization.\n"[39m +
+            [32m'</reasoning>\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'<example>\n'[39m +
+            [32m'User: Run npm install for me and tell me what happens.\n'[39m +
+            [32m"Assistant: I'll run the npm install command for you.\n"[39m +
+            [32m'\n'[39m +
+            [32m'*Executes: npm install*\n'[39m +
+            [32m'\n'[39m +
+            [32m"The command completed successfully. Here's the output:\n"[39m +
+            [32m'[Output of npm install command]\n'[39m +
+            [32m'\n'[39m +
+            [32m'All dependencies have been installed according to your package.json file.\n'[39m +
+            [32m'\n'[39m +
+            [32m'<reasoning>\n'[39m +
+            [32m'The assistant did not use the todo list because this is a single command execution with immediate results. There are no multiple steps to track or organize, making the todo list unnecessary for this straightforward task.\n'[39m +
+            [32m'</reasoning>\n'[39m +
+            [32m'</example>\n'[39m +
+            [32m'\n'[39m +
+            [32m'## Task States and Management\n'[39m +
+            [32m'\n'[39m +
+            [32m'1. **Task States**: Use these states to track progress:\n'[39m +
+            [32m'   - pending: Task not yet started\n'[39m +
+            [32m'   - in-progress: Currently working on (limit to ONE task at a time)\n'[39m +
+            [32m'   - completed: Task finished successfully\n'[39m +
+            [32m'   - cancelled: Task no longer needed\n'[39m +
+            [32m'\n'[39m +
+            [32m'2. **Task Management**:\n'[39m +
+            [32m'   - Update task status in real-time as you work\n'[39m +
+            [32m"   - Mark tasks complete IMMEDIATELY after finishing (don't batch completions)\n"[39m +
+            [32m'   - Only have ONE task in-progress at any time\n'[39m +
+            [32m'   - Complete current tasks before starting new ones\n'[39m +
+            [32m'   - Cancel tasks that become irrelevant\n'[39m +
+            [32m'\n'[39m +
+            [32m'3. **Task Breakdown**:\n'[39m +
+            [32m'   - Create specific, actionable items\n'[39m +
+            [32m'   - Break complex tasks into smaller, manageable steps\n'[39m +
+            [32m'   - Use clear, descriptive task names\n'[39m +
+            [32m'\n'[39m +
+            [32m'When in doubt, use this tool. Being proactive with task management demonstrates attentiveness and ensures you complete all requirements successfully.'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              todos: {
+                type: [32m'array'[39m,
+                items: {
+                  type: [32m'object'[39m,
+                  properties: {
+                    id: {
+                      type: [32m'string'[39m,
+                      description: [32m'The unique identifier of the task, e.g "collect-information".'[39m
+                    },
+                    content: {
+                      type: [32m'string'[39m,
+                      description: [32m'The content of the task.'[39m
+                    },
+                    status: {
+                      type: [32m'string'[39m,
+                      enum: [
+                        [32m'pending'[39m,
+                        [32m'in-progress'[39m,
+                        [32m'completed'[39m,
+                        [32m'cancelled'[39m
+                      ],
+                      description: [32m'The status of the task.'[39m
+                    },
+                    priority: {
+                      type: [32m'string'[39m,
+                      enum: [
+                        [32m'low'[39m,
+                        [32m'medium'[39m,
+                        [32m'high'[39m
+                      ],
+                      description: [32m'The priority of the task.'[39m
+                    }
+                  },
+                  required: [
+                    [32m'id'[39m,
+                    [32m'content'[39m,
+                    [32m'status'[39m,
+                    [32m'priority'[39m
+                  ],
+                  additionalProperties: [33mfalse[39m
+                }
+              }
+            },
+            required: [
+              [32m'todos'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'writeToFile'[39m,
+          description: [32m'Request to write full content to a file at the specified path.\n'[39m +
+            [32m'If the file exists, it will be overwritten with the provided content.\n'[39m +
+            [32m"If the file doesn't exist, it will be created. This tool will automatically create any directories needed to write the file.\n"[39m +
+            [32m'\n'[39m +
+            [32m'You may see the following fields in the result:\n'[39m +
+            [32m'- autoFormattingEdits: If the auto-formatter makes any changes, this field will contain a diff against the file content after your edits and any user edits have been applied.\n'[39m +
+            [32m'- newProblems: If any new problems are found after the edit, this field will contain information about them.'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              path: {
+                type: [32m'string'[39m,
+                description: [32m'The path of the file to write to (relative to the current working directory, or an absolute path).'[39m
+              },
+              content: {
+                type: [32m'string'[39m,
+                description: [32m'The content to write to the file.'[39m
+              }
+            },
+            required: [
+              [32m'path'[39m,
+              [32m'content'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'editNotebook'[39m,
+          description: [32m'Edit a specific cell in a Jupyter notebook (.ipynb file) by its cell ID'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              path: {
+                type: [32m'string'[39m,
+                description: [32m'The path to the notebook file (relative to the current working directory, or an absolute path)'[39m
+              },
+              cellId: {
+                type: [32m'string'[39m,
+                description: [32m'The ID of the cell to edit'[39m
+              },
+              content: {
+                type: [32m'string'[39m,
+                description: [32m'The new content of the cell'[39m
+              }
+            },
+            required: [
+              [32m'path'[39m,
+              [32m'cellId'[39m,
+              [32m'content'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'newTask'[39m,
+          description: [32m'Launch a new agent to handle complex, multi-step tasks autonomously.\n'[39m +
+            [32m'When using the newTask tool, you may specify a agentType parameter to select which agent type to use.\n'[39m +
+            [32m'Available agent types and the tools they have access to:\n'[39m +
+            [32m'\n'[39m +
+            [32m'### planner\n'[39m +
+            [32m'Engage this agent to formulate comprehensive, technical implementation strategies for feature development, system refactoring, or defect resolution.\n'[39m +
+            [32m'This agent is strictly limited to planning and architectural design; it DOES NOT execute code modifications.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Examples of user requests this agent shall trigger:\n'[39m +
+            [32m'- "create a plan to implement the user authentication feature"\n'[39m +
+            [32m'- "how should we refactor the database schema"\n'[39m +
+            [32m'- "design a solution for the memory leak issue"\n'[39m +
+            [32m'\n'[39m +
+            [32m'### browser\n'[39m +
+            [32m'Web browser automation agent for navigating websites, interacting with pages, and extracting information. Uses agent-browser CLI for headless browser control.\n'[39m +
+            [32m'\n'[39m +
+            [32m'### reviewer\n'[39m +
+            [32m'Engage this agent to perform code reviews and leave inline comments.\n'[39m +
+            [32m'This agent can analyze code and create review comments on specific lines.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Examples of user requests this agent shall trigger:\n'[39m +
+            [32m'- "review the code in src/auth"\n'[39m +
+            [32m'- "add review comments to this file"\n'[39m +
+            [32m'- "check this code and leave feedback"\n'[39m +
+            [32m'\n'[39m +
+            [32m'### walkthrough\n'[39m +
+            [32m'Engage this agent to create a summary of the changes made in the current task.\n'[39m +
+            [32m'This agent is strictly limited to documentation and explanation; it DOES NOT execute code modifications.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Examples of user requests this agent shall trigger:\n'[39m +
+            [32m'- "summarize what we have done"\n'[39m +
+            [32m'- "create a walkthrough for the changes"\n'[39m +
+            [32m'- "explain the changes made in this task"\n'[39m +
+            [32m'\n'[39m +
+            [32m'### explore\n'[39m +
+            [32m'Use this agent to explore the codebase when you need to: understand project structure, find where features are implemented, locate specific functions or classes, analyze code patterns, investigate how something works, search for examples or usage, or gather information before making changes.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Examples of questions this agent shall trigger:\n'[39m +
+            [32m'- "where is the authentication logic implemented"\n'[39m +
+            [32m'- "find all usages of the config parser"\n'[39m +
+            [32m'- "how does the ignore-walk module work"\n'[39m +
+            [32m'\n'[39m +
+            [32m'\n'[39m +
+            [32m'Always include a reminder in your prompt to ensure the result will be submitted through the `attemptCompletion` tool.\n'[39m +
+            [32m'If the task stops without submitting the result, it will return an error message.\n'[39m +
+            [32m'\n'[39m +
+            [32m'You can optionally run agents in the background using the runAsync parameter. You can continue working while background agents run.\n'[39m +
+            [32m'\n'[39m +
+            [32m'When NOT to use the newTask tool:\n'[39m +
+            [32m'- If you want to read a specific file path, use the readFile or globFiles tool instead of the newTask tool, to find the match more quickly\n'[39m +
+            [32m'- If you are searching for a specific class definition like "class Foo", use the globFiles tool instead, to find the match more quickly\n'[39m +
+            [32m'- If you are searching for code within a specific file or set of 2-3 files, use the readFile tool instead of the newTask tool, to find the match more quickly\n'[39m +
+            [32m'- Other tasks that are not related to the agent descriptions above\n'[39m +
+            [32m'\n'[39m +
+            [32m'Usage notes:\n'[39m +
+            [32m'1. Launch multiple agents tools concurrently whenever possible to maximize performance; to do that, use a single message with multiple tool uses\n'[39m +
+            [32m'2. When the agent is done, it will return a single message back to you. The result returned by the agent is not visible to the user. To show the user the result, you should send a text message back to the user with a concise summary of the result.\n'[39m +
+            [32m'3. Each agent invocation is stateless. You will not be able to send additional messages to the agent, nor will the agent be able to communicate with you outside of its final report. Therefore, your prompt should contain a highly detailed task description for the agent to perform autonomously and you should specify exactly what information the agent should return back to you in its final and only message to you.\n'[39m +
+            [32m"4. The agent's outputs should generally be trusted\n"[39m +
+            [32m"5. Clearly tell the agent whether you expect it to write code or just to do research (search, file reads, web fetches, etc.), since it is not aware of the user's intent\n"[39m +
+            [32m'6. If the agent description mentions that it should be used proactively, then you should try your best to use it without the user having to ask for it first. Use your judgement.'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              description: {
+                type: [32m'string'[39m,
+                description: [32m'A short description of the task.'[39m
+              },
+              prompt: {
+                type: [32m'string'[39m,
+                description: [32m'The detailed prompt for the task to be performed.'[39m
+              },
+              agentType: {
+                type: [32m'string'[39m,
+                description: [32m'The type of the specialized agent to use for the task.'[39m
+              },
+              runAsync: {
+                type: [32m'boolean'[39m,
+                description: [32m'Set to true to run this agent in the background.'[39m
+              }
+            },
+            required: [
+              [32m'description'[39m,
+              [32m'prompt'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'startBackgroundJob'[39m,
+          description: [32m'Start a background job to execute a bash command, which allows you to continue working while the job runs.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Before starting the background job, please follow these steps:\n'[39m +
+            [32m'\n'[39m +
+            [32m'1. Directory Verification:\n'[39m +
+            [32m'   - If the command will create new directories or files, first use the listFiles tool to verify the parent directory exists and is the correct location\n'[39m +
+            [32m'   - For example, before running "mkdir foo/bar", first use listFiles to check that "foo" exists and is the intended parent directory\n'[39m +
+            [32m'\n'[39m +
+            [32m'2. Job Execution:\n'[39m +
+            [32m'   - After ensuring proper quoting, start the background job.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Usage notes:\n'[39m +
+            [32m'- The command argument is required.\n'[39m +
+            [32m'- Use readBackgroundJobOutput to monitor the output and status of the job.\n'[39m +
+            [32m'- Use killBackgroundJob to terminate the job if needed.\n'[39m +
+            [32m'- If the output exceeds 30000 characters, output will be truncated before being returned to you.\n'[39m +
+            [32m'\n'[39m +
+            [32m'Common use cases and examples:\n'[39m +
+            [32m'- Development servers: `npm run dev`, `yarn start`, `bun run dev`\n'[39m +
+            [32m'- Build processes: `npm run build`, `make`, `cargo build`\n'[39m +
+            [32m'- File watchers: `npm run watch`, `tsc --watch`\n'[39m +
+            [32m'- Testing: `npm run test:watch`, `jest --watch`\n'[39m +
+            [32m'- Database services: `docker run -p 5432:5432 postgres`\n'[39m +
+            [32m'\n'[39m +
+            [32m'Command execution rules:\n'[39m +
+            [32m"- Never run 'sleep' as it will return immediately.\n"[39m +
+            [32m"- You do not need to use '&' at the end of the command.\n"[39m +
+            [32m"- When issuing multiple commands, use the ';' or '&&' operator to separate them. DO NOT use newlines (newlines are ok in quoted strings).\n"[39m +
+            [32m"- You shall avoid use the markdown code block syntax (backtick, '`') in your command, as it will be interpreted as a command substitution."[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              command: {
+                type: [32m'string'[39m,
+                description: [32m'The CLI command to execute. This should be valid for the current operating system.'[39m
+              },
+              cwd: {
+                type: [32m'string'[39m,
+                description: [32m'The working directory to execute the command in.'[39m
+              }
+            },
+            required: [
+              [32m'command'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'readBackgroundJobOutput'[39m,
+          description: [32m'- Retrieves output from a running or completed background job or async task\n'[39m +
+            [32m'- Takes a backgroundJobId parameter identifying the job or task\n'[39m +
+            [32m'- For terminal jobs, returns only new output since the last check\n'[39m +
+            [32m'- For task IDs, returns the latest attemptCompletion result once completed\n'[39m +
+            [32m'- Returns stdout and stderr output along with job status\n'[39m +
+            [32m'- Supports optional regex filtering to show only lines matching a pattern\n'[39m +
+            [32m'- Use this tool when you need to monitor or check the output of a long-running background job'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              backgroundJobId: {
+                type: [32m'string'[39m,
+                description: [32m'The ID of the background job to get output from'[39m
+              },
+              regex: {
+                type: [32m'string'[39m,
+                description: [32m'Optional regular expression to filter the output lines. Only lines matching this regex will be included in the result. Any lines that do not match will no longer be available to read.'[39m
+              }
+            },
+            required: [
+              [32m'backgroundJobId'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'killBackgroundJob'[39m,
+          description: [32m'- Kills a running background job by its ID\n'[39m +
+            [32m'- Takes a backgroundJobId parameter identifying the job to kill\n'[39m +
+            [32m'- Returns a success or failure status\n'[39m +
+            [32m'- Use this tool when you need to terminate a long-running background job'[39m,
+          inputSchema: {
+            type: [32m'object'[39m,
+            properties: {
+              backgroundJobId: {
+                type: [32m'string'[39m,
+                description: [32m'The ID of the background job to kill.'[39m
+              }
+            },
+            required: [
+              [32m'backgroundJobId'[39m
+            ],
+            additionalProperties: [33mfalse[39m,
+            [32m'$schema'[39m: [32m'http://json-schema.org/draft-07/schema#'[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'webFetch'[39m,
+          description: [32m'- Fetches content from a specified URL and converts HTML to markdown\n'[39m +
+            [32m'- Use this tool when you need to retrieve and analyze web content\n'[39m +
+            [32m'\n'[39m +
+            [32m'Usage notes:\n'[39m +
+            [32m'  - IMPORTANT: If an MCP-provided web fetch tool is available, prefer using that tool instead of this one, as it may have fewer restrictions.\n'[39m +
+            [32m'  - The URL must be a fully-formed valid URL\n'[39m +
+            [32m'  - The prompt should describe what information you want to extract from the page\n'[39m +
+            [32m'  - This tool is read-only and does not modify any files\n'[39m +
+            [32m'  - Includes a self-cleaning 10-minute cache for faster responses when repeatedly accessing the same URL'[39m,
+          inputSchema: {
+            [32m'$schema'[39m: [32m'https://json-schema.org/draft/2020-12/schema'[39m,
+            type: [32m'object'[39m,
+            properties: {
+              url: {
+                type: [32m'string'[39m,
+                format: [32m'uri'[39m
+              }
+            },
+            required: [
+              [32m'url'[39m
+            ],
+            additionalProperties: [33mfalse[39m
+          }
+        },
+        {
+          type: [32m'function'[39m,
+          name: [32m'webSearch'[39m,
+          description: [32m'- Allows Pochi to search the web and use the results to inform responses\n'[39m +
+            [32m'- Provides up-to-date information for current events and recent data\n'[39m +
+            [32m'- Returns search result information formatted as search result blocks, including links as markdown hyperlinks\n'[39m +
+            [32m'- Searches are performed automatically within a single API call\n'[39m +
+            [32m'\n'[39m +
+            [32m'CRITICAL REQUIREMENT - You MUST follow this:\n'[39m +
+            [32m`  - After answering the user's question, you MUST include a "Sources:" section at the end of your response\n`[39m +
+            [32m'  - In the Sources section, list all relevant URLs from the search results as markdown hyperlinks: [Title](URL)\n'[39m +
+            [32m'  - This is MANDATORY - never skip including sources in your response\n'[39m +
+            [32m'  - Example format:\n'[39m +
+            [32m'\n'[39m +
+            [32m'    [Your answer here]\n'[39m +
+            [32m'\n'[39m +
+            [32m'    Sources:\n'[39m +
+            [32m'    - [Source Title 1](https://example.com/1)\n'[39m +
+            [32m'    - [Source Title 2](https://example.com/2)\n'[39m +
+            [32m'\n'[39m +
+            [32m'Usage notes:\n'[39m +
+            [32m`  - Account for "Today's date" in <system-reminder>. For example, if <system-reminder> says "Today's date: 2025-07-01", and the user wants the latest docs, do not use 2024 in the search query. Use 2025.`[39m,
+          inputSchema: {
+            [32m'$schema'[39m: [32m'https://json-schema.org/draft/2020-12/schema'[39m,
+            type: [32m'object'[39m,
+            properties: {
+              query: {
+                description: [32m'The search query to perform'[39m,
+                type: [32m'string'[39m
+              },
+              country: {
+                description: [32m"Country code to filter search results by, e.g. 'US', 'GB', 'JP'"[39m,
+                type: [32m'string'[39m
+              }
+            },
+            required: [
+              [32m'query'[39m
+            ],
+            additionalProperties: [33mfalse[39m
+          }
+        }
+      ]
+    }
+  }
+}
+[37m2026-03-24 07:31:06.087[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:31:06.381[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:32:09.153[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:32:09.419[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:32:45.799[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:32:46.032[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:32:51.434[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:32:51.750[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:33:18.589[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:33:18.874[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:33:50.974[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:33:51.251[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:34:14.803[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:34:15.077[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:35:19.413[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:35:19.679[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:35:47.518[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:35:47.815[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-24 07:36:16.539[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454338[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-24 07:36:16.809[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454200[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.

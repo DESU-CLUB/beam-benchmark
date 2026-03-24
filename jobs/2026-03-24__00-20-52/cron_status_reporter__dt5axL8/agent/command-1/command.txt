@@ -1,0 +1,35 @@
+pochi --model google/gemini-3.1-pro --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Task: Create a Modal Cron Job Status Reporter
+
+You are working in a project directory at `/home/user/modal_cron/`. A starter `reporter.py` file already exists with a basic Modal App definition (named `"status-reporter"`).
+
+## Your Goal
+
+Extend `/home/user/modal_cron/reporter.py` to implement a periodic status reporting job using Modal's scheduling capabilities.
+
+## Requirements
+
+1. Create a Modal Image using `modal.Image.debian_slim().pip_install("requests")` and assign it to a variable named `image`.
+
+2. Define a function called `report_status` that:
+   - Is decorated with `@app.function(image=image, schedule=modal.Period(hours=6))`
+   - Generates the current UTC timestamp as an ISO format string
+   - Stores the timestamp in a Modal Dict named `"status-reporter-output"` under the key `"last_run"` using `modal.Dict.from_name("status-reporter-output", create_if_missing=True).put("last_run", timestamp)`
+   - Stores the string `"success"` in the same Dict under the key `"status"`
+   - Returns the timestamp string
+
+3. Define a `@app.local_entrypoint()` that:
+   - Calls `report_status.remote()`
+   - Prints the returned timestamp
+
+4. Deploy the app:
+   ```
+   modal deploy /home/user/modal_cron/reporter.py -e modal-vsdatagen
+   ```
+
+5. Trigger one run:
+   ```
+   modal run /home/user/modal_cron/reporter.py -e modal-vsdatagen
+   ```
+
+EOF

@@ -1,0 +1,225 @@
+Hit:1 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (8.5.0-2ubuntu10.8).
+0 upgraded, 0 newly installed, 0 to remove and 20 not upgraded.
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 6 packages in 7ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 5 items
+
+tests/test_final_state.py .EEEE                                          [100%]
+
+==================================== ERRORS ====================================
+____________________ ERROR at setup of test_deploy_succeeds ____________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        """Deploy and run the app before running tests."""
+        deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+>       run_result = modal_cli("run", APP_FILE, timeout=300)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_final_state.py:17: in modal_cli
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:550: in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:1209: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:2116: in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: -9 args: ['modal', 'run', '/home/user/modal_webhook/app....>
+endtime = 220919.663041802, orig_timeout = 300
+stdout_seq = [b'\xe2\x9c\x93 Initialized. View run at \nhttps://modal.com/apps/tabbyml/modal-vsdatagen/ap-BXXM3bNvfnRrHuWqksEdiQ\n'...^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import\n', ...]
+stderr_seq = [b'\xe2\x95\xad\xe2\x94\x80 Modal Deprecation Warning (2025-03-05) \xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe...x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x95\xaf\n']
+skip_check_and_raise = False
+
+    def _check_timeout(self, endtime, orig_timeout, stdout_seq, stderr_seq,
+                       skip_check_and_raise=False):
+        """Convenience for checking if a timeout has expired."""
+        if endtime is None:
+            return
+        if skip_check_and_raise or _time() > endtime:
+>           raise TimeoutExpired(
+                    self.args, orig_timeout,
+                    output=b''.join(stdout_seq) if stdout_seq else None,
+                    stderr=b''.join(stderr_seq) if stderr_seq else None)
+E           subprocess.TimeoutExpired: Command '['modal', 'run', '/home/user/modal_webhook/app.py']' timed out after 300 seconds
+
+usr/lib/python3.12/subprocess.py:1253: TimeoutExpired
+______________________ ERROR at setup of test_app_listed _______________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        """Deploy and run the app before running tests."""
+        deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+>       run_result = modal_cli("run", APP_FILE, timeout=300)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_final_state.py:17: in modal_cli
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:550: in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:1209: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:2116: in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: -9 args: ['modal', 'run', '/home/user/modal_webhook/app....>
+endtime = 220919.663041802, orig_timeout = 300
+stdout_seq = [b'\xe2\x9c\x93 Initialized. View run at \nhttps://modal.com/apps/tabbyml/modal-vsdatagen/ap-BXXM3bNvfnRrHuWqksEdiQ\n'...^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import\n', ...]
+stderr_seq = [b'\xe2\x95\xad\xe2\x94\x80 Modal Deprecation Warning (2025-03-05) \xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe...x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x95\xaf\n']
+skip_check_and_raise = False
+
+    def _check_timeout(self, endtime, orig_timeout, stdout_seq, stderr_seq,
+                       skip_check_and_raise=False):
+        """Convenience for checking if a timeout has expired."""
+        if endtime is None:
+            return
+        if skip_check_and_raise or _time() > endtime:
+>           raise TimeoutExpired(
+                    self.args, orig_timeout,
+                    output=b''.join(stdout_seq) if stdout_seq else None,
+                    stderr=b''.join(stderr_seq) if stderr_seq else None)
+E           subprocess.TimeoutExpired: Command '['modal', 'run', '/home/user/modal_webhook/app.py']' timed out after 300 seconds
+
+usr/lib/python3.12/subprocess.py:1253: TimeoutExpired
+___________________ ERROR at setup of test_dict_last_message ___________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        """Deploy and run the app before running tests."""
+        deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+>       run_result = modal_cli("run", APP_FILE, timeout=300)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_final_state.py:17: in modal_cli
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:550: in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:1209: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:2116: in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: -9 args: ['modal', 'run', '/home/user/modal_webhook/app....>
+endtime = 220919.663041802, orig_timeout = 300
+stdout_seq = [b'\xe2\x9c\x93 Initialized. View run at \nhttps://modal.com/apps/tabbyml/modal-vsdatagen/ap-BXXM3bNvfnRrHuWqksEdiQ\n'...^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import\n', ...]
+stderr_seq = [b'\xe2\x95\xad\xe2\x94\x80 Modal Deprecation Warning (2025-03-05) \xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe...x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x95\xaf\n']
+skip_check_and_raise = False
+
+    def _check_timeout(self, endtime, orig_timeout, stdout_seq, stderr_seq,
+                       skip_check_and_raise=False):
+        """Convenience for checking if a timeout has expired."""
+        if endtime is None:
+            return
+        if skip_check_and_raise or _time() > endtime:
+>           raise TimeoutExpired(
+                    self.args, orig_timeout,
+                    output=b''.join(stdout_seq) if stdout_seq else None,
+                    stderr=b''.join(stderr_seq) if stderr_seq else None)
+E           subprocess.TimeoutExpired: Command '['modal', 'run', '/home/user/modal_webhook/app.py']' timed out after 300 seconds
+
+usr/lib/python3.12/subprocess.py:1253: TimeoutExpired
+____________________ ERROR at setup of test_dict_call_count ____________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        """Deploy and run the app before running tests."""
+        deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+>       run_result = modal_cli("run", APP_FILE, timeout=300)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+tests/test_final_state.py:28: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+tests/test_final_state.py:17: in modal_cli
+    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+             ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:550: in run
+    stdout, stderr = process.communicate(input, timeout=timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:1209: in communicate
+    stdout, stderr = self._communicate(input, endtime, timeout)
+                     ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+usr/lib/python3.12/subprocess.py:2116: in _communicate
+    self._check_timeout(endtime, orig_timeout, stdout, stderr)
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+self = <Popen: returncode: -9 args: ['modal', 'run', '/home/user/modal_webhook/app....>
+endtime = 220919.663041802, orig_timeout = 300
+stdout_seq = [b'\xe2\x9c\x93 Initialized. View run at \nhttps://modal.com/apps/tabbyml/modal-vsdatagen/ap-BXXM3bNvfnRrHuWqksEdiQ\n'...^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^\n  File "<frozen importlib._bootstrap>", line 1387, in _gcd_import\n', ...]
+stderr_seq = [b'\xe2\x95\xad\xe2\x94\x80 Modal Deprecation Warning (2025-03-05) \xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe...x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x94\x80\xe2\x95\xaf\n']
+skip_check_and_raise = False
+
+    def _check_timeout(self, endtime, orig_timeout, stdout_seq, stderr_seq,
+                       skip_check_and_raise=False):
+        """Convenience for checking if a timeout has expired."""
+        if endtime is None:
+            return
+        if skip_check_and_raise or _time() > endtime:
+>           raise TimeoutExpired(
+                    self.args, orig_timeout,
+                    output=b''.join(stdout_seq) if stdout_seq else None,
+                    stderr=b''.join(stderr_seq) if stderr_seq else None)
+E           subprocess.TimeoutExpired: Command '['modal', 'run', '/home/user/modal_webhook/app.py']' timed out after 300 seconds
+
+usr/lib/python3.12/subprocess.py:1253: TimeoutExpired
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_file_exists
+ERROR tests/test_final_state.py::test_deploy_succeeds - subprocess.TimeoutExp...
+ERROR tests/test_final_state.py::test_app_listed - subprocess.TimeoutExpired:...
+ERROR tests/test_final_state.py::test_dict_last_message - subprocess.TimeoutE...
+ERROR tests/test_final_state.py::test_dict_call_count - subprocess.TimeoutExp...
+=================== 1 passed, 4 errors in 301.67s (0:05:01) ====================
