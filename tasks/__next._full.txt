@@ -4,61 +4,435 @@
 4:I[36064,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
 5:I[81497,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
 6:I[42654,["/modal-benchmark/_next/static/chunks/22e80cc4342926d5.js","/modal-benchmark/_next/static/chunks/2ad5122eae704b1a.js","/modal-benchmark/_next/static/chunks/584417517a743f28.js","/modal-benchmark/_next/static/chunks/4aebf47065010653.js"],"TasksPageClient"]
-d:I[9986,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
-:HL["/modal-benchmark/_next/static/chunks/73de7fd172170d98.css","style"]
+15:I[9986,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"default"]
+:HL["/modal-benchmark/_next/static/chunks/33aaee800f916205.css","style"]
 :HL["/modal-benchmark/_next/static/media/83afe278b6a6bb3c-s.p.3a6ba036.woff2","font",{"crossOrigin":"","type":"font/woff2"}]
-7:T432,# Task: Modal Class with keep_warm and Lifecycle State
+7:T4fe,# Batch Word Frequency Map
 
-Create a Modal app at `/home/user/modal_project/app.py` named `warm-pool-server`.
+You are a data engineer building a batch processing pipeline using Modal's serverless platform.
 
-## Requirements
+## Your Task
 
-- Build a custom image from `modal.Image.debian_slim()`.
-- Define class `WarmServer` with `@app.cls(image=image, keep_warm=1)`:
-  - `@modal.enter()` method `setup`: initializes `self.data_store = {}` and `self.request_count = 0`.
-  - `@modal.method()` `handle_request(key, value)`: stores key/value, increments request count, returns dict.
-  - `@modal.method()` `get_stats()`: returns `{'total_requests': ..., 'stored_keys': [...]}`.
-- `@app.local_entrypoint()` named `main` that calls `handle_request.remote` twice with `('name', 'Alice')` and `('role', 'engineer')`, then calls `get_stats.remote()` and writes to `/home/user/modal_project/server_stats.json`.
+Complete the Modal app at `/home/user/modal_batch/app.py`. The app skeleton already exists with the app name `"batch-word-freq"`.
 
-## Deployment
+You need to:
 
-```
-modal deploy /home/user/modal_project/app.py --env modal-vsdatagen
-modal run /home/user/modal_project/app.py --env modal-vsdatagen
-```
+1. **Define a Modal function** named `count_words` that:
+   - Accepts a single string argument
+   - Returns a dictionary mapping each word to its frequency count within that string
+   - Uses `modal.Image.debian_slim()` as its image
 
-Verify `server_stats.json` has `total_requests >= 2` and `stored_keys` containing `name` and `role`.
-8:T462,# Task: GPU Benchmark Pipeline on Modal
-
-Create a Modal app at `/home/user/modal_project/benchmark.py` named `gpu-benchmark`.
-
-## Requirements
-
-- Build a custom image from `debian_slim` with `torch` installed.
-- Define `run_benchmark` with `@app.function(image=image, gpu='T4', timeout=120)` that:
-  - Checks `torch.cuda.is_available()`.
-  - Creates a 1000x1000 random tensor, performs `torch.mm(t, t)` on the available device.
-  - Returns `{'device': ..., 'cuda_available': ..., 'matrix_shape': [1000, 1000], 'benchmark': 'matrix_multiply_1000x1000'}`.
-- Define `aggregate_results(results: list)` with `@app.function(image=image)` that returns `{'total_runs': len, 'devices_used': [...], 'all_benchmarks': [...]}`.
-- `@app.local_entrypoint()` named `main` maps `run_benchmark` over `[None, None, None]`, calls `aggregate_results.remote()`, writes to `/home/user/modal_project/benchmark_results.json`.
+2. **Define a local entrypoint** using `@app.local_entrypoint()` that:
+   - Prepares a list of at least 3 sample sentences
+   - Uses `.map()` to run `count_words` over each sentence in parallel
+   - Collects the results and combines the word frequency counts across all sentences
+   - Stores the combined word frequencies in a Modal Dict named `"batch-word-freq-output"` under the key `"frequencies"`
+   - Stores the total number of sentences processed under the key `"sentence_count"` in the same Modal Dict
 
 ## Deployment
 
+Once your app is complete, deploy it:
+
 ```
-modal deploy /home/user/modal_project/benchmark.py --env modal-vsdatagen
-modal run /home/user/modal_project/benchmark.py --env modal-vsdatagen
+modal deploy /home/user/modal_batch/app.py -e modal-vsdatagen
 ```
 
-Verify `benchmark_results.json` has `total_runs=3`.
-0:{"P":null,"b":"onMjeGht6rCqdhurolCb-","c":["","tasks",""],"q":"","i":false,"f":[[["",{"children":["tasks",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/modal-benchmark/_next/static/chunks/73de7fd172170d98.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/modal-benchmark/_next/static/chunks/22e80cc4342926d5.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/modal-benchmark/_next/static/chunks/2ad5122eae704b1a.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"inter_5972bc34-module__OU16Qa__className antialiased","children":["$","$L2",null,{"defaultTheme":"dark","children":[["$","div",null,{"className":"fixed right-4 top-6 z-50 sm:top-8","children":["$","$L3",null,{}]}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$L6",null,{"tasksData":[{"taskName":"modal_class_warm_pool","instruction":"$7","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_class_warm_pool__DfZXbSa","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":198.815,"latency_breakdown":{"env_setup":1.35,"agent_setup":7.65,"agent_exec":166.109,"verifier":12.837},"taskName":"modal_class_warm_pool","jobId":"DfZXbSa","exec_duration":166.109}]},{"taskName":"modal_cron_data_snapshot","instruction":"# Task: Modal Scheduled Data Snapshot with Volume\n\nCreate a Modal app at `/home/user/modal_project/snapshot.py` named `data-snapshot`.\n\n## Requirements\n\n- Create a Volume named `snapshot-store`.\n- Define `take_snapshot` scheduled with `modal.Period(minutes=10)` and `volumes={'/snapshots': snapshot_volume}` that appends a JSON snapshot line to `/snapshots/snapshots.jsonl` and commits the volume.\n- Define `get_snapshot_count` with `volumes={'/snapshots': snapshot_volume}` that reads `/snapshots/snapshots.jsonl` and returns the line count.\n- Define `@app.local_entrypoint()` named `main` that calls `take_snapshot.remote()` once, then `get_snapshot_count.remote()`, and writes `{'snapshots': count}` to `/home/user/modal_project/snapshot_count.json`.\n\n## Deployment\n\n```\nmodal deploy /home/user/modal_project/snapshot.py --env modal-vsdatagen\nmodal run /home/user/modal_project/snapshot.py --env modal-vsdatagen\n```\n\nVerify `modal app list`, `modal volume list`, and `snapshot_count.json` shows at least 1 snapshot.\n","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_cron_data_snapshot__eduMtR3","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":188.443,"latency_breakdown":{"env_setup":2.504,"agent_setup":16.097,"agent_exec":141.352,"verifier":17.695},"taskName":"modal_cron_data_snapshot","jobId":"eduMtR3","exec_duration":141.352}]},{"taskName":"modal_dict_queue_state","instruction":"# Task: Modal Dict for Inter-Process Counter State\n\nCreate a Modal app at `/home/user/modal_project/app.py` named `dict-state-demo` that uses a Modal Dict for shared state.\n\n## Requirements\n\n- Create a Modal Dict named `counter-state` using `modal.Dict.from_name('counter-state', create_if_missing=True)`.\n- Define `increment_counter()` with `@app.function()` that reads key `'count'` (default 0), increments, stores back, and returns the new int.\n- Define `get_counter()` with `@app.function()` that returns `counter_dict.get('count', 0)`.\n- Define `@app.local_entrypoint()` named `main` that calls `increment_counter.remote()` 3 times, then `get_counter.remote()`, and writes `{'count': <value>}` to `/home/user/modal_project/counter_output.json`.\n\n## Deployment\n\n```\nmodal deploy /home/user/modal_project/app.py --env modal-vsdatagen\nmodal run /home/user/modal_project/app.py --env modal-vsdatagen\n```\n\nVerify `/home/user/modal_project/counter_output.json` has `count >= 3`.\n","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_dict_queue_state__GYhm5mB","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":303.292,"latency_breakdown":{"env_setup":1.384,"agent_setup":9.988,"agent_exec":264.198,"verifier":16.982},"taskName":"modal_dict_queue_state","jobId":"GYhm5mB","exec_duration":264.198}]},{"taskName":"modal_gpu_benchmark_pipeline","instruction":"$8","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_gpu_benchmark_pipeline__p35Y87t","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":203.804,"latency_breakdown":{"env_setup":2.623,"agent_setup":15.107,"agent_exec":153.022,"verifier":22.265},"taskName":"modal_gpu_benchmark_pipeline","jobId":"p35Y87t","exec_duration":153.022}]},{"taskName":"modal_multi_app_orchestrator","instruction":"# Task: Multi-Entry Modal App with Shared Volume Orchestration\n\nBuild `/home/user/modal_project/orchestrator.py` named `multi-entry-app` with three pipeline stages — ingest, process, export — using a shared Volume named `shared-state`. A local entrypoint `main` runs all three in sequence and writes a report to `/home/user/modal_project/report.json`.\n\nDeploy: `modal deploy /home/user/modal_project/orchestrator.py --env modal-vsdatagen`\nRun: `modal run /home/user/modal_project/orchestrator.py --env modal-vsdatagen`\n\nVerify `modal app list`, `modal volume list`, and `report.json` contains `ingest`, `process`, and `export` keys.\n","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_multi_app_orchestrator__oVqzNGr","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":310.745,"latency_breakdown":{"env_setup":1.342,"agent_setup":8.068,"agent_exec":270.093,"verifier":20.442},"taskName":"modal_multi_app_orchestrator","jobId":"oVqzNGr","exec_duration":270.093}]},{"taskName":"modal_nfs_shared_storage","instruction":"# Task: Modal NetworkFileSystem Shared Storage\n\nCreate a Modal app at `/home/user/modal_project/app.py` named `nfs-demo` that uses a NetworkFileSystem (NFS) to share files between two functions.\n\n## Requirements\n\n- Create an NFS named `shared-fs` using `modal.NetworkFileSystem.from_name('shared-fs', create_if_missing=True)`.\n- Define `write_shared_file` with `@app.function(network_file_systems={'/shared': nfs})` that writes `'hello from nfs'` to `/shared/message.txt`.\n- Define `read_shared_file` with `@app.function(network_file_systems={'/shared': nfs})` that reads and returns the contents of `/shared/message.txt`.\n- Define a `@app.local_entrypoint()` named `main` that calls write then read and writes the result to `/home/user/modal_project/nfs_output.txt`.\n\n## Deployment\n\n```\nmodal deploy /home/user/modal_project/app.py --env modal-vsdatagen\nmodal run /home/user/modal_project/app.py --env modal-vsdatagen\n```\n\nVerify `/home/user/modal_project/nfs_output.txt` exists and contains `hello from nfs`.\n","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_nfs_shared_storage__egopN7K","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":148.758,"latency_breakdown":{"env_setup":1.563,"agent_setup":8.715,"agent_exec":99.727,"verifier":27.956},"taskName":"modal_nfs_shared_storage","jobId":"egopN7K","exec_duration":99.727}]},{"taskName":"modal_parallel_text_summarizer","instruction":"# Task: Parallel Text Summarizer Pipeline on Modal\n\nCreate a Modal app at `/home/user/modal_project/summarizer.py` named `text-summarizer` with two parallel functions.\n\n## Requirements\n\n- Build a custom image from `modal.Image.debian_slim()`.\n- Define `summarize_text(text: str, max_words: int)` → `{'original_words': int, 'summary': str, 'truncated': bool}`.\n- Define `compute_stats(summaries: list)` → `{'total': int, 'truncated_count': int, 'avg_original_words': float}`.\n- Both use `@app.function(image=image)`.\n- `@app.local_entrypoint()` named `main`:\n  - Maps `summarize_text` over 4 sample texts with `max_words=3`.\n  - Calls `compute_stats.remote(summaries)`.\n  - Writes stats to `/home/user/modal_project/stats_output.json`.\n\n## Deployment\n\n```\nmodal deploy /home/user/modal_project/summarizer.py --env modal-vsdatagen\nmodal run /home/user/modal_project/summarizer.py --env modal-vsdatagen\n```\n\nVerify `stats_output.json` has `total=4`.\n","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_parallel_text_summarizer__RGHMjcs","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":118.626,"latency_breakdown":{"env_setup":1.314,"agent_setup":8.692,"agent_exec":81.354,"verifier":16.415},"taskName":"modal_parallel_text_summarizer","jobId":"RGHMjcs","exec_duration":81.354}]},{"taskName":"modal_retries_timeout_policy","instruction":"# Task: Configure Modal Function Retries and Timeout\n\nCreate a Modal app at `/home/user/modal_project/app.py` named `retry-demo`.\n\n## Requirements\n\n- Define `flaky_task` with `@app.function(retries=3, timeout=30)` that:\n  - Tracks attempt count via a local file (defaulting to `/home/user/modal_project/attempts.txt`).\n  - Raises `RuntimeError('simulated failure')` on the first two attempts.\n  - Returns `{'success': True, 'attempts': count}` on the third attempt.\n- Define a `@app.local_entrypoint()` named `main` that calls `flaky_task.remote()` and writes the result as JSON to `/home/user/modal_project/task_result.json`.\n\n## Deployment\n\n```\nmodal deploy /home/user/modal_project/app.py --env modal-vsdatagen\nmodal run /home/user/modal_project/app.py --env modal-vsdatagen\n```\n\nVerify `/home/user/modal_project/task_result.json` exists with `\"success\": true`.\n","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_retries_timeout_policy__kzih49H","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":451.291,"latency_breakdown":{"env_setup":1.435,"agent_setup":9.347,"agent_exec":413.205,"verifier":16.468},"taskName":"modal_retries_timeout_policy","jobId":"kzih49H","exec_duration":413.205}]},{"taskName":"modal_volume_checkpoint_restore","instruction":"# Task: Modal Checkpoint/Restore System with Volume\n\nBuild a checkpoint and restore system at `/home/user/modal_project/checkpointer.py` named `checkpoint-system`.\n\nUse a Volume named `checkpoints`. Implement:\n- `save_checkpoint(job_id, step, state)` — writes state JSON and updates a manifest file, commits volume.\n- `restore_checkpoint(job_id, step=None)` — reads latest or specific checkpoint from volume.\n- `list_checkpoints(job_id)` — returns the manifest dict.\n\nRun two saves for job `job-001` (steps 1 and 2), restore latest, list checkpoints, and write `{'latest_state': ..., 'manifest': ...}` to `/home/user/modal_project/checkpoint_report.json`.\n\nDeploy with `modal deploy /home/user/modal_project/checkpointer.py --env modal-vsdatagen` and run with `modal run`.\n\nVerify app, volume, and `checkpoint_report.json` with `manifest.latest_step=2`.\n","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_volume_checkpoint_restore__WrUxoxw","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":259.586,"latency_breakdown":{"env_setup":2.489,"agent_setup":17.488,"agent_exec":206.366,"verifier":22.46},"taskName":"modal_volume_checkpoint_restore","jobId":"WrUxoxw","exec_duration":206.366}]},{"taskName":"modal_web_endpoint_json_transform","instruction":"# Task: Build a JSON Transformation API on Modal\n\nCreate a Modal app at `/home/user/modal_project/server.py` named `json-transform-api`.\n\n## Requirements\n\n- Build a custom image from `debian_slim` with `fastapi` installed.\n- Create a FastAPI ASGI app with:\n  - `GET /ping` → `{\"pong\": true}`.\n  - `POST /transform` with `{\"data\": list, \"operation\": str}` (sum/max/min/sort) → `{\"result\": ..., \"operation\": ...}`.\n- Define a separate `@app.function()` named `validate_input(data, operation)` that returns `True` if operation is valid and data is a non-empty list.\n- Define `@app.local_entrypoint()` named `main` that calls `validate_input.remote([1,2,3], 'sum')` and writes result to `/home/user/modal_project/validation_result.txt`.\n\n## Deployment\n\n```\nmodal deploy /home/user/modal_project/server.py --env modal-vsdatagen\nmodal run /home/user/modal_project/server.py --env modal-vsdatagen\n```\n\nVerify `validation_result.txt` contains `True`.\n","trials":[{"job_name":"2026-03-23__12-53-45","trial_name":"modal_web_endpoint_json_transfor__RMMMAnc","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":297.214,"latency_breakdown":{"env_setup":2.41,"agent_setup":14.901,"agent_exec":253.944,"verifier":15.206},"taskName":"modal_web_endpoint_json_transfor","jobId":"RMMMAnc","exec_duration":253.944}]}]}]]}],["$L9","$La"],"$Lb"]}],{},null,false,false]},null,false,false]},null,false,false],"$Lc",false]],"m":"$undefined","G":["$d",[]],"S":true}
-e:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
-f:"$Sreact.suspense"
-11:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"ViewportBoundary"]
-13:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"MetadataBoundary"]
-9:["$","script","script-0",{"src":"/modal-benchmark/_next/static/chunks/584417517a743f28.js","async":true,"nonce":"$undefined"}]
-a:["$","script","script-1",{"src":"/modal-benchmark/_next/static/chunks/4aebf47065010653.js","async":true,"nonce":"$undefined"}]
-b:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
-c:["$","$1","h",{"children":[null,["$","$L11",null,{"children":"$L12"}],["$","div",null,{"hidden":true,"children":["$","$L13",null,{"children":["$","$f",null,{"name":"Next.Metadata","children":"$L14"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
-12:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
-10:null
-14:[["$","title","0",{"children":"Modal Benchmark"}],["$","meta","1",{"name":"description","content":"Performance results of AI coding models on Modal tasks, measuring success rate and execution time with high precision."}]]
+Then run the local entrypoint to populate the Modal Dict:
+
+```
+modal run /home/user/modal_batch/app.py -e modal-vsdatagen
+```
+8:T810,# Task: Build a Modal Class-Based Inference Endpoint with Warm Pool
+
+You are working in a project directory at `/home/user/modal_class/`. A starter `app.py` file already exists with a basic Modal App definition named `"class-inference-warm"`.
+
+## Your Goal
+
+Extend `/home/user/modal_class/app.py` to implement a class-based text classifier inference endpoint using Modal's class lifecycle features and warm pool configuration.
+
+## Requirements
+
+1. Create a Modal Image using `modal.Image.debian_slim().pip_install("numpy")` and assign it to a variable named `image`.
+
+2. Define a Modal class called `TextClassifier` with the decorator `@app.cls(image=image, min_containers=1)` to maintain a warm container pool (keeps 1 container always alive to avoid cold starts).
+
+3. The `TextClassifier` class must have:
+   - A `@modal.enter()` lifecycle method named `setup` that runs when the container starts. It should initialize the model state (e.g., `self.model`) and set `self.call_count = 0`.
+   - A `@modal.method()` named `classify` that accepts a `text` string, increments `self.call_count`, and returns a dictionary with:
+     - `"label"`: one of `"positive"`, `"negative"`, or `"neutral"` based on naive word matching in the text
+     - `"confidence"`: a float between 0 and 1
+     - `"call_count"`: the current value of `self.call_count`
+   - A `@modal.method()` named `get_stats` that returns a dictionary with keys `"model_info"` and `"total_calls"`.
+
+4. Define a `@app.local_entrypoint()` that:
+   - Instantiates the `TextClassifier` class
+   - Makes exactly **3 calls** to the `classify` method with different text inputs
+   - Calls `get_stats` to retrieve model statistics
+   - Stores results in a Modal Dict named `"class-inference-output"` with:
+     - Key `"stats"`: the stats dictionary returned from `get_stats`
+     - Key `"classifications"`: the integer `3`
+
+5. Deploy the app:
+   ```
+   modal deploy /home/user/modal_class/app.py -e modal-vsdatagen
+   ```
+
+6. Run the app:
+   ```
+   modal run /home/user/modal_class/app.py -e modal-vsdatagen
+   ```
+9:T544,# Task: Create a Modal Cron Job Status Reporter
+
+You are working in a project directory at `/home/user/modal_cron/`. A starter `reporter.py` file already exists with a basic Modal App definition (named `"status-reporter"`).
+
+## Your Goal
+
+Extend `/home/user/modal_cron/reporter.py` to implement a periodic status reporting job using Modal's scheduling capabilities.
+
+## Requirements
+
+1. Create a Modal Image using `modal.Image.debian_slim().pip_install("requests")` and assign it to a variable named `image`.
+
+2. Define a function called `report_status` that:
+   - Is decorated with `@app.function(image=image, schedule=modal.Period(hours=6))`
+   - Generates the current UTC timestamp as an ISO format string
+   - Stores the timestamp in a Modal Dict named `"status-reporter-output"` under the key `"last_run"` using `modal.Dict.from_name("status-reporter-output", create_if_missing=True).put("last_run", timestamp)`
+   - Stores the string `"success"` in the same Dict under the key `"status"`
+   - Returns the timestamp string
+
+3. Define a `@app.local_entrypoint()` that:
+   - Calls `report_status.remote()`
+   - Prints the returned timestamp
+
+4. Deploy the app:
+   ```
+   modal deploy /home/user/modal_cron/reporter.py -e modal-vsdatagen
+   ```
+
+5. Trigger one run:
+   ```
+   modal run /home/user/modal_cron/reporter.py -e modal-vsdatagen
+   ```
+a:T688,# Task: Build a Custom Modal Image for Data Science
+
+You are a data scientist setting up a hyperparameter sweep environment on Modal. Your task is to create a Modal app at `/home/user/modal_ds/app.py` that builds a custom Docker image with data science dependencies and runs a statistical computation.
+
+## Setup
+
+A starter file already exists at `/home/user/modal_ds/app.py` with a basic Modal App definition.
+
+## What You Must Do
+
+1. The Modal App must be named `"custom-image-data-science"`.
+
+2. Build a custom image using:
+   ```python
+   image = modal.Image.debian_slim().pip_install("numpy", "pandas", "scipy")
+   ```
+
+3. Define a function called `run_stats` that:
+   - Is decorated with `@app.function(image=image)`
+   - Creates a numpy array of `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`
+   - Computes the mean and standard deviation using numpy
+   - Returns a dict with keys `"mean"`, `"std"`, and `"count"` (count = 10)
+
+4. Define a `@app.local_entrypoint()` that:
+   - Calls `run_stats.remote()` and stores the result
+   - Stores the result dict in a Modal Dict named `"custom-image-ds-output"` under the key `"stats"`:
+     ```python
+     modal.Dict.from_name("custom-image-ds-output", create_if_missing=True).put("stats", result)
+     ```
+   - Also stores `True` under the key `"packages_verified"` in the same dict
+
+5. Deploy the app:
+   ```bash
+   modal deploy /home/user/modal_ds/app.py -e modal-vsdatagen
+   ```
+
+6. Run the app:
+   ```bash
+   modal run /home/user/modal_ds/app.py -e modal-vsdatagen
+   ```
+
+## Constraints
+
+- Keep all code in `/home/user/modal_ds/app.py`
+- Do not use sudo or root
+- The image must install numpy, pandas, and scipy via `pip_install`
+b:T758,# Task: FastAPI JSON Transform Endpoint on Modal
+
+You are building a serverless API layer using Modal. A starter file already exists at `/home/user/modal_fastapi/app.py` with a Modal app named `"fastapi-json-transform"`. Your job is to extend this file into a fully working FastAPI web endpoint that transforms JSON data.
+
+## Requirements
+
+### 1. Modal Image
+
+Define a Modal image using `modal.Image.debian_slim()` with `fastapi` installed via `pip_install`.
+
+### 2. FastAPI ASGI Endpoint
+
+Create a FastAPI application inside a Modal function. The function must be decorated with both `@app.function()` (using the image you defined) and `@modal.asgi_app()`.
+
+The FastAPI app must expose two routes:
+
+- **`GET /`** — Returns a JSON response:
+  ```json
+  {"status": "ok", "service": "json-transform"}
+  ```
+
+- **`POST /transform`** — Accepts a JSON request body with two fields:
+  - `data`: a list of values
+  - `operation`: a string specifying the transformation
+
+  Behavior:
+  - If `operation` is `"reverse"`, return the list reversed.
+  - If `operation` is `"sort"`, return the list sorted.
+  - Otherwise, return the list unchanged.
+
+  Example request body:
+  ```json
+  {"data": [3, 1, 2], "operation": "sort"}
+  ```
+  Expected response:
+  ```json
+  {"result": [1, 2, 3]}
+  ```
+
+### 3. Local Entrypoint
+
+Add a `@app.local_entrypoint()` function that:
+1. Calls the deployed endpoint to verify it is working (e.g., makes an HTTP request to the `GET /` route or checks the URL).
+2. Stores results in a Modal Dict named `"fastapi-json-transform-output"` with:
+   - Key `"health_check"` set to `"ok"`
+   - Key `"endpoint_deployed"` set to `True`
+
+## Deploying and Running
+
+Deploy the app with:
+```bash
+modal deploy /home/user/modal_fastapi/app.py -e modal-vsdatagen
+```
+
+Then run the local entrypoint with:
+```bash
+modal run /home/user/modal_fastapi/app.py -e modal-vsdatagen
+```
+c:T728,# Task: Build a Modal Text Processing Pipeline
+
+You have a starter Modal app at `/home/user/modal_pipeline/app.py` with app name `"text-pipeline"`. Your job is to extend it into a 3-function text processing pipeline.
+
+## Requirements
+
+### Image
+
+Define a Modal image using `modal.Image.debian_slim()` and assign it to a variable (e.g. `image`).
+
+### Functions
+
+Implement three Modal functions, each decorated with `@app.function(image=image)`:
+
+1. **`clean_text(text: str) -> str`**
+   - Strips leading and trailing whitespace from the input
+   - Converts the text to lowercase
+   - Returns the cleaned string
+
+2. **`count_words(text: str) -> int`**
+   - Counts the number of words in the given text
+   - Returns the count as an integer
+
+3. **`summarize(original_text: str, word_count: int) -> dict`**
+   - Returns a dictionary with the following keys:
+     - `"original_length"`: the length of the original (uncleaned) text
+     - `"word_count"`: the word count passed in
+     - `"cleaned_length"`: the length of the cleaned version of the original text
+
+### Local Entrypoint
+
+Add a `@app.local_entrypoint()` function that:
+
+1. Uses the sample text: `"  Hello World this is a TEST of the pipeline  "`
+2. Calls `clean_text.remote()` on the sample text to get the cleaned version
+3. Calls `count_words.remote()` on the cleaned text to get the word count
+4. Calls `summarize.remote()` with the original text and the word count to get a summary dict
+5. Stores results in a Modal Dict named `"text-pipeline-output"`:
+   - Key `"summary"` = the dict returned by `summarize.remote()`
+   - Key `"pipeline_stages"` = `3`
+
+## Deploy and Run
+
+Deploy the app:
+```bash
+modal deploy /home/user/modal_pipeline/app.py -e modal-vsdatagen
+```
+
+Then run the local entrypoint:
+```bash
+modal run /home/user/modal_pipeline/app.py -e modal-vsdatagen
+```
+d:T536,# Modal Secret API Key Function
+
+You are an ML ops engineer managing model serving infrastructure. Your goal is to create a Modal app that securely accesses an API key using Modal Secrets.
+
+## Steps
+
+### 1. Create a Modal Secret
+
+First, create a Modal Secret named `my-api-credentials` with an `API_KEY` value:
+
+```bash
+modal secret create my-api-credentials API_KEY=test-key-1234 -e modal-vsdatagen
+```
+
+### 2. Implement the App
+
+A starter file already exists at `/home/user/modal_secrets/app.py` with basic imports and an app definition. Extend it to:
+
+- Define a Modal image using `modal.Image.debian_slim()`
+- Add a function `fetch_with_key` that:
+  - Is decorated with `@app.function(secrets=[modal.Secret.from_name("my-api-credentials")])`
+  - Reads the `API_KEY` from the environment using `os.environ["API_KEY"]`
+  - Returns the first 4 characters of the key
+  - Stores the masked key in Modal Dict `"secret-api-key-output"` under the key `"masked_key"`
+  - Stores `True` in Modal Dict `"secret-api-key-output"` under the key `"verified"`
+- Add a `@app.local_entrypoint()` that calls `fetch_with_key.remote()` and prints the result
+
+### 3. Deploy the App
+
+```bash
+modal deploy /home/user/modal_secrets/app.py -e modal-vsdatagen
+```
+
+### 4. Run the App
+
+```bash
+modal run /home/user/modal_secrets/app.py -e modal-vsdatagen
+```
+e:T5ad,# Volume Log Archiver
+
+You are a DevOps engineer setting up a scheduled data job using the Modal serverless platform. Your goal is to build a Modal app that uses a Modal Volume for persistent shared storage to write and read log entries.
+
+## What to Build
+
+Edit the existing file at `/home/user/modal_volume_logs/app.py` to implement the following:
+
+### Modal Volume
+
+Create a Modal Volume named `"log-archive-vol"` and mount it at `/logs` in all functions that need it.
+
+### Functions
+
+1. **`write_logs`** — A Modal function that:
+   - Writes 3 timestamped log entries to `/logs/archive.log` inside the volume
+   - Returns the number of lines written as an integer
+
+2. **`read_logs`** — A Modal function that:
+   - Reads the contents of `/logs/archive.log` from the volume
+   - Returns the file contents as a string
+
+### Local Entrypoint
+
+Add a `@app.local_entrypoint()` function that:
+- Calls `write_logs` (using `.remote()`) and stores the returned line count
+- Calls `read_logs` (using `.remote()`) and stores the returned content
+- Saves results to a Modal Dict named `"volume-log-archiver-output"` with:
+  - Key `"log_count"`: the integer count of lines written
+  - Key `"log_content"`: the string contents of the log file
+
+## Deploy and Run
+
+Deploy the app:
+```bash
+modal deploy /home/user/modal_volume_logs/app.py -e modal-vsdatagen
+```
+
+Run the local entrypoint:
+```bash
+modal run /home/user/modal_volume_logs/app.py -e modal-vsdatagen
+```
+f:T656,# Task: Build a Modal Volume-backed Text Indexing Pipeline
+
+You are working in a project directory at `/home/user/modal_pipeline/`. A starter `pipeline.py` file already exists with a basic Modal App definition (named `"text-index-pipeline"`). A Modal Volume named `text-index-volume` already exists in the `modal-vsdatagen` environment.
+
+## Your Goal
+
+Extend `/home/user/modal_pipeline/pipeline.py` to implement a text indexing pipeline that uses Modal Volumes for persistent storage.
+
+## Requirements
+
+1. Reference the existing Modal Volume using `modal.Volume.from_name("text-index-volume", environment_name="modal-vsdatagen")` and mount it at `/data` inside your function containers.
+
+2. Create a function called `index_documents` that:
+   - Is decorated with `@app.function()` with the volume mounted at `/data`
+   - Accepts a list of strings (documents) as input
+   - Writes each document to `/data/index/doc_0.txt`, `/data/index/doc_1.txt`, etc.
+   - Commits the volume after writing all files using `volume.commit()`
+   - Returns the number of documents indexed
+
+3. Create a `@app.local_entrypoint()` that:
+   - Calls `index_documents.remote([...])` with at least 3 sample documents
+   - Stores the returned count in a Modal Dict named `"text-index-output"` under key `"doc_count"` using `modal.Dict.from_name("text-index-output", create_if_missing=True).put("doc_count", count)`
+   - Prints the count
+
+4. Deploy the app:
+   ```
+   modal deploy /home/user/modal_pipeline/pipeline.py -e modal-vsdatagen
+   ```
+
+5. Run the pipeline:
+   ```
+   modal run /home/user/modal_pipeline/pipeline.py -e modal-vsdatagen
+   ```
+10:T655,# Webhook Request Logger
+
+You are a backend developer migrating a webhook receiver service to Modal serverless.
+
+## Your Task
+
+Create a Modal web endpoint that acts as a webhook receiver at `/home/user/modal_webhook/app.py`.
+
+A starter file already exists with a basic Modal App definition. Extend it to implement the following:
+
+1. Use `modal.Image.debian_slim()` as the image for the app.
+
+2. Define a function called `receive_webhook` that:
+   - Is decorated with both `@app.function()` and `@modal.web_endpoint(method="POST")`
+   - Accepts a JSON request body containing at least a `"message"` field
+   - Logs (prints) the received message
+   - Stores the message in a Modal Dict named `"webhook-logger-output"` under the key `"last_message"` using `modal.Dict.from_name("webhook-logger-output", create_if_missing=True)`
+   - Tracks how many times the webhook has been called by storing and incrementing a counter under key `"call_count"` in the same dict (start from 0 if not present)
+   - Returns a confirmation response
+
+3. Define a `@app.local_entrypoint()` that:
+   - Retrieves the deployed endpoint URL
+   - Makes a test POST request to that URL using the `requests` library with a sample JSON body containing a `"message"` field
+   - Prints the response
+
+## Deployment
+
+Deploy the app with:
+```
+modal deploy /home/user/modal_webhook/app.py -e modal-vsdatagen
+```
+
+Then trigger a test run with:
+```
+modal run /home/user/modal_webhook/app.py -e modal-vsdatagen
+```
+
+## Notes
+
+- Keep all code in `/home/user/modal_webhook/app.py`
+- Do not use sudo or root
+- The `requests` library is available in the environment
+0:{"P":null,"b":"wcZW1FM4VpLQe2snXxaTU","c":["","tasks",""],"q":"","i":false,"f":[[["",{"children":["tasks",{"children":["__PAGE__",{}]}]},"$undefined","$undefined",true],[["$","$1","c",{"children":[[["$","link","0",{"rel":"stylesheet","href":"/modal-benchmark/_next/static/chunks/33aaee800f916205.css","precedence":"next","crossOrigin":"$undefined","nonce":"$undefined"}],["$","script","script-0",{"src":"/modal-benchmark/_next/static/chunks/22e80cc4342926d5.js","async":true,"nonce":"$undefined"}],["$","script","script-1",{"src":"/modal-benchmark/_next/static/chunks/2ad5122eae704b1a.js","async":true,"nonce":"$undefined"}]],["$","html",null,{"lang":"en","suppressHydrationWarning":true,"children":["$","body",null,{"className":"inter_5972bc34-module__OU16Qa__className antialiased","children":["$","$L2",null,{"defaultTheme":"dark","children":[["$","div",null,{"className":"fixed right-4 top-6 z-50 sm:top-8","children":["$","$L3",null,{}]}],["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":[[["$","title",null,{"children":"404: This page could not be found."}],["$","div",null,{"style":{"fontFamily":"system-ui,\"Segoe UI\",Roboto,Helvetica,Arial,sans-serif,\"Apple Color Emoji\",\"Segoe UI Emoji\"","height":"100vh","textAlign":"center","display":"flex","flexDirection":"column","alignItems":"center","justifyContent":"center"},"children":["$","div",null,{"children":[["$","style",null,{"dangerouslySetInnerHTML":{"__html":"body{color:#000;background:#fff;margin:0}.next-error-h1{border-right:1px solid rgba(0,0,0,.3)}@media (prefers-color-scheme:dark){body{color:#fff;background:#000}.next-error-h1{border-right:1px solid rgba(255,255,255,.3)}}"}}],["$","h1",null,{"className":"next-error-h1","style":{"display":"inline-block","margin":"0 20px 0 0","padding":"0 23px 0 0","fontSize":24,"fontWeight":500,"verticalAlign":"top","lineHeight":"49px"},"children":404}],["$","div",null,{"style":{"display":"inline-block"},"children":["$","h2",null,{"style":{"fontSize":14,"fontWeight":400,"lineHeight":"49px","margin":0},"children":"This page could not be found."}]}]]}]}]],[]],"forbidden":"$undefined","unauthorized":"$undefined"}]]}]}]}]]}],{"children":[["$","$1","c",{"children":[null,["$","$L4",null,{"parallelRouterKey":"children","error":"$undefined","errorStyles":"$undefined","errorScripts":"$undefined","template":["$","$L5",null,{}],"templateStyles":"$undefined","templateScripts":"$undefined","notFound":"$undefined","forbidden":"$undefined","unauthorized":"$undefined"}]]}],{"children":[["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$L6",null,{"tasksData":[{"taskName":"batch_word_frequency_map","instruction":"$7","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"batch_word_frequency_map__jxypZPH","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":172.478,"latency_breakdown":{"env_setup":1.29,"agent_setup":19.418,"agent_exec":122.778,"verifier":18.11},"taskName":"batch_word_frequency_map","jobId":"jxypZPH","exec_duration":122.778},{"job_name":"2026-03-23__22-33-16","trial_name":"batch_word_frequency_map__HWLCs5i","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":445.801,"latency_breakdown":{"env_setup":1.636,"agent_setup":10.788,"agent_exec":401.965,"verifier":20.623},"taskName":"batch_word_frequency_map","jobId":"HWLCs5i","exec_duration":401.965},{"job_name":"2026-03-23__21-57-28","trial_name":"batch_word_frequency_map__5BJsDcM","model":"claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":132.481,"latency_breakdown":{"env_setup":1.38,"agent_setup":29.293,"agent_exec":71.005,"verifier":19.75},"taskName":"batch_word_frequency_map","jobId":"5BJsDcM","exec_duration":71.005}]},{"taskName":"class_inference_warm_pool","instruction":"$8","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"class_inference_warm_pool__7h4nueQ","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":350.111,"latency_breakdown":{"env_setup":7.468,"agent_setup":26.105,"agent_exec":289.569,"verifier":16.202},"taskName":"class_inference_warm_pool","jobId":"7h4nueQ","exec_duration":289.569},{"job_name":"2026-03-23__22-33-16","trial_name":"class_inference_warm_pool__qNkBRjN","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":663.804,"latency_breakdown":{"env_setup":9.118,"agent_setup":32.543,"agent_exec":600.002,"verifier":11.213},"taskName":"class_inference_warm_pool","jobId":"qNkBRjN","exec_duration":600.002},{"job_name":"2026-03-23__21-57-28","trial_name":"class_inference_warm_pool__romHVnm","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":145.657,"latency_breakdown":{"env_setup":2.35,"agent_setup":27.449,"agent_exec":76.659,"verifier":28.607},"taskName":"class_inference_warm_pool","jobId":"romHVnm","exec_duration":76.659}]},{"taskName":"cron_status_reporter","instruction":"$9","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"cron_status_reporter__M2Ri5AJ","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":580.83,"latency_breakdown":{"env_setup":4.172,"agent_setup":20.726,"agent_exec":528.561,"verifier":16.45},"taskName":"cron_status_reporter","jobId":"M2Ri5AJ","exec_duration":528.561},{"job_name":"2026-03-23__22-33-16","trial_name":"cron_status_reporter__THMSQHF","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":121.937,"latency_breakdown":{"env_setup":4.001,"agent_setup":14.587,"agent_exec":75.299,"verifier":17.215},"taskName":"cron_status_reporter","jobId":"THMSQHF","exec_duration":75.299},{"job_name":"2026-03-23__21-57-28","trial_name":"cron_status_reporter__nrFp8kh","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":120.275,"latency_breakdown":{"env_setup":1.286,"agent_setup":27.96,"agent_exec":65.381,"verifier":14.862},"taskName":"cron_status_reporter","jobId":"nrFp8kh","exec_duration":65.381}]},{"taskName":"custom_image_data_science","instruction":"$a","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"custom_image_data_science__SciocxN","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":139.19,"latency_breakdown":{"env_setup":1.728,"agent_setup":18.337,"agent_exec":91.206,"verifier":16.964},"taskName":"custom_image_data_science","jobId":"SciocxN","exec_duration":91.206},{"job_name":"2026-03-23__22-33-16","trial_name":"custom_image_data_science__iCrh8LG","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":182.097,"latency_breakdown":{"env_setup":1.318,"agent_setup":11.647,"agent_exec":141.75,"verifier":16.462},"taskName":"custom_image_data_science","jobId":"iCrh8LG","exec_duration":141.75},{"job_name":"2026-03-23__21-57-28","trial_name":"custom_image_data_science__M4TnFwP","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":116.085,"latency_breakdown":{"env_setup":1.454,"agent_setup":16.296,"agent_exec":72.443,"verifier":15.286},"taskName":"custom_image_data_science","jobId":"M4TnFwP","exec_duration":72.443}]},{"taskName":"fastapi_json_transform_endpoint","instruction":"$b","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"fastapi_json_transform_endpoint__5d4C6uX","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":383.404,"latency_breakdown":{"env_setup":1.676,"agent_setup":13.313,"agent_exec":338.71,"verifier":18.992},"taskName":"fastapi_json_transform_endpoint","jobId":"5d4C6uX","exec_duration":338.71},{"job_name":"2026-03-23__22-33-16","trial_name":"fastapi_json_transform_endpoint__okBC3J9","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":489.529,"latency_breakdown":{"env_setup":1.867,"agent_setup":14.97,"agent_exec":444.53,"verifier":17.339},"taskName":"fastapi_json_transform_endpoint","jobId":"okBC3J9","exec_duration":444.53},{"job_name":"2026-03-23__21-57-28","trial_name":"fastapi_json_transform_endpoint__i4FSAhb","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":162.742,"latency_breakdown":{"env_setup":1.685,"agent_setup":14.631,"agent_exec":118.582,"verifier":17.108},"taskName":"fastapi_json_transform_endpoint","jobId":"i4FSAhb","exec_duration":118.582}]},{"taskName":"multi_function_text_pipeline","instruction":"$c","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"multi_function_text_pipeline__sS6fpCe","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":143.793,"latency_breakdown":{"env_setup":7.498,"agent_setup":31.631,"agent_exec":74.229,"verifier":19.739},"taskName":"multi_function_text_pipeline","jobId":"sS6fpCe","exec_duration":74.229},{"job_name":"2026-03-23__22-33-16","trial_name":"multi_function_text_pipeline__AhTZwe8","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":214.247,"latency_breakdown":{"env_setup":9.101,"agent_setup":37.983,"agent_exec":136.101,"verifier":20.308},"taskName":"multi_function_text_pipeline","jobId":"AhTZwe8","exec_duration":136.101},{"job_name":"2026-03-23__21-57-28","trial_name":"multi_function_text_pipeline__J5wuJbD","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":131.239,"latency_breakdown":{"env_setup":2.368,"agent_setup":30.686,"agent_exec":62.919,"verifier":24.281},"taskName":"multi_function_text_pipeline","jobId":"J5wuJbD","exec_duration":62.919}]},{"taskName":"secret_api_key_function","instruction":"$d","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"secret_api_key_function__r22336a","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":213.246,"latency_breakdown":{"env_setup":1.289,"agent_setup":23.667,"agent_exec":160.259,"verifier":17.452},"taskName":"secret_api_key_function","jobId":"r22336a","exec_duration":160.259},{"job_name":"2026-03-23__22-33-16","trial_name":"secret_api_key_function__9znNiTd","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":163.212,"latency_breakdown":{"env_setup":1.579,"agent_setup":13.751,"agent_exec":118.429,"verifier":18.453},"taskName":"secret_api_key_function","jobId":"9znNiTd","exec_duration":118.429},{"job_name":"2026-03-23__21-57-28","trial_name":"secret_api_key_function__c87rLP9","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":178.114,"latency_breakdown":{"env_setup":1.278,"agent_setup":39.132,"agent_exec":103.964,"verifier":23.085},"taskName":"secret_api_key_function","jobId":"c87rLP9","exec_duration":103.964}]},{"taskName":"volume_log_archiver","instruction":"$e","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"volume_log_archiver__tdCNYtn","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":185.451,"latency_breakdown":{"env_setup":1.533,"agent_setup":15.056,"agent_exec":138.447,"verifier":19.751},"taskName":"volume_log_archiver","jobId":"tdCNYtn","exec_duration":138.447},{"job_name":"2026-03-23__22-33-16","trial_name":"volume_log_archiver__MbtFABJ","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":121.65,"latency_breakdown":{"env_setup":1.275,"agent_setup":13.177,"agent_exec":76.134,"verifier":20.417},"taskName":"volume_log_archiver","jobId":"MbtFABJ","exec_duration":76.134},{"job_name":"2026-03-23__21-57-28","trial_name":"volume_log_archiver__AaW8dy9","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":154.09,"latency_breakdown":{"env_setup":1.402,"agent_setup":38.475,"agent_exec":78.774,"verifier":24.744},"taskName":"volume_log_archiver","jobId":"AaW8dy9","exec_duration":78.774}]},{"taskName":"volume_text_index_pipeline","instruction":"$f","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"volume_text_index_pipeline__7vEdNvR","model":"gemini-3-flash","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":262.403,"latency_breakdown":{"env_setup":7.116,"agent_setup":35.512,"agent_exec":192.575,"verifier":16.284},"taskName":"volume_text_index_pipeline","jobId":"7vEdNvR","exec_duration":192.575},{"job_name":"2026-03-23__22-33-16","trial_name":"volume_text_index_pipeline__Xb88YSb","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":203.717,"latency_breakdown":{"env_setup":8.877,"agent_setup":36.144,"agent_exec":128.791,"verifier":19.072},"taskName":"volume_text_index_pipeline","jobId":"Xb88YSb","exec_duration":128.791},{"job_name":"2026-03-23__21-57-28","trial_name":"volume_text_index_pipeline__8aMkDJX","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":150.638,"latency_breakdown":{"env_setup":4.706,"agent_setup":34.495,"agent_exec":62.08,"verifier":38.532},"taskName":"volume_text_index_pipeline","jobId":"8aMkDJX","exec_duration":62.08}]},{"taskName":"webhook_request_logger","instruction":"$10","trials":[{"job_name":"2026-03-23__22-05-09","trial_name":"webhook_request_logger__yD55be2","model":"gemini-3-flash","agent":"Pochi","passed":false,"reward":0,"error":true,"latency_sec":963.529,"latency_breakdown":{"env_setup":7.503,"agent_setup":37.188,"agent_exec":600.001,"verifier":307.881},"taskName":"webhook_request_logger","jobId":"yD55be2","exec_duration":600.001},{"job_name":"2026-03-23__22-33-16","trial_name":"webhook_request_logger__kwSH2hd","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":422.994,"latency_breakdown":{"env_setup":9.154,"agent_setup":37.657,"agent_exec":348.518,"verifier":16.94},"taskName":"webhook_request_logger","jobId":"kwSH2hd","exec_duration":348.518},{"job_name":"2026-03-23__21-57-28","trial_name":"webhook_request_logger__fxwokYZ","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":140.321,"latency_breakdown":{"env_setup":1.958,"agent_setup":36.236,"agent_exec":69.063,"verifier":22.199},"taskName":"webhook_request_logger","jobId":"fxwokYZ","exec_duration":69.063}]}]}]]}],["$L11","$L12"],"$L13"]}],{},null,false,false]},null,false,false]},null,false,false],"$L14",false]],"m":"$undefined","G":["$15",[]],"S":true}
+16:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
+17:"$Sreact.suspense"
+19:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"ViewportBoundary"]
+1b:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"MetadataBoundary"]
+11:["$","script","script-0",{"src":"/modal-benchmark/_next/static/chunks/584417517a743f28.js","async":true,"nonce":"$undefined"}]
+12:["$","script","script-1",{"src":"/modal-benchmark/_next/static/chunks/4aebf47065010653.js","async":true,"nonce":"$undefined"}]
+13:["$","$L16",null,{"children":["$","$17",null,{"name":"Next.MetadataOutlet","children":"$@18"}]}]
+14:["$","$1","h",{"children":[null,["$","$L19",null,{"children":"$L1a"}],["$","div",null,{"hidden":true,"children":["$","$L1b",null,{"children":["$","$17",null,{"name":"Next.Metadata","children":"$L1c"}]}]}],["$","meta",null,{"name":"next-size-adjust","content":""}]]}]
+1a:[["$","meta","0",{"charSet":"utf-8"}],["$","meta","1",{"name":"viewport","content":"width=device-width, initial-scale=1"}]]
+18:null
+1c:[["$","title","0",{"children":"Modal Benchmark"}],["$","meta","1",{"name":"description","content":"Performance results of AI coding models on Modal tasks, measuring success rate and execution time with high precision."}]]
