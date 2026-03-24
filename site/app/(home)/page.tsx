@@ -1,6 +1,9 @@
-import { Github, Terminal, ClipboardList } from "lucide-react";
+import { Github, Terminal, ClipboardList, ListTree } from "lucide-react";
+import Link from "next/link";
 import tasksData from "@/zealt/tasks.json";
+import pendingTasksData from "@/zealt/pending-tasks.json";
 import zealtConfig from "@/zealt/config.json";
+import PendingReviewCard from "@/components/pending-review-card";
 import LeaderboardTable, { type LeaderboardEntry } from "./components/leaderboard-table";
 
 type TaskTrial = {
@@ -14,8 +17,17 @@ type TaskValue = {
   trials?: TaskTrial[];
 };
 
+type PendingTasksValue = {
+  'pending-tasks'?: number;
+};
+
 export default function Home() {
   const totalTasks = Object.keys(tasksData as Record<string, unknown>).length;
+  const hasTasks = totalTasks > 0;
+  const pendingSampleCases = Math.max(
+    0,
+    Number((pendingTasksData as PendingTasksValue)['pending-tasks'] ?? 0),
+  );
 
   // Process tasks.json to compute leaderboard stats directly on the server
   const statsMap = new Map<string, {
@@ -40,9 +52,9 @@ export default function Home() {
       // Simplify model name
       const modelName = trial.model.split('/').pop() || trial.model;
       const agentName = trial.agent.charAt(0).toUpperCase() + trial.agent.slice(1);
-      
+
       const key = `${modelName}-${agentName}`;
-      
+
       if (!statsMap.has(key)) {
         statsMap.set(key, {
           passed: 0,
@@ -53,7 +65,7 @@ export default function Home() {
           agent: agentName
         });
       }
-      
+
       const stats = statsMap.get(key);
       if (!stats) {
         return;
@@ -116,11 +128,15 @@ export default function Home() {
               <Github className="w-4 h-4" />
               <span>View on GitHub</span>
             </a>
-            <div className="hidden h-4 w-px bg-border sm:block"></div>
-            <span className="flex w-full sm:w-auto items-center justify-center gap-2">
-              <ClipboardList className="w-4 h-4" />
-              <span>Total tasks: {totalTasks}</span>
-            </span>
+            {data.length > 0 && (
+              <>
+                <div className="hidden h-4 w-px bg-border sm:block"></div>
+                <span className="flex w-full sm:w-auto items-center justify-center gap-2">
+                  <ClipboardList className="w-4 h-4" />
+                  <span>Total tasks: {totalTasks}</span>
+                </span>
+              </>
+            )}
             <div className="hidden h-4 w-px bg-border sm:block"></div>
             <span className="flex w-full sm:w-auto items-center justify-center gap-2">
               <Terminal className="w-4 h-4" />
@@ -129,8 +145,25 @@ export default function Home() {
           </div>
         </div>
 
-        {/* Client Component for Interactive Table */}
-        <LeaderboardTable data={data} />
+        {!hasTasks ? (
+          <PendingReviewCard pendingSampleCases={pendingSampleCases} />
+        ) : data.length === 0 ? (
+          <div className="rounded-2xl border border-dashed border-border bg-card/40 backdrop-blur-sm px-8 py-14 text-center">
+            <h2 className="text-2xl font-semibold tracking-tight">No evaluation data yet</h2>
+            <div className="mt-6 flex justify-center">
+              <Link
+                href="./tasks"
+                className="flex items-center justify-center gap-2 px-4 py-2 border border-border bg-card/50 hover:bg-secondary/50 text-foreground rounded-lg text-sm font-medium transition-colors shadow-sm backdrop-blur-sm whitespace-nowrap"
+              >
+                <ListTree className="w-4 h-4" />
+                View Tasks
+              </Link>
+            </div>
+          </div>
+        ) : (
+          // Client Component for Interactive Table
+          <LeaderboardTable data={data} />
+        )}
       </div>
     </div>
   );

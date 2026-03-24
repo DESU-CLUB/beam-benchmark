@@ -110,11 +110,22 @@ async function readOptionalTextFile(filePath: string): Promise<{ text: string | 
   }
 }
 
+async function countPendingSampleCases(repoRoot: string): Promise<number> {
+  const pendingTasksDir = path.join(repoRoot, 'scratchpad', 'pending-tasks');
+  try {
+    const entries = await fs.readdir(pendingTasksDir, { withFileTypes: true });
+    return entries.filter((entry) => entry.isDirectory()).length;
+  } catch (_e) {
+    return 0;
+  }
+}
+
 async function main() {
   const siteRoot = process.cwd();
   const repoRoot = path.join(siteRoot, '..');
   const jobsDir = path.join(repoRoot, 'jobs');
   const resultFiles = await getResultFiles(jobsDir);
+  const pendingSampleCases = await countPendingSampleCases(repoRoot);
 
   const tasks: Record<string, TaskRecord> = {};
 
@@ -205,9 +216,15 @@ async function main() {
   }
 
   const outputPath = path.join(siteRoot, '../.zealt/tasks.json');
+  const pendingTasksOutputPath = path.join(siteRoot, '../.zealt/pending-tasks.json');
   
   await fs.writeFile(outputPath, JSON.stringify(tasks, null, 2));
+  await fs.writeFile(
+    pendingTasksOutputPath,
+    JSON.stringify({ 'pending-tasks': pendingSampleCases }, null, 2),
+  );
   console.log(`Computed ${Object.keys(tasks).length} tasks into ${outputPath}`);
+  console.log(`Computed ${pendingSampleCases} pending sample cases into ${pendingTasksOutputPath}`);
 }
 
 main().catch(console.error);

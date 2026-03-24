@@ -1,4 +1,6 @@
 import tasksDataRaw from "@/zealt/tasks.json";
+import pendingTasksData from "@/zealt/pending-tasks.json";
+import PendingReviewCard from "@/components/pending-review-card";
 import { TasksPageClient, type CompactTask, type CompactTrial } from "./components/tasks-page-client";
 
 type RawTaskTrial = {
@@ -22,6 +24,10 @@ type RawTaskTrial = {
 type RawTaskRecord = {
   instruction?: string;
   trials?: RawTaskTrial[];
+};
+
+type PendingTasksValue = {
+  'pending-tasks'?: number;
 };
 
 function splitTrialName(trialName: string): { taskName: string; jobId: string } | null {
@@ -98,12 +104,35 @@ function buildCompactTasksData(): CompactTask[] {
 
 export default function TasksPage() {
   const compactTasksData = buildCompactTasksData();
+  const pendingSampleCases = Math.max(
+    0,
+    Number((pendingTasksData as PendingTasksValue)['pending-tasks'] ?? 0),
+  );
 
   return (
     <div className="min-h-screen bg-background text-foreground font-sans selection:bg-primary/20">
       <div className="fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"></div>
 
-      <TasksPageClient tasksData={compactTasksData} />
+      {compactTasksData.length === 0 ? (
+        <div className="container mx-auto px-4 sm:px-8 lg:px-12 py-8 max-w-screen-2xl h-[100dvh] flex flex-col overflow-hidden">
+          <div className="mb-6 space-y-4 shrink-0">
+            <div className="flex items-center gap-4">
+              <a href="/" className="text-sm text-muted-foreground hover:text-foreground transition-colors">
+                &larr; Back to Leaderboard
+              </a>
+            </div>
+            <div>
+              <h1 className="text-4xl font-bold tracking-tight bg-clip-text text-transparent bg-gradient-to-b from-foreground to-foreground/50">
+                Task
+              </h1>
+            </div>
+          </div>
+
+          <PendingReviewCard pendingSampleCases={pendingSampleCases} />
+        </div>
+      ) : (
+        <TasksPageClient tasksData={compactTasksData} />
+      )}
     </div>
   );
 }
