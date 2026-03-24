@@ -1,0 +1,74 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774331015.2554114,
+            "stop": 1774331025.4768956
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.00036253800499252975,
+                "start": 1774331015.2607808,
+                "stop": 1774331015.26131,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 7.067016267974395,
+                "start": 1774331015.261391,
+                "stop": 1774331022.3299818,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.7449467850092333,
+                "start": 1774331022.3301368,
+                "stop": 1774331023.0755336,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_stats_nonempty",
+                "status": "passed",
+                "duration": 0.7448207169945817,
+                "start": 1774331023.0757203,
+                "stop": 1774331023.8208997,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_packages_verified",
+                "status": "passed",
+                "duration": 0.8383456089941319,
+                "start": 1774331023.8210363,
+                "stop": 1774331024.6597846,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_image_has_pip_installs",
+                "status": "passed",
+                "duration": 0.816486537019955,
+                "start": 1774331024.65995,
+                "stop": 1774331025.4765677,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

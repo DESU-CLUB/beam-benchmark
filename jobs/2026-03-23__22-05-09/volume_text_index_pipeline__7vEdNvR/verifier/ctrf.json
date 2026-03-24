@@ -1,0 +1,74 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 6,
+            "passed": 6,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774328949.8446715,
+            "stop": 1774328960.9519331
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_file_exists",
+                "status": "passed",
+                "duration": 0.00022695999359712005,
+                "start": 1774328949.849439,
+                "stop": 1774328949.849783,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 6.311751383997034,
+                "start": 1774328949.8498485,
+                "stop": 1774328956.1618543,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.6844966530043166,
+                "start": 1774328956.1619625,
+                "stop": 1774328956.8467488,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_listed",
+                "status": "passed",
+                "duration": 0.6062605470069684,
+                "start": 1774328956.846865,
+                "stop": 1774328957.4534216,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_has_index_files",
+                "status": "passed",
+                "duration": 1.047619051008951,
+                "start": 1774328957.4535396,
+                "stop": 1774328958.5014365,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_doc_count",
+                "status": "passed",
+                "duration": 2.4497234569862485,
+                "start": 1774328958.5015693,
+                "stop": 1774328960.951538,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

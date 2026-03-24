@@ -1,0 +1,36 @@
+pochi --model anthropic/claude-4-6-sonnet --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Task: Build a Modal Volume-backed Text Indexing Pipeline
+
+You are working in a project directory at `/home/user/modal_pipeline/`. A starter `pipeline.py` file already exists with a basic Modal App definition (named `"text-index-pipeline"`). A Modal Volume named `text-index-volume` already exists in the `modal-vsdatagen` environment.
+
+## Your Goal
+
+Extend `/home/user/modal_pipeline/pipeline.py` to implement a text indexing pipeline that uses Modal Volumes for persistent storage.
+
+## Requirements
+
+1. Reference the existing Modal Volume using `modal.Volume.from_name("text-index-volume", environment_name="modal-vsdatagen")` and mount it at `/data` inside your function containers.
+
+2. Create a function called `index_documents` that:
+   - Is decorated with `@app.function()` with the volume mounted at `/data`
+   - Accepts a list of strings (documents) as input
+   - Writes each document to `/data/index/doc_0.txt`, `/data/index/doc_1.txt`, etc.
+   - Commits the volume after writing all files using `volume.commit()`
+   - Returns the number of documents indexed
+
+3. Create a `@app.local_entrypoint()` that:
+   - Calls `index_documents.remote([...])` with at least 3 sample documents
+   - Stores the returned count in a Modal Dict named `"text-index-output"` under key `"doc_count"` using `modal.Dict.from_name("text-index-output", create_if_missing=True).put("doc_count", count)`
+   - Prints the count
+
+4. Deploy the app:
+   ```
+   modal deploy /home/user/modal_pipeline/pipeline.py -e modal-vsdatagen
+   ```
+
+5. Run the pipeline:
+   ```
+   modal run /home/user/modal_pipeline/pipeline.py -e modal-vsdatagen
+   ```
+
+EOF

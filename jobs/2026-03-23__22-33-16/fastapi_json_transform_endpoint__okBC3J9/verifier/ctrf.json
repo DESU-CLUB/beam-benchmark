@@ -1,0 +1,83 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 7,
+            "passed": 7,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774331291.0446453,
+            "stop": 1774331298.1463716
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_app_file_exists",
+                "status": "passed",
+                "duration": 0.0003669960133265704,
+                "start": 1774331291.0502968,
+                "stop": 1774331291.0508263,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 3.9928281889879145,
+                "start": 1774331291.0508924,
+                "stop": 1774331295.044019,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_in_app_list",
+                "status": "passed",
+                "duration": 0.6614628109964542,
+                "start": 1774331295.0442238,
+                "stop": 1774331295.7060833,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_health_check",
+                "status": "passed",
+                "duration": 0.8337195890198927,
+                "start": 1774331295.7062967,
+                "stop": 1774331296.5404675,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_endpoint_deployed",
+                "status": "passed",
+                "duration": 0.8184050289855804,
+                "start": 1774331296.5406256,
+                "stop": 1774331297.3593426,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_source_contains_fastapi",
+                "status": "passed",
+                "duration": 0.0003308320010546595,
+                "start": 1774331297.3594978,
+                "stop": 1774331297.3599646,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_source_contains_asgi_app",
+                "status": "passed",
+                "duration": 0.7857155070232693,
+                "start": 1774331297.3600256,
+                "stop": 1774331298.14584,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

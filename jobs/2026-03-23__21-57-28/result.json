@@ -1,0 +1,40 @@
+{
+    "id": "529ee6e9-fa99-427a-8aac-6fe143d20e94",
+    "started_at": "2026-03-23T21:57:28.901924",
+    "finished_at": "2026-03-23T22:04:37.612903",
+    "n_total_trials": 10,
+    "stats": {
+        "n_trials": 10,
+        "n_errors": 0,
+        "evals": {
+            "pochi__claude-4-6-sonnet__new-modal-tasks": {
+                "n_trials": 10,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.9
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "1.0": [
+                            "webhook_request_logger__fxwokYZ",
+                            "volume_text_index_pipeline__8aMkDJX",
+                            "multi_function_text_pipeline__J5wuJbD",
+                            "class_inference_warm_pool__romHVnm",
+                            "secret_api_key_function__c87rLP9",
+                            "volume_log_archiver__AaW8dy9",
+                            "cron_status_reporter__nrFp8kh",
+                            "fastapi_json_transform_endpoint__i4FSAhb",
+                            "custom_image_data_science__M4TnFwP"
+                        ],
+                        "0.0": [
+                            "batch_word_frequency_map__5BJsDcM"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

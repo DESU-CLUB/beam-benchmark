@@ -1,0 +1,38 @@
+# Modal Secret API Key Function
+
+You are an ML ops engineer managing model serving infrastructure. Your goal is to create a Modal app that securely accesses an API key using Modal Secrets.
+
+## Steps
+
+### 1. Create a Modal Secret
+
+First, create a Modal Secret named `my-api-credentials` with an `API_KEY` value:
+
+```bash
+modal secret create my-api-credentials API_KEY=test-key-1234 -e modal-vsdatagen
+```
+
+### 2. Implement the App
+
+A starter file already exists at `/home/user/modal_secrets/app.py` with basic imports and an app definition. Extend it to:
+
+- Define a Modal image using `modal.Image.debian_slim()`
+- Add a function `fetch_with_key` that:
+  - Is decorated with `@app.function(secrets=[modal.Secret.from_name("my-api-credentials")])`
+  - Reads the `API_KEY` from the environment using `os.environ["API_KEY"]`
+  - Returns the first 4 characters of the key
+  - Stores the masked key in Modal Dict `"secret-api-key-output"` under the key `"masked_key"`
+  - Stores `True` in Modal Dict `"secret-api-key-output"` under the key `"verified"`
+- Add a `@app.local_entrypoint()` that calls `fetch_with_key.remote()` and prints the result
+
+### 3. Deploy the App
+
+```bash
+modal deploy /home/user/modal_secrets/app.py -e modal-vsdatagen
+```
+
+### 4. Run the App
+
+```bash
+modal run /home/user/modal_secrets/app.py -e modal-vsdatagen
+```

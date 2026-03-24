@@ -1,0 +1,38 @@
+pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Batch Word Frequency Map
+
+You are a data engineer building a batch processing pipeline using Modal's serverless platform.
+
+## Your Task
+
+Complete the Modal app at `/home/user/modal_batch/app.py`. The app skeleton already exists with the app name `"batch-word-freq"`.
+
+You need to:
+
+1. **Define a Modal function** named `count_words` that:
+   - Accepts a single string argument
+   - Returns a dictionary mapping each word to its frequency count within that string
+   - Uses `modal.Image.debian_slim()` as its image
+
+2. **Define a local entrypoint** using `@app.local_entrypoint()` that:
+   - Prepares a list of at least 3 sample sentences
+   - Uses `.map()` to run `count_words` over each sentence in parallel
+   - Collects the results and combines the word frequency counts across all sentences
+   - Stores the combined word frequencies in a Modal Dict named `"batch-word-freq-output"` under the key `"frequencies"`
+   - Stores the total number of sentences processed under the key `"sentence_count"` in the same Modal Dict
+
+## Deployment
+
+Once your app is complete, deploy it:
+
+```
+modal deploy /home/user/modal_batch/app.py -e modal-vsdatagen
+```
+
+Then run the local entrypoint to populate the Modal Dict:
+
+```
+modal run /home/user/modal_batch/app.py -e modal-vsdatagen
+```
+
+EOF

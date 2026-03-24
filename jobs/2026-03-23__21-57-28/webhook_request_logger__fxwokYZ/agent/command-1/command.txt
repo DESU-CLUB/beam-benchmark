@@ -1,0 +1,45 @@
+pochi --model anthropic/claude-4-6-sonnet --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Webhook Request Logger
+
+You are a backend developer migrating a webhook receiver service to Modal serverless.
+
+## Your Task
+
+Create a Modal web endpoint that acts as a webhook receiver at `/home/user/modal_webhook/app.py`.
+
+A starter file already exists with a basic Modal App definition. Extend it to implement the following:
+
+1. Use `modal.Image.debian_slim()` as the image for the app.
+
+2. Define a function called `receive_webhook` that:
+   - Is decorated with both `@app.function()` and `@modal.web_endpoint(method="POST")`
+   - Accepts a JSON request body containing at least a `"message"` field
+   - Logs (prints) the received message
+   - Stores the message in a Modal Dict named `"webhook-logger-output"` under the key `"last_message"` using `modal.Dict.from_name("webhook-logger-output", create_if_missing=True)`
+   - Tracks how many times the webhook has been called by storing and incrementing a counter under key `"call_count"` in the same dict (start from 0 if not present)
+   - Returns a confirmation response
+
+3. Define a `@app.local_entrypoint()` that:
+   - Retrieves the deployed endpoint URL
+   - Makes a test POST request to that URL using the `requests` library with a sample JSON body containing a `"message"` field
+   - Prints the response
+
+## Deployment
+
+Deploy the app with:
+```
+modal deploy /home/user/modal_webhook/app.py -e modal-vsdatagen
+```
+
+Then trigger a test run with:
+```
+modal run /home/user/modal_webhook/app.py -e modal-vsdatagen
+```
+
+## Notes
+
+- Keep all code in `/home/user/modal_webhook/app.py`
+- Do not use sudo or root
+- The `requests` library is available in the environment
+
+EOF

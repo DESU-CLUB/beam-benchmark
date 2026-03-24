@@ -1,0 +1,49 @@
+pochi --model google/gemini-3-flash --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Task: Build a Custom Modal Image for Data Science
+
+You are a data scientist setting up a hyperparameter sweep environment on Modal. Your task is to create a Modal app at `/home/user/modal_ds/app.py` that builds a custom Docker image with data science dependencies and runs a statistical computation.
+
+## Setup
+
+A starter file already exists at `/home/user/modal_ds/app.py` with a basic Modal App definition.
+
+## What You Must Do
+
+1. The Modal App must be named `"custom-image-data-science"`.
+
+2. Build a custom image using:
+   ```python
+   image = modal.Image.debian_slim().pip_install("numpy", "pandas", "scipy")
+   ```
+
+3. Define a function called `run_stats` that:
+   - Is decorated with `@app.function(image=image)`
+   - Creates a numpy array of `[1, 2, 3, 4, 5, 6, 7, 8, 9, 10]`
+   - Computes the mean and standard deviation using numpy
+   - Returns a dict with keys `"mean"`, `"std"`, and `"count"` (count = 10)
+
+4. Define a `@app.local_entrypoint()` that:
+   - Calls `run_stats.remote()` and stores the result
+   - Stores the result dict in a Modal Dict named `"custom-image-ds-output"` under the key `"stats"`:
+     ```python
+     modal.Dict.from_name("custom-image-ds-output", create_if_missing=True).put("stats", result)
+     ```
+   - Also stores `True` under the key `"packages_verified"` in the same dict
+
+5. Deploy the app:
+   ```bash
+   modal deploy /home/user/modal_ds/app.py -e modal-vsdatagen
+   ```
+
+6. Run the app:
+   ```bash
+   modal run /home/user/modal_ds/app.py -e modal-vsdatagen
+   ```
+
+## Constraints
+
+- Keep all code in `/home/user/modal_ds/app.py`
+- Do not use sudo or root
+- The image must install numpy, pandas, and scipy via `pip_install`
+
+EOF
