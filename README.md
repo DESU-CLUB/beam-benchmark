@@ -2,7 +2,7 @@
 
 This repository contains benchmarks for [Modal](https://modal.com/), a cloud platform for running AI and data workloads.
 
-You can view the evaluation reports at [tabbyml.github.io/modal-benchmark](https://tabbyml.github.io/modal-benchmark/).
+You can view the evaluation reports at [modal-benchmark](https://desu-club.github.io/modal-benchmark/).
 
 ## Project Structure
 
