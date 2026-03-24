@@ -1,0 +1,23 @@
+{
+  "task_name": "modal_webhook_processor",
+  "task_description": "You are a backend developer migrating an existing HTTP webhook service to Modal, a serverless cloud platform. Your goal is to implement a fully functional webhook processor application using Modal that can receive and process incoming JSON payloads.\n\nThe project directory is located at `/home/user/webhook_processor/`. A starter file `app.py` already exists there with just a Modal import and an empty App definition. You must build on this file to complete the implementation.\n\n## What to Build\n\nYou need to create a Modal application named `webhook-processor` that:\n\n1. **Custom Image**: Define a Modal image based on the default Python image with at least the `pydantic` package installed via pip. This ensures your webhook handler can leverage data validation.\n\n2. **Webhook Endpoint**: Create a function decorated with `@app.function(image=<your_image>)` and `@modal.web_endpoint(method=\"POST\")`. This function should:\n   - Accept an incoming POST request with a JSON body\n   - Parse the JSON payload — expect fields like `event_type` (string) and `payload` (dict)\n   - Process the data: add a `processed` boolean field set to `True`, add a `status` string field set to `\"received\"`, and echo back the original `event_type` and `payload`\n   - Return a JSON-serializable dict (or a `Response`/`dict`) with the processed result\n\n3. **Local Entrypoint**: Add a `@app.local_entrypoint()` function named `main` that demonstrates calling the webhook logic locally. It should construct a sample payload dict, invoke the webhook function, and print the result.\n\n## Technical Requirements\n\n- The file must be named `app.py` inside `/home/user/webhook_processor/`\n- The Modal App must be named exactly `webhook-processor`\n- Use `pydantic` (installed on the custom image) for request body validation via a `BaseModel` subclass\n- The web endpoint function should be named `process_webhook`\n- The local entrypoint function should be named `main`\n- Deploy the app with: `modal deploy app.py -e modal-vsdatagen` from the `/home/user/webhook_processor/` directory\n- After deployment, the app should appear in `modal app list` output\n\n## Notes\n\n- The `@modal.web_endpoint()` decorator turns a Modal function into an HTTP endpoint. When using FastAPI/Pydantic models as the parameter type, Modal will automatically parse and validate the incoming JSON body.\n- The endpoint should handle a JSON body with at least `event_type` (str) and `payload` (dict) fields.\n- Keep your implementation focused: a single `app.py` file is sufficient.\n- Make sure the app name in `modal.App(...)` matches exactly `webhook-processor`.",
+  "truth": {
+    "project_dir": "/home/user/webhook_processor/",
+    "app_file": "/home/user/webhook_processor/app.py",
+    "modal_app_name": "webhook-processor",
+    "modal_environment": "modal-vsdatagen",
+    "deploy_command": "modal deploy app.py -e modal-vsdatagen",
+    "required_functions": ["process_webhook", "main"],
+    "required_decorators": {
+      "process_webhook": ["@app.function", "@modal.web_endpoint"],
+      "main": ["@app.local_entrypoint"]
+    },
+    "custom_image_pip_packages": ["pydantic"],
+    "endpoint_method": "POST",
+    "expected_response_fields": ["processed", "status", "event_type", "payload"],
+    "verifications": [
+      "modal app list --json | python3 -c \"import sys,json; apps=json.load(sys.stdin); assert any(a.get('Description','')=='webhook-processor' for a in apps), 'App not found'\"",
+      "modal app stop webhook-processor -e modal-vsdatagen"
+    ]
+  }
+}
