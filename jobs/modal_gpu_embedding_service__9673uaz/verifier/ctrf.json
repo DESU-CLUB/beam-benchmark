@@ -1,0 +1,68 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 5,
+            "passed": 4,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774511889.5199447,
+            "stop": 1774511894.1211627
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_app_file_exists",
+                "status": "passed",
+                "duration": 0.00037097797030583024,
+                "start": 1774511889.5249302,
+                "stop": 1774511889.525476,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 2.0220370519091375,
+                "start": 1774511889.525544,
+                "stop": 1774511891.5478446,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.5313595369807445,
+                "start": 1774511891.547958,
+                "stop": 1774511892.0796006,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_listed",
+                "status": "passed",
+                "duration": 0.5680951139656827,
+                "start": 1774511892.0797222,
+                "stop": 1774511892.6481366,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_has_entries",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 1.4665232440456748,
+                "start": 1774511892.648264,
+                "stop": 1774511894.1208398,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "deployed_app = None\n\n    def test_dict_has_entries(deployed_app):\n        result = modal_cli(\"dict\", \"items\", DICT_NAME, \"--json\")\n        assert result.returncode == 0, (\n            f\"Failed to list items from Dict '{DICT_NAME}':\\n\"\n            f\"stdout: {result.stdout}\\nstderr: {result.stderr}\"\n        )\n        try:\n            items = json.loads(result.stdout)\n        except json.JSONDecodeError:\n            pytest.fail(f\"modal dict items --json returned invalid JSON:\\n{result.stdout}\")\n        assert len(items) >= 2, (\n            f\"Dict '{DICT_NAME}' must have at least 2 entries (request count + token count). \"\n            f\"Found {len(items)} entries: {items}\"\n        )\n        # Verify values are non-zero (at least one request was made)\n        values = [item.get(\"value\", 0) if isinstance(item, dict) else item for item in items]\n>       assert any(v >= 1 for v in values if isinstance(v, (int, float))), (\n            f\"Dict '{DICT_NAME}' entries should have at least one value >= 1. Got: {items}\"\n        )\nE       AssertionError: Dict 'embedding-service-stats' entries should have at least one value >= 1. Got: [{'Key': 'tokens', 'Value': 33}, {'Key': 'total_requests', 'Value': 4}, {'Key': 'requests', 'Value': 3}, {'Key': 'total_tokens', 'Value': 45}]\nE       assert False\nE        +  where False = any(<generator object test_dict_has_entries.<locals>.<genexpr> at 0xf7c6dd3f6b20>)\n\ntests/test_final_state.py:109: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            }
+        ]
+    }
+}

@@ -1,0 +1,51 @@
+pochi --model anthropic/claude-4-6-sonnet --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Event-Driven Processing Pipeline on Modal
+
+You are a platform engineer building an internal event-driven data processing pipeline on Modal for your organization's tooling infrastructure. The entire system must be implemented in a single file: `/home/user/event_pipeline/app.py`.
+
+## System Requirements
+
+Build a Modal App named `event-driven-pipeline` that operates as an end-to-end event buffering and processing system with the following capabilities:
+
+### Event Queue (Modal Queue)
+Use a **Modal Queue named `pipeline-events`** to buffer incoming data submissions between the web API layer and the backend worker. The queue should be referenced with `create_if_missing=True` so it is automatically provisioned when the app deploys.
+
+### Web API (FastAPI)
+Expose a web API using Modal's FastAPI integration (`@modal.fastapi_app()`) that provides at minimum:
+- A **submission endpoint** (POST) that accepts a JSON body containing a `data` field, enqueues the submission into the pipeline queue, records the event in the shared pipeline registry, and returns a confirmation response.
+- A **status endpoint** (GET) that reads the current pipeline state from the registry dict and returns it as JSON.
+
+### Pipeline Registry (Modal Dict)
+Use a **Modal Dict named `pipeline-registry`** (with `create_if_missing=True`) to maintain shared pipeline state. The registry must track at minimum:
+- A `total_submitted` counter that is incremented on each submission via the POST endpoint
+- A `total_processed` counter that reflects how many items have been successfully processed
+
+### Worker Function (Fault-Tolerant)
+Implement a worker function with **`retries=2`** that processes individual data items. For each item, compute a deterministic hash or checksum of the data string (e.g., using `hashlib`) and write the result to a **Modal Volume named `pipeline-artifacts`** (with `create_if_missing=True`) as a text file. The volume must be mounted inside the worker function.
+
+### Manual Trigger (Local Entrypoint)
+Implement a `@app.local_entrypoint()` that allows the pipeline to be exercised without the web API — it should enqueue 3 data items, invoke the worker to process them, and update the `total_processed` counter in the registry to `3`.
+
+## Deployment Instructions
+
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
+
+```
+export MODAL_ENVIRONMENT=modal-vsdatagen
+```
+
+Deploy the app:
+
+```
+modal deploy /home/user/event_pipeline/app.py
+```
+
+After deployment, trigger a manual run to populate the Volume and Dict:
+
+```
+modal run /home/user/event_pipeline/app.py
+```
+
+**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.
+
+EOF

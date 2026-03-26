@@ -1,0 +1,119 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 11,
+            "passed": 11,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774511822.6690855,
+            "stop": 1774511839.2562118
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_app_file_exists",
+                "status": "passed",
+                "duration": 0.00024768197908997536,
+                "start": 1774511822.6760712,
+                "stop": 1774511822.6764467,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 11.239031039935071,
+                "start": 1774511822.676519,
+                "stop": 1774511833.9157994,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.6687758730258793,
+                "start": 1774511833.9159267,
+                "stop": 1774511834.5850084,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_nfs_listed",
+                "status": "passed",
+                "duration": 0.6203433979535475,
+                "start": 1774511834.5851452,
+                "stop": 1774511835.205804,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_run_count",
+                "status": "passed",
+                "duration": 0.7078958710189909,
+                "start": 1774511835.2059362,
+                "stop": 1774511835.914138,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_last_run_timestamp",
+                "status": "passed",
+                "duration": 0.6511098880437203,
+                "start": 1774511835.9142594,
+                "stop": 1774511836.5656497,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_nfs_has_raw_files",
+                "status": "passed",
+                "duration": 0.83036488405196,
+                "start": 1774511836.56577,
+                "stop": 1774511837.3964229,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_nfs_has_processed_files",
+                "status": "passed",
+                "duration": 1.067212246998679,
+                "start": 1774511837.3965409,
+                "stop": 1774511838.4644835,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_etl_file_has_retries_and_timeout",
+                "status": "passed",
+                "duration": 0.000539114058483392,
+                "start": 1774511838.4646208,
+                "stop": 1774511838.4653387,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_etl_file_has_cron_schedule",
+                "status": "passed",
+                "duration": 0.00040823296876624227,
+                "start": 1774511838.4654295,
+                "stop": 1774511838.4659784,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_etl_file_app_name",
+                "status": "passed",
+                "duration": 0.7896835509454831,
+                "start": 1774511838.4660728,
+                "stop": 1774511839.255877,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

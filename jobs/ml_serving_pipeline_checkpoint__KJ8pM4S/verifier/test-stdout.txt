@@ -1,0 +1,124 @@
+Hit:1 https://deb.nodesource.com/node_20.x nodistro InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+Hit:5 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (8.5.0-2ubuntu10.8).
+0 upgraded, 0 newly installed, 0 to remove and 10 not upgraded.
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 6 packages in 7ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 8 items
+
+tests/test_final_state.py ...F.F.F                                       [100%]
+
+=================================== FAILURES ===================================
+______________________________ test_volume_listed ______________________________
+
+deployed_app = None
+
+    def test_volume_listed(deployed_app):
+        result = modal_cli("volume", "list", "--json")
+        assert result.returncode == 0, f"modal volume list failed: {result.stderr}"
+        try:
+            volumes = json.loads(result.stdout)
+        except json.JSONDecodeError:
+            pytest.fail(f"modal volume list --json returned invalid JSON:\n{result.stdout}")
+        volume_names = [v.get("Name", "") for v in volumes]
+>       assert VOLUME_NAME in volume_names, (
+            f"Volume '{VOLUME_NAME}' not found in modal volume list. Found: {volume_names}"
+        )
+E       AssertionError: Volume 'model-checkpoints' not found in modal volume list. Found: ['test-vol', 'hp-sweep-experiments', 'ml-model-volume', 'pipeline-artifacts', 'embedding-model-cache', 'hp-sweep-results', 'ocr-output-volume', 'log-archive-vol', 'text-index-volume', 'data-pipeline-vol', 'batch-data-volume', 'webhook-logs', 'retry-demo-vol', 'shared-state', 'checkpoints', 'snapshot-store']
+E       assert 'model-checkpoints' in ['test-vol', 'hp-sweep-experiments', 'ml-model-volume', 'pipeline-artifacts', 'embedding-model-cache', 'hp-sweep-results', ...]
+
+tests/test_final_state.py:121: AssertionError
+_______________________ test_volume_has_model_checkpoint _______________________
+
+deployed_app = None
+
+    def test_volume_has_model_checkpoint(deployed_app):
+        result = modal_cli("volume", "ls", VOLUME_NAME, "/model-checkpoints")
+        # Also try root path in case volume root is used
+        if result.returncode != 0 or "model.pkl" not in result.stdout:
+            result2 = modal_cli("volume", "ls", VOLUME_NAME)
+>           assert "model.pkl" in result.stdout or "model.pkl" in result2.stdout, (
+                f"model.pkl not found in volume '{VOLUME_NAME}'.\n"
+                f"ls /model-checkpoints output: {result.stdout}\n"
+                f"ls / output: {result2.stdout}"
+            )
+E           AssertionError: model.pkl not found in volume 'model-checkpoints'.
+E             ls /model-checkpoints output: 
+E             ls / output: 
+E           assert ('model.pkl' in '' or 'model.pkl' in '')
+E            +  where '' = CompletedProcess(args=['modal', 'volume', 'ls', 'model-checkpoints', '/model-checkpoints'], returncode=1, stdout='', s...onment 'modal-vsdatagen'        │\n╰──────────────────────────────────────────────────────────────────────────────╯\n").stdout
+E            +  and   '' = CompletedProcess(args=['modal', 'volume', 'ls', 'model-checkpoints'], returncode=1, stdout='', stderr="╭─ Error ──────...onment 'modal-vsdatagen'        │\n╰──────────────────────────────────────────────────────────────────────────────╯\n").stdout
+
+tests/test_final_state.py:144: AssertionError
+__________________________ test_dict_last_prediction ___________________________
+
+deployed_app = None
+
+    def test_dict_last_prediction(deployed_app):
+        result = modal_cli("dict", "get", DICT_NAME, "last_prediction")
+        assert result.returncode == 0, (
+            f"Failed to get 'last_prediction' from Dict '{DICT_NAME}':\n"
+            f"stdout: {result.stdout}\nstderr: {result.stderr}"
+        )
+        raw = result.stdout.strip()
+        assert raw != "", f"'last_prediction' value is empty in Dict '{DICT_NAME}'."
+        try:
+>           prediction = float(raw)
+                         ^^^^^^^^^^
+E           ValueError: could not convert string to float: 'None'
+
+tests/test_final_state.py:175: ValueError
+
+During handling of the above exception, another exception occurred:
+
+deployed_app = None
+
+    def test_dict_last_prediction(deployed_app):
+        result = modal_cli("dict", "get", DICT_NAME, "last_prediction")
+        assert result.returncode == 0, (
+            f"Failed to get 'last_prediction' from Dict '{DICT_NAME}':\n"
+            f"stdout: {result.stdout}\nstderr: {result.stderr}"
+        )
+        raw = result.stdout.strip()
+        assert raw != "", f"'last_prediction' value is empty in Dict '{DICT_NAME}'."
+        try:
+            prediction = float(raw)
+        except ValueError:
+>           pytest.fail(f"'last_prediction' is not a float: {raw!r}")
+E           Failed: 'last_prediction' is not a float: 'None'
+
+tests/test_final_state.py:177: Failed
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_app_file_exists
+PASSED tests/test_final_state.py::test_deploy_succeeds
+PASSED tests/test_final_state.py::test_app_listed
+PASSED tests/test_final_state.py::test_secret_listed
+PASSED tests/test_final_state.py::test_dict_request_count
+FAILED tests/test_final_state.py::test_volume_listed - AssertionError: Volume...
+FAILED tests/test_final_state.py::test_volume_has_model_checkpoint - Assertio...
+FAILED tests/test_final_state.py::test_dict_last_prediction - Failed: 'last_p...
+========================= 3 failed, 5 passed in 8.01s ==========================
