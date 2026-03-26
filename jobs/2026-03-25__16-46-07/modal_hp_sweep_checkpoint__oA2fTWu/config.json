@@ -1,0 +1,49 @@
+{
+    "task": {
+        "path": "new-modal-tasks/modal_hp_sweep_checkpoint",
+        "git_url": null,
+        "git_commit_id": null,
+        "overwrite": false,
+        "download_dir": null,
+        "source": "new-modal-tasks"
+    },
+    "trial_name": "modal_hp_sweep_checkpoint__oA2fTWu",
+    "trials_dir": "jobs/2026-03-25__16-46-07",
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+        "name": null,
+        "import_path": "agents.pochi:Pochi",
+        "model_name": "google/gemini-3.1-pro",
+        "override_timeout_sec": null,
+        "override_setup_timeout_sec": null,
+        "max_timeout_sec": null,
+        "kwargs": {},
+        "env": {
+            "MODAL_TOKEN_ID": "ak-AFtiEvc1M038bwe1rqz3Vy",
+            "MODAL_TOKEN_SECRET": "as-DiXPHD6pXzR1T4V1oZnuKu"
+        }
+    },
+    "environment": {
+        "type": "docker",
+        "import_path": null,
+        "force_build": false,
+        "delete": true,
+        "override_cpus": null,
+        "override_memory_mb": null,
+        "override_storage_mb": null,
+        "override_gpus": null,
+        "suppress_override_warnings": false,
+        "kwargs": {}
+    },
+    "verifier": {
+        "override_timeout_sec": null,
+        "max_timeout_sec": null,
+        "disable": false
+    },
+    "artifacts": [],
+    "job_id": "6575baa8-67aa-46ae-830a-1c3aa2bf46b3"
+}

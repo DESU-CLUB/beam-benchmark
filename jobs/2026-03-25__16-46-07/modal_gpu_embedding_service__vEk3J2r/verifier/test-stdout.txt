@@ -1,0 +1,70 @@
+Hit:1 https://deb.nodesource.com/node_20.x nodistro InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+Hit:5 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (8.5.0-2ubuntu10.8).
+0 upgraded, 0 newly installed, 0 to remove and 10 not upgraded.
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 6 packages in 5ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 5 items
+
+tests/test_final_state.py ....F                                          [100%]
+
+=================================== FAILURES ===================================
+____________________________ test_dict_has_entries _____________________________
+
+deployed_app = None
+
+    def test_dict_has_entries(deployed_app):
+        result = modal_cli("dict", "items", DICT_NAME, "--json")
+        assert result.returncode == 0, (
+            f"Failed to list items from Dict '{DICT_NAME}':\n"
+            f"stdout: {result.stdout}\nstderr: {result.stderr}"
+        )
+        try:
+            items = json.loads(result.stdout)
+        except json.JSONDecodeError:
+            pytest.fail(f"modal dict items --json returned invalid JSON:\n{result.stdout}")
+        assert len(items) >= 2, (
+            f"Dict '{DICT_NAME}' must have at least 2 entries (request count + token count). "
+            f"Found {len(items)} entries: {items}"
+        )
+        # Verify values are non-zero (at least one request was made)
+        values = [item.get("value", 0) if isinstance(item, dict) else item for item in items]
+>       assert any(v >= 1 for v in values if isinstance(v, (int, float))), (
+            f"Dict '{DICT_NAME}' entries should have at least one value >= 1. Got: {items}"
+        )
+E       AssertionError: Dict 'embedding-service-stats' entries should have at least one value >= 1. Got: [{'Key': 'tokens', 'Value': 33}, {'Key': 'requests', 'Value': 3}]
+E       assert False
+E        +  where False = any(<generator object test_dict_has_entries.<locals>.<genexpr> at 0xedab72456b20>)
+
+tests/test_final_state.py:109: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_app_file_exists
+PASSED tests/test_final_state.py::test_deploy_succeeds
+PASSED tests/test_final_state.py::test_app_listed
+PASSED tests/test_final_state.py::test_volume_listed
+FAILED tests/test_final_state.py::test_dict_has_entries - AssertionError: Dic...
+========================= 1 failed, 4 passed in 4.61s ==========================

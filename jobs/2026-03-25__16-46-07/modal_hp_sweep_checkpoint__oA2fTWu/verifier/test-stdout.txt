@@ -1,0 +1,158 @@
+Hit:1 https://deb.nodesource.com/node_20.x nodistro InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+Hit:5 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (8.5.0-2ubuntu10.8).
+0 upgraded, 0 newly installed, 0 to remove and 10 not upgraded.
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 6 packages in 5ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 5 items
+
+tests/test_final_state.py .EEEE                                          [100%]
+
+==================================== ERRORS ====================================
+____________________ ERROR at setup of test_deploy_succeeds ____________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        """Deploy the app, run it to populate Dict/Volume, then stop on teardown."""
+        deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+        run_result = modal_cli("run", APP_FILE, timeout=600)
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: 
+E         stderr: ╭─ Error ──────────────────────────────────────────────────────────────────────╮
+E         │ Specify a Modal Function or local entrypoint to run. E.g.                    │
+E         │ > modal run /home/user/hp_sweep/app.py::my_function [..args]                 │
+E         │                                                                              │
+E         │ '/home/user/hp_sweep/app.py' has the following functions and local           │
+E         │ entrypoints:                                                                 │
+E         │ evaluate / app.evaluate                                                      │
+E         │ run_sweep / app.run_sweep                                                    │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/hp_sweep/app.py'], returncode=1, stdout='', stderr="╭─ Error ──────...                                │\n╰──────────────────────────────────────────────────────────────────────────────╯\n").returncode
+
+tests/test_final_state.py:29: AssertionError
+______________________ ERROR at setup of test_app_listed _______________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        """Deploy the app, run it to populate Dict/Volume, then stop on teardown."""
+        deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+        run_result = modal_cli("run", APP_FILE, timeout=600)
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: 
+E         stderr: ╭─ Error ──────────────────────────────────────────────────────────────────────╮
+E         │ Specify a Modal Function or local entrypoint to run. E.g.                    │
+E         │ > modal run /home/user/hp_sweep/app.py::my_function [..args]                 │
+E         │                                                                              │
+E         │ '/home/user/hp_sweep/app.py' has the following functions and local           │
+E         │ entrypoints:                                                                 │
+E         │ evaluate / app.evaluate                                                      │
+E         │ run_sweep / app.run_sweep                                                    │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/hp_sweep/app.py'], returncode=1, stdout='', stderr="╭─ Error ──────...                                │\n╰──────────────────────────────────────────────────────────────────────────────╯\n").returncode
+
+tests/test_final_state.py:29: AssertionError
+_____________________ ERROR at setup of test_volume_exists _____________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        """Deploy the app, run it to populate Dict/Volume, then stop on teardown."""
+        deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+        run_result = modal_cli("run", APP_FILE, timeout=600)
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: 
+E         stderr: ╭─ Error ──────────────────────────────────────────────────────────────────────╮
+E         │ Specify a Modal Function or local entrypoint to run. E.g.                    │
+E         │ > modal run /home/user/hp_sweep/app.py::my_function [..args]                 │
+E         │                                                                              │
+E         │ '/home/user/hp_sweep/app.py' has the following functions and local           │
+E         │ entrypoints:                                                                 │
+E         │ evaluate / app.evaluate                                                      │
+E         │ run_sweep / app.run_sweep                                                    │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/hp_sweep/app.py'], returncode=1, stdout='', stderr="╭─ Error ──────...                                │\n╰──────────────────────────────────────────────────────────────────────────────╯\n").returncode
+
+tests/test_final_state.py:29: AssertionError
+____________________ ERROR at setup of test_dict_has_items _____________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        """Deploy the app, run it to populate Dict/Volume, then stop on teardown."""
+        deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+        run_result = modal_cli("run", APP_FILE, timeout=600)
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: 
+E         stderr: ╭─ Error ──────────────────────────────────────────────────────────────────────╮
+E         │ Specify a Modal Function or local entrypoint to run. E.g.                    │
+E         │ > modal run /home/user/hp_sweep/app.py::my_function [..args]                 │
+E         │                                                                              │
+E         │ '/home/user/hp_sweep/app.py' has the following functions and local           │
+E         │ entrypoints:                                                                 │
+E         │ evaluate / app.evaluate                                                      │
+E         │ run_sweep / app.run_sweep                                                    │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/hp_sweep/app.py'], returncode=1, stdout='', stderr="╭─ Error ──────...                                │\n╰──────────────────────────────────────────────────────────────────────────────╯\n").returncode
+
+tests/test_final_state.py:29: AssertionError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_file_exists
+ERROR tests/test_final_state.py::test_deploy_succeeds - AssertionError: modal...
+ERROR tests/test_final_state.py::test_app_listed - AssertionError: modal run ...
+ERROR tests/test_final_state.py::test_volume_exists - AssertionError: modal r...
+ERROR tests/test_final_state.py::test_dict_has_items - AssertionError: modal ...
+========================= 1 passed, 4 errors in 1.75s ==========================
