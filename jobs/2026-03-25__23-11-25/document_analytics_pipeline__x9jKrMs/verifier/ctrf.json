@@ -1,0 +1,113 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 9,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774506249.6974776,
+            "stop": 1774506266.2048795
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_pipeline_file_exists",
+                "status": "passed",
+                "duration": 0.0002550759236328304,
+                "start": 1774506249.7054808,
+                "stop": 1774506249.705864,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 10.395087653945666,
+                "start": 1774506249.7059386,
+                "stop": 1774506260.1013007,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.573227118991781,
+                "start": 1774506260.1014342,
+                "stop": 1774506260.6749322,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_secret_exists",
+                "status": "passed",
+                "duration": 0.5863758369814605,
+                "start": 1774506260.6750495,
+                "stop": 1774506261.2617078,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_summary_exists",
+                "status": "passed",
+                "duration": 0.7361105249729007,
+                "start": 1774506261.261836,
+                "stop": 1774506261.9982643,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_summary_has_required_fields",
+                "status": "passed",
+                "duration": 0.7065081779728644,
+                "start": 1774506261.9983964,
+                "stop": 1774506262.705179,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_has_minimum_document_entries",
+                "status": "passed",
+                "duration": 0.9364103610278107,
+                "start": 1774506262.7053099,
+                "stop": 1774506263.642011,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_has_summary_key",
+                "status": "passed",
+                "duration": 0.9427012549713254,
+                "start": 1774506263.6421404,
+                "stop": 1774506264.5851657,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_document_entries_have_analytics_fields",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.848098328046035,
+                "start": 1774506264.5852883,
+                "stop": 1774506265.44004,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "deployed_app = None\n\n    def test_dict_document_entries_have_analytics_fields(deployed_app):\n        result = modal_cli(\"dict\", \"items\", DICT_NAME, \"--json\")\n        assert result.returncode == 0, (\n            f\"Failed to list Dict '{DICT_NAME}' items: {result.stderr}\"\n        )\n        items = json.loads(result.stdout)\n    \n        # Find a non-summary document entry to validate\n        doc_entry_raw = None\n        for item in items:\n            if isinstance(item, list):\n                key = str(item[0])\n                val = item[1] if len(item) > 1 else None\n            elif isinstance(item, dict):\n                key = str(item.get(\"key\", item.get(\"Key\", \"\")))\n                val = item.get(\"value\", item.get(\"Value\", None))\n            else:\n                continue\n            if key != \"summary\" and val is not None:\n                doc_entry_raw = str(val)\n                break\n    \n        assert doc_entry_raw is not None, (\n            f\"No document entries (non-summary) found in Dict '{DICT_NAME}'.\"\n        )\n>       assert \"word_count\" in doc_entry_raw, (\n            f\"Document entry missing 'word_count'. Entry: {doc_entry_raw}\"\n        )\nE       AssertionError: Document entry missing 'word_count'. Entry: {'total_documents': 4, 'total_words': 52, 'total_sentences': 10, 'overall_top_keywords': [['words', 2], ['document', 2], ['first', 1], ['another', 1], ['slightly', 1]]}\nE       assert 'word_count' in \"{'total_documents': 4, 'total_words': 52, 'total_sentences': 10, 'overall_top_keywords': [['words', 2], ['document', 2], ['first', 1], ['another', 1], ['slightly', 1]]}\"\n\ntests/test_final_state.py:170: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_run_succeeds",
+                "status": "passed",
+                "duration": 0.7642573360353708,
+                "start": 1774506265.4401457,
+                "stop": 1774506266.2045054,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

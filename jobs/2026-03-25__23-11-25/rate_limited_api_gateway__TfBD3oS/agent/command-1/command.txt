@@ -1,0 +1,58 @@
+pochi --model google/gemini-3.1-pro --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# Stateful Distributed Rate-Limited API Gateway on Modal
+
+You are a platform engineer building a stateful, distributed rate-limited API gateway on Modal. The entire system must be implemented in a single file: `/home/user/modal_project/gateway.py`.
+
+## System Requirements
+
+Build a Modal App named `"rate-limited-gateway"` with the following capabilities:
+
+### Gateway Class (Modal Class with Lifecycle Methods)
+Define a Modal Class with lifecycle methods that implements the rate-limiting logic. The class should:
+- Enforce per-client rate limits based on configuration from the secret
+- Track request statistics in the shared Dict
+- Return HTTP 429 when a client exceeds its rate limit
+
+### Configuration (Modal Secret)
+Use a **Modal Secret named `gateway-config`** containing:
+- `RATE_LIMIT_PER_MINUTE` — the maximum number of requests allowed per client per minute
+- `GATEWAY_API_KEY` — an API key for authenticating requests
+
+### Distributed State (Modal Dict)
+Use a **Modal Dict named `gateway-stats`** (with `create_if_missing=True`) to track distributed gateway statistics. The Dict must contain these keys:
+- `total_requests` — an integer count of all requests received (must be >= 1 after a run)
+- `rate_limited_count` — an integer count of requests that were rate-limited (HTTP 429)
+- `active_clients` — an integer count of unique clients that have made requests (must be >= 1 after a run)
+
+### Custom Image
+Use a custom Modal Image with `httpx` and `pydantic` installed.
+
+### Web Endpoint (FastAPI)
+Expose a **FastAPI web endpoint** that enforces per-client rate limits and returns HTTP 429 when exceeded.
+
+### Manual Trigger (Local Entrypoint)
+Implement a `@app.local_entrypoint()` that sends simulated requests to the gateway to populate the `gateway-stats` Dict with `total_requests`, `rate_limited_count`, and `active_clients`.
+
+## Deployment Instructions
+
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
+
+```
+export MODAL_ENVIRONMENT=modal-vsdatagen
+```
+
+Deploy the app:
+
+```
+modal deploy /home/user/modal_project/gateway.py
+```
+
+After deployment, trigger a manual run to populate the Dict:
+
+```
+modal run /home/user/modal_project/gateway.py
+```
+
+**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.
+
+EOF
