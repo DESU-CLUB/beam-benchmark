@@ -1,0 +1,87 @@
+[37m2026-03-27 08:44:29.191[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37mnative:1[39m[0m[0m[1m[37m	Pochi[39m[22m[0m[0m	pochi v0.6.4
+[37m2026-03-27 08:44:29.624[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:503292[39m[0m[0m[1m[37m	loadAgents[39m[22m[0m[0m	Loaded 5 custom agents (5 valid, 0 invalid)
+[37m2026-03-27 08:44:29.627[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:503293[39m[0m[0m[1m[37m	loadSkills[39m[22m[0m[0m	Loaded 2 skills (2 valid, 0 invalid)
+[37m2026-03-27 08:44:29.771[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:439423[39m[0m[0m[1m[37m	PochiVendor[39m[22m[0m[0m	JWT is expiring or missing, fetching a new one
+[37m2026-03-27 08:44:31.182[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:415701[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	MCP servers configuration changed via signal:
+[37m2026-03-27 08:44:31.184[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:415813[39m[0m[0m[1m[37m	MCPHub[39m[22m[0m[0m	Build MCPHub Status
+[37m2026-03-27 08:44:31.509[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:502718[39m[0m[0m[1m[37m	TaskRunner[39m[22m[0m[0m	Starting TaskRunner...
+[37m2026-03-27 08:44:31.579[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:44:32.722[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:44:32.838[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:496739[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: null, new: You are a data engineer building a batch processing pipeline on Modal. Your goal is to implement a production-grade ETL system that uses a shared Modal Volume to pass data between three distinct pipeline stages, simulating the cross-function file sharing pattern historically provided by Network File Systems.
+[37m2026-03-27 08:44:45.847[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454191[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user and recursive [90mundefined[39m
+[37m2026-03-27 08:44:45.883[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:44:46.234[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:44:49.881[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:496739[39m[0m[0m[1m[37m	generateTaskTitle[39m[22m[0m[0m	Generating task title, old: You are a data engineer building a batch processing pipeline on Modal. Your goal is to implement a production-grade ETL system that uses a shared Modal Volume to pass data between three distinct pipeline stages, simulating the cross-function file sharing pattern historically provided by Network File Systems., new: Build a Modal batch ETL pipeline with shared Volume for cross-function file sharing
+[37m2026-03-27 08:44:50.517[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454191[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	handling listFile with dirPath /home/user/modal_project and recursive [90mundefined[39m
+[37m2026-03-27 08:44:50.521[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:44:50.762[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:44:56.415[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:44:56.675[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:45:22.328[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:45:22.610[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:45:27.151[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:45:27.538[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:45:32.655[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:45:32.935[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:45:37.131[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:45:37.521[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:45:44.718[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:45:45.030[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:45:50.088[39m[0m[0m	[31m[1mERROR[22m[39m[0m[0m	[37m$bunfs/root/pochi:432009[39m[0m[0m[1m[37m	LiveChatKit[39m[22m[0m[0m	onError
+
+[97m[101m[1m Error [22m[49m[39m[0m[0m {"type":"overloaded_error","message":"Overloaded"}, 428297, 49, 428297, 49, /$bunfs/root/pochi[0m[0m
+error stack:
+  • [33mpochi[39m[0m[0m	<anonymous>[0m[0m
+	[37m$bunfs/root/pochi:428297[39m[0m[0m
+  • [33mpochi[39m[0m[0m	<anonymous>[0m[0m
+	[37m$bunfs/root/pochi:427934[39m[0m[0m
+  • [33mpochi[39m[0m[0m	<anonymous>[0m[0m
+	[37m$bunfs/root/pochi:430946[39m[0m[0m
+  • [33mpochi[39m[0m[0m	<anonymous>[0m[0m
+	[37m$bunfs/root/pochi:430944[39m[0m[0m
+  • [33mpochi[39m[0m[0m	processQueue[0m[0m
+	[37m$bunfs/root/pochi:430937[39m[0m[0m
+  • [33mpochi[39m[0m[0m	processQueue[0m[0m
+	[37m$bunfs/root/pochi:430931[39m[0m[0m
+  • [33mpochi[39m[0m[0m	<anonymous>[0m[0m
+	[37m$bunfs/root/pochi:430952[39m[0m[0m
+  • [33mnative[39m[0m[0m	new Promise[0m[0m
+	[37mnative:1[39m[0m[0m
+  • [33mpochi[39m[0m[0m	run[0m[0m
+	[37m$bunfs/root/pochi:430943[39m[0m[0m
+  • [33mpochi[39m[0m[0m	run[0m[0m
+	[37m$bunfs/root/pochi:430942[39m[0m[0m
+  • [33mpochi[39m[0m[0m	transform[0m[0m
+	[37m$bunfs/root/pochi:427934[39m[0m[0m
+  • [33mpochi[39m[0m[0m	transform[0m[0m
+	[37m$bunfs/root/pochi:427933[39m[0m[0m
+  • [33mnative[39m[0m[0m	<anonymous>[0m[0m
+	[37mnative:1[39m[0m[0m
+  • [33mnative[39m[0m[0m	<anonymous>[0m[0m
+	[37mnative:1[39m[0m[0m
+  • [33mnative[39m[0m[0m	<anonymous>[0m[0m
+	[37mnative:1[39m[0m[0m
+  • [33mnative[39m[0m[0m	<anonymous>[0m[0m
+	[37mnative:1[39m[0m[0m
+  • [33mnative[39m[0m[0m	<anonymous>[0m[0m
+	[37mnative:1[39m[0m[0m
+  • [33mnative[39m[0m[0m	<anonymous>[0m[0m
+	[37mnative:1[39m[0m[0m
+  • [33mnative[39m[0m[0m	<anonymous>[0m[0m
+	[37mnative:1[39m[0m[0m
+  • [33mnative[39m[0m[0m	<anonymous>[0m[0m
+	[37mnative:7[39m[0m[0m
+  • [33mnative[39m[0m[0m	processTicksAndRejections[0m[0m
+	[37mnative:7[39m[0m[0m[0m[0m
+[37m2026-03-27 08:45:50.098[39m[0m[0m	[31m[1mERROR[22m[39m[0m[0m	[37m$bunfs/root/pochi:502858[39m[0m[0m[1m[37m	TaskRunner[39m[22m[0m[0m	Task is failed, trying to resend last message to resume it. {
+  kind: [32m'InternalError'[39m,
+  message: [32m'{"type":"overloaded_error","message":"Overloaded"}'[39m
+}
+[37m2026-03-27 08:45:50.102[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:45:50.414[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:46:00.902[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:46:01.252[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:46:26.743[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:46:27.050[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
+[37m2026-03-27 08:46:32.293[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454215[39m[0m[0m[1m[37m	listFiles[39m[22m[0m[0m	Listing workspace files from / with maxItems [33m500[39m
+[37m2026-03-27 08:46:32.577[39m[0m[0m	[32m[1mDEBUG[22m[39m[0m[0m	[37m$bunfs/root/pochi:454077[39m[0m[0m[1m[37m	ignoreWalk[39m[22m[0m[0m	MaxScanItems (10000) reached or exceeded. Halting traversal.
