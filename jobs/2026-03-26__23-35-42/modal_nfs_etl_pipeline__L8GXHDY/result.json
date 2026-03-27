@@ -1,0 +1,97 @@
+{
+    "id": "0341c91e-8c1f-4350-abe9-786ce0902f03",
+    "task_name": "modal_nfs_etl_pipeline",
+    "trial_name": "modal_nfs_etl_pipeline__L8GXHDY",
+    "trial_uri": "file:///Users/warrenlow/Documents/projects/pochi-harbor/jobs/2026-03-26__23-35-42/modal_nfs_etl_pipeline__L8GXHDY",
+    "task_id": {
+        "path": "new-modal-tasks/modal_nfs_etl_pipeline"
+    },
+    "source": "new-modal-tasks",
+    "task_checksum": "54df4b5e48526ed083be2a41e1ab103aa4b289466c44fdc77beaccfefbfc21ef",
+    "config": {
+        "task": {
+            "path": "new-modal-tasks/modal_nfs_etl_pipeline",
+            "git_url": null,
+            "git_commit_id": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "new-modal-tasks"
+        },
+        "trial_name": "modal_nfs_etl_pipeline__L8GXHDY",
+        "trials_dir": "jobs/2026-03-26__23-35-42",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "agents.pochi:Pochi",
+            "model_name": "google/gemini-3.1-pro",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {},
+            "env": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "b595c752-c207-4a23-8875-bbb92c91c5a9"
+    },
+    "agent_info": {
+        "name": "pochi",
+        "version": "v0.6.4",
+        "model_info": {
+            "name": "gemini-3.1-pro",
+            "provider": "google"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 18566,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-03-27T06:35:42.963871Z",
+    "finished_at": "2026-03-27T06:41:20.916848Z",
+    "environment_setup": {
+        "started_at": "2026-03-27T06:35:42.964387Z",
+        "finished_at": "2026-03-27T06:35:49.012085Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-03-27T06:35:49.012108Z",
+        "finished_at": "2026-03-27T06:36:34.635773Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-03-27T06:36:34.635851Z",
+        "finished_at": "2026-03-27T06:40:37.226808Z"
+    },
+    "verifier": {
+        "started_at": "2026-03-27T06:40:37.226897Z",
+        "finished_at": "2026-03-27T06:41:10.456394Z"
+    }
+}

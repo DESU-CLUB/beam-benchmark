@@ -1,0 +1,97 @@
+{
+    "id": "a8232522-2dec-40c2-a268-d708cbfe0910",
+    "task_name": "modal_gpu_embedding_service",
+    "trial_name": "modal_gpu_embedding_service__HHe4CV4",
+    "trial_uri": "file:///Users/warrenlow/Documents/projects/pochi-harbor/jobs/2026-03-26__23-59-57/modal_gpu_embedding_service__HHe4CV4",
+    "task_id": {
+        "path": "new-modal-tasks/modal_gpu_embedding_service"
+    },
+    "source": "new-modal-tasks",
+    "task_checksum": "3981b653816a2d7e62d117403dd40aa52f9c58ac34472917fdf0cb9b0ec8a9bf",
+    "config": {
+        "task": {
+            "path": "new-modal-tasks/modal_gpu_embedding_service",
+            "git_url": null,
+            "git_commit_id": null,
+            "overwrite": false,
+            "download_dir": null,
+            "source": "new-modal-tasks"
+        },
+        "trial_name": "modal_gpu_embedding_service__HHe4CV4",
+        "trials_dir": "jobs/2026-03-26__23-59-57",
+        "timeout_multiplier": 1.0,
+        "agent_timeout_multiplier": null,
+        "verifier_timeout_multiplier": null,
+        "agent_setup_timeout_multiplier": null,
+        "environment_build_timeout_multiplier": null,
+        "agent": {
+            "name": null,
+            "import_path": "agents.pochi:Pochi",
+            "model_name": "zai/glm-4.7",
+            "override_timeout_sec": null,
+            "override_setup_timeout_sec": null,
+            "max_timeout_sec": null,
+            "kwargs": {},
+            "env": {}
+        },
+        "environment": {
+            "type": "docker",
+            "import_path": null,
+            "force_build": false,
+            "delete": true,
+            "override_cpus": null,
+            "override_memory_mb": null,
+            "override_storage_mb": null,
+            "override_gpus": null,
+            "suppress_override_warnings": false,
+            "kwargs": {}
+        },
+        "verifier": {
+            "override_timeout_sec": null,
+            "max_timeout_sec": null,
+            "disable": false
+        },
+        "artifacts": [],
+        "job_id": "cc76b358-02db-46b1-947d-55e3773c8477"
+    },
+    "agent_info": {
+        "name": "pochi",
+        "version": "v0.6.4",
+        "model_info": {
+            "name": "glm-4.7",
+            "provider": "zai"
+        }
+    },
+    "agent_result": {
+        "n_input_tokens": 0,
+        "n_cache_tokens": 0,
+        "n_output_tokens": 39493,
+        "cost_usd": null,
+        "rollout_details": null,
+        "metadata": null
+    },
+    "verifier_result": {
+        "rewards": {
+            "reward": 1.0
+        }
+    },
+    "exception_info": null,
+    "started_at": "2026-03-27T06:59:57.595916Z",
+    "finished_at": "2026-03-27T07:11:37.719841Z",
+    "environment_setup": {
+        "started_at": "2026-03-27T06:59:57.597334Z",
+        "finished_at": "2026-03-27T07:00:04.093405Z"
+    },
+    "agent_setup": {
+        "started_at": "2026-03-27T07:00:04.093441Z",
+        "finished_at": "2026-03-27T07:00:54.323460Z"
+    },
+    "agent_execution": {
+        "started_at": "2026-03-27T07:00:54.323672Z",
+        "finished_at": "2026-03-27T07:10:43.792930Z"
+    },
+    "verifier": {
+        "started_at": "2026-03-27T07:10:43.793079Z",
+        "finished_at": "2026-03-27T07:11:27.201370Z"
+    }
+}

@@ -1,4 +1,0 @@
-pochi --model google/gemini-3.1-pro --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
-Build a distributed hyperparameter sweep system in `/home/user/hp_sweep/app.py` that uses `modal.App("hp-sweep-checkpoint")` to parallelize evaluation of learning-rate and batch-size combinations via `.map()` or `.starmap()`, checkpoints all results to a Modal Volume named `"hp-sweep-results"`, tracks the best configuration and score in a Modal Dict named `"hp-sweep-state"`, and schedules the sweep to run periodically using a cron or period schedule. Set `MODAL_ENVIRONMENT=modal-vsdatagen` and deploy with `modal deploy /home/user/hp_sweep/app.py`.
-
-EOF

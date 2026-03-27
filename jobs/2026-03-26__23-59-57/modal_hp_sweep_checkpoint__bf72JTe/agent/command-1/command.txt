@@ -1,0 +1,4 @@
+pochi --model zai/glm-4.7 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+Build a parallel hyperparameter sweep system on Modal that evaluates at least 4 combinations of `learning_rate` and `batch_size` using a Modal Class with `.map()` or `.starmap()`. The best result must be checkpointed to the Modal Volume `modal-hp-sweep-checkpoint-vol` at `/checkpoints/best_params.json`, and summary statistics (`best_lr`, `best_batch_size`, `best_score`, `total_trials`, `checkpoint_path`) must be stored in the Modal Dict `modal-hp-sweep-checkpoint-output`. Deploy as app `modal-hp-sweep-checkpoint` to `/home/user/modal_project/modal_hp_sweep_checkpoint.py` using `MODAL_ENVIRONMENT=modal-vsdatagen`, then run the local entrypoint to execute the sweep.
+
+EOF

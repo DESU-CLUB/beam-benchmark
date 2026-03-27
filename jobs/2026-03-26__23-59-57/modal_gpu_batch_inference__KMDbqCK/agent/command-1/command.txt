@@ -1,0 +1,18 @@
+pochi --model zai/glm-4.7 --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+# GPU Batch Inference Pipeline
+
+Build and deploy a GPU-accelerated batch inference pipeline at `/home/user/modal_project/modal_gpu_batch_inference.py` using Modal app `modal-gpu-batch-inference`. The pipeline should use a Modal Class that loads or initializes a weight matrix from the volume `modal-gpu-batch-inference-vol` (at path `/models/weights.npy`) on startup with a T4 GPU, expose a method that performs matrix multiply inference on batches of 128-dimensional input vectors, and use `.map()` to distribute 8 batches of 16 samples each across parallel containers — collecting all 128 predictions and storing aggregated results (`model_name`, `total_samples`, `batches_processed`, `avg_prediction`, `weights_path`) into the dict `modal-gpu-batch-inference-output`. Use the secret `modal-gpu-batch-inference-secret` (keys: `MODEL_NAME`, `INFERENCE_BATCH_SIZE`) to configure the model name and batch size, build your image with `modal.Image.debian_slim().pip_install("numpy")`, and implement a `@app.local_entrypoint()` that drives the full pipeline end-to-end.
+
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` for all Modal CLI commands.
+
+Deploy with:
+```
+modal deploy /home/user/modal_project/modal_gpu_batch_inference.py
+```
+
+Run with:
+```
+modal run /home/user/modal_project/modal_gpu_batch_inference.py
+```
+
+EOF
