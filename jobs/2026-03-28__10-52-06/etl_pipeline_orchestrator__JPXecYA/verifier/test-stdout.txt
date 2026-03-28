@@ -1,0 +1,1136 @@
+Hit:1 https://deb.nodesource.com/node_20.x nodistro InRelease
+Hit:2 http://ports.ubuntu.com/ubuntu-ports noble InRelease
+Hit:3 http://ports.ubuntu.com/ubuntu-ports noble-updates InRelease
+Hit:4 http://ports.ubuntu.com/ubuntu-ports noble-backports InRelease
+Hit:5 http://ports.ubuntu.com/ubuntu-ports noble-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (8.5.0-2ubuntu10.8).
+0 upgraded, 0 newly installed, 0 to remove and 10 not upgraded.
+downloading uv 0.9.7 aarch64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 6 packages in 4ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 10 items
+
+tests/test_final_state.py .EEEEEEEEE                                     [100%]
+
+==================================== ERRORS ====================================
+____________________ ERROR at setup of test_deploy_succeeds ____________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        # Create the secret
+        run_modal(
+            [
+                "secret",
+                "create",
+                SECRET_NAME,
+                "DB_URL=postgresql://localhost/etl_db",
+                "API_TOKEN=etl-secret-token-xyz",
+                "--force",
+            ],
+            timeout=60,
+        )
+    
+        # Deploy the app
+        run_modal(
+            ["deploy", APP_FILE],
+            timeout=600,
+        )
+    
+        # Run the local entrypoint to populate the Dict and Volume
+>       run_modal(
+            ["run", APP_FILE],
+            timeout=300,
+        )
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ['run', '/home/user/modal_project/etl_pipeline_orchestrator.py']
+timeout = 300, check = True
+
+    def run_modal(args, timeout=300, check=True):
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+        result = subprocess.run(
+            ["modal"] + args,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        if check and result.returncode != 0:
+>           raise RuntimeError(
+                f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+            )
+E           RuntimeError: modal run /home/user/modal_project/etl_pipeline_orchestrator.py failed:
+E           STDOUT: ✓ Initialized. View run at 
+E           https://modal.com/apps/tabbyml/modal-vsdatagen/ap-L9Hc69ntAyd8FtLWh6y9AC
+E           ✓ Created objects.
+E           ├── 🔨 Created mount /home/user/modal_project/etl_pipeline_orchestrator.py
+E           ├── 🔨 Created function scheduled_etl.
+E           └── 🔨 Created function ETLPipeline.*.
+E           Traceback (most recent call last):
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+E               yield
+E             File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+E               values = io_context.call_function_sync()
+E                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+E               expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+E                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/root/etl_pipeline_orchestrator.py", line 59, in run
+E               records = self.extract()
+E                         ^^^^^^^^^^^^^^
+E           TypeError: 'Function' object is not callable
+E           Stopping app - uncaught exception raised locally: TypeError("'Function' object is not callable").
+E           
+E           STDERR: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E           │ /home/user/modal_project/etl_pipeline_orchestrator.py:77 in main             │
+E           │                                                                              │
+E           │   76 def main() -> None:                                                     │
+E           │ ❱ 77 │   result = ETLPipeline().run.remote()                                 │
+E           │   78 │   output_dict.put("records_extracted", result["records_extracted"])   │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_object.py:46 in wrapped       │
+E           │                                                                              │
+E           │    45 │   │   await self.hydrate()                                           │
+E           │ ❱  46 │   │   return await method(self, *args, **kwargs)                     │
+E           │    47                                                                        │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1767 in remote   │
+E           │                                                                              │
+E           │   1766 │   │                                                                 │
+E           │ ❱ 1767 │   │   return await self._call_function(args, kwargs)                │
+E           │   1768                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1711 in          │
+E           │ _call_function                                                               │
+E           │                                                                              │
+E           │   1710 │   │                                                                 │
+E           │ ❱ 1711 │   │   return await invocation.run_function()                        │
+E           │   1712                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:293 in           │
+E           │ run_function                                                                 │
+E           │                                                                              │
+E           │    292 │   │   │   item = await self._get_single_output()                    │
+E           │ ❱  293 │   │   │   return await _process_result(item.result, item.data_forma │
+E           │    294                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_utils/function_utils.py:527   │
+E           │ in _process_result                                                           │
+E           │                                                                              │
+E           │   526 │   │   │                                                              │
+E           │ ❱ 527 │   │   │   raise exc_with_hints(exc)                                  │
+E           │   528                                                                        │
+E           │                                                                              │
+E           │     ...Remote call to Modal Function (ta-01KMTSEMKGERP4J1YZNG23YWX2)...      │
+E           │                                                                              │
+E           │ /root/etl_pipeline_orchestrator.py:59 in run                                 │
+E           │                                                                              │
+E           │ ❱ 59 records = self.extract()                                                │
+E           │                                                                              │
+E           ╰──────────────────────────────────────────────────────────────────────────────╯
+E           TypeError: 'Function' object is not callable
+
+tests/test_final_state.py:25: RuntimeError
+______________________ ERROR at setup of test_app_listed _______________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        # Create the secret
+        run_modal(
+            [
+                "secret",
+                "create",
+                SECRET_NAME,
+                "DB_URL=postgresql://localhost/etl_db",
+                "API_TOKEN=etl-secret-token-xyz",
+                "--force",
+            ],
+            timeout=60,
+        )
+    
+        # Deploy the app
+        run_modal(
+            ["deploy", APP_FILE],
+            timeout=600,
+        )
+    
+        # Run the local entrypoint to populate the Dict and Volume
+>       run_modal(
+            ["run", APP_FILE],
+            timeout=300,
+        )
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ['run', '/home/user/modal_project/etl_pipeline_orchestrator.py']
+timeout = 300, check = True
+
+    def run_modal(args, timeout=300, check=True):
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+        result = subprocess.run(
+            ["modal"] + args,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        if check and result.returncode != 0:
+>           raise RuntimeError(
+                f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+            )
+E           RuntimeError: modal run /home/user/modal_project/etl_pipeline_orchestrator.py failed:
+E           STDOUT: ✓ Initialized. View run at 
+E           https://modal.com/apps/tabbyml/modal-vsdatagen/ap-L9Hc69ntAyd8FtLWh6y9AC
+E           ✓ Created objects.
+E           ├── 🔨 Created mount /home/user/modal_project/etl_pipeline_orchestrator.py
+E           ├── 🔨 Created function scheduled_etl.
+E           └── 🔨 Created function ETLPipeline.*.
+E           Traceback (most recent call last):
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+E               yield
+E             File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+E               values = io_context.call_function_sync()
+E                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+E               expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+E                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/root/etl_pipeline_orchestrator.py", line 59, in run
+E               records = self.extract()
+E                         ^^^^^^^^^^^^^^
+E           TypeError: 'Function' object is not callable
+E           Stopping app - uncaught exception raised locally: TypeError("'Function' object is not callable").
+E           
+E           STDERR: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E           │ /home/user/modal_project/etl_pipeline_orchestrator.py:77 in main             │
+E           │                                                                              │
+E           │   76 def main() -> None:                                                     │
+E           │ ❱ 77 │   result = ETLPipeline().run.remote()                                 │
+E           │   78 │   output_dict.put("records_extracted", result["records_extracted"])   │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_object.py:46 in wrapped       │
+E           │                                                                              │
+E           │    45 │   │   await self.hydrate()                                           │
+E           │ ❱  46 │   │   return await method(self, *args, **kwargs)                     │
+E           │    47                                                                        │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1767 in remote   │
+E           │                                                                              │
+E           │   1766 │   │                                                                 │
+E           │ ❱ 1767 │   │   return await self._call_function(args, kwargs)                │
+E           │   1768                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1711 in          │
+E           │ _call_function                                                               │
+E           │                                                                              │
+E           │   1710 │   │                                                                 │
+E           │ ❱ 1711 │   │   return await invocation.run_function()                        │
+E           │   1712                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:293 in           │
+E           │ run_function                                                                 │
+E           │                                                                              │
+E           │    292 │   │   │   item = await self._get_single_output()                    │
+E           │ ❱  293 │   │   │   return await _process_result(item.result, item.data_forma │
+E           │    294                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_utils/function_utils.py:527   │
+E           │ in _process_result                                                           │
+E           │                                                                              │
+E           │   526 │   │   │                                                              │
+E           │ ❱ 527 │   │   │   raise exc_with_hints(exc)                                  │
+E           │   528                                                                        │
+E           │                                                                              │
+E           │     ...Remote call to Modal Function (ta-01KMTSEMKGERP4J1YZNG23YWX2)...      │
+E           │                                                                              │
+E           │ /root/etl_pipeline_orchestrator.py:59 in run                                 │
+E           │                                                                              │
+E           │ ❱ 59 records = self.extract()                                                │
+E           │                                                                              │
+E           ╰──────────────────────────────────────────────────────────────────────────────╯
+E           TypeError: 'Function' object is not callable
+
+tests/test_final_state.py:25: RuntimeError
+_____________________ ERROR at setup of test_volume_listed _____________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        # Create the secret
+        run_modal(
+            [
+                "secret",
+                "create",
+                SECRET_NAME,
+                "DB_URL=postgresql://localhost/etl_db",
+                "API_TOKEN=etl-secret-token-xyz",
+                "--force",
+            ],
+            timeout=60,
+        )
+    
+        # Deploy the app
+        run_modal(
+            ["deploy", APP_FILE],
+            timeout=600,
+        )
+    
+        # Run the local entrypoint to populate the Dict and Volume
+>       run_modal(
+            ["run", APP_FILE],
+            timeout=300,
+        )
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ['run', '/home/user/modal_project/etl_pipeline_orchestrator.py']
+timeout = 300, check = True
+
+    def run_modal(args, timeout=300, check=True):
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+        result = subprocess.run(
+            ["modal"] + args,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        if check and result.returncode != 0:
+>           raise RuntimeError(
+                f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+            )
+E           RuntimeError: modal run /home/user/modal_project/etl_pipeline_orchestrator.py failed:
+E           STDOUT: ✓ Initialized. View run at 
+E           https://modal.com/apps/tabbyml/modal-vsdatagen/ap-L9Hc69ntAyd8FtLWh6y9AC
+E           ✓ Created objects.
+E           ├── 🔨 Created mount /home/user/modal_project/etl_pipeline_orchestrator.py
+E           ├── 🔨 Created function scheduled_etl.
+E           └── 🔨 Created function ETLPipeline.*.
+E           Traceback (most recent call last):
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+E               yield
+E             File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+E               values = io_context.call_function_sync()
+E                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+E               expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+E                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/root/etl_pipeline_orchestrator.py", line 59, in run
+E               records = self.extract()
+E                         ^^^^^^^^^^^^^^
+E           TypeError: 'Function' object is not callable
+E           Stopping app - uncaught exception raised locally: TypeError("'Function' object is not callable").
+E           
+E           STDERR: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E           │ /home/user/modal_project/etl_pipeline_orchestrator.py:77 in main             │
+E           │                                                                              │
+E           │   76 def main() -> None:                                                     │
+E           │ ❱ 77 │   result = ETLPipeline().run.remote()                                 │
+E           │   78 │   output_dict.put("records_extracted", result["records_extracted"])   │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_object.py:46 in wrapped       │
+E           │                                                                              │
+E           │    45 │   │   await self.hydrate()                                           │
+E           │ ❱  46 │   │   return await method(self, *args, **kwargs)                     │
+E           │    47                                                                        │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1767 in remote   │
+E           │                                                                              │
+E           │   1766 │   │                                                                 │
+E           │ ❱ 1767 │   │   return await self._call_function(args, kwargs)                │
+E           │   1768                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1711 in          │
+E           │ _call_function                                                               │
+E           │                                                                              │
+E           │   1710 │   │                                                                 │
+E           │ ❱ 1711 │   │   return await invocation.run_function()                        │
+E           │   1712                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:293 in           │
+E           │ run_function                                                                 │
+E           │                                                                              │
+E           │    292 │   │   │   item = await self._get_single_output()                    │
+E           │ ❱  293 │   │   │   return await _process_result(item.result, item.data_forma │
+E           │    294                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_utils/function_utils.py:527   │
+E           │ in _process_result                                                           │
+E           │                                                                              │
+E           │   526 │   │   │                                                              │
+E           │ ❱ 527 │   │   │   raise exc_with_hints(exc)                                  │
+E           │   528                                                                        │
+E           │                                                                              │
+E           │     ...Remote call to Modal Function (ta-01KMTSEMKGERP4J1YZNG23YWX2)...      │
+E           │                                                                              │
+E           │ /root/etl_pipeline_orchestrator.py:59 in run                                 │
+E           │                                                                              │
+E           │ ❱ 59 records = self.extract()                                                │
+E           │                                                                              │
+E           ╰──────────────────────────────────────────────────────────────────────────────╯
+E           TypeError: 'Function' object is not callable
+
+tests/test_final_state.py:25: RuntimeError
+_____________________ ERROR at setup of test_secret_listed _____________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        # Create the secret
+        run_modal(
+            [
+                "secret",
+                "create",
+                SECRET_NAME,
+                "DB_URL=postgresql://localhost/etl_db",
+                "API_TOKEN=etl-secret-token-xyz",
+                "--force",
+            ],
+            timeout=60,
+        )
+    
+        # Deploy the app
+        run_modal(
+            ["deploy", APP_FILE],
+            timeout=600,
+        )
+    
+        # Run the local entrypoint to populate the Dict and Volume
+>       run_modal(
+            ["run", APP_FILE],
+            timeout=300,
+        )
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ['run', '/home/user/modal_project/etl_pipeline_orchestrator.py']
+timeout = 300, check = True
+
+    def run_modal(args, timeout=300, check=True):
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+        result = subprocess.run(
+            ["modal"] + args,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        if check and result.returncode != 0:
+>           raise RuntimeError(
+                f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+            )
+E           RuntimeError: modal run /home/user/modal_project/etl_pipeline_orchestrator.py failed:
+E           STDOUT: ✓ Initialized. View run at 
+E           https://modal.com/apps/tabbyml/modal-vsdatagen/ap-L9Hc69ntAyd8FtLWh6y9AC
+E           ✓ Created objects.
+E           ├── 🔨 Created mount /home/user/modal_project/etl_pipeline_orchestrator.py
+E           ├── 🔨 Created function scheduled_etl.
+E           └── 🔨 Created function ETLPipeline.*.
+E           Traceback (most recent call last):
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+E               yield
+E             File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+E               values = io_context.call_function_sync()
+E                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+E               expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+E                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/root/etl_pipeline_orchestrator.py", line 59, in run
+E               records = self.extract()
+E                         ^^^^^^^^^^^^^^
+E           TypeError: 'Function' object is not callable
+E           Stopping app - uncaught exception raised locally: TypeError("'Function' object is not callable").
+E           
+E           STDERR: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E           │ /home/user/modal_project/etl_pipeline_orchestrator.py:77 in main             │
+E           │                                                                              │
+E           │   76 def main() -> None:                                                     │
+E           │ ❱ 77 │   result = ETLPipeline().run.remote()                                 │
+E           │   78 │   output_dict.put("records_extracted", result["records_extracted"])   │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_object.py:46 in wrapped       │
+E           │                                                                              │
+E           │    45 │   │   await self.hydrate()                                           │
+E           │ ❱  46 │   │   return await method(self, *args, **kwargs)                     │
+E           │    47                                                                        │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1767 in remote   │
+E           │                                                                              │
+E           │   1766 │   │                                                                 │
+E           │ ❱ 1767 │   │   return await self._call_function(args, kwargs)                │
+E           │   1768                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1711 in          │
+E           │ _call_function                                                               │
+E           │                                                                              │
+E           │   1710 │   │                                                                 │
+E           │ ❱ 1711 │   │   return await invocation.run_function()                        │
+E           │   1712                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:293 in           │
+E           │ run_function                                                                 │
+E           │                                                                              │
+E           │    292 │   │   │   item = await self._get_single_output()                    │
+E           │ ❱  293 │   │   │   return await _process_result(item.result, item.data_forma │
+E           │    294                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_utils/function_utils.py:527   │
+E           │ in _process_result                                                           │
+E           │                                                                              │
+E           │   526 │   │   │                                                              │
+E           │ ❱ 527 │   │   │   raise exc_with_hints(exc)                                  │
+E           │   528                                                                        │
+E           │                                                                              │
+E           │     ...Remote call to Modal Function (ta-01KMTSEMKGERP4J1YZNG23YWX2)...      │
+E           │                                                                              │
+E           │ /root/etl_pipeline_orchestrator.py:59 in run                                 │
+E           │                                                                              │
+E           │ ❱ 59 records = self.extract()                                                │
+E           │                                                                              │
+E           ╰──────────────────────────────────────────────────────────────────────────────╯
+E           TypeError: 'Function' object is not callable
+
+tests/test_final_state.py:25: RuntimeError
+_______________ ERROR at setup of test_volume_output_file_exists _______________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        # Create the secret
+        run_modal(
+            [
+                "secret",
+                "create",
+                SECRET_NAME,
+                "DB_URL=postgresql://localhost/etl_db",
+                "API_TOKEN=etl-secret-token-xyz",
+                "--force",
+            ],
+            timeout=60,
+        )
+    
+        # Deploy the app
+        run_modal(
+            ["deploy", APP_FILE],
+            timeout=600,
+        )
+    
+        # Run the local entrypoint to populate the Dict and Volume
+>       run_modal(
+            ["run", APP_FILE],
+            timeout=300,
+        )
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ['run', '/home/user/modal_project/etl_pipeline_orchestrator.py']
+timeout = 300, check = True
+
+    def run_modal(args, timeout=300, check=True):
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+        result = subprocess.run(
+            ["modal"] + args,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        if check and result.returncode != 0:
+>           raise RuntimeError(
+                f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+            )
+E           RuntimeError: modal run /home/user/modal_project/etl_pipeline_orchestrator.py failed:
+E           STDOUT: ✓ Initialized. View run at 
+E           https://modal.com/apps/tabbyml/modal-vsdatagen/ap-L9Hc69ntAyd8FtLWh6y9AC
+E           ✓ Created objects.
+E           ├── 🔨 Created mount /home/user/modal_project/etl_pipeline_orchestrator.py
+E           ├── 🔨 Created function scheduled_etl.
+E           └── 🔨 Created function ETLPipeline.*.
+E           Traceback (most recent call last):
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+E               yield
+E             File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+E               values = io_context.call_function_sync()
+E                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+E               expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+E                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/root/etl_pipeline_orchestrator.py", line 59, in run
+E               records = self.extract()
+E                         ^^^^^^^^^^^^^^
+E           TypeError: 'Function' object is not callable
+E           Stopping app - uncaught exception raised locally: TypeError("'Function' object is not callable").
+E           
+E           STDERR: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E           │ /home/user/modal_project/etl_pipeline_orchestrator.py:77 in main             │
+E           │                                                                              │
+E           │   76 def main() -> None:                                                     │
+E           │ ❱ 77 │   result = ETLPipeline().run.remote()                                 │
+E           │   78 │   output_dict.put("records_extracted", result["records_extracted"])   │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_object.py:46 in wrapped       │
+E           │                                                                              │
+E           │    45 │   │   await self.hydrate()                                           │
+E           │ ❱  46 │   │   return await method(self, *args, **kwargs)                     │
+E           │    47                                                                        │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1767 in remote   │
+E           │                                                                              │
+E           │   1766 │   │                                                                 │
+E           │ ❱ 1767 │   │   return await self._call_function(args, kwargs)                │
+E           │   1768                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1711 in          │
+E           │ _call_function                                                               │
+E           │                                                                              │
+E           │   1710 │   │                                                                 │
+E           │ ❱ 1711 │   │   return await invocation.run_function()                        │
+E           │   1712                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:293 in           │
+E           │ run_function                                                                 │
+E           │                                                                              │
+E           │    292 │   │   │   item = await self._get_single_output()                    │
+E           │ ❱  293 │   │   │   return await _process_result(item.result, item.data_forma │
+E           │    294                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_utils/function_utils.py:527   │
+E           │ in _process_result                                                           │
+E           │                                                                              │
+E           │   526 │   │   │                                                              │
+E           │ ❱ 527 │   │   │   raise exc_with_hints(exc)                                  │
+E           │   528                                                                        │
+E           │                                                                              │
+E           │     ...Remote call to Modal Function (ta-01KMTSEMKGERP4J1YZNG23YWX2)...      │
+E           │                                                                              │
+E           │ /root/etl_pipeline_orchestrator.py:59 in run                                 │
+E           │                                                                              │
+E           │ ❱ 59 records = self.extract()                                                │
+E           │                                                                              │
+E           ╰──────────────────────────────────────────────────────────────────────────────╯
+E           TypeError: 'Function' object is not callable
+
+tests/test_final_state.py:25: RuntimeError
+________________ ERROR at setup of test_dict_records_extracted _________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        # Create the secret
+        run_modal(
+            [
+                "secret",
+                "create",
+                SECRET_NAME,
+                "DB_URL=postgresql://localhost/etl_db",
+                "API_TOKEN=etl-secret-token-xyz",
+                "--force",
+            ],
+            timeout=60,
+        )
+    
+        # Deploy the app
+        run_modal(
+            ["deploy", APP_FILE],
+            timeout=600,
+        )
+    
+        # Run the local entrypoint to populate the Dict and Volume
+>       run_modal(
+            ["run", APP_FILE],
+            timeout=300,
+        )
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ['run', '/home/user/modal_project/etl_pipeline_orchestrator.py']
+timeout = 300, check = True
+
+    def run_modal(args, timeout=300, check=True):
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+        result = subprocess.run(
+            ["modal"] + args,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        if check and result.returncode != 0:
+>           raise RuntimeError(
+                f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+            )
+E           RuntimeError: modal run /home/user/modal_project/etl_pipeline_orchestrator.py failed:
+E           STDOUT: ✓ Initialized. View run at 
+E           https://modal.com/apps/tabbyml/modal-vsdatagen/ap-L9Hc69ntAyd8FtLWh6y9AC
+E           ✓ Created objects.
+E           ├── 🔨 Created mount /home/user/modal_project/etl_pipeline_orchestrator.py
+E           ├── 🔨 Created function scheduled_etl.
+E           └── 🔨 Created function ETLPipeline.*.
+E           Traceback (most recent call last):
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+E               yield
+E             File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+E               values = io_context.call_function_sync()
+E                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+E               expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+E                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/root/etl_pipeline_orchestrator.py", line 59, in run
+E               records = self.extract()
+E                         ^^^^^^^^^^^^^^
+E           TypeError: 'Function' object is not callable
+E           Stopping app - uncaught exception raised locally: TypeError("'Function' object is not callable").
+E           
+E           STDERR: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E           │ /home/user/modal_project/etl_pipeline_orchestrator.py:77 in main             │
+E           │                                                                              │
+E           │   76 def main() -> None:                                                     │
+E           │ ❱ 77 │   result = ETLPipeline().run.remote()                                 │
+E           │   78 │   output_dict.put("records_extracted", result["records_extracted"])   │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_object.py:46 in wrapped       │
+E           │                                                                              │
+E           │    45 │   │   await self.hydrate()                                           │
+E           │ ❱  46 │   │   return await method(self, *args, **kwargs)                     │
+E           │    47                                                                        │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1767 in remote   │
+E           │                                                                              │
+E           │   1766 │   │                                                                 │
+E           │ ❱ 1767 │   │   return await self._call_function(args, kwargs)                │
+E           │   1768                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1711 in          │
+E           │ _call_function                                                               │
+E           │                                                                              │
+E           │   1710 │   │                                                                 │
+E           │ ❱ 1711 │   │   return await invocation.run_function()                        │
+E           │   1712                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:293 in           │
+E           │ run_function                                                                 │
+E           │                                                                              │
+E           │    292 │   │   │   item = await self._get_single_output()                    │
+E           │ ❱  293 │   │   │   return await _process_result(item.result, item.data_forma │
+E           │    294                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_utils/function_utils.py:527   │
+E           │ in _process_result                                                           │
+E           │                                                                              │
+E           │   526 │   │   │                                                              │
+E           │ ❱ 527 │   │   │   raise exc_with_hints(exc)                                  │
+E           │   528                                                                        │
+E           │                                                                              │
+E           │     ...Remote call to Modal Function (ta-01KMTSEMKGERP4J1YZNG23YWX2)...      │
+E           │                                                                              │
+E           │ /root/etl_pipeline_orchestrator.py:59 in run                                 │
+E           │                                                                              │
+E           │ ❱ 59 records = self.extract()                                                │
+E           │                                                                              │
+E           ╰──────────────────────────────────────────────────────────────────────────────╯
+E           TypeError: 'Function' object is not callable
+
+tests/test_final_state.py:25: RuntimeError
+__________________ ERROR at setup of test_dict_records_loaded __________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        # Create the secret
+        run_modal(
+            [
+                "secret",
+                "create",
+                SECRET_NAME,
+                "DB_URL=postgresql://localhost/etl_db",
+                "API_TOKEN=etl-secret-token-xyz",
+                "--force",
+            ],
+            timeout=60,
+        )
+    
+        # Deploy the app
+        run_modal(
+            ["deploy", APP_FILE],
+            timeout=600,
+        )
+    
+        # Run the local entrypoint to populate the Dict and Volume
+>       run_modal(
+            ["run", APP_FILE],
+            timeout=300,
+        )
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ['run', '/home/user/modal_project/etl_pipeline_orchestrator.py']
+timeout = 300, check = True
+
+    def run_modal(args, timeout=300, check=True):
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+        result = subprocess.run(
+            ["modal"] + args,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        if check and result.returncode != 0:
+>           raise RuntimeError(
+                f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+            )
+E           RuntimeError: modal run /home/user/modal_project/etl_pipeline_orchestrator.py failed:
+E           STDOUT: ✓ Initialized. View run at 
+E           https://modal.com/apps/tabbyml/modal-vsdatagen/ap-L9Hc69ntAyd8FtLWh6y9AC
+E           ✓ Created objects.
+E           ├── 🔨 Created mount /home/user/modal_project/etl_pipeline_orchestrator.py
+E           ├── 🔨 Created function scheduled_etl.
+E           └── 🔨 Created function ETLPipeline.*.
+E           Traceback (most recent call last):
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+E               yield
+E             File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+E               values = io_context.call_function_sync()
+E                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+E               expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+E                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/root/etl_pipeline_orchestrator.py", line 59, in run
+E               records = self.extract()
+E                         ^^^^^^^^^^^^^^
+E           TypeError: 'Function' object is not callable
+E           Stopping app - uncaught exception raised locally: TypeError("'Function' object is not callable").
+E           
+E           STDERR: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E           │ /home/user/modal_project/etl_pipeline_orchestrator.py:77 in main             │
+E           │                                                                              │
+E           │   76 def main() -> None:                                                     │
+E           │ ❱ 77 │   result = ETLPipeline().run.remote()                                 │
+E           │   78 │   output_dict.put("records_extracted", result["records_extracted"])   │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_object.py:46 in wrapped       │
+E           │                                                                              │
+E           │    45 │   │   await self.hydrate()                                           │
+E           │ ❱  46 │   │   return await method(self, *args, **kwargs)                     │
+E           │    47                                                                        │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1767 in remote   │
+E           │                                                                              │
+E           │   1766 │   │                                                                 │
+E           │ ❱ 1767 │   │   return await self._call_function(args, kwargs)                │
+E           │   1768                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1711 in          │
+E           │ _call_function                                                               │
+E           │                                                                              │
+E           │   1710 │   │                                                                 │
+E           │ ❱ 1711 │   │   return await invocation.run_function()                        │
+E           │   1712                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:293 in           │
+E           │ run_function                                                                 │
+E           │                                                                              │
+E           │    292 │   │   │   item = await self._get_single_output()                    │
+E           │ ❱  293 │   │   │   return await _process_result(item.result, item.data_forma │
+E           │    294                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_utils/function_utils.py:527   │
+E           │ in _process_result                                                           │
+E           │                                                                              │
+E           │   526 │   │   │                                                              │
+E           │ ❱ 527 │   │   │   raise exc_with_hints(exc)                                  │
+E           │   528                                                                        │
+E           │                                                                              │
+E           │     ...Remote call to Modal Function (ta-01KMTSEMKGERP4J1YZNG23YWX2)...      │
+E           │                                                                              │
+E           │ /root/etl_pipeline_orchestrator.py:59 in run                                 │
+E           │                                                                              │
+E           │ ❱ 59 records = self.extract()                                                │
+E           │                                                                              │
+E           ╰──────────────────────────────────────────────────────────────────────────────╯
+E           TypeError: 'Function' object is not callable
+
+tests/test_final_state.py:25: RuntimeError
+_________________ ERROR at setup of test_dict_pipeline_status __________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        # Create the secret
+        run_modal(
+            [
+                "secret",
+                "create",
+                SECRET_NAME,
+                "DB_URL=postgresql://localhost/etl_db",
+                "API_TOKEN=etl-secret-token-xyz",
+                "--force",
+            ],
+            timeout=60,
+        )
+    
+        # Deploy the app
+        run_modal(
+            ["deploy", APP_FILE],
+            timeout=600,
+        )
+    
+        # Run the local entrypoint to populate the Dict and Volume
+>       run_modal(
+            ["run", APP_FILE],
+            timeout=300,
+        )
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ['run', '/home/user/modal_project/etl_pipeline_orchestrator.py']
+timeout = 300, check = True
+
+    def run_modal(args, timeout=300, check=True):
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+        result = subprocess.run(
+            ["modal"] + args,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        if check and result.returncode != 0:
+>           raise RuntimeError(
+                f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+            )
+E           RuntimeError: modal run /home/user/modal_project/etl_pipeline_orchestrator.py failed:
+E           STDOUT: ✓ Initialized. View run at 
+E           https://modal.com/apps/tabbyml/modal-vsdatagen/ap-L9Hc69ntAyd8FtLWh6y9AC
+E           ✓ Created objects.
+E           ├── 🔨 Created mount /home/user/modal_project/etl_pipeline_orchestrator.py
+E           ├── 🔨 Created function scheduled_etl.
+E           └── 🔨 Created function ETLPipeline.*.
+E           Traceback (most recent call last):
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+E               yield
+E             File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+E               values = io_context.call_function_sync()
+E                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+E               expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+E                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/root/etl_pipeline_orchestrator.py", line 59, in run
+E               records = self.extract()
+E                         ^^^^^^^^^^^^^^
+E           TypeError: 'Function' object is not callable
+E           Stopping app - uncaught exception raised locally: TypeError("'Function' object is not callable").
+E           
+E           STDERR: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E           │ /home/user/modal_project/etl_pipeline_orchestrator.py:77 in main             │
+E           │                                                                              │
+E           │   76 def main() -> None:                                                     │
+E           │ ❱ 77 │   result = ETLPipeline().run.remote()                                 │
+E           │   78 │   output_dict.put("records_extracted", result["records_extracted"])   │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_object.py:46 in wrapped       │
+E           │                                                                              │
+E           │    45 │   │   await self.hydrate()                                           │
+E           │ ❱  46 │   │   return await method(self, *args, **kwargs)                     │
+E           │    47                                                                        │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1767 in remote   │
+E           │                                                                              │
+E           │   1766 │   │                                                                 │
+E           │ ❱ 1767 │   │   return await self._call_function(args, kwargs)                │
+E           │   1768                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1711 in          │
+E           │ _call_function                                                               │
+E           │                                                                              │
+E           │   1710 │   │                                                                 │
+E           │ ❱ 1711 │   │   return await invocation.run_function()                        │
+E           │   1712                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:293 in           │
+E           │ run_function                                                                 │
+E           │                                                                              │
+E           │    292 │   │   │   item = await self._get_single_output()                    │
+E           │ ❱  293 │   │   │   return await _process_result(item.result, item.data_forma │
+E           │    294                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_utils/function_utils.py:527   │
+E           │ in _process_result                                                           │
+E           │                                                                              │
+E           │   526 │   │   │                                                              │
+E           │ ❱ 527 │   │   │   raise exc_with_hints(exc)                                  │
+E           │   528                                                                        │
+E           │                                                                              │
+E           │     ...Remote call to Modal Function (ta-01KMTSEMKGERP4J1YZNG23YWX2)...      │
+E           │                                                                              │
+E           │ /root/etl_pipeline_orchestrator.py:59 in run                                 │
+E           │                                                                              │
+E           │ ❱ 59 records = self.extract()                                                │
+E           │                                                                              │
+E           ╰──────────────────────────────────────────────────────────────────────────────╯
+E           TypeError: 'Function' object is not callable
+
+tests/test_final_state.py:25: RuntimeError
+___________________ ERROR at setup of test_dict_output_path ____________________
+
+    @pytest.fixture(scope="module")
+    def deployed_app():
+        # Create the secret
+        run_modal(
+            [
+                "secret",
+                "create",
+                SECRET_NAME,
+                "DB_URL=postgresql://localhost/etl_db",
+                "API_TOKEN=etl-secret-token-xyz",
+                "--force",
+            ],
+            timeout=60,
+        )
+    
+        # Deploy the app
+        run_modal(
+            ["deploy", APP_FILE],
+            timeout=600,
+        )
+    
+        # Run the local entrypoint to populate the Dict and Volume
+>       run_modal(
+            ["run", APP_FILE],
+            timeout=300,
+        )
+
+tests/test_final_state.py:53: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ 
+
+args = ['run', '/home/user/modal_project/etl_pipeline_orchestrator.py']
+timeout = 300, check = True
+
+    def run_modal(args, timeout=300, check=True):
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+        result = subprocess.run(
+            ["modal"] + args,
+            capture_output=True,
+            text=True,
+            timeout=timeout,
+            env=env,
+        )
+        if check and result.returncode != 0:
+>           raise RuntimeError(
+                f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+            )
+E           RuntimeError: modal run /home/user/modal_project/etl_pipeline_orchestrator.py failed:
+E           STDOUT: ✓ Initialized. View run at 
+E           https://modal.com/apps/tabbyml/modal-vsdatagen/ap-L9Hc69ntAyd8FtLWh6y9AC
+E           ✓ Created objects.
+E           ├── 🔨 Created mount /home/user/modal_project/etl_pipeline_orchestrator.py
+E           ├── 🔨 Created function scheduled_etl.
+E           └── 🔨 Created function ETLPipeline.*.
+E           Traceback (most recent call last):
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 947, in handle_input_exception
+E               yield
+E             File "/pkg/modal/_container_entrypoint.py", line 172, in run_input_sync
+E               values = io_context.call_function_sync()
+E                        ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/pkg/modal/_runtime/container_io_manager.py", line 225, in call_function_sync
+E               expected_value_or_values = self.finalized_function.callable(*args, **kwargs)
+E                                          ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E             File "/root/etl_pipeline_orchestrator.py", line 59, in run
+E               records = self.extract()
+E                         ^^^^^^^^^^^^^^
+E           TypeError: 'Function' object is not callable
+E           Stopping app - uncaught exception raised locally: TypeError("'Function' object is not callable").
+E           
+E           STDERR: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E           │ /home/user/modal_project/etl_pipeline_orchestrator.py:77 in main             │
+E           │                                                                              │
+E           │   76 def main() -> None:                                                     │
+E           │ ❱ 77 │   result = ETLPipeline().run.remote()                                 │
+E           │   78 │   output_dict.put("records_extracted", result["records_extracted"])   │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_object.py:46 in wrapped       │
+E           │                                                                              │
+E           │    45 │   │   await self.hydrate()                                           │
+E           │ ❱  46 │   │   return await method(self, *args, **kwargs)                     │
+E           │    47                                                                        │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1767 in remote   │
+E           │                                                                              │
+E           │   1766 │   │                                                                 │
+E           │ ❱ 1767 │   │   return await self._call_function(args, kwargs)                │
+E           │   1768                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:1711 in          │
+E           │ _call_function                                                               │
+E           │                                                                              │
+E           │   1710 │   │                                                                 │
+E           │ ❱ 1711 │   │   return await invocation.run_function()                        │
+E           │   1712                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_functions.py:293 in           │
+E           │ run_function                                                                 │
+E           │                                                                              │
+E           │    292 │   │   │   item = await self._get_single_output()                    │
+E           │ ❱  293 │   │   │   return await _process_result(item.result, item.data_forma │
+E           │    294                                                                       │
+E           │                                                                              │
+E           │ /usr/local/lib/python3.12/dist-packages/modal/_utils/function_utils.py:527   │
+E           │ in _process_result                                                           │
+E           │                                                                              │
+E           │   526 │   │   │                                                              │
+E           │ ❱ 527 │   │   │   raise exc_with_hints(exc)                                  │
+E           │   528                                                                        │
+E           │                                                                              │
+E           │     ...Remote call to Modal Function (ta-01KMTSEMKGERP4J1YZNG23YWX2)...      │
+E           │                                                                              │
+E           │ /root/etl_pipeline_orchestrator.py:59 in run                                 │
+E           │                                                                              │
+E           │ ❱ 59 records = self.extract()                                                │
+E           │                                                                              │
+E           ╰──────────────────────────────────────────────────────────────────────────────╯
+E           TypeError: 'Function' object is not callable
+
+tests/test_final_state.py:25: RuntimeError
+==================================== PASSES ====================================
+=========================== short test summary info ============================
+PASSED tests/test_final_state.py::test_app_file_exists
+ERROR tests/test_final_state.py::test_deploy_succeeds - RuntimeError: modal r...
+ERROR tests/test_final_state.py::test_app_listed - RuntimeError: modal run /h...
+ERROR tests/test_final_state.py::test_volume_listed - RuntimeError: modal run...
+ERROR tests/test_final_state.py::test_secret_listed - RuntimeError: modal run...
+ERROR tests/test_final_state.py::test_volume_output_file_exists - RuntimeErro...
+ERROR tests/test_final_state.py::test_dict_records_extracted - RuntimeError: ...
+ERROR tests/test_final_state.py::test_dict_records_loaded - RuntimeError: mod...
+ERROR tests/test_final_state.py::test_dict_pipeline_status - RuntimeError: mo...
+ERROR tests/test_final_state.py::test_dict_output_path - RuntimeError: modal ...
+========================= 1 passed, 9 errors in 7.77s ==========================
