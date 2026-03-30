@@ -1,0 +1,41 @@
+{
+    "id": "60291c7f-acf4-4224-b0d0-d042449cf781",
+    "started_at": "2026-03-29T20:45:57.451174",
+    "finished_at": "2026-03-29T20:54:51.725463",
+    "n_total_trials": 11,
+    "stats": {
+        "n_trials": 11,
+        "n_errors": 0,
+        "evals": {
+            "pochi__gpt-5.2-codex__new-modal-tasks": {
+                "n_trials": 11,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.6363636363636364
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "modal_gpu_batch_inference__yvhe8pU",
+                            "modal_hp_sweep_checkpoint__WWee827",
+                            "modal_nfs_etl_pipeline__XgZ3vcZ",
+                            "modal_gpu_embedding_service__z7AL5vG"
+                        ],
+                        "1.0": [
+                            "modal_doc_ocr_pipeline__JHRQLLs",
+                            "etl_pipeline_orchestrator__hc4Zii9",
+                            "document_analytics_pipeline__brsbW9J",
+                            "modal_event_pipeline__PV6vvis",
+                            "rate_limited_api_gateway__JocWLXD",
+                            "ml_serving_pipeline_checkpoint__6ivvGae",
+                            "hyperparameter_sweep_orchestrato__FqeZMaj"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

@@ -1,0 +1,128 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 12,
+            "passed": 12,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774841941.582552,
+            "stop": 1774841964.0788095
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_app_file_exists",
+                "status": "passed",
+                "duration": 0.0002834191545844078,
+                "start": 1774841941.5905921,
+                "stop": 1774841941.591004,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 16.28568423911929,
+                "start": 1774841941.5911174,
+                "stop": 1774841957.8770912,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.542424232698977,
+                "start": 1774841957.8774211,
+                "stop": 1774841958.4201617,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_listed",
+                "status": "passed",
+                "duration": 0.5944005586206913,
+                "start": 1774841958.4205592,
+                "stop": 1774841959.015288,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_secret_listed",
+                "status": "passed",
+                "duration": 0.570757539011538,
+                "start": 1774841959.0156643,
+                "stop": 1774841959.5867515,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_all_trials_file_exists",
+                "status": "passed",
+                "duration": 0.7848520781844854,
+                "start": 1774841959.5871434,
+                "stop": 1774841960.3723075,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_best_params_file_exists",
+                "status": "passed",
+                "duration": 0.6112650353461504,
+                "start": 1774841960.372666,
+                "stop": 1774841960.9842272,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_experiment_id",
+                "status": "passed",
+                "duration": 0.5455702412873507,
+                "start": 1774841960.9845953,
+                "stop": 1774841961.5305266,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_total_trials",
+                "status": "passed",
+                "duration": 0.47952649276703596,
+                "start": 1774841961.530904,
+                "stop": 1774841962.0107777,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_best_loss",
+                "status": "passed",
+                "duration": 0.5028805434703827,
+                "start": 1774841962.0111473,
+                "stop": 1774841962.5143132,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_best_lr",
+                "status": "passed",
+                "duration": 0.48867345973849297,
+                "start": 1774841962.5145915,
+                "stop": 1774841963.0035915,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_best_dropout",
+                "status": "passed",
+                "duration": 1.0740800825878978,
+                "start": 1774841963.0039673,
+                "stop": 1774841964.078406,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

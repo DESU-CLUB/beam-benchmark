@@ -1,0 +1,36 @@
+pochi --model openai/gpt-5.2-codex --max-steps 200 --max-retries 10 --blobs-dir /logs/agent/pochi/blobs --stream-json /logs/agent/pochi/trajectory.jsonl > >(tee /logs/agent/pochi/stdout.txt) 2> >(tee /logs/agent/pochi/stderr.txt >&2) <<'EOF'
+Build a parallel OCR simulation pipeline on Modal as app `modal-doc-ocr-pipeline` at `/home/user/modal_project/modal_doc_ocr_pipeline.py`.
+
+The system must use a Modal Class with a `@modal.enter` lifecycle method to initialize a document parser using only Python stdlib (`base64`, `re`, and `collections`). The class method must accept a base64-encoded document string and return per-document statistics: total word count, sentence count, and character count of the decoded text.
+
+Use `.map()` to process at least 6 hardcoded synthetic base64-encoded document strings in parallel through the processor class. Aggregate the results and write a JSON summary to `/ocr_output/summary.json` inside a Modal Volume named `modal-doc-ocr-pipeline-vol` (mounted at `/ocr_output`). Use `modal.Image.debian_slim()` as the base image — no additional pip packages are required.
+
+Attach the Modal Secret `modal-doc-ocr-pipeline-secret` (which contains `OCR_SERVICE_KEY` and `MAX_PAGES`) to your Modal function. Inside the function, read `OCR_SERVICE_KEY` from the environment and record whether it is present.
+
+After the pipeline runs, store the following aggregated metrics in the Modal Dict `modal-doc-ocr-pipeline-output`:
+- `documents_processed`: integer, must be >= 6
+- `total_words`: integer, must be > 0
+- `total_sentences`: integer, must be > 0
+- `ocr_service_key_present`: the string `"true"` (when `OCR_SERVICE_KEY` is found in the environment)
+- `summary_path`: the string `"/ocr_output/summary.json"`
+
+Implement a `@app.local_entrypoint()` that runs the full pipeline end-to-end: parallel batch processing, result aggregation, volume write, and Dict update.
+
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` before running any modal commands.
+
+First, create the required secret:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal secret create modal-doc-ocr-pipeline-secret OCR_SERVICE_KEY=ocr-key-2024-xyz MAX_PAGES=100 --force
+```
+
+Deploy with:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal deploy /home/user/modal_project/modal_doc_ocr_pipeline.py
+```
+
+Then run the local entrypoint with:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal run /home/user/modal_project/modal_doc_ocr_pipeline.py
+```
+
+EOF

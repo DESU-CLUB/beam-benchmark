@@ -1,0 +1,110 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 10,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774840667.6506205,
+            "stop": 1774840681.0464044
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_app_file_exists",
+                "status": "passed",
+                "duration": 8.334721702005481,
+                "start": 1774840667.664112,
+                "stop": 1774840675.9990628,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_in_modal_app_list",
+                "status": "passed",
+                "duration": 0.47337883599539055,
+                "start": 1774840675.9992566,
+                "stop": 1774840676.4728217,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_exists",
+                "status": "passed",
+                "duration": 0.4985109190020012,
+                "start": 1774840676.4730175,
+                "stop": 1774840676.9717233,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_secret_exists",
+                "status": "passed",
+                "duration": 0.5053767509962199,
+                "start": 1774840676.9719121,
+                "stop": 1774840677.4774697,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_contains_weights",
+                "status": "passed",
+                "duration": 0.5916948490048526,
+                "start": 1774840677.4776862,
+                "stop": 1774840678.069562,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_model_name",
+                "status": "passed",
+                "duration": 0.47211775499454234,
+                "start": 1774840678.0697608,
+                "stop": 1774840678.5420623,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_total_samples",
+                "status": "passed",
+                "duration": 0.48774692300503375,
+                "start": 1774840678.5422568,
+                "stop": 1774840679.030185,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_batches_processed",
+                "status": "passed",
+                "duration": 0.4748772189996089,
+                "start": 1774840679.0303779,
+                "stop": 1774840679.5054584,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_avg_prediction_parseable_as_float",
+                "status": "passed",
+                "duration": 0.48456040299788583,
+                "start": 1774840679.5056756,
+                "stop": 1774840679.9904246,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_weights_path",
+                "status": "passed",
+                "duration": 1.055354347008688,
+                "start": 1774840679.9906328,
+                "stop": 1774840681.0461607,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

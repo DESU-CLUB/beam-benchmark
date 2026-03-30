@@ -1,0 +1,23 @@
+#!/bin/bash
+set -euo pipefail
+
+apt-get update
+apt-get install -y curl ripgrep
+
+# Install Pochi
+
+echo "downloading pochi version: v0.6.6"
+curl -fsSL https://getpochi.com/install.sh | bash -s "pochi-v0.6.6"
+
+
+ln -s ~/.pochi/bin/pochi /usr/local/bin/pochi
+mkdir -p /logs/agent/pochi
+
+# Install Node.js 20.x (skills CLI requires Node >= 18)
+curl -fsSL https://deb.nodesource.com/setup_20.x | bash -
+apt-get install -y nodejs
+
+# Install skills
+# npx skills add https://github.com/davila7/claude-code-templates --skill modal-serverless-gpu -a pochi -y
+
+pochi --version

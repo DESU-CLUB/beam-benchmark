@@ -1,0 +1,41 @@
+{
+    "id": "68aec9a3-6356-441a-bfeb-b6b5a56f002b",
+    "started_at": "2026-03-29T20:26:26.969619",
+    "finished_at": "2026-03-29T20:32:58.116131",
+    "n_total_trials": 11,
+    "stats": {
+        "n_trials": 11,
+        "n_errors": 0,
+        "evals": {
+            "pochi__claude-4-6-sonnet__new-modal-tasks": {
+                "n_trials": 11,
+                "n_errors": 0,
+                "metrics": [
+                    {
+                        "mean": 0.8181818181818182
+                    }
+                ],
+                "reward_stats": {
+                    "reward": {
+                        "0.0": [
+                            "modal_gpu_batch_inference__3cabJdE",
+                            "rate_limited_api_gateway__WoJv6jc"
+                        ],
+                        "1.0": [
+                            "modal_hp_sweep_checkpoint__S3a4kzJ",
+                            "modal_nfs_etl_pipeline__3SVErYj",
+                            "modal_gpu_embedding_service__DoVSUBm",
+                            "modal_doc_ocr_pipeline__3JW9Bdd",
+                            "etl_pipeline_orchestrator__r559Y2b",
+                            "document_analytics_pipeline__j4bpatJ",
+                            "modal_event_pipeline__Fzr9Ynt",
+                            "ml_serving_pipeline_checkpoint__UNGkrXZ",
+                            "hyperparameter_sweep_orchestrato__Jx2wdBg"
+                        ]
+                    }
+                },
+                "exception_stats": {}
+            }
+        }
+    }
+}

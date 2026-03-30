@@ -1,0 +1,95 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 8,
+            "passed": 7,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774841437.5818,
+            "stop": 1774841453.3458583
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_app_file_exists",
+                "status": "passed",
+                "duration": 0.0002830503508448601,
+                "start": 1774841437.5890117,
+                "stop": 1774841437.5894258,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 10.348262042738497,
+                "start": 1774841437.5895398,
+                "stop": 1774841447.9381187,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.7241174578666687,
+                "start": 1774841447.9384887,
+                "stop": 1774841448.662928,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_secret_listed",
+                "status": "passed",
+                "duration": 0.6882622363045812,
+                "start": 1774841448.663316,
+                "stop": 1774841449.3519132,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_total_requests_processed",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.8314518854022026,
+                "start": 1774841449.3522995,
+                "stop": 1774841450.2086308,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "deployed_app = None\n\n    def test_dict_total_requests_processed(deployed_app):\n        result = run_modal([\"dict\", \"get\", DICT_NAME, \"total_requests_processed\"], timeout=60)\n        raw = result.stdout.strip()\n        try:\n            value = int(raw)\n        except ValueError:\n            pytest.fail(f\"Dict key 'total_requests_processed' is not an integer. Got: '{raw}'\")\n>       assert value > 0, (\n            f\"Dict key 'total_requests_processed' must be > 0, got {value}\"\n        )\nE       AssertionError: Dict key 'total_requests_processed' must be > 0, got 0\nE       assert 0 > 0\n\n/tests/test_final_state.py:95: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_dict_rate_limit_hits",
+                "status": "passed",
+                "duration": 0.7671799305826426,
+                "start": 1774841450.2089257,
+                "stop": 1774841450.9764338,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_gateway_status",
+                "status": "passed",
+                "duration": 0.7754991743713617,
+                "start": 1774841450.9767916,
+                "stop": 1774841451.7526329,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_api_version",
+                "status": "passed",
+                "duration": 1.592100815847516,
+                "start": 1774841451.7530096,
+                "stop": 1774841453.345438,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

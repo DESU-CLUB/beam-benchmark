@@ -1,0 +1,113 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 9,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774842005.6302147,
+            "stop": 1774842040.129314
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_app_file_exists",
+                "status": "passed",
+                "duration": 0.00027500977739691734,
+                "start": 1774842005.637848,
+                "stop": 1774842005.6382518,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 22.482633469160646,
+                "start": 1774842005.6383727,
+                "stop": 1774842028.1213043,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.47416025027632713,
+                "start": 1774842028.121621,
+                "stop": 1774842028.5960855,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_listed",
+                "status": "passed",
+                "duration": 0.4678428303450346,
+                "start": 1774842028.5964305,
+                "stop": 1774842029.064637,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_checkpoint_file_exists",
+                "status": "passed",
+                "duration": 0.6182891041971743,
+                "start": 1774842029.0650206,
+                "stop": 1774842029.6836493,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_best_lr",
+                "status": "passed",
+                "duration": 0.4871194427832961,
+                "start": 1774842029.6839976,
+                "stop": 1774842030.1714423,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_best_batch_size",
+                "status": "passed",
+                "duration": 0.48736750381067395,
+                "start": 1774842030.1717832,
+                "stop": 1774842030.659367,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_best_score",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.4828740549273789,
+                "start": 1774842030.6595485,
+                "stop": 1774842031.1706662,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "deployed_app = None\n\n    def test_dict_best_score(deployed_app):\n        result = run_modal([\"dict\", \"get\", DICT_NAME, \"best_score\"], timeout=60)\n        raw = result.stdout.strip()\n        try:\n            value = float(raw)\n        except ValueError:\n            pytest.fail(f\"Dict key 'best_score' is not a float. Got: '{raw}'\")\n>       assert value > 0.0, (\n            f\"Dict key 'best_score' must be > 0.0, got {value}\"\n        )\nE       AssertionError: Dict key 'best_score' must be > 0.0, got -0.8413475155830383\nE       assert -0.8413475155830383 > 0.0\n\n/tests/test_final_state.py:122: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_dict_total_trials",
+                "status": "passed",
+                "duration": 3.7001541201025248,
+                "start": 1774842031.171003,
+                "stop": 1774842034.8715055,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_checkpoint_path",
+                "status": "passed",
+                "duration": 5.256802015937865,
+                "start": 1774842034.8718445,
+                "stop": 1774842040.128925,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

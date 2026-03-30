@@ -1,0 +1,110 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 10,
+            "failed": 0,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774841893.232598,
+            "stop": 1774841905.8841045
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_app_file_exists",
+                "status": "passed",
+                "duration": 0.00028241053223609924,
+                "start": 1774841893.2405128,
+                "stop": 1774841893.2409315,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_deploy_succeeds",
+                "status": "passed",
+                "duration": 4.620145181193948,
+                "start": 1774841893.2410457,
+                "stop": 1774841897.8614936,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_listed",
+                "status": "passed",
+                "duration": 0.7250180644914508,
+                "start": 1774841897.861814,
+                "stop": 1774841898.5871274,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_listed",
+                "status": "passed",
+                "duration": 0.7006622115150094,
+                "start": 1774841898.5874813,
+                "stop": 1774841899.2884417,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_secret_listed",
+                "status": "passed",
+                "duration": 0.7198559883981943,
+                "start": 1774841899.2887778,
+                "stop": 1774841900.0089536,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_output_file_exists",
+                "status": "passed",
+                "duration": 1.992894297465682,
+                "start": 1774841900.009343,
+                "stop": 1774841902.002574,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_records_extracted",
+                "status": "passed",
+                "duration": 0.7957737697288394,
+                "start": 1774841902.0029469,
+                "stop": 1774841902.7990506,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_records_loaded",
+                "status": "passed",
+                "duration": 0.802708457224071,
+                "start": 1774841902.799444,
+                "stop": 1774841903.6024995,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_pipeline_status",
+                "status": "passed",
+                "duration": 0.7652542674914002,
+                "start": 1774841903.6028798,
+                "stop": 1774841904.3684545,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_output_path",
+                "status": "passed",
+                "duration": 1.5146313728764653,
+                "start": 1774841904.3688023,
+                "stop": 1774841905.8836875,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}

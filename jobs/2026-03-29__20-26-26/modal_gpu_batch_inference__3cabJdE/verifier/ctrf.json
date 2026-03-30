@@ -1,0 +1,113 @@
+{
+    "results": {
+        "tool": {
+            "name": "pytest",
+            "version": "8.4.1"
+        },
+        "summary": {
+            "tests": 10,
+            "passed": 9,
+            "failed": 1,
+            "skipped": 0,
+            "pending": 0,
+            "other": 0,
+            "start": 1774841346.519818,
+            "stop": 1774841360.085162
+        },
+        "tests": [
+            {
+                "name": "test_final_state.py::test_app_file_exists",
+                "status": "passed",
+                "duration": 8.42221237999911,
+                "start": 1774841346.5327346,
+                "stop": 1774841354.955192,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_app_in_modal_app_list",
+                "status": "passed",
+                "duration": 0.5256161910074297,
+                "start": 1774841354.9553883,
+                "stop": 1774841355.4812086,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_exists",
+                "status": "passed",
+                "duration": 0.4833453899991582,
+                "start": 1774841355.4814072,
+                "stop": 1774841355.9649405,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_secret_exists",
+                "status": "passed",
+                "duration": 0.4915002710040426,
+                "start": 1774841355.9651358,
+                "stop": 1774841356.4568238,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_volume_contains_weights",
+                "status": "passed",
+                "duration": 0.5911055580072571,
+                "start": 1774841356.4570172,
+                "stop": 1774841357.0483117,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_model_name",
+                "status": "failed",
+                "raw_status": "call_failed",
+                "duration": 0.4823047790050623,
+                "start": 1774841357.0485306,
+                "stop": 1774841357.5429463,
+                "retries": 0,
+                "file_path": "test_final_state.py",
+                "trace": "def test_dict_model_name():\n        env = os.environ.copy()\n        env[\"MODAL_ENVIRONMENT\"] = MODAL_ENV\n        result = subprocess.run(\n            [\"modal\", \"dict\", \"get\", DICT_NAME, \"model_name\"],\n            capture_output=True,\n            text=True,\n            env=env,\n            timeout=900,\n        )\n        assert result.returncode == 0, f\"modal dict get model_name failed: {result.stderr}\"\n>       assert result.stdout.strip() == \"linear-v1\", (\n            f\"Expected model_name='linear-v1', got: '{result.stdout.strip()}'\"\n        )\nE       AssertionError: Expected model_name='linear-v1', got: 'default-model'\nE       assert 'default-model' == 'linear-v1'\nE         \nE         - linear-v1\nE         + default-model\n\n/tests/test_final_state.py:152: AssertionError",
+                "message": "The test failed in the call phase due to an assertion error"
+            },
+            {
+                "name": "test_final_state.py::test_dict_total_samples",
+                "status": "passed",
+                "duration": 0.5142607119996683,
+                "start": 1774841357.543094,
+                "stop": 1774841358.0575387,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_batches_processed",
+                "status": "passed",
+                "duration": 0.4823284000012791,
+                "start": 1774841358.057731,
+                "stop": 1774841358.5402465,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_avg_prediction_parseable_as_float",
+                "status": "passed",
+                "duration": 0.48272000300494255,
+                "start": 1774841358.5404413,
+                "stop": 1774841359.0233536,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            },
+            {
+                "name": "test_final_state.py::test_dict_weights_path",
+                "status": "passed",
+                "duration": 1.061158720003732,
+                "start": 1774841359.0235786,
+                "stop": 1774841360.0849154,
+                "retries": 0,
+                "file_path": "test_final_state.py"
+            }
+        ]
+    }
+}
