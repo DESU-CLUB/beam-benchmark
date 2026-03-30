@@ -1,0 +1,23 @@
+Selected strategy: _DaytonaDirect
+Creating new AsyncDaytona client
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/modal_gpu_batch_inference/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/modal_hp_sweep_checkpoint/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/modal_nfs_etl_pipeline/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/modal_gpu_embedding_service/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/modal_doc_ocr_pipeline/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/etl_pipeline_orchestrator/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/document_analytics_pipeline/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/modal_event_pipeline/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/rate_limited_api_gateway/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/ml_serving_pipeline_checkpoint/environment/Dockerfile
+Selected strategy: _DaytonaDirect
+Building environment from /Users/warrenlow/Documents/projects/pochi-harbor/new-modal-tasks/hyperparameter_sweep_orchestrator/environment/Dockerfile

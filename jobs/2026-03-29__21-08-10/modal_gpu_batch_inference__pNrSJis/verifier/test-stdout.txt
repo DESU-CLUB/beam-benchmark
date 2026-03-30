@@ -1,0 +1,688 @@
+Hit:1 http://archive.ubuntu.com/ubuntu noble InRelease
+Hit:2 http://archive.ubuntu.com/ubuntu noble-updates InRelease
+Hit:3 http://archive.ubuntu.com/ubuntu noble-backports InRelease
+Hit:4 https://deb.nodesource.com/node_20.x nodistro InRelease
+Hit:5 http://security.ubuntu.com/ubuntu noble-security InRelease
+Reading package lists...
+Reading package lists...
+Building dependency tree...
+Reading state information...
+curl is already the newest version (8.5.0-2ubuntu10.8).
+0 upgraded, 0 newly installed, 0 to remove and 10 not upgraded.
+downloading uv 0.9.7 x86_64-unknown-linux-gnu
+no checksums to verify
+installing to /root/.local/bin
+  uv
+  uvx
+everything's installed!
+
+To add $HOME/.local/bin to your PATH, either restart your shell or run:
+
+    source $HOME/.local/bin/env (sh, bash, zsh)
+    source $HOME/.local/bin/env.fish (fish)
+Downloading pygments (1.2MiB)
+ Downloading pygments
+Installed 6 packages in 16ms
+============================= test session starts ==============================
+platform linux -- Python 3.12.3, pytest-8.4.1, pluggy-1.6.0
+rootdir: /tests
+plugins: json-ctrf-0.3.5
+collected 10 items
+
+../../../tests/test_final_state.py EEEEEEEEEE                            [100%]
+
+==================================== ERRORS ====================================
+____________________ ERROR at setup of test_app_file_exists ____________________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+---------------------------- Captured stdout setup -----------------------------
+Created a new secret 'modal-gpu-batch-inference-secret' with the keys 
+'MODEL_NAME', 'INFERENCE_BATCH_SIZE'
+
+Use it in your Modal app:
+
+                                                                                
+@app.function(secrets=[modal.Secret.from_name("modal-gpu-batch-inference-secret"
+def some_function():                                                            
+    os.getenv("MODEL_NAME")                                                     
+    os.getenv("INFERENCE_BATCH_SIZE")                                           
+                                                                                
+_________________ ERROR at setup of test_app_in_modal_app_list _________________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+_____________________ ERROR at setup of test_volume_exists _____________________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+_____________________ ERROR at setup of test_secret_exists _____________________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+________________ ERROR at setup of test_volume_contains_weights ________________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+____________________ ERROR at setup of test_dict_model_name ____________________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+__________________ ERROR at setup of test_dict_total_samples ___________________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+________________ ERROR at setup of test_dict_batches_processed _________________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+________ ERROR at setup of test_dict_avg_prediction_parseable_as_float _________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+___________________ ERROR at setup of test_dict_weights_path ___________________
+
+    @pytest.fixture(scope="module", autouse=True)
+    def deploy_and_run():
+        env = os.environ.copy()
+        env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    
+        # Create the secret
+        subprocess.run(
+            [
+                "modal", "secret", "create", SECRET_NAME,
+                "MODEL_NAME=linear-v1",
+                "INFERENCE_BATCH_SIZE=16",
+                "--force",
+            ],
+            env=env,
+            timeout=120,
+        )
+    
+        # Deploy the app
+        deploy_result = subprocess.run(
+            ["modal", "deploy", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+        assert deploy_result.returncode == 0, (
+            f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+        )
+    
+        # Run the local entrypoint
+        run_result = subprocess.run(
+            ["modal", "run", APP_FILE],
+            capture_output=True,
+            text=True,
+            env=env,
+            timeout=900,
+        )
+>       assert run_result.returncode == 0, (
+            f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+        )
+E       AssertionError: modal run failed:
+E         stdout: ✓ Initialized. View run at 
+E         https://modal.com/apps/tabbyml/modal-vsdatagen/ap-2wM28mzEETS1YfiiFvjfPO
+E         ✓ Created objects.
+E         ├── 🔨 Created mount /home/user/modal_project/modal_gpu_batch_inference.py
+E         └── 🔨 Created function BatchInferenceModel.*.
+E         Stopping app - uncaught exception raised locally: ModuleNotFoundError("No module named 'numpy'").
+E         
+E         stderr: ╭───────────────────── Traceback (most recent call last) ──────────────────────╮
+E         │ /home/user/modal_project/modal_gpu_batch_inference.py:54 in main             │
+E         │                                                                              │
+E         │   53 def main() -> None:                                                     │
+E         │ ❱ 54 │   import numpy as np                                                  │
+E         │   55                                                                         │
+E         ╰──────────────────────────────────────────────────────────────────────────────╯
+E         ModuleNotFoundError: No module named 'numpy'
+E         
+E       assert 1 == 0
+E        +  where 1 = CompletedProcess(args=['modal', 'run', '/home/user/modal_project/modal_gpu_batch_inference.py'], returncode=1, stdout=...────────────────────────────────────────────────────────────────────╯\nModuleNotFoundError: No module named 'numpy'\n").returncode
+
+/tests/test_final_state.py:51: AssertionError
+=========================== short test summary info ============================
+ERROR ../../../tests/test_final_state.py::test_app_file_exists - AssertionErr...
+ERROR ../../../tests/test_final_state.py::test_app_in_modal_app_list - Assert...
+ERROR ../../../tests/test_final_state.py::test_volume_exists - AssertionError...
+ERROR ../../../tests/test_final_state.py::test_secret_exists - AssertionError...
+ERROR ../../../tests/test_final_state.py::test_volume_contains_weights - Asse...
+ERROR ../../../tests/test_final_state.py::test_dict_model_name - AssertionErr...
+ERROR ../../../tests/test_final_state.py::test_dict_total_samples - Assertion...
+ERROR ../../../tests/test_final_state.py::test_dict_batches_processed - Asser...
+ERROR ../../../tests/test_final_state.py::test_dict_avg_prediction_parseable_as_float
+ERROR ../../../tests/test_final_state.py::test_dict_weights_path - AssertionE...
+============================== 10 errors in 2.96s ==============================
