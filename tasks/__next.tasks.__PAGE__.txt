@@ -2,384 +2,268 @@
 2:I[42654,["/modal-benchmark/_next/static/chunks/ca023ad85cd7aeee.js","/modal-benchmark/_next/static/chunks/2ad5122eae704b1a.js","/modal-benchmark/_next/static/chunks/584417517a743f28.js","/modal-benchmark/_next/static/chunks/be08138953094657.js"],"TasksPageClient"]
 e:I[75049,["/modal-benchmark/_next/static/chunks/d2c13bb33c4fcd54.js","/modal-benchmark/_next/static/chunks/c21188132e0e0d48.js"],"OutletBoundary"]
 f:"$Sreact.suspense"
-3:Ta82,# Distributed Document Processing and Analytics Pipeline on Modal
+3:T642,Build a parallel document analytics pipeline on Modal as app `document-analytics-pipeline` at `/home/user/modal_project/document_analytics_pipeline.py`.
 
-You are a platform engineer building a distributed document processing and analytics pipeline on Modal. The entire system must be implemented in a single file: `/home/user/modal_project/pipeline.py`.
+The system must use a Modal Class with a `@modal.enter` lifecycle method to initialize a text processing pipeline (using only Python stdlib `re` and `collections`). The class method must analyze a single document string and return per-document statistics: word count, unique word count, and the top 3 most frequent words.
 
-## System Requirements
+Use `.map()` to process at least 5 hardcoded sample text documents in parallel through the analyzer class. Aggregate the results and write a JSON analytics report to `/reports/analytics_report.json` inside a Modal Volume named `document-analytics-pipeline-vol` (mounted at `/reports`). Use `modal.Image.debian_slim()` as the base image — no additional pip packages are required.
 
-Build a Modal App named `"document-analytics-pipeline"` with the following capabilities:
+After the pipeline runs, store the following aggregated metrics in the Modal Dict `document-analytics-pipeline-output`:
+- `total_documents`: integer, must be >= 5
+- `total_words`: integer, must be > 0
+- `avg_words_per_doc`: float, must be > 0.0
+- `report_path`: the string `"/reports/analytics_report.json"`
 
-### Scheduled Ingestion (Cron)
-The pipeline must run on an **hourly cron schedule**. Each run processes a corpus of synthetic text documents.
+Implement a `@app.local_entrypoint()` that runs the full pipeline end-to-end: parallel batch processing, result aggregation, volume write, and Dict update.
 
-### Parallel Processing (Map/Starmap)
-Process documents in parallel using Modal's `map` or `starmap`. For each document, perform NLP-style text analysis using **only Python's standard library**:
-- `word_count` — total number of words in the document
-- `sentence_count` — total number of sentences
-- `keywords` — extracted keywords (e.g., most frequent words)
-- `char_count` — total number of characters
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` before running any modal commands.
 
-### Pipeline Authentication (Modal Secret)
-Use a **Modal Secret named `pipeline-credentials`** with key `PIPELINE_API_KEY=super-secret-pipeline-key` to validate the pipeline API key before processing.
-
-### Results Storage (Modal Dict)
-Use a **Modal Dict named `doc-analytics-output`** (with `create_if_missing=True`) to store all results. The Dict must contain:
-
-**Per-document entries** (at least 10 documents): Each document should be stored as a separate key (e.g., `doc_0`, `doc_1`, ..., `doc_9`) with a JSON value containing:
-- `word_count` — integer word count
-- `sentence_count` — integer sentence count
-- `keywords` — list of extracted keywords
-- `char_count` — integer character count
-
-**Summary entry**: A key named `summary` containing a JSON object with:
-- `total_documents` — the total number of documents processed
-- `total_words` — the sum of all word counts across documents
-- `avg_words_per_doc` — average words per document
-- `timestamp` — an ISO timestamp of when the pipeline ran
-
-The Dict must contain at least **11 entries total** (10 documents + 1 summary).
-
-### Manual Trigger (Local Entrypoint)
-Implement a `@app.local_entrypoint()` that runs the full pipeline — processing at least 10 synthetic documents and storing results in the Dict.
-
-## Deployment Instructions
-
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
-
+Deploy with:
 ```
+modal deploy /home/user/modal_project/document_analytics_pipeline.py
+```
+
+Then run the local entrypoint with:
+```
+modal run /home/user/modal_project/document_analytics_pipeline.py
+```
+4:T450,You are a researcher running GPU experiments at scale. Build and deploy a distributed hyperparameter sweep system on Modal that fans out simulated training experiments in parallel across a grid of learning rates and dropout rates, aggregates all results, and persists the best configuration to persistent storage. Use the Modal Secret `hyperparameter-sweep-orchestrator-secret` (containing `EXPERIMENT_ID=sweep-run-001` and `MAX_TRIALS=9`), the Modal Volume `hyperparameter-sweep-orchestrator-vol` (saving all trial results to `/sweeps/all_trials.json` and the best params to `/sweeps/best_params.json`), and the Modal Dict `hyperparameter-sweep-orchestrator-output` (storing keys: `experiment_id`, `total_trials`, `best_loss`, `best_lr`, `best_dropout`). Create the app named `hyperparameter-sweep-orchestrator` in `/home/user/modal_project/hyperparameter_sweep_orchestrator.py`, set `MODAL_ENVIRONMENT=modal-vsdatagen`, then deploy with `modal deploy /home/user/modal_project/hyperparameter_sweep_orchestrator.py` and run with `modal run /home/user/modal_project/hyperparameter_sweep_orchestrator.py`.
+5:T96b,You are an ML ops engineer managing model serving infrastructure. Build and deploy a production-style ML model serving pipeline on Modal that loads model checkpoints from persistent storage and exposes an HTTP inference endpoint.
+
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` before running any modal commands.
+
+Create a Modal app named `ml-serving-pipeline-checkpoint` in the file `/home/user/modal_project/ml_serving_pipeline_checkpoint.py`.
+
+Use `modal.Image.debian_slim().pip_install("numpy", "fastapi")` as the image.
+
+Your implementation must achieve all of the following:
+
+**Model loading and warm pool**: Define a Modal Class that loads a model (a numpy array) from the Modal Volume `ml-serving-pipeline-checkpoint-vol` at the path `/checkpoints/model.npy` on startup. If no checkpoint exists, initialize a new model as a numpy random matrix. Configure the class to maintain a warm pool of 2 instances.
+
+**Web inference endpoint**: Expose a POST web endpoint on the class that accepts JSON with an `"inputs"` field (a list of numbers) and returns predictions computed using the loaded model weights.
+
+**Volume checkpointing**: Persist the model to the Modal Volume `ml-serving-pipeline-checkpoint-vol` at `/checkpoints/model.npy`.
+
+**Secret integration**: Attach the Modal Secret named `ml-serving-pipeline-checkpoint-secret`, which provides `MODEL_VERSION` and `AUTH_TOKEN` environment variables. Use these values in your implementation.
+
+**Operational metadata**: Write the following keys to the Modal Dict named `ml-serving-pipeline-checkpoint-output`:
+- `model_version`: the string `"v1.0.0"`
+- `checkpoint_saved`: the string `"true"`
+- `endpoint_ready`: the string `"true"`
+- `warm_pool_size`: the string `"2"`
+
+**Local entrypoint**: Implement a `@app.local_entrypoint()` that saves a dummy model checkpoint to the Volume, performs a test inference call to the web endpoint, and populates all metadata keys in the Dict.
+
+Before deploying, create the required secret:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal secret create ml-serving-pipeline-checkpoint-secret MODEL_VERSION=v1.0.0 AUTH_TOKEN=serving-auth-abc123 --force
+```
+
+Deploy with:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal deploy /home/user/modal_project/ml_serving_pipeline_checkpoint.py
+```
+
+Then run the local entrypoint with:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal run /home/user/modal_project/ml_serving_pipeline_checkpoint.py
+```
+6:T880,Build a parallel OCR simulation pipeline on Modal as app `modal-doc-ocr-pipeline` at `/home/user/modal_project/modal_doc_ocr_pipeline.py`.
+
+The system must use a Modal Class with a `@modal.enter` lifecycle method to initialize a document parser using only Python stdlib (`base64`, `re`, and `collections`). The class method must accept a base64-encoded document string and return per-document statistics: total word count, sentence count, and character count of the decoded text.
+
+Use `.map()` to process at least 6 hardcoded synthetic base64-encoded document strings in parallel through the processor class. Aggregate the results and write a JSON summary to `/ocr_output/summary.json` inside a Modal Volume named `modal-doc-ocr-pipeline-vol` (mounted at `/ocr_output`). Use `modal.Image.debian_slim()` as the base image — no additional pip packages are required.
+
+Attach the Modal Secret `modal-doc-ocr-pipeline-secret` (which contains `OCR_SERVICE_KEY` and `MAX_PAGES`) to your Modal function. Inside the function, read `OCR_SERVICE_KEY` from the environment and record whether it is present.
+
+After the pipeline runs, store the following aggregated metrics in the Modal Dict `modal-doc-ocr-pipeline-output`:
+- `documents_processed`: integer, must be >= 6
+- `total_words`: integer, must be > 0
+- `total_sentences`: integer, must be > 0
+- `ocr_service_key_present`: the string `"true"` (when `OCR_SERVICE_KEY` is found in the environment)
+- `summary_path`: the string `"/ocr_output/summary.json"`
+
+Implement a `@app.local_entrypoint()` that runs the full pipeline end-to-end: parallel batch processing, result aggregation, volume write, and Dict update.
+
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` before running any modal commands.
+
+First, create the required secret:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal secret create modal-doc-ocr-pipeline-secret OCR_SERVICE_KEY=ocr-key-2024-xyz MAX_PAGES=100 --force
+```
+
+Deploy with:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal deploy /home/user/modal_project/modal_doc_ocr_pipeline.py
+```
+
+Then run the local entrypoint with:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal run /home/user/modal_project/modal_doc_ocr_pipeline.py
+```
+7:T807,You are a platform engineer building internal tooling on Modal. Build and deploy an event pipeline that uses a Modal Queue for event buffering, a Modal Volume for persistence, a Modal Dict for status tracking, and a Modal Web Endpoint for observability.
+
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` before running any modal commands.
+
+Create a Modal app named `modal-event-pipeline` in the file `/home/user/modal_project/modal_event_pipeline.py`.
+
+The pipeline must:
+
+1. Use a Modal Queue named `modal-event-pipeline-queue` (created via `modal.Queue.from_name("modal-event-pipeline-queue", create_if_missing=True)`) to buffer events between a producer and a consumer.
+
+2. Implement a **producer** that generates exactly 10 synthetic events — each event is a dict containing `event_id` (int), `timestamp` (string), and `payload` (a non-empty string) — and pushes all 10 events to the Queue.
+
+3. Implement a **consumer** that drains the Queue, enriches each event with `processed=True` and `word_count` (integer word count of the `payload` string), then writes all processed events as a JSON array to the Modal Volume `modal-event-pipeline-vol` at the path `/events/processed_events.json`.
+
+4. Implement a Modal **Web Endpoint** (GET) using FastAPI that reads from the Modal Dict `modal-event-pipeline-output` and returns the current processing status as JSON.
+
+5. Use the Modal Dict named `modal-event-pipeline-output` to store these keys after the pipeline runs:
+   - `events_produced` → integer `10`
+   - `events_consumed` → integer `10`
+   - `processing_complete` → string `"true"`
+   - `output_path` → string `"/events/processed_events.json"`
+
+6. Use `modal.Image.debian_slim().pip_install("fastapi")` as the image for all functions.
+
+7. Implement a `@app.local_entrypoint()` that runs the producer, then the consumer, then stores the results in the Dict.
+
+Deploy with:
+```
+modal deploy /home/user/modal_project/modal_event_pipeline.py
+```
+
+Then run the local entrypoint with:
+```
+modal run /home/user/modal_project/modal_event_pipeline.py
+```
+8:T51d,# GPU Batch Inference Pipeline
+
+Build and deploy a GPU-accelerated batch inference pipeline at `/home/user/modal_project/modal_gpu_batch_inference.py` using Modal app `modal-gpu-batch-inference`. The pipeline should use a Modal Class that loads or initializes a weight matrix from the volume `modal-gpu-batch-inference-vol` (at path `/models/weights.npy`) on startup with a T4 GPU, expose a method that performs matrix multiply inference on batches of 128-dimensional input vectors, and use `.map()` to distribute 8 batches of 16 samples each across parallel containers — collecting all 128 predictions and storing aggregated results (`model_name`, `total_samples`, `batches_processed`, `avg_prediction`, `weights_path`) into the dict `modal-gpu-batch-inference-output`. Use the secret `modal-gpu-batch-inference-secret` (keys: `MODEL_NAME`, `INFERENCE_BATCH_SIZE`) to configure the model name and batch size, build your image with `modal.Image.debian_slim().pip_install("numpy")`, and implement a `@app.local_entrypoint()` that drives the full pipeline end-to-end.
+
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` for all Modal CLI commands.
+
+Deploy with:
+```
+modal deploy /home/user/modal_project/modal_gpu_batch_inference.py
+```
+
+Run with:
+```
+modal run /home/user/modal_project/modal_gpu_batch_inference.py
+```
+9:Ta32,# GPU-Accelerated Text Embedding Service
+
+## Goal
+
+Build and deploy a GPU-accelerated text embedding inference service on Modal. The service should expose a web endpoint that accepts a list of text strings and returns their vector embeddings, authenticated via an API key.
+
+## Requirements
+
+### Environment Setup
+
+Set the following environment variable before running any `modal` commands:
+
+```bash
 export MODAL_ENVIRONMENT=modal-vsdatagen
 ```
 
-Deploy the app:
+### App Configuration
 
-```
-modal deploy /home/user/modal_project/pipeline.py
-```
+- **App name**: `modal-gpu-embedding-service`
+- **File path**: `/home/user/modal_project/modal_gpu_embedding_service.py`
 
-After deployment, trigger a manual run to populate the output Dict:
+### Components to Implement
 
-```
-modal run /home/user/modal_project/pipeline.py
-```
+#### 1. GPU Model Class (T4)
 
-**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.
-4:Tb81,# Fault-Tolerant ETL Pipeline on Modal
+- Create a Modal Class that runs on a **T4 GPU**
+- Load a **sentence-transformers** model (e.g. `sentence-transformers/all-MiniLM-L6-v2`) for generating text embeddings
+- Cache the downloaded model files in a **Modal Volume** named `modal-gpu-embedding-service-vol`, mounted at `/model-cache`
+- The model must be loaded once during container startup (not on every request) to minimize latency
 
-You are a platform engineer tasked with building a production-grade, fault-tolerant ETL pipeline using Modal's serverless infrastructure. The entire system must be implemented in a single file: `/home/user/modal_project/etl.py`.
+#### 2. Authenticated Web Endpoint
 
-## System Requirements
+- Expose an ASGI/FastAPI web endpoint on the Modal Class
+- The endpoint must accept **POST requests** with a JSON body containing a list of texts
+- Return the embeddings as a list of float arrays in the response
+- Authenticate requests using the `API_KEY` value from the **Modal Secret** named `modal-gpu-embedding-service-secret`
+- Reject requests that are missing or have an incorrect API key with **HTTP 401**
 
-Build a Modal App named `etl-pipeline` that operates as an end-to-end data pipeline with the following capabilities:
+#### 3. Modal Secret
 
-### Data Ingestion (Scheduled)
-The pipeline must automatically ingest synthetic data on a **5-minute schedule** using `modal.Period(minutes=5)`. The ingestion component generates batches of raw records (each with a category drawn from a small fixed set, a numeric value, and a timestamp), persists them as JSON files on a **Modal NetworkFileSystem (NFS)** named `etl-nfs`, and immediately kicks off data processing for the new batch. Each ingestion run must produce a distinct file using the naming convention `raw_<timestamp>.json`. Use `create_if_missing=True` when referencing the NFS.
+- Create a Modal Secret named `modal-gpu-embedding-service-secret` containing the key `API_KEY`
+- The value of `API_KEY` must be `test-embedding-key-2024`
+- Create the secret before deploying:
+  ```bash
+  modal secret create modal-gpu-embedding-service-secret API_KEY=test-embedding-key-2024 --force
+  ```
 
-### Data Processing (Fault-Tolerant)
-A separate processing function reads a raw data file from the NFS, aggregates the records by category (computing statistics such as count and sum per category), and writes the aggregated output back to the NFS using the naming convention `processed_<timestamp>.json`. This function must be configured with **`retries=3` and `timeout=120`** to handle transient failures gracefully.
+#### 4. Service Stats in Modal Dict
 
-### Live Status Endpoint (FastAPI)
-Expose a **GET `/status`** web endpoint using FastAPI that reads the most recently written processed results from the NFS and returns the pipeline statistics as JSON. If no processed data is available, the endpoint should return a JSON response clearly indicating the pipeline has not run yet. This endpoint must have access to the NFS.
+- Implement a `local_entrypoint` that:
+  1. Makes a test POST request to the deployed web endpoint with the correct API key
+  2. Stores the following statistics in the **Modal Dict** named `modal-gpu-embedding-service-output`:
+     - `model_name`: the name of the sentence-transformers model used (string)
+     - `total_requests`: the number of inference requests served (integer, must be > 0)
+     - `embedding_dim`: the dimensionality of the embedding vectors (integer, must be > 0)
 
-### Pipeline Metadata (Modal Dict)
-All pipeline run metadata must be persisted in a **Modal Dict named `etl-pipeline-metadata`** (use `create_if_missing=True`). The dict must track at minimum these exact keys:
-- `run_count` — an integer counter that increments each ingestion cycle (must be >= 1 after a manual run)
-- `last_run_timestamp` — the timestamp of the most recent successful run
-- `error_count` — an integer counter for processing failures
+### Deployment
 
-### Manual Trigger
-Implement a `@app.local_entrypoint()` that allows the pipeline to be triggered manually — running the full ingest-and-process cycle — so the system can be tested without waiting for the cron schedule to fire.
+Deploy the app with:
 
-## Deployment Instructions
-
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
-
-```
-export MODAL_ENVIRONMENT=modal-vsdatagen
-```
-
-Deploy the app:
-
-```
-modal deploy /home/user/modal_project/etl.py
+```bash
+modal deploy /home/user/modal_project/modal_gpu_embedding_service.py
 ```
 
-After deployment, trigger a manual run to populate the NFS and Dict:
+Then run the local entrypoint to populate the service stats Dict:
 
+```bash
+modal run /home/user/modal_project/modal_gpu_embedding_service.py
 ```
-modal run /home/user/modal_project/etl.py
+a:Taaf,You are a data engineer building a batch processing pipeline on Modal. Your goal is to implement a production-grade ETL system that uses a shared Modal Volume to pass data between three distinct pipeline stages, simulating the cross-function file sharing pattern historically provided by Network File Systems.
+
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` before running any modal commands.
+
+Create a Modal app named `modal-nfs-etl-pipeline` in the file `/home/user/modal_project/modal_nfs_etl_pipeline.py`.
+
+**Pipeline Requirements:**
+
+Build three separate Modal functions (extract, transform, load) that all mount the same Modal Volume (`modal-nfs-etl-pipeline-vol` at `/shared`) for shared file access. Use `modal.Image.debian_slim().pip_install("pandas")` as the image for all functions.
+
+- The **extract** stage should generate synthetic CSV data with at least 10 rows containing string and numeric fields, then write it to `/shared/raw_data.csv` in the volume.
+- The **transform** stage should read `/shared/raw_data.csv`, apply transformations (e.g., uppercase all string fields, add a computed column), and write the result to `/shared/transformed_data.csv`.
+- The **load** stage should read `/shared/transformed_data.csv`, compute aggregate statistics, and write a final JSON report to `/shared/final_report.json`.
+
+All three functions must mount the same volume so each stage can read the files written by the previous stage.
+
+**Secret:** Use a Modal Secret named `modal-nfs-etl-pipeline-secret` with keys `PIPELINE_ID` (value: `nfs-etl-2024`) and `BATCH_SIZE` (value: `50`). The pipeline functions must consume this secret.
+
+**Dict:** After the pipeline completes, store the following in a Modal Dict named `modal-nfs-etl-pipeline-output`:
+- `rows_extracted`: number of rows written during extract (integer >= 10)
+- `rows_transformed`: number of rows written during transform (integer >= 10)
+- `rows_loaded`: number of rows processed during load (integer >= 10)
+- `pipeline_id`: the string `"nfs-etl-2024"`
+- `report_path`: the string `"/shared/final_report.json"`
+
+**Local Entrypoint:** Implement a `@app.local_entrypoint()` that calls all three functions in sequence using `.remote()` calls (extract → transform → load), then stores all results in the Dict.
+
+**Steps to deploy:**
+
+First, create the secret:
 ```
-
-**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.
-5:T8df,# Hyperparameter Sweep Orchestration System on Modal
-
-You are an ML engineer building a hyperparameter sweep orchestration system on Modal. The entire system must be implemented in a single file: `/home/user/modal_project/sweep.py`.
-
-## System Requirements
-
-Build a Modal App named `"hyperparameter-sweep"` that orchestrates parallel hyperparameter experiments with the following capabilities:
-
-### Sweep Runner (Modal Class with Lifecycle Methods)
-Define a Modal Class with lifecycle methods that runs parallel experiments. The class should:
-- Sweep combinations of **learning rate** and **batch size** using numpy (at least 3 values for each, producing >= 9 total combinations)
-- Use `.starmap()` to run experiments in parallel
-- Track the best configuration (highest accuracy or lowest loss) across all runs
-
-### Results Storage (Modal Volume)
-Use a **Modal Volume named `hp-sweep-experiments`** (with `create_if_missing=True`) to persist each experiment's results as a JSON file. Each file should contain the hyperparameters used and the resulting metric.
-
-### Best Configuration Tracking (Modal Dict)
-Use a **Modal Dict named `hp-sweep-results`** (with `create_if_missing=True`) to track:
-- `best_config` — a JSON object containing the best hyperparameter configuration found (must include `learning_rate` or `lr` and `batch_size` or `bs` fields)
-- `experiment_count` — an integer representing the total number of experiments run (must be >= 9)
-
-### Web Endpoint (FastAPI)
-Expose the best result through a **FastAPI web endpoint** that returns the best configuration as JSON.
-
-### Manual Trigger (Local Entrypoint)
-Implement a `@app.local_entrypoint()` that triggers the full sweep, populates the Volume with experiment results, and updates the Dict with `best_config` and `experiment_count`.
-
-## Deployment Instructions
-
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
-
-```
-export MODAL_ENVIRONMENT=modal-vsdatagen
+MODAL_ENVIRONMENT=modal-vsdatagen modal secret create modal-nfs-etl-pipeline-secret PIPELINE_ID=nfs-etl-2024 BATCH_SIZE=50 --force
 ```
 
 Deploy the app:
-
 ```
-modal deploy /home/user/modal_project/sweep.py
-```
-
-After deployment, trigger a manual run to populate the Volume and Dict:
-
-```
-modal run /home/user/modal_project/sweep.py
+MODAL_ENVIRONMENT=modal-vsdatagen modal deploy /home/user/modal_project/modal_nfs_etl_pipeline.py
 ```
 
-**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.
-6:T859,Build a document OCR processing pipeline in `/home/user/doc_pipeline/app.py` that processes a batch of text documents in parallel on Modal, simulates OCR by extracting word count and character statistics from each document's text content, persists results as JSON files in a Modal Volume named `ocr-output-volume`, validates a processing configuration from a Modal Secret named `ocr-api-config` (which must contain `PROCESSING_MODE=batch`), and tracks job state — including a `total_processed` count — in a Modal Dict named `ocr-job-tracker`.
-
-Your implementation must combine the following four Modal capabilities:
-
-1. **Modal Class with lifecycle hook** — Define a class that initializes its processing context at container startup (before handling any documents), and exposes a method for processing individual documents. The class must have access to the volume and the secret.
-
-2. **Modal Volume** (`ocr-output-volume`) — Persist each document's OCR result (word count, character count, document ID) as a JSON file inside the volume. Create the volume with `create_if_missing=True`.
-
-3. **Modal Secret** (`ocr-api-config`) — Create this secret before deploying with `PROCESSING_MODE=batch`. The processing method must read and validate `PROCESSING_MODE` from the environment; if it is missing or not equal to `batch`, raise an error.
-
-4. **Modal Dict** (`ocr-job-tracker`) — Track processing state across the batch. At minimum, store a `total_processed` key containing the integer count of documents processed (must be >= 3). Create the dict with `create_if_missing=True`.
-
-The `local_entrypoint` must drive the full pipeline: define at least 3 sample text documents as strings in your code, fan them out for parallel processing using `.map()` or `.starmap()`, write results to the volume, and update the dict with the total count.
-
-The Modal App must be named `doc-ocr-pipeline`.
-
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` and deploy using:
+Run the local entrypoint to execute the pipeline:
 ```
-modal deploy /home/user/doc_pipeline/app.py
+MODAL_ENVIRONMENT=modal-vsdatagen modal run /home/user/modal_project/modal_nfs_etl_pipeline.py
 ```
-
-After deploying, trigger the pipeline with:
-```
-MODAL_ENVIRONMENT=modal-vsdatagen modal run /home/user/doc_pipeline/app.py
-```
-7:Ta94,# Event-Driven Processing Pipeline on Modal
-
-You are a platform engineer building an internal event-driven data processing pipeline on Modal for your organization's tooling infrastructure. The entire system must be implemented in a single file: `/home/user/event_pipeline/app.py`.
-
-## System Requirements
-
-Build a Modal App named `event-driven-pipeline` that operates as an end-to-end event buffering and processing system with the following capabilities:
-
-### Event Queue (Modal Queue)
-Use a **Modal Queue named `pipeline-events`** to buffer incoming data submissions between the web API layer and the backend worker. The queue should be referenced with `create_if_missing=True` so it is automatically provisioned when the app deploys.
-
-### Web API (FastAPI)
-Expose a web API using Modal's FastAPI integration (`@modal.fastapi_app()`) that provides at minimum:
-- A **submission endpoint** (POST) that accepts a JSON body containing a `data` field, enqueues the submission into the pipeline queue, records the event in the shared pipeline registry, and returns a confirmation response.
-- A **status endpoint** (GET) that reads the current pipeline state from the registry dict and returns it as JSON.
-
-### Pipeline Registry (Modal Dict)
-Use a **Modal Dict named `pipeline-registry`** (with `create_if_missing=True`) to maintain shared pipeline state. The registry must track at minimum:
-- A `total_submitted` counter that is incremented on each submission via the POST endpoint
-- A `total_processed` counter that reflects how many items have been successfully processed
-
-### Worker Function (Fault-Tolerant)
-Implement a worker function with **`retries=2`** that processes individual data items. For each item, compute a deterministic hash or checksum of the data string (e.g., using `hashlib`) and write the result to a **Modal Volume named `pipeline-artifacts`** (with `create_if_missing=True`) as a text file. The volume must be mounted inside the worker function.
-
-### Manual Trigger (Local Entrypoint)
-Implement a `@app.local_entrypoint()` that allows the pipeline to be exercised without the web API — it should enqueue 3 data items, invoke the worker to process them, and update the `total_processed` counter in the registry to `3`.
-
-## Deployment Instructions
-
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
-
-```
-export MODAL_ENVIRONMENT=modal-vsdatagen
-```
-
-Deploy the app:
-
-```
-modal deploy /home/user/event_pipeline/app.py
-```
-
-After deployment, trigger a manual run to populate the Volume and Dict:
-
-```
-modal run /home/user/event_pipeline/app.py
-```
-
-**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.
-8:T9b1,# GPU-Accelerated Text Embedding Service
-
-You are an ML engineer tasked with deploying a production-grade **GPU-accelerated text embedding service** on Modal. The system must process text inputs and return dense vector embeddings suitable for downstream tasks such as semantic search, clustering, or retrieval-augmented generation.
-
-## Project Location
-
-A starter file exists at `/home/user/embedding_service/app.py` with a basic Modal App stub. All your implementation must go in this single file.
-
-## System Requirements
-
-Your service must integrate four Modal capabilities:
-
-1. **Modal Volume** — Create a Modal Volume (using `create_if_missing=True`) to cache the downloaded model weights on first use. The volume should be mounted into the serving class so that repeated cold starts avoid redundant model downloads from the internet.
-
-2. **Modal Class with GPU and warm pool** — Define a Modal class using `@app.cls()` that:
-   - Runs on a GPU (e.g., `gpu="T4"` or `gpu="any"`) with `min_containers=1` to keep a warm instance
-   - Uses a custom image that installs the `sentence-transformers` library (and its dependencies)
-   - Mounts the Volume for model caching
-   - Has a `@modal.enter()` lifecycle method that loads the `all-MiniLM-L6-v2` sentence-transformers model from the cached volume path on startup
-
-3. **FastAPI web endpoint** — Expose the embedding generation as a web endpoint (using `@modal.asgi_app()` or `@modal.fastapi_app()`) that:
-   - Accepts POST requests with a JSON body containing a `text` field (a string or list of strings)
-   - Returns a JSON response with an `embeddings` field (list of float vectors) and a `model` field with the model name
-   - Is accessible over HTTPS without authentication
-
-4. **Modal Dict for request tracking** — Use a Modal Dict named `"embedding-service-stats"` (with `create_if_missing=True`) to track:
-   - The total number of requests processed
-   - The total number of tokens processed across all requests
-   Update these counters on every successful embedding request.
-
-## App Name
-
-The Modal App must be named `"gpu-embedding-service"`.
-
-## Deployment
-
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` and deploy with:
-```
-modal deploy /home/user/embedding_service/app.py
-```
-
-After deploying, send at least one POST request to the embedding endpoint with some sample text so that the `"embedding-service-stats"` Modal Dict is populated with request and token counts. The endpoint URL is printed by `modal deploy`.
-9:T92b,# Serverless ETL Pipeline with Network File System on Modal
-
-You are a platform engineer building a serverless ETL pipeline on Modal that uses a Network File System as a shared staging area. The entire system must be implemented in a single file: `/home/user/etl_pipeline/app.py`.
-
-## System Requirements
-
-Build a Modal App named `"nfs-etl-pipeline"` with the following capabilities:
-
-### ETL Processor (Modal Class with Lifecycle Hooks)
-Define a stateful `ETLProcessor` class with lifecycle hooks that handles the extract-transform-load workflow.
-
-### Shared Staging Area (Modal NFS)
-Use a **Modal NetworkFileSystem named `etl-shared-fs`** (with `create_if_missing=True`) as the shared staging area for data between pipeline stages.
-
-### Database Credentials (Modal Secret)
-Use a **Modal Secret named `etl-db-config`** containing database credentials. The secret will be created with keys `DB_HOST` and `DB_PORT`. Your code should reference these keys from the secret (do NOT require any additional keys like `DB_USER` or `DB_PASSWORD` — only `DB_HOST` and `DB_PORT` are provided).
-
-### Pipeline State Tracking (Modal Dict)
-Use a **Modal Dict named `etl-pipeline-state`** (with `create_if_missing=True`) to track pipeline run status across batches. The Dict must contain:
-- `last_run_status` — a string that includes `"success"` when the pipeline completes successfully
-- `batches_processed` — the number of data batches processed (must be `2` after a full run)
-
-### Cron-Scheduled Trigger
-Include a cron-scheduled function that triggers the pipeline on a regular interval.
-
-### Manual Trigger (Local Entrypoint)
-Implement a `@app.local_entrypoint()` that processes **two data batches** and records the outcome in the shared Dict, setting `last_run_status` to include `"success"` and `batches_processed` to `2`.
-
-## Deployment Instructions
-
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
-
-```
-export MODAL_ENVIRONMENT=modal-vsdatagen
-```
-
-Deploy the app:
-
-```
-MODAL_ENVIRONMENT=modal-vsdatagen modal deploy /home/user/etl_pipeline/app.py
-```
-
-After deployment, trigger a manual run to populate the NFS and Dict:
-
-```
-MODAL_ENVIRONMENT=modal-vsdatagen modal run /home/user/etl_pipeline/app.py
-```
-
-**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.
-a:T90c,# Stateful Distributed Rate-Limited API Gateway on Modal
-
-You are a platform engineer building a stateful, distributed rate-limited API gateway on Modal. The entire system must be implemented in a single file: `/home/user/modal_project/gateway.py`.
-
-## System Requirements
-
-Build a Modal App named `"rate-limited-gateway"` with the following capabilities:
-
-### Gateway Class (Modal Class with Lifecycle Methods)
-Define a Modal Class with lifecycle methods that implements the rate-limiting logic. The class should:
-- Enforce per-client rate limits based on configuration from the secret
-- Track request statistics in the shared Dict
-- Return HTTP 429 when a client exceeds its rate limit
-
-### Configuration (Modal Secret)
-Use a **Modal Secret named `gateway-config`** containing:
-- `RATE_LIMIT_PER_MINUTE` — the maximum number of requests allowed per client per minute
-- `GATEWAY_API_KEY` — an API key for authenticating requests
-
-### Distributed State (Modal Dict)
-Use a **Modal Dict named `gateway-stats`** (with `create_if_missing=True`) to track distributed gateway statistics. The Dict must contain these keys:
-- `total_requests` — an integer count of all requests received (must be >= 1 after a run)
-- `rate_limited_count` — an integer count of requests that were rate-limited (HTTP 429)
-- `active_clients` — an integer count of unique clients that have made requests (must be >= 1 after a run)
-
-### Custom Image
-Use a custom Modal Image with `httpx` and `pydantic` installed.
-
-### Web Endpoint (FastAPI)
-Expose a **FastAPI web endpoint** that enforces per-client rate limits and returns HTTP 429 when exceeded.
-
-### Manual Trigger (Local Entrypoint)
-Implement a `@app.local_entrypoint()` that sends simulated requests to the gateway to populate the `gateway-stats` Dict with `total_requests`, `rate_limited_count`, and `active_clients`.
-
-## Deployment Instructions
-
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
-
-```
-export MODAL_ENVIRONMENT=modal-vsdatagen
-```
-
-Deploy the app:
-
-```
-modal deploy /home/user/modal_project/gateway.py
-```
-
-After deployment, trigger a manual run to populate the Dict:
-
-```
-modal run /home/user/modal_project/gateway.py
-```
-
-**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.
-0:{"buildId":"dCgSDFKz0aQRtcW9l4P2t","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$L2",null,{"tasksData":[{"taskName":"document_analytics_pipeline","instruction":"$3","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"document_analytics_pipeline__ARbP4YP","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":112.231,"latency_breakdown":{"env_setup":2.038,"agent_setup":20.154,"agent_exec":66.772,"verifier":20.644},"taskName":"document_analytics_pipeline","jobId":"ARbP4YP","exec_duration":66.772},{"job_name":"2026-03-29__20-45-57","trial_name":"document_analytics_pipeline__brsbW9J","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":175.543,"latency_breakdown":{"env_setup":2.507,"agent_setup":21.251,"agent_exec":120.714,"verifier":27.862},"taskName":"document_analytics_pipeline","jobId":"brsbW9J","exec_duration":120.714},{"job_name":"2026-03-29__21-08-10","trial_name":"document_analytics_pipeline__iUrYMP4","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":110.341,"latency_breakdown":{"env_setup":2.567,"agent_setup":24.664,"agent_exec":58.347,"verifier":21.651},"taskName":"document_analytics_pipeline","jobId":"iUrYMP4","exec_duration":58.347},{"job_name":"2026-03-29__20-34-16","trial_name":"document_analytics_pipeline__WiY9TfP","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":389.931,"latency_breakdown":{"env_setup":2.25,"agent_setup":22.359,"agent_exec":334.257,"verifier":28.872},"taskName":"document_analytics_pipeline","jobId":"WiY9TfP","exec_duration":334.257},{"job_name":"2026-03-29__20-26-26","trial_name":"document_analytics_pipeline__j4bpatJ","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":149.217,"latency_breakdown":{"env_setup":3.34,"agent_setup":26.363,"agent_exec":88.637,"verifier":27.66},"taskName":"document_analytics_pipeline","jobId":"j4bpatJ","exec_duration":88.637}]},{"taskName":"etl_pipeline_orchestrator","instruction":"$4","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"etl_pipeline_orchestrator__PiMrh4Z","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":152.821,"latency_breakdown":{"env_setup":2.866,"agent_setup":23.956,"agent_exec":95.242,"verifier":26.974},"taskName":"etl_pipeline_orchestrator","jobId":"PiMrh4Z","exec_duration":95.242},{"job_name":"2026-03-29__20-45-57","trial_name":"etl_pipeline_orchestrator__hc4Zii9","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":159.81,"latency_breakdown":{"env_setup":3.237,"agent_setup":27.445,"agent_exec":99.252,"verifier":25.752},"taskName":"etl_pipeline_orchestrator","jobId":"hc4Zii9","exec_duration":99.252},{"job_name":"2026-03-29__21-08-10","trial_name":"etl_pipeline_orchestrator__uzM7jcG","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":124.18,"latency_breakdown":{"env_setup":5.692,"agent_setup":31.164,"agent_exec":56.945,"verifier":26.547},"taskName":"etl_pipeline_orchestrator","jobId":"uzM7jcG","exec_duration":56.945},{"job_name":"2026-03-29__20-34-16","trial_name":"etl_pipeline_orchestrator__PgKFYmh","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":254.393,"latency_breakdown":{"env_setup":2.568,"agent_setup":24.95,"agent_exec":199.714,"verifier":23.057},"taskName":"etl_pipeline_orchestrator","jobId":"PgKFYmh","exec_duration":199.714},{"job_name":"2026-03-29__20-26-26","trial_name":"etl_pipeline_orchestrator__r559Y2b","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":216.873,"latency_breakdown":{"env_setup":2.436,"agent_setup":19.447,"agent_exec":173.456,"verifier":19.135},"taskName":"etl_pipeline_orchestrator","jobId":"r559Y2b","exec_duration":173.456}]},{"taskName":"hyperparameter_sweep_orchestrator","instruction":"$5","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"hyperparameter_sweep_orchestrato__JMKkbiH","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":191.512,"latency_breakdown":{"env_setup":3.041,"agent_setup":24.664,"agent_exec":123.212,"verifier":37.588},"taskName":"hyperparameter_sweep_orchestrato","jobId":"JMKkbiH","exec_duration":123.212},{"job_name":"2026-03-29__20-45-57","trial_name":"hyperparameter_sweep_orchestrato__FqeZMaj","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":132.53,"latency_breakdown":{"env_setup":2.501,"agent_setup":20.171,"agent_exec":82.593,"verifier":23.955},"taskName":"hyperparameter_sweep_orchestrato","jobId":"FqeZMaj","exec_duration":82.593},{"job_name":"2026-03-29__21-08-10","trial_name":"hyperparameter_sweep_orchestrato__H9SNPFy","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":129.178,"latency_breakdown":{"env_setup":3.674,"agent_setup":32.07,"agent_exec":59.154,"verifier":30.758},"taskName":"hyperparameter_sweep_orchestrato","jobId":"H9SNPFy","exec_duration":59.154},{"job_name":"2026-03-29__20-34-16","trial_name":"hyperparameter_sweep_orchestrato__uigViV3","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":310.63,"latency_breakdown":{"env_setup":2.251,"agent_setup":23.055,"agent_exec":251.536,"verifier":30.272},"taskName":"hyperparameter_sweep_orchestrato","jobId":"uigViV3","exec_duration":251.536},{"job_name":"2026-03-29__20-26-26","trial_name":"hyperparameter_sweep_orchestrato__Jx2wdBg","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":164.836,"latency_breakdown":{"env_setup":2.429,"agent_setup":19.756,"agent_exec":112.08,"verifier":27.358},"taskName":"hyperparameter_sweep_orchestrato","jobId":"Jx2wdBg","exec_duration":112.08}]},{"taskName":"ml_serving_pipeline_checkpoint","instruction":"Build a stateful ML model serving system in `/home/user/modal_project/app.py` that uses a Modal Class with an `@enter` lifecycle method to train and checkpoint a scikit-learn model to a Modal Volume, exposes an API-key-authenticated FastAPI web endpoint for predictions, and records request statistics in a Modal Dict named `ml-serving-pipeline-output`. Set `MODAL_ENVIRONMENT=modal-vsdatagen` and deploy with `modal deploy /home/user/modal_project/app.py`, then invoke the endpoint at least once with a valid request so the Dict is populated.\n","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"ml_serving_pipeline_checkpoint__sKQLKGV","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":332.626,"latency_breakdown":{"env_setup":1.85,"agent_setup":18.935,"agent_exec":282.619,"verifier":26.527},"taskName":"ml_serving_pipeline_checkpoint","jobId":"sKQLKGV","exec_duration":282.619},{"job_name":"2026-03-29__20-45-57","trial_name":"ml_serving_pipeline_checkpoint__6ivvGae","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":534.238,"latency_breakdown":{"env_setup":2.799,"agent_setup":26.973,"agent_exec":471.686,"verifier":28.662},"taskName":"ml_serving_pipeline_checkpoint","jobId":"6ivvGae","exec_duration":471.686},{"job_name":"2026-03-29__21-08-10","trial_name":"ml_serving_pipeline_checkpoint__xpH6wmE","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":254.396,"latency_breakdown":{"env_setup":2.562,"agent_setup":23.463,"agent_exec":204.627,"verifier":20.439},"taskName":"ml_serving_pipeline_checkpoint","jobId":"xpH6wmE","exec_duration":204.627},{"job_name":"2026-03-29__20-34-16","trial_name":"ml_serving_pipeline_checkpoint__k7xPvRT","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":417.997,"latency_breakdown":{"env_setup":2.777,"agent_setup":27.34,"agent_exec":351.491,"verifier":32.785},"taskName":"ml_serving_pipeline_checkpoint","jobId":"k7xPvRT","exec_duration":351.491},{"job_name":"2026-03-29__20-26-26","trial_name":"ml_serving_pipeline_checkpoint__UNGkrXZ","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":212.461,"latency_breakdown":{"env_setup":3.629,"agent_setup":26.477,"agent_exec":149.876,"verifier":29.451},"taskName":"ml_serving_pipeline_checkpoint","jobId":"UNGkrXZ","exec_duration":149.876}]},{"taskName":"modal_doc_ocr_pipeline","instruction":"$6","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_doc_ocr_pipeline__eqmczeY","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":143.198,"latency_breakdown":{"env_setup":1.844,"agent_setup":18.85,"agent_exec":96.845,"verifier":23.454},"taskName":"modal_doc_ocr_pipeline","jobId":"eqmczeY","exec_duration":96.845},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_doc_ocr_pipeline__JHRQLLs","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":150.388,"latency_breakdown":{"env_setup":3.335,"agent_setup":23.645,"agent_exec":88.838,"verifier":31.08},"taskName":"modal_doc_ocr_pipeline","jobId":"JHRQLLs","exec_duration":88.838},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_doc_ocr_pipeline__nKLmeEm","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":143.121,"latency_breakdown":{"env_setup":2.569,"agent_setup":23.465,"agent_exec":91.528,"verifier":23.16},"taskName":"modal_doc_ocr_pipeline","jobId":"nKLmeEm","exec_duration":91.528},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_doc_ocr_pipeline__XRtjmSF","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":220.606,"latency_breakdown":{"env_setup":2.261,"agent_setup":19.746,"agent_exec":171.647,"verifier":23.747},"taskName":"modal_doc_ocr_pipeline","jobId":"XRtjmSF","exec_duration":171.647},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_doc_ocr_pipeline__3JW9Bdd","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":165.958,"latency_breakdown":{"env_setup":3.343,"agent_setup":24.458,"agent_exec":106.28,"verifier":27.756},"taskName":"modal_doc_ocr_pipeline","jobId":"3JW9Bdd","exec_duration":106.28}]},{"taskName":"modal_event_pipeline","instruction":"$7","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_event_pipeline__XJxFCbU","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":187.809,"latency_breakdown":{"env_setup":2.252,"agent_setup":17.834,"agent_exec":144.067,"verifier":21.129},"taskName":"modal_event_pipeline","jobId":"XJxFCbU","exec_duration":144.067},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_event_pipeline__PV6vvis","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":171.73,"latency_breakdown":{"env_setup":3.014,"agent_setup":24.155,"agent_exec":109.888,"verifier":30.873},"taskName":"modal_event_pipeline","jobId":"PV6vvis","exec_duration":109.888},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_event_pipeline__s47eBLA","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":168.481,"latency_breakdown":{"env_setup":3.063,"agent_setup":32.192,"agent_exec":99.647,"verifier":30.467},"taskName":"modal_event_pipeline","jobId":"s47eBLA","exec_duration":99.647},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_event_pipeline__igGpXs8","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":184.212,"latency_breakdown":{"env_setup":1.95,"agent_setup":18.345,"agent_exec":130.14,"verifier":30.57},"taskName":"modal_event_pipeline","jobId":"igGpXs8","exec_duration":130.14},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_event_pipeline__Fzr9Ynt","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":145.593,"latency_breakdown":{"env_setup":2.831,"agent_setup":20.952,"agent_exec":91.94,"verifier":26.454},"taskName":"modal_event_pipeline","jobId":"Fzr9Ynt","exec_duration":91.94}]},{"taskName":"modal_gpu_batch_inference","instruction":"","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_gpu_batch_inference__9sYfGoG","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":204.071,"latency_breakdown":{"env_setup":2.064,"agent_setup":18.056,"agent_exec":161.506,"verifier":19.839},"taskName":"modal_gpu_batch_inference","jobId":"9sYfGoG","exec_duration":161.506},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_gpu_batch_inference__yvhe8pU","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":78.424,"latency_breakdown":{"env_setup":2.031,"agent_setup":17.645,"agent_exec":45.619,"verifier":9.916},"taskName":"modal_gpu_batch_inference","jobId":"yvhe8pU","exec_duration":45.619},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_gpu_batch_inference__pNrSJis","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":82.287,"latency_breakdown":{"env_setup":2.589,"agent_setup":23.458,"agent_exec":41.01,"verifier":12.03},"taskName":"modal_gpu_batch_inference","jobId":"pNrSJis","exec_duration":41.01},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_gpu_batch_inference__GLYXxLD","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":246.799,"latency_breakdown":{"env_setup":2.085,"agent_setup":17.453,"agent_exec":201,"verifier":22.736},"taskName":"modal_gpu_batch_inference","jobId":"GLYXxLD","exec_duration":201},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_gpu_batch_inference__3cabJdE","model":"claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":176.708,"latency_breakdown":{"env_setup":3.895,"agent_setup":16.911,"agent_exec":130.629,"verifier":22.153},"taskName":"modal_gpu_batch_inference","jobId":"3cabJdE","exec_duration":130.629}]},{"taskName":"modal_gpu_embedding_service","instruction":"$8","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_gpu_embedding_service__oC8JaJX","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":true,"latency_sec":661.361,"latency_breakdown":{"env_setup":1.857,"agent_setup":20.641,"agent_exec":600.06,"verifier":36.184},"taskName":"modal_gpu_embedding_service","jobId":"oC8JaJX","exec_duration":600.06},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_gpu_embedding_service__z7AL5vG","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":225.376,"latency_breakdown":{"env_setup":3.022,"agent_setup":26.762,"agent_exec":52.432,"verifier":139.156},"taskName":"modal_gpu_embedding_service","jobId":"z7AL5vG","exec_duration":52.432},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_gpu_embedding_service__rJkERJ6","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":118.96,"latency_breakdown":{"env_setup":3.282,"agent_setup":33.38,"agent_exec":66.965,"verifier":11.613},"taskName":"modal_gpu_embedding_service","jobId":"rJkERJ6","exec_duration":66.965},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_gpu_embedding_service__RHC5TZ4","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":true,"latency_sec":675.758,"latency_breakdown":{"env_setup":2.758,"agent_setup":24.964,"agent_exec":600.004,"verifier":44.42},"taskName":"modal_gpu_embedding_service","jobId":"RHC5TZ4","exec_duration":600.004},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_gpu_embedding_service__DoVSUBm","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":391.119,"latency_breakdown":{"env_setup":3.639,"agent_setup":26.571,"agent_exec":335.158,"verifier":21.755},"taskName":"modal_gpu_embedding_service","jobId":"DoVSUBm","exec_duration":335.158}]},{"taskName":"modal_hp_sweep_checkpoint","instruction":"Build a distributed hyperparameter sweep system in `/home/user/hp_sweep/app.py` that uses `modal.App(\"hp-sweep-checkpoint\")` to parallelize evaluation of learning-rate and batch-size combinations via `.map()` or `.starmap()`, checkpoints all results to a Modal Volume named `\"hp-sweep-results\"`, tracks the best configuration and score in a Modal Dict named `\"hp-sweep-state\"`, and schedules the sweep to run periodically using a cron or period schedule. Set `MODAL_ENVIRONMENT=modal-vsdatagen` and deploy with `modal deploy /home/user/hp_sweep/app.py`.\n","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_hp_sweep_checkpoint__XDyCyBi","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":132.876,"latency_breakdown":{"env_setup":2.87,"agent_setup":26.548,"agent_exec":71.291,"verifier":28.568},"taskName":"modal_hp_sweep_checkpoint","jobId":"XDyCyBi","exec_duration":71.291},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_hp_sweep_checkpoint__WWee827","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":101.87,"latency_breakdown":{"env_setup":2.321,"agent_setup":17.638,"agent_exec":59.65,"verifier":19.158},"taskName":"modal_hp_sweep_checkpoint","jobId":"WWee827","exec_duration":59.65},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_hp_sweep_checkpoint__LDoJQwk","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":163.074,"latency_breakdown":{"env_setup":3.07,"agent_setup":31.286,"agent_exec":91.43,"verifier":34.094},"taskName":"modal_hp_sweep_checkpoint","jobId":"LDoJQwk","exec_duration":91.43},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_hp_sweep_checkpoint__GGCQxw4","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":386.731,"latency_breakdown":{"env_setup":1.958,"agent_setup":20.757,"agent_exec":318.92,"verifier":41.603},"taskName":"modal_hp_sweep_checkpoint","jobId":"GGCQxw4","exec_duration":318.92},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_hp_sweep_checkpoint__S3a4kzJ","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":196.336,"latency_breakdown":{"env_setup":3.843,"agent_setup":27.374,"agent_exec":129.027,"verifier":32.465},"taskName":"modal_hp_sweep_checkpoint","jobId":"S3a4kzJ","exec_duration":129.027}]},{"taskName":"modal_nfs_etl_pipeline","instruction":"$9","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_nfs_etl_pipeline__8D7rpEV","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":154.528,"latency_breakdown":{"env_setup":2.045,"agent_setup":20.051,"agent_exec":99.976,"verifier":30.379},"taskName":"modal_nfs_etl_pipeline","jobId":"8D7rpEV","exec_duration":99.976},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_nfs_etl_pipeline__XgZ3vcZ","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":85.223,"latency_breakdown":{"env_setup":2.763,"agent_setup":27.22,"agent_exec":37.9,"verifier":13.122},"taskName":"modal_nfs_etl_pipeline","jobId":"XgZ3vcZ","exec_duration":37.9},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_nfs_etl_pipeline__KnVKzTb","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":109.745,"latency_breakdown":{"env_setup":2.57,"agent_setup":24.162,"agent_exec":47.022,"verifier":32.774},"taskName":"modal_nfs_etl_pipeline","jobId":"KnVKzTb","exec_duration":47.022},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_nfs_etl_pipeline__S6ymNGA","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":138.805,"latency_breakdown":{"env_setup":2.787,"agent_setup":26.941,"agent_exec":91.84,"verifier":12.722},"taskName":"modal_nfs_etl_pipeline","jobId":"S6ymNGA","exec_duration":91.84},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_nfs_etl_pipeline__3SVErYj","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":198.035,"latency_breakdown":{"env_setup":2.839,"agent_setup":19.752,"agent_exec":139.457,"verifier":33.178},"taskName":"modal_nfs_etl_pipeline","jobId":"3SVErYj","exec_duration":139.457}]},{"taskName":"rate_limited_api_gateway","instruction":"$a","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"rate_limited_api_gateway__xbgkzNh","model":"gemini-3.1-pro","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":166.653,"latency_breakdown":{"env_setup":1.84,"agent_setup":19.365,"agent_exec":128.812,"verifier":14.431},"taskName":"rate_limited_api_gateway","jobId":"xbgkzNh","exec_duration":128.812},{"job_name":"2026-03-29__20-45-57","trial_name":"rate_limited_api_gateway__JocWLXD","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":146.968,"latency_breakdown":{"env_setup":2.004,"agent_setup":17.943,"agent_exec":107.376,"verifier":16.432},"taskName":"rate_limited_api_gateway","jobId":"JocWLXD","exec_duration":107.376},{"job_name":"2026-03-29__21-08-10","trial_name":"rate_limited_api_gateway__4S7Cgof","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":135.296,"latency_breakdown":{"env_setup":2.563,"agent_setup":23.465,"agent_exec":92.551,"verifier":14.024},"taskName":"rate_limited_api_gateway","jobId":"4S7Cgof","exec_duration":92.551},{"job_name":"2026-03-29__20-34-16","trial_name":"rate_limited_api_gateway__VuGxRK9","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":219.497,"latency_breakdown":{"env_setup":2.562,"agent_setup":24.348,"agent_exec":166.542,"verifier":21.647},"taskName":"rate_limited_api_gateway","jobId":"VuGxRK9","exec_duration":166.542},{"job_name":"2026-03-29__20-26-26","trial_name":"rate_limited_api_gateway__WoJv6jc","model":"claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":270.204,"latency_breakdown":{"env_setup":3.431,"agent_setup":24.163,"agent_exec":214.137,"verifier":25.053},"taskName":"rate_limited_api_gateway","jobId":"WoJv6jc","exec_duration":214.137}]}]}]]}],["$Lb","$Lc"],"$Ld"]}],"loading":null,"isPartial":false}
+0:{"buildId":"0OkfhAnX38J1ZndWPcbU6","rsc":["$","$1","c",{"children":[["$","div",null,{"className":"min-h-screen bg-background text-foreground font-sans selection:bg-primary/20","children":[["$","div",null,{"className":"fixed inset-0 -z-10 h-full w-full bg-background bg-[radial-gradient(#2a2a2a_1px,transparent_1px)] [background-size:16px_16px] [mask-image:radial-gradient(ellipse_50%_50%_at_50%_50%,#000_70%,transparent_100%)] opacity-20 dark:opacity-40"}],["$","$L2",null,{"tasksData":[{"taskName":"document_analytics_pipeline","instruction":"$3","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"document_analytics_pipeline__ARbP4YP","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":112.231,"latency_breakdown":{"env_setup":2.038,"agent_setup":20.154,"agent_exec":66.772,"verifier":20.644},"taskName":"document_analytics_pipeline","jobId":"ARbP4YP","exec_duration":66.772},{"job_name":"2026-03-29__20-45-57","trial_name":"document_analytics_pipeline__brsbW9J","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":175.543,"latency_breakdown":{"env_setup":2.507,"agent_setup":21.251,"agent_exec":120.714,"verifier":27.862},"taskName":"document_analytics_pipeline","jobId":"brsbW9J","exec_duration":120.714},{"job_name":"2026-03-29__21-08-10","trial_name":"document_analytics_pipeline__iUrYMP4","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":110.341,"latency_breakdown":{"env_setup":2.567,"agent_setup":24.664,"agent_exec":58.347,"verifier":21.651},"taskName":"document_analytics_pipeline","jobId":"iUrYMP4","exec_duration":58.347},{"job_name":"2026-03-29__20-34-16","trial_name":"document_analytics_pipeline__WiY9TfP","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":389.931,"latency_breakdown":{"env_setup":2.25,"agent_setup":22.359,"agent_exec":334.257,"verifier":28.872},"taskName":"document_analytics_pipeline","jobId":"WiY9TfP","exec_duration":334.257},{"job_name":"2026-03-29__20-26-26","trial_name":"document_analytics_pipeline__j4bpatJ","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":149.217,"latency_breakdown":{"env_setup":3.34,"agent_setup":26.363,"agent_exec":88.637,"verifier":27.66},"taskName":"document_analytics_pipeline","jobId":"j4bpatJ","exec_duration":88.637}]},{"taskName":"etl_pipeline_orchestrator","instruction":"Build a scheduled ETL pipeline on Modal as app `etl-pipeline-orchestrator` at `/home/user/modal_project/etl_pipeline_orchestrator.py` that uses a Modal Class (with `@modal.enter` lifecycle) to run extract, transform, and load phases, a cron function scheduled with `modal.Period(hours=1)`, a Volume (`etl-pipeline-orchestrator-vol`) persisting output at `/data/output.csv`, and a Secret (`etl-pipeline-orchestrator-secret`) with keys `DB_URL` and `API_TOKEN`. After the pipeline runs, store `records_extracted`, `records_loaded`, `pipeline_status`, and `output_path` in the Modal Dict `etl-pipeline-orchestrator-output` via a `@app.local_entrypoint()`.\n\nSet `MODAL_ENVIRONMENT=modal-vsdatagen`, create the secret with `modal secret create etl-pipeline-orchestrator-secret DB_URL=postgresql://localhost/etl_db API_TOKEN=etl-secret-token-xyz --force`, deploy with `modal deploy /home/user/modal_project/etl_pipeline_orchestrator.py`, then run with `modal run /home/user/modal_project/etl_pipeline_orchestrator.py`.\n","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"etl_pipeline_orchestrator__PiMrh4Z","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":152.821,"latency_breakdown":{"env_setup":2.866,"agent_setup":23.956,"agent_exec":95.242,"verifier":26.974},"taskName":"etl_pipeline_orchestrator","jobId":"PiMrh4Z","exec_duration":95.242},{"job_name":"2026-03-29__20-45-57","trial_name":"etl_pipeline_orchestrator__hc4Zii9","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":159.81,"latency_breakdown":{"env_setup":3.237,"agent_setup":27.445,"agent_exec":99.252,"verifier":25.752},"taskName":"etl_pipeline_orchestrator","jobId":"hc4Zii9","exec_duration":99.252},{"job_name":"2026-03-29__21-08-10","trial_name":"etl_pipeline_orchestrator__uzM7jcG","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":124.18,"latency_breakdown":{"env_setup":5.692,"agent_setup":31.164,"agent_exec":56.945,"verifier":26.547},"taskName":"etl_pipeline_orchestrator","jobId":"uzM7jcG","exec_duration":56.945},{"job_name":"2026-03-29__20-34-16","trial_name":"etl_pipeline_orchestrator__PgKFYmh","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":254.393,"latency_breakdown":{"env_setup":2.568,"agent_setup":24.95,"agent_exec":199.714,"verifier":23.057},"taskName":"etl_pipeline_orchestrator","jobId":"PgKFYmh","exec_duration":199.714},{"job_name":"2026-03-29__20-26-26","trial_name":"etl_pipeline_orchestrator__r559Y2b","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":216.873,"latency_breakdown":{"env_setup":2.436,"agent_setup":19.447,"agent_exec":173.456,"verifier":19.135},"taskName":"etl_pipeline_orchestrator","jobId":"r559Y2b","exec_duration":173.456}]},{"taskName":"hyperparameter_sweep_orchestrator","instruction":"$4","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"hyperparameter_sweep_orchestrato__JMKkbiH","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":191.512,"latency_breakdown":{"env_setup":3.041,"agent_setup":24.664,"agent_exec":123.212,"verifier":37.588},"taskName":"hyperparameter_sweep_orchestrato","jobId":"JMKkbiH","exec_duration":123.212},{"job_name":"2026-03-29__20-45-57","trial_name":"hyperparameter_sweep_orchestrato__FqeZMaj","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":132.53,"latency_breakdown":{"env_setup":2.501,"agent_setup":20.171,"agent_exec":82.593,"verifier":23.955},"taskName":"hyperparameter_sweep_orchestrato","jobId":"FqeZMaj","exec_duration":82.593},{"job_name":"2026-03-29__21-08-10","trial_name":"hyperparameter_sweep_orchestrato__H9SNPFy","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":129.178,"latency_breakdown":{"env_setup":3.674,"agent_setup":32.07,"agent_exec":59.154,"verifier":30.758},"taskName":"hyperparameter_sweep_orchestrato","jobId":"H9SNPFy","exec_duration":59.154},{"job_name":"2026-03-29__20-34-16","trial_name":"hyperparameter_sweep_orchestrato__uigViV3","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":310.63,"latency_breakdown":{"env_setup":2.251,"agent_setup":23.055,"agent_exec":251.536,"verifier":30.272},"taskName":"hyperparameter_sweep_orchestrato","jobId":"uigViV3","exec_duration":251.536},{"job_name":"2026-03-29__20-26-26","trial_name":"hyperparameter_sweep_orchestrato__Jx2wdBg","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":164.836,"latency_breakdown":{"env_setup":2.429,"agent_setup":19.756,"agent_exec":112.08,"verifier":27.358},"taskName":"hyperparameter_sweep_orchestrato","jobId":"Jx2wdBg","exec_duration":112.08}]},{"taskName":"ml_serving_pipeline_checkpoint","instruction":"$5","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"ml_serving_pipeline_checkpoint__sKQLKGV","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":332.626,"latency_breakdown":{"env_setup":1.85,"agent_setup":18.935,"agent_exec":282.619,"verifier":26.527},"taskName":"ml_serving_pipeline_checkpoint","jobId":"sKQLKGV","exec_duration":282.619},{"job_name":"2026-03-29__20-45-57","trial_name":"ml_serving_pipeline_checkpoint__6ivvGae","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":534.238,"latency_breakdown":{"env_setup":2.799,"agent_setup":26.973,"agent_exec":471.686,"verifier":28.662},"taskName":"ml_serving_pipeline_checkpoint","jobId":"6ivvGae","exec_duration":471.686},{"job_name":"2026-03-29__21-08-10","trial_name":"ml_serving_pipeline_checkpoint__xpH6wmE","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":254.396,"latency_breakdown":{"env_setup":2.562,"agent_setup":23.463,"agent_exec":204.627,"verifier":20.439},"taskName":"ml_serving_pipeline_checkpoint","jobId":"xpH6wmE","exec_duration":204.627},{"job_name":"2026-03-29__20-34-16","trial_name":"ml_serving_pipeline_checkpoint__k7xPvRT","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":417.997,"latency_breakdown":{"env_setup":2.777,"agent_setup":27.34,"agent_exec":351.491,"verifier":32.785},"taskName":"ml_serving_pipeline_checkpoint","jobId":"k7xPvRT","exec_duration":351.491},{"job_name":"2026-03-29__20-26-26","trial_name":"ml_serving_pipeline_checkpoint__UNGkrXZ","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":212.461,"latency_breakdown":{"env_setup":3.629,"agent_setup":26.477,"agent_exec":149.876,"verifier":29.451},"taskName":"ml_serving_pipeline_checkpoint","jobId":"UNGkrXZ","exec_duration":149.876}]},{"taskName":"modal_doc_ocr_pipeline","instruction":"$6","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_doc_ocr_pipeline__eqmczeY","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":143.198,"latency_breakdown":{"env_setup":1.844,"agent_setup":18.85,"agent_exec":96.845,"verifier":23.454},"taskName":"modal_doc_ocr_pipeline","jobId":"eqmczeY","exec_duration":96.845},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_doc_ocr_pipeline__JHRQLLs","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":150.388,"latency_breakdown":{"env_setup":3.335,"agent_setup":23.645,"agent_exec":88.838,"verifier":31.08},"taskName":"modal_doc_ocr_pipeline","jobId":"JHRQLLs","exec_duration":88.838},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_doc_ocr_pipeline__nKLmeEm","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":143.121,"latency_breakdown":{"env_setup":2.569,"agent_setup":23.465,"agent_exec":91.528,"verifier":23.16},"taskName":"modal_doc_ocr_pipeline","jobId":"nKLmeEm","exec_duration":91.528},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_doc_ocr_pipeline__XRtjmSF","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":220.606,"latency_breakdown":{"env_setup":2.261,"agent_setup":19.746,"agent_exec":171.647,"verifier":23.747},"taskName":"modal_doc_ocr_pipeline","jobId":"XRtjmSF","exec_duration":171.647},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_doc_ocr_pipeline__3JW9Bdd","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":165.958,"latency_breakdown":{"env_setup":3.343,"agent_setup":24.458,"agent_exec":106.28,"verifier":27.756},"taskName":"modal_doc_ocr_pipeline","jobId":"3JW9Bdd","exec_duration":106.28}]},{"taskName":"modal_event_pipeline","instruction":"$7","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_event_pipeline__XJxFCbU","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":187.809,"latency_breakdown":{"env_setup":2.252,"agent_setup":17.834,"agent_exec":144.067,"verifier":21.129},"taskName":"modal_event_pipeline","jobId":"XJxFCbU","exec_duration":144.067},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_event_pipeline__PV6vvis","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":171.73,"latency_breakdown":{"env_setup":3.014,"agent_setup":24.155,"agent_exec":109.888,"verifier":30.873},"taskName":"modal_event_pipeline","jobId":"PV6vvis","exec_duration":109.888},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_event_pipeline__s47eBLA","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":168.481,"latency_breakdown":{"env_setup":3.063,"agent_setup":32.192,"agent_exec":99.647,"verifier":30.467},"taskName":"modal_event_pipeline","jobId":"s47eBLA","exec_duration":99.647},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_event_pipeline__igGpXs8","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":184.212,"latency_breakdown":{"env_setup":1.95,"agent_setup":18.345,"agent_exec":130.14,"verifier":30.57},"taskName":"modal_event_pipeline","jobId":"igGpXs8","exec_duration":130.14},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_event_pipeline__Fzr9Ynt","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":145.593,"latency_breakdown":{"env_setup":2.831,"agent_setup":20.952,"agent_exec":91.94,"verifier":26.454},"taskName":"modal_event_pipeline","jobId":"Fzr9Ynt","exec_duration":91.94}]},{"taskName":"modal_gpu_batch_inference","instruction":"$8","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_gpu_batch_inference__9sYfGoG","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":204.071,"latency_breakdown":{"env_setup":2.064,"agent_setup":18.056,"agent_exec":161.506,"verifier":19.839},"taskName":"modal_gpu_batch_inference","jobId":"9sYfGoG","exec_duration":161.506},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_gpu_batch_inference__yvhe8pU","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":78.424,"latency_breakdown":{"env_setup":2.031,"agent_setup":17.645,"agent_exec":45.619,"verifier":9.916},"taskName":"modal_gpu_batch_inference","jobId":"yvhe8pU","exec_duration":45.619},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_gpu_batch_inference__pNrSJis","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":82.287,"latency_breakdown":{"env_setup":2.589,"agent_setup":23.458,"agent_exec":41.01,"verifier":12.03},"taskName":"modal_gpu_batch_inference","jobId":"pNrSJis","exec_duration":41.01},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_gpu_batch_inference__GLYXxLD","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":246.799,"latency_breakdown":{"env_setup":2.085,"agent_setup":17.453,"agent_exec":201,"verifier":22.736},"taskName":"modal_gpu_batch_inference","jobId":"GLYXxLD","exec_duration":201},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_gpu_batch_inference__3cabJdE","model":"claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":176.708,"latency_breakdown":{"env_setup":3.895,"agent_setup":16.911,"agent_exec":130.629,"verifier":22.153},"taskName":"modal_gpu_batch_inference","jobId":"3cabJdE","exec_duration":130.629}]},{"taskName":"modal_gpu_embedding_service","instruction":"$9","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_gpu_embedding_service__oC8JaJX","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":true,"latency_sec":661.361,"latency_breakdown":{"env_setup":1.857,"agent_setup":20.641,"agent_exec":600.06,"verifier":36.184},"taskName":"modal_gpu_embedding_service","jobId":"oC8JaJX","exec_duration":600.06},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_gpu_embedding_service__z7AL5vG","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":225.376,"latency_breakdown":{"env_setup":3.022,"agent_setup":26.762,"agent_exec":52.432,"verifier":139.156},"taskName":"modal_gpu_embedding_service","jobId":"z7AL5vG","exec_duration":52.432},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_gpu_embedding_service__rJkERJ6","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":118.96,"latency_breakdown":{"env_setup":3.282,"agent_setup":33.38,"agent_exec":66.965,"verifier":11.613},"taskName":"modal_gpu_embedding_service","jobId":"rJkERJ6","exec_duration":66.965},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_gpu_embedding_service__RHC5TZ4","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":true,"latency_sec":675.758,"latency_breakdown":{"env_setup":2.758,"agent_setup":24.964,"agent_exec":600.004,"verifier":44.42},"taskName":"modal_gpu_embedding_service","jobId":"RHC5TZ4","exec_duration":600.004},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_gpu_embedding_service__DoVSUBm","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":391.119,"latency_breakdown":{"env_setup":3.639,"agent_setup":26.571,"agent_exec":335.158,"verifier":21.755},"taskName":"modal_gpu_embedding_service","jobId":"DoVSUBm","exec_duration":335.158}]},{"taskName":"modal_hp_sweep_checkpoint","instruction":"Build a parallel hyperparameter sweep system on Modal that evaluates at least 4 combinations of `learning_rate` and `batch_size` using a Modal Class with `.map()` or `.starmap()`. The best result must be checkpointed to the Modal Volume `modal-hp-sweep-checkpoint-vol` at `/checkpoints/best_params.json`, and summary statistics (`best_lr`, `best_batch_size`, `best_score`, `total_trials`, `checkpoint_path`) must be stored in the Modal Dict `modal-hp-sweep-checkpoint-output`. Deploy as app `modal-hp-sweep-checkpoint` to `/home/user/modal_project/modal_hp_sweep_checkpoint.py` using `MODAL_ENVIRONMENT=modal-vsdatagen`, then run the local entrypoint to execute the sweep.\n","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_hp_sweep_checkpoint__XDyCyBi","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":132.876,"latency_breakdown":{"env_setup":2.87,"agent_setup":26.548,"agent_exec":71.291,"verifier":28.568},"taskName":"modal_hp_sweep_checkpoint","jobId":"XDyCyBi","exec_duration":71.291},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_hp_sweep_checkpoint__WWee827","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":101.87,"latency_breakdown":{"env_setup":2.321,"agent_setup":17.638,"agent_exec":59.65,"verifier":19.158},"taskName":"modal_hp_sweep_checkpoint","jobId":"WWee827","exec_duration":59.65},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_hp_sweep_checkpoint__LDoJQwk","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":163.074,"latency_breakdown":{"env_setup":3.07,"agent_setup":31.286,"agent_exec":91.43,"verifier":34.094},"taskName":"modal_hp_sweep_checkpoint","jobId":"LDoJQwk","exec_duration":91.43},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_hp_sweep_checkpoint__GGCQxw4","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":386.731,"latency_breakdown":{"env_setup":1.958,"agent_setup":20.757,"agent_exec":318.92,"verifier":41.603},"taskName":"modal_hp_sweep_checkpoint","jobId":"GGCQxw4","exec_duration":318.92},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_hp_sweep_checkpoint__S3a4kzJ","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":196.336,"latency_breakdown":{"env_setup":3.843,"agent_setup":27.374,"agent_exec":129.027,"verifier":32.465},"taskName":"modal_hp_sweep_checkpoint","jobId":"S3a4kzJ","exec_duration":129.027}]},{"taskName":"modal_nfs_etl_pipeline","instruction":"$a","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"modal_nfs_etl_pipeline__8D7rpEV","model":"gemini-3.1-pro","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":154.528,"latency_breakdown":{"env_setup":2.045,"agent_setup":20.051,"agent_exec":99.976,"verifier":30.379},"taskName":"modal_nfs_etl_pipeline","jobId":"8D7rpEV","exec_duration":99.976},{"job_name":"2026-03-29__20-45-57","trial_name":"modal_nfs_etl_pipeline__XgZ3vcZ","model":"gpt-5.2-codex","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":85.223,"latency_breakdown":{"env_setup":2.763,"agent_setup":27.22,"agent_exec":37.9,"verifier":13.122},"taskName":"modal_nfs_etl_pipeline","jobId":"XgZ3vcZ","exec_duration":37.9},{"job_name":"2026-03-29__21-08-10","trial_name":"modal_nfs_etl_pipeline__KnVKzTb","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":109.745,"latency_breakdown":{"env_setup":2.57,"agent_setup":24.162,"agent_exec":47.022,"verifier":32.774},"taskName":"modal_nfs_etl_pipeline","jobId":"KnVKzTb","exec_duration":47.022},{"job_name":"2026-03-29__20-34-16","trial_name":"modal_nfs_etl_pipeline__S6ymNGA","model":"glm-4.7","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":138.805,"latency_breakdown":{"env_setup":2.787,"agent_setup":26.941,"agent_exec":91.84,"verifier":12.722},"taskName":"modal_nfs_etl_pipeline","jobId":"S6ymNGA","exec_duration":91.84},{"job_name":"2026-03-29__20-26-26","trial_name":"modal_nfs_etl_pipeline__3SVErYj","model":"claude-4-6-sonnet","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":198.035,"latency_breakdown":{"env_setup":2.839,"agent_setup":19.752,"agent_exec":139.457,"verifier":33.178},"taskName":"modal_nfs_etl_pipeline","jobId":"3SVErYj","exec_duration":139.457}]},{"taskName":"rate_limited_api_gateway","instruction":"Build and deploy a rate-limited API gateway on Modal as app `rate-limited-api-gateway` in `/home/user/modal_project/rate_limited_api_gateway.py`, using a Modal Class with a POST web endpoint that enforces per-API-key rate limiting via the Modal Dict `rate-limited-api-gateway-output` and reads credentials from the Modal Secret `rate-limited-api-gateway-secret` (containing `GATEWAY_API_KEY=gateway-key-prod-2024` and `RATE_LIMIT_MAX=100`). The Dict must also store final gateway statistics with keys `total_requests_processed`, `rate_limit_hits`, `gateway_status` (value `\"operational\"`), and `api_version` (value `\"v1\"`). Set `MODAL_ENVIRONMENT=modal-vsdatagen`, create the secret with `modal secret create rate-limited-api-gateway-secret GATEWAY_API_KEY=gateway-key-prod-2024 RATE_LIMIT_MAX=100 --force`, deploy with `modal deploy /home/user/modal_project/rate_limited_api_gateway.py`, then run the local entrypoint with `modal run /home/user/modal_project/rate_limited_api_gateway.py`.\n","trials":[{"job_name":"2026-03-29__20-14-39","trial_name":"rate_limited_api_gateway__xbgkzNh","model":"gemini-3.1-pro","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":166.653,"latency_breakdown":{"env_setup":1.84,"agent_setup":19.365,"agent_exec":128.812,"verifier":14.431},"taskName":"rate_limited_api_gateway","jobId":"xbgkzNh","exec_duration":128.812},{"job_name":"2026-03-29__20-45-57","trial_name":"rate_limited_api_gateway__JocWLXD","model":"gpt-5.2-codex","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":146.968,"latency_breakdown":{"env_setup":2.004,"agent_setup":17.943,"agent_exec":107.376,"verifier":16.432},"taskName":"rate_limited_api_gateway","jobId":"JocWLXD","exec_duration":107.376},{"job_name":"2026-03-29__21-08-10","trial_name":"rate_limited_api_gateway__4S7Cgof","model":"gpt-5.2-codex-with-skills","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":135.296,"latency_breakdown":{"env_setup":2.563,"agent_setup":23.465,"agent_exec":92.551,"verifier":14.024},"taskName":"rate_limited_api_gateway","jobId":"4S7Cgof","exec_duration":92.551},{"job_name":"2026-03-29__20-34-16","trial_name":"rate_limited_api_gateway__VuGxRK9","model":"glm-4.7","agent":"Pochi","passed":true,"reward":1,"error":false,"latency_sec":219.497,"latency_breakdown":{"env_setup":2.562,"agent_setup":24.348,"agent_exec":166.542,"verifier":21.647},"taskName":"rate_limited_api_gateway","jobId":"VuGxRK9","exec_duration":166.542},{"job_name":"2026-03-29__20-26-26","trial_name":"rate_limited_api_gateway__WoJv6jc","model":"claude-4-6-sonnet","agent":"Pochi","passed":false,"reward":0,"error":false,"latency_sec":270.204,"latency_breakdown":{"env_setup":3.431,"agent_setup":24.163,"agent_exec":214.137,"verifier":25.053},"taskName":"rate_limited_api_gateway","jobId":"WoJv6jc","exec_duration":214.137}]}]}]]}],["$Lb","$Lc"],"$Ld"]}],"loading":null,"isPartial":false}
 b:["$","script","script-0",{"src":"/modal-benchmark/_next/static/chunks/584417517a743f28.js","async":true}]
 c:["$","script","script-1",{"src":"/modal-benchmark/_next/static/chunks/be08138953094657.js","async":true}]
 d:["$","$Le",null,{"children":["$","$f",null,{"name":"Next.MetadataOutlet","children":"$@10"}]}]
