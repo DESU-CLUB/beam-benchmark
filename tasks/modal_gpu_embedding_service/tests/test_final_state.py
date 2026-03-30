@@ -1,77 +1,83 @@
 import os
+import subprocess
 import json
 import re
-import subprocess
 import pytest
 
-MODAL_ENV = "modal-vsdatagen"
-APP_FILE = "/home/user/embedding_service/app.py"
-APP_NAME = "gpu-embedding-service"
-DICT_NAME = "embedding-service-stats"
+APP_NAME = "modal-gpu-embedding-service"
+APP_FILE = "/home/user/modal_project/modal_gpu_embedding_service.py"
+DICT_NAME = "modal-gpu-embedding-service-output"
+VOLUME_NAME = "modal-gpu-embedding-service-vol"
+SECRET_NAME = "modal-gpu-embedding-service-secret"
+MODAL_ENV = os.environ.get("MODAL_ENVIRONMENT", "modal-vsdatagen")
 
 
-def modal_cli(*args, timeout=300):
-    """Run a Modal CLI command with MODAL_ENVIRONMENT set."""
-    env = {**os.environ, "MODAL_ENVIRONMENT": MODAL_ENV}
-    cmd = ["modal"] + list(args)
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+def run_modal(args, timeout=300, check=True):
+    env = os.environ.copy()
+    env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    result = subprocess.run(
+        ["modal"] + args,
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        env=env,
+    )
+    if check and result.returncode != 0:
+        raise RuntimeError(
+            f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+        )
     return result
 
 
 @pytest.fixture(scope="module")
 def deployed_app():
-    """Deploy the app, invoke the endpoint, then yield for tests. Stop app on teardown."""
-    # Deploy the app
-    deploy_result = modal_cli("deploy", APP_FILE, timeout=600)
-    assert deploy_result.returncode == 0, (
-        f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+    # Step 1: Create the secret
+    run_modal(
+        [
+            "secret", "create", SECRET_NAME,
+            "API_KEY=test-embedding-key-2024",
+            "--force",
+        ],
+        timeout=60,
     )
 
-    # Extract web endpoint URL from deploy output
-    deploy_output = deploy_result.stdout + deploy_result.stderr
-    url_match = re.search(r"https://[^\s]+\.modal\.run[^\s]*", deploy_output)
-    endpoint_url = url_match.group(0).rstrip(".") if url_match else None
+    # Step 2: Create the volume if it doesn't already exist
+    vol_list = run_modal(["volume", "list", "--json"], timeout=60, check=False)
+    volumes = json.loads(vol_list.stdout) if vol_list.stdout.strip() else []
+    existing_volumes = [v.get("Name", "") for v in volumes]
+    if VOLUME_NAME not in existing_volumes:
+        run_modal(["volume", "create", VOLUME_NAME], timeout=60)
 
-    # Invoke the endpoint to populate the Modal Dict
-    if endpoint_url:
-        import urllib.request
-        import urllib.error
+    # Step 3: Deploy the app
+    run_modal(
+        ["deploy", APP_FILE],
+        timeout=600,
+    )
 
-        payload = json.dumps({"text": "hello world"}).encode("utf-8")
-        req = urllib.request.Request(
-            endpoint_url,
-            data=payload,
-            headers={"Content-Type": "application/json"},
-            method="POST",
-        )
-        try:
-            with urllib.request.urlopen(req, timeout=120) as resp:
-                pass  # Response consumed — dict should be populated
-        except urllib.error.URLError:
-            pass  # Continue tests even if invocation fails; dict check will catch missing data
+    # Step 4: Run the local entrypoint to populate the Dict
+    run_modal(
+        ["run", APP_FILE],
+        timeout=300,
+    )
 
     yield
 
     # Teardown: stop the app
-    modal_cli("app", "stop", APP_NAME)
+    run_modal(["app", "stop", APP_NAME], timeout=60, check=False)
 
 
 def test_app_file_exists():
-    assert os.path.isfile(APP_FILE), f"App file {APP_FILE} does not exist."
+    assert os.path.isfile(APP_FILE), f"App file {APP_FILE} does not exist"
 
 
 def test_deploy_succeeds(deployed_app):
-    """Deployment must succeed — validates the code is correct Modal code."""
-    pass  # Assertion is in the fixture
+    # If the fixture completed without raising, deploy succeeded
+    pass
 
 
 def test_app_listed(deployed_app):
-    result = modal_cli("app", "list", "--json")
-    assert result.returncode == 0, f"modal app list failed: {result.stderr}"
-    try:
-        apps = json.loads(result.stdout)
-    except json.JSONDecodeError:
-        pytest.fail(f"modal app list --json returned invalid JSON:\n{result.stdout}")
+    result = run_modal(["app", "list", "--json"], timeout=60)
+    apps = json.loads(result.stdout)
     app_names = [a.get("Description", "") for a in apps]
     assert APP_NAME in app_names, (
         f"App '{APP_NAME}' not found in modal app list. Found: {app_names}"
@@ -79,33 +85,48 @@ def test_app_listed(deployed_app):
 
 
 def test_volume_listed(deployed_app):
-    result = modal_cli("volume", "list", "--json")
-    assert result.returncode == 0, f"modal volume list failed: {result.stderr}"
-    try:
-        volumes = json.loads(result.stdout)
-    except json.JSONDecodeError:
-        pytest.fail(f"modal volume list --json returned invalid JSON:\n{result.stdout}")
-    assert len(volumes) > 0, (
-        f"No volumes found in modal volume list. Expected at least one volume for model caching."
+    result = run_modal(["volume", "list", "--json"], timeout=60)
+    volumes = json.loads(result.stdout)
+    vol_names = [v.get("Name", "") for v in volumes]
+    assert VOLUME_NAME in vol_names, (
+        f"Volume '{VOLUME_NAME}' not found in modal volume list. Found: {vol_names}"
     )
 
 
-def test_dict_has_entries(deployed_app):
-    result = modal_cli("dict", "items", DICT_NAME, "--json")
-    assert result.returncode == 0, (
-        f"Failed to list items from Dict '{DICT_NAME}':\n"
-        f"stdout: {result.stdout}\nstderr: {result.stderr}"
+def test_secret_listed(deployed_app):
+    result = run_modal(["secret", "list", "--json"], timeout=60)
+    secrets = json.loads(result.stdout)
+    secret_names = [s.get("Name", "") for s in secrets]
+    assert SECRET_NAME in secret_names, (
+        f"Secret '{SECRET_NAME}' not found in modal secret list. Found: {secret_names}"
     )
+
+
+def test_dict_model_name(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "model_name"], timeout=60)
+    value = result.stdout.strip()
+    assert value, f"Dict key 'model_name' is empty or missing. Got: '{value}'"
+
+
+def test_dict_total_requests(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "total_requests"], timeout=60)
+    raw = result.stdout.strip()
     try:
-        items = json.loads(result.stdout)
-    except json.JSONDecodeError:
-        pytest.fail(f"modal dict items --json returned invalid JSON:\n{result.stdout}")
-    assert len(items) >= 2, (
-        f"Dict '{DICT_NAME}' must have at least 2 entries (request count + token count). "
-        f"Found {len(items)} entries: {items}"
+        value = int(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'total_requests' is not an integer. Got: '{raw}'")
+    assert value > 0, (
+        f"Dict key 'total_requests' must be > 0, got {value}"
     )
-    # Verify values are non-zero (at least one request was made)
-    values = [item.get("value", 0) if isinstance(item, dict) else item for item in items]
-    assert any(v >= 1 for v in values if isinstance(v, (int, float))), (
-        f"Dict '{DICT_NAME}' entries should have at least one value >= 1. Got: {items}"
+
+
+def test_dict_embedding_dim(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "embedding_dim"], timeout=60)
+    raw = result.stdout.strip()
+    try:
+        value = int(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'embedding_dim' is not an integer. Got: '{raw}'")
+    assert value > 0, (
+        f"Dict key 'embedding_dim' must be > 0, got {value}"
     )

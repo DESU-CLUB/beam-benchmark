@@ -1,110 +1,125 @@
 import os
-import json
 import subprocess
+import json
 import pytest
 
+APP_NAME = "modal-event-pipeline"
+APP_FILE = "/home/user/modal_project/modal_event_pipeline.py"
+DICT_NAME = "modal-event-pipeline-output"
+VOLUME_NAME = "modal-event-pipeline-vol"
+MODAL_ENV = os.environ.get("MODAL_ENVIRONMENT", "modal-vsdatagen")
 
-MODAL_ENV = "modal-vsdatagen"
-APP_FILE = "/home/user/event_pipeline/app.py"
-APP_NAME = "event-driven-pipeline"
-VOLUME_NAME = "pipeline-artifacts"
-DICT_NAME = "pipeline-registry"
 
-
-def modal_cli(*args, timeout=300):
-    """Run a Modal CLI command with MODAL_ENVIRONMENT set."""
-    env = {**os.environ, "MODAL_ENVIRONMENT": MODAL_ENV}
-    cmd = ["modal"] + list(args)
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+def run_modal(args, timeout=300, check=True):
+    env = os.environ.copy()
+    env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    result = subprocess.run(
+        ["modal"] + args,
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        env=env,
+    )
+    if check and result.returncode != 0:
+        raise RuntimeError(
+            f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+        )
     return result
 
 
 @pytest.fixture(scope="module")
 def deployed_app():
-    """Deploy the app and trigger a manual run before all tests."""
-    deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
-    assert deploy_result.returncode == 0, (
-        f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+    # Create the volume if it doesn't already exist
+    vol_list = run_modal(["volume", "list", "--json"], timeout=60, check=False)
+    volumes = json.loads(vol_list.stdout) if vol_list.stdout.strip() else []
+    existing_volumes = [v.get("Name", "") for v in volumes]
+    if VOLUME_NAME not in existing_volumes:
+        run_modal(["volume", "create", VOLUME_NAME], timeout=60)
+
+    # Deploy the app
+    run_modal(
+        ["deploy", APP_FILE],
+        timeout=600,
     )
-    run_result = modal_cli("run", APP_FILE, timeout=300)
-    assert run_result.returncode == 0, (
-        f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+
+    # Run the local entrypoint to execute the pipeline
+    run_modal(
+        ["run", APP_FILE],
+        timeout=300,
     )
+
     yield
-    modal_cli("app", "stop", APP_NAME)
+
+    # Teardown: stop the app
+    run_modal(["app", "stop", APP_NAME], timeout=60, check=False)
 
 
 def test_app_file_exists():
-    assert os.path.isfile(APP_FILE), f"Expected app file {APP_FILE} does not exist."
+    assert os.path.isfile(APP_FILE), f"App file {APP_FILE} does not exist"
 
 
 def test_deploy_succeeds(deployed_app):
-    """Deployment must succeed — this validates the code is correct Modal code."""
-    pass  # Assertion is in the fixture
+    # If the fixture completed without raising, deploy succeeded
+    pass
 
 
 def test_app_listed(deployed_app):
-    result = modal_cli("app", "list", "--json")
-    assert result.returncode == 0, f"modal app list failed: {result.stderr}"
+    result = run_modal(["app", "list", "--json"], timeout=60)
     apps = json.loads(result.stdout)
-    app_names = [a["Description"] for a in apps]
+    app_names = [a.get("Description", "") for a in apps]
     assert APP_NAME in app_names, (
-        f"App '{APP_NAME}' not found in modal app list output: {app_names}"
+        f"App '{APP_NAME}' not found in modal app list. Found: {app_names}"
     )
 
 
 def test_volume_listed(deployed_app):
-    result = modal_cli("volume", "list", "--json")
-    assert result.returncode == 0, f"modal volume list failed: {result.stderr}"
+    result = run_modal(["volume", "list", "--json"], timeout=60)
     volumes = json.loads(result.stdout)
-    volume_names = [v["Name"] for v in volumes]
-    assert VOLUME_NAME in volume_names, (
-        f"Volume '{VOLUME_NAME}' not found in modal volume list output: {volume_names}"
+    vol_names = [v.get("Name", "") for v in volumes]
+    assert VOLUME_NAME in vol_names, (
+        f"Volume '{VOLUME_NAME}' not found in modal volume list. Found: {vol_names}"
     )
 
 
-def test_dict_total_processed(deployed_app):
-    result = modal_cli("dict", "get", DICT_NAME, "total_processed")
-    assert result.returncode == 0, (
-        f"Failed to get key 'total_processed' from Dict '{DICT_NAME}': {result.stderr}"
+def test_volume_processed_events_file_exists(deployed_app):
+    result = run_modal(
+        ["volume", "ls", VOLUME_NAME, "/"],
+        timeout=60,
+        check=False,
     )
-    output = result.stdout.strip()
-    assert "3" in output, (
-        f"Expected 'total_processed' to contain '3' in Dict '{DICT_NAME}', got: {output!r}"
-    )
-
-
-def test_volume_has_files(deployed_app):
-    result = modal_cli("volume", "ls", VOLUME_NAME)
-    assert result.returncode == 0, f"modal volume ls {VOLUME_NAME} failed: {result.stderr}"
-    output = result.stdout.strip()
-    assert output != "", (
-        f"Volume '{VOLUME_NAME}' appears to be empty — expected at least one result file."
+    assert "processed_events.json" in result.stdout, (
+        f"File 'processed_events.json' not found in volume. "
+        f"Output: {result.stdout}\nSTDERR: {result.stderr}"
     )
 
 
-def test_app_file_has_retries():
-    """Secondary verification: worker function must have retries=2."""
-    with open(APP_FILE) as f:
-        source = f.read()
-    assert "retries=2" in source, (
-        "Worker function must be configured with retries=2 in @app.function() decorator."
+def test_dict_events_produced(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "events_produced"], timeout=60)
+    value = result.stdout.strip()
+    assert value == "10", (
+        f"Dict key 'events_produced' must equal '10', got '{value}'"
     )
 
 
-def test_app_file_has_app_name():
-    """Secondary verification: app must be named 'event-driven-pipeline'."""
-    with open(APP_FILE) as f:
-        source = f.read()
-    assert "event-driven-pipeline" in source, (
-        "App must be named 'event-driven-pipeline' in modal.App() call."
+def test_dict_events_consumed(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "events_consumed"], timeout=60)
+    value = result.stdout.strip()
+    assert value == "10", (
+        f"Dict key 'events_consumed' must equal '10', got '{value}'"
     )
 
 
-def test_app_file_has_fastapi_app():
-    """Secondary verification: must use @modal.fastapi_app() decorator."""
-    with open(APP_FILE) as f:
-        source = f.read()
-    assert "fastapi_app" in source, (
-        "App must use @modal.fastapi_app() decorator to expose the web API."
+def test_dict_processing_complete(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "processing_complete"], timeout=60)
+    value = result.stdout.strip()
+    assert value == "true", (
+        f"Dict key 'processing_complete' must equal 'true', got '{value}'"
+    )
+
+
+def test_dict_output_path(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "output_path"], timeout=60)
+    value = result.stdout.strip()
+    assert value == "/events/processed_events.json", (
+        f"Dict key 'output_path' must equal '/events/processed_events.json', got '{value}'"
     )

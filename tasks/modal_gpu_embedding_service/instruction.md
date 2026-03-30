@@ -1,42 +1,69 @@
 # GPU-Accelerated Text Embedding Service
 
-You are an ML engineer tasked with deploying a production-grade **GPU-accelerated text embedding service** on Modal. The system must process text inputs and return dense vector embeddings suitable for downstream tasks such as semantic search, clustering, or retrieval-augmented generation.
+## Goal
 
-## Project Location
+Build and deploy a GPU-accelerated text embedding inference service on Modal. The service should expose a web endpoint that accepts a list of text strings and returns their vector embeddings, authenticated via an API key.
 
-A starter file exists at `/home/user/embedding_service/app.py` with a basic Modal App stub. All your implementation must go in this single file.
+## Requirements
 
-## System Requirements
+### Environment Setup
 
-Your service must integrate four Modal capabilities:
+Set the following environment variable before running any `modal` commands:
 
-1. **Modal Volume** — Create a Modal Volume (using `create_if_missing=True`) to cache the downloaded model weights on first use. The volume should be mounted into the serving class so that repeated cold starts avoid redundant model downloads from the internet.
-
-2. **Modal Class with GPU and warm pool** — Define a Modal class using `@app.cls()` that:
-   - Runs on a GPU (e.g., `gpu="T4"` or `gpu="any"`) with `min_containers=1` to keep a warm instance
-   - Uses a custom image that installs the `sentence-transformers` library (and its dependencies)
-   - Mounts the Volume for model caching
-   - Has a `@modal.enter()` lifecycle method that loads the `all-MiniLM-L6-v2` sentence-transformers model from the cached volume path on startup
-
-3. **FastAPI web endpoint** — Expose the embedding generation as a web endpoint (using `@modal.asgi_app()` or `@modal.fastapi_app()`) that:
-   - Accepts POST requests with a JSON body containing a `text` field (a string or list of strings)
-   - Returns a JSON response with an `embeddings` field (list of float vectors) and a `model` field with the model name
-   - Is accessible over HTTPS without authentication
-
-4. **Modal Dict for request tracking** — Use a Modal Dict named `"embedding-service-stats"` (with `create_if_missing=True`) to track:
-   - The total number of requests processed
-   - The total number of tokens processed across all requests
-   Update these counters on every successful embedding request.
-
-## App Name
-
-The Modal App must be named `"gpu-embedding-service"`.
-
-## Deployment
-
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` and deploy with:
-```
-modal deploy /home/user/embedding_service/app.py
+```bash
+export MODAL_ENVIRONMENT=modal-vsdatagen
 ```
 
-After deploying, send at least one POST request to the embedding endpoint with some sample text so that the `"embedding-service-stats"` Modal Dict is populated with request and token counts. The endpoint URL is printed by `modal deploy`.
+### App Configuration
+
+- **App name**: `modal-gpu-embedding-service`
+- **File path**: `/home/user/modal_project/modal_gpu_embedding_service.py`
+
+### Components to Implement
+
+#### 1. GPU Model Class (T4)
+
+- Create a Modal Class that runs on a **T4 GPU**
+- Load a **sentence-transformers** model (e.g. `sentence-transformers/all-MiniLM-L6-v2`) for generating text embeddings
+- Cache the downloaded model files in a **Modal Volume** named `modal-gpu-embedding-service-vol`, mounted at `/model-cache`
+- The model must be loaded once during container startup (not on every request) to minimize latency
+
+#### 2. Authenticated Web Endpoint
+
+- Expose an ASGI/FastAPI web endpoint on the Modal Class
+- The endpoint must accept **POST requests** with a JSON body containing a list of texts
+- Return the embeddings as a list of float arrays in the response
+- Authenticate requests using the `API_KEY` value from the **Modal Secret** named `modal-gpu-embedding-service-secret`
+- Reject requests that are missing or have an incorrect API key with **HTTP 401**
+
+#### 3. Modal Secret
+
+- Create a Modal Secret named `modal-gpu-embedding-service-secret` containing the key `API_KEY`
+- The value of `API_KEY` must be `test-embedding-key-2024`
+- Create the secret before deploying:
+  ```bash
+  modal secret create modal-gpu-embedding-service-secret API_KEY=test-embedding-key-2024 --force
+  ```
+
+#### 4. Service Stats in Modal Dict
+
+- Implement a `local_entrypoint` that:
+  1. Makes a test POST request to the deployed web endpoint with the correct API key
+  2. Stores the following statistics in the **Modal Dict** named `modal-gpu-embedding-service-output`:
+     - `model_name`: the name of the sentence-transformers model used (string)
+     - `total_requests`: the number of inference requests served (integer, must be > 0)
+     - `embedding_dim`: the dimensionality of the embedding vectors (integer, must be > 0)
+
+### Deployment
+
+Deploy the app with:
+
+```bash
+modal deploy /home/user/modal_project/modal_gpu_embedding_service.py
+```
+
+Then run the local entrypoint to populate the service stats Dict:
+
+```bash
+modal run /home/user/modal_project/modal_gpu_embedding_service.py
+```

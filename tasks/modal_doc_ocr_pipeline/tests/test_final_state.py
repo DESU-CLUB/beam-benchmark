@@ -1,129 +1,159 @@
 import os
-import json
 import subprocess
+import json
 import pytest
 
-MODAL_ENV = "modal-vsdatagen"
-APP_FILE = "/home/user/doc_pipeline/app.py"
-APP_NAME = "doc-ocr-pipeline"
-VOLUME_NAME = "ocr-output-volume"
-SECRET_NAME = "ocr-api-config"
-DICT_NAME = "ocr-job-tracker"
+APP_NAME = "modal-doc-ocr-pipeline"
+APP_FILE = "/home/user/modal_project/modal_doc_ocr_pipeline.py"
+DICT_NAME = "modal-doc-ocr-pipeline-output"
+VOLUME_NAME = "modal-doc-ocr-pipeline-vol"
+SECRET_NAME = "modal-doc-ocr-pipeline-secret"
+MODAL_ENV = os.environ.get("MODAL_ENVIRONMENT", "modal-vsdatagen")
 
 
-def modal_cli(*args, timeout=300):
-    """Run a Modal CLI command with MODAL_ENVIRONMENT set."""
-    env = {**os.environ, "MODAL_ENVIRONMENT": MODAL_ENV}
-    cmd = ["modal"] + list(args)
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+def run_modal(args, timeout=300, check=True):
+    env = os.environ.copy()
+    env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    result = subprocess.run(
+        ["modal"] + args,
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        env=env,
+    )
+    if check and result.returncode != 0:
+        raise RuntimeError(
+            f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+        )
     return result
 
 
 @pytest.fixture(scope="module")
 def deployed_app():
-    """Create secret, deploy the app, run local entrypoint to populate volume and dict, then clean up."""
-    # Create the OCR config secret before deploying
-    secret_result = modal_cli(
-        "secret", "create", SECRET_NAME,
-        "PROCESSING_MODE=batch",
-        "--force"
-    )
-    assert secret_result.returncode == 0, (
-        f"Failed to create Modal secret '{SECRET_NAME}':\n"
-        f"stdout: {secret_result.stdout}\nstderr: {secret_result.stderr}"
+    # Create the secret before deploying
+    run_modal(
+        [
+            "secret", "create", SECRET_NAME,
+            "OCR_SERVICE_KEY=ocr-key-2024-xyz",
+            "MAX_PAGES=100",
+            "--force",
+        ],
+        timeout=60,
     )
 
     # Deploy the app
-    deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
-    assert deploy_result.returncode == 0, (
-        f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+    run_modal(
+        ["deploy", APP_FILE],
+        timeout=600,
     )
 
-    # Run local entrypoint to process documents and populate volume + dict
-    run_result = modal_cli("run", APP_FILE, timeout=300)
-    assert run_result.returncode == 0, (
-        f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+    # Run the local entrypoint to populate the Dict and Volume
+    run_modal(
+        ["run", APP_FILE],
+        timeout=300,
     )
 
     yield
 
-    modal_cli("app", "stop", APP_NAME)
+    # Teardown: stop the app
+    run_modal(["app", "stop", APP_NAME], timeout=60, check=False)
 
 
 def test_app_file_exists():
-    assert os.path.isfile(APP_FILE), (
-        f"Expected app file {APP_FILE} does not exist."
-    )
+    assert os.path.isfile(APP_FILE), f"App file {APP_FILE} does not exist"
 
 
 def test_deploy_succeeds(deployed_app):
-    """Deployment must succeed — validated in the fixture."""
+    # If the fixture completed without raising, deploy succeeded
     pass
 
 
 def test_app_listed(deployed_app):
-    result = modal_cli("app", "list", "--json")
-    assert result.returncode == 0, f"modal app list --json failed: {result.stderr}"
+    result = run_modal(["app", "list", "--json"], timeout=60)
     apps = json.loads(result.stdout)
-    app_names = [a["Description"] for a in apps]
+    app_names = [a.get("Description", "") for a in apps]
     assert APP_NAME in app_names, (
         f"App '{APP_NAME}' not found in modal app list. Found: {app_names}"
     )
 
 
-def test_volume_exists(deployed_app):
-    result = modal_cli("volume", "list", "--json")
-    assert result.returncode == 0, f"modal volume list --json failed: {result.stderr}"
+def test_volume_listed(deployed_app):
+    result = run_modal(["volume", "list", "--json"], timeout=60)
     volumes = json.loads(result.stdout)
-    volume_names = [v["Name"] for v in volumes]
-    assert VOLUME_NAME in volume_names, (
-        f"Volume '{VOLUME_NAME}' not found in modal volume list. Found: {volume_names}"
+    vol_names = [v.get("Name", "") for v in volumes]
+    assert VOLUME_NAME in vol_names, (
+        f"Volume '{VOLUME_NAME}' not found in modal volume list. Found: {vol_names}"
     )
 
 
-def test_secret_exists(deployed_app):
-    result = modal_cli("secret", "list", "--json")
-    assert result.returncode == 0, f"modal secret list --json failed: {result.stderr}"
+def test_secret_listed(deployed_app):
+    result = run_modal(["secret", "list", "--json"], timeout=60)
     secrets = json.loads(result.stdout)
-    secret_names = [s["Name"] for s in secrets]
+    secret_names = [s.get("Name", "") for s in secrets]
     assert SECRET_NAME in secret_names, (
         f"Secret '{SECRET_NAME}' not found in modal secret list. Found: {secret_names}"
     )
 
 
-def test_dict_has_items(deployed_app):
-    result = modal_cli("dict", "items", DICT_NAME, "--json")
-    assert result.returncode == 0, (
-        f"Failed to list Dict '{DICT_NAME}' items:\n"
-        f"stdout: {result.stdout}\nstderr: {result.stderr}"
+def test_volume_summary_file_exists(deployed_app):
+    result = run_modal(
+        ["volume", "ls", VOLUME_NAME, "/"],
+        timeout=60,
+        check=False,
     )
-    items = json.loads(result.stdout)
-    assert len(items) > 0, (
-        f"Dict '{DICT_NAME}' is empty — expected at least 1 item after processing."
+    assert "summary.json" in result.stdout, (
+        f"File 'summary.json' not found in volume. "
+        f"Output: {result.stdout}\nSTDERR: {result.stderr}"
     )
 
 
-def test_dict_total_processed(deployed_app):
-    result = modal_cli("dict", "get", DICT_NAME, "total_processed")
-    assert result.returncode == 0, (
-        f"Failed to get key 'total_processed' from Dict '{DICT_NAME}':\n"
-        f"stdout: {result.stdout}\nstderr: {result.stderr}"
-    )
+def test_dict_documents_processed(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "documents_processed"], timeout=60)
     raw = result.stdout.strip()
-    assert raw != "", (
-        f"Dict '{DICT_NAME}' key 'total_processed' returned empty output."
-    )
-    # Accept either int or string representation — value must be >= 3
     try:
         value = int(raw)
     except ValueError:
-        # Try to extract an integer from the output (e.g., "3\n" or "total_processed: 3")
-        import re
-        match = re.search(r"\d+", raw)
-        assert match is not None, (
-            f"Could not parse integer from 'total_processed' output: {raw!r}"
-        )
-        value = int(match.group())
-    assert value >= 3, (
-        f"Dict '{DICT_NAME}' key 'total_processed' is {value}, expected >= 3."
+        pytest.fail(f"Dict key 'documents_processed' is not an integer. Got: '{raw}'")
+    assert value >= 6, (
+        f"Dict key 'documents_processed' must be >= 6, got {value}"
+    )
+
+
+def test_dict_total_words(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "total_words"], timeout=60)
+    raw = result.stdout.strip()
+    try:
+        value = int(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'total_words' is not an integer. Got: '{raw}'")
+    assert value > 0, (
+        f"Dict key 'total_words' must be > 0, got {value}"
+    )
+
+
+def test_dict_total_sentences(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "total_sentences"], timeout=60)
+    raw = result.stdout.strip()
+    try:
+        value = int(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'total_sentences' is not an integer. Got: '{raw}'")
+    assert value > 0, (
+        f"Dict key 'total_sentences' must be > 0, got {value}"
+    )
+
+
+def test_dict_ocr_service_key_present(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "ocr_service_key_present"], timeout=60)
+    value = result.stdout.strip()
+    assert value == "true", (
+        f"Dict key 'ocr_service_key_present' must equal 'true', got '{value}'"
+    )
+
+
+def test_dict_summary_path(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "summary_path"], timeout=60)
+    value = result.stdout.strip()
+    assert value == "/ocr_output/summary.json", (
+        f"Dict key 'summary_path' must equal '/ocr_output/summary.json', got '{value}'"
     )

@@ -1,121 +1,166 @@
 import os
-import json
 import subprocess
+import json
 import pytest
 
-MODAL_ENV = "modal-vsdatagen"
-APP_FILE = "/home/user/modal_project/sweep.py"
-APP_NAME = "hyperparameter-sweep"
-VOLUME_NAME = "hp-sweep-experiments"
-DICT_NAME = "hp-sweep-results"
+APP_NAME = "hyperparameter-sweep-orchestrator"
+APP_FILE = "/home/user/modal_project/hyperparameter_sweep_orchestrator.py"
+DICT_NAME = "hyperparameter-sweep-orchestrator-output"
+VOLUME_NAME = "hyperparameter-sweep-orchestrator-vol"
+SECRET_NAME = "hyperparameter-sweep-orchestrator-secret"
+MODAL_ENV = os.environ.get("MODAL_ENVIRONMENT", "modal-vsdatagen")
 
 
-def modal_cli(*args, timeout=300):
-    """Run a Modal CLI command with MODAL_ENVIRONMENT set."""
-    env = {**os.environ, "MODAL_ENVIRONMENT": MODAL_ENV}
-    cmd = ["modal"] + list(args)
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+def run_modal(args, timeout=300, check=True):
+    env = os.environ.copy()
+    env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    result = subprocess.run(
+        ["modal"] + args,
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        env=env,
+    )
+    if check and result.returncode != 0:
+        raise RuntimeError(
+            f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+        )
     return result
 
 
 @pytest.fixture(scope="module")
 def deployed_app():
-    """Deploy the app, run local_entrypoint to populate Dict/Volume, then clean up."""
-    deploy_result = modal_cli("deploy", APP_FILE)
-    assert deploy_result.returncode == 0, (
-        f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+    # Create the Modal Secret before deploying
+    run_modal(
+        [
+            "secret", "create", SECRET_NAME,
+            "EXPERIMENT_ID=sweep-run-001",
+            "MAX_TRIALS=9",
+            "--force",
+        ],
+        timeout=60,
     )
-    run_result = modal_cli("run", APP_FILE, timeout=600)
-    assert run_result.returncode == 0, (
-        f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+
+    # Deploy the app
+    run_modal(
+        ["deploy", APP_FILE],
+        timeout=600,
     )
+
+    # Run the local entrypoint to populate Dict and Volume
+    run_modal(
+        ["run", APP_FILE],
+        timeout=600,
+    )
+
     yield
-    modal_cli("app", "stop", APP_NAME)
+
+    # Teardown: stop the app
+    run_modal(["app", "stop", APP_NAME], timeout=60, check=False)
 
 
-def test_file_exists():
-    assert os.path.isfile(APP_FILE), f"Expected app file {APP_FILE} does not exist."
+def test_app_file_exists():
+    assert os.path.isfile(APP_FILE), f"App file {APP_FILE} does not exist"
 
 
 def test_deploy_succeeds(deployed_app):
-    """Deployment must succeed — validates the code is correct Modal code."""
-    pass  # Assertion is in the fixture
+    # If the fixture completed without raising, deploy succeeded
+    pass
 
 
 def test_app_listed(deployed_app):
-    result = modal_cli("app", "list", "--json")
-    assert result.returncode == 0, f"modal app list failed: {result.stderr}"
+    result = run_modal(["app", "list", "--json"], timeout=60)
     apps = json.loads(result.stdout)
-    app_names = [a["Description"] for a in apps]
+    app_names = [a.get("Description", "") for a in apps]
     assert APP_NAME in app_names, (
-        f"App '{APP_NAME}' not found in modal app list output: {app_names}"
+        f"App '{APP_NAME}' not found in modal app list. Found: {app_names}"
     )
 
 
-def test_volume_exists(deployed_app):
-    result = modal_cli("volume", "list", "--json")
-    assert result.returncode == 0, f"modal volume list failed: {result.stderr}"
+def test_volume_listed(deployed_app):
+    result = run_modal(["volume", "list", "--json"], timeout=60)
     volumes = json.loads(result.stdout)
-    volume_names = [v["Name"] for v in volumes]
-    assert VOLUME_NAME in volume_names, (
-        f"Volume '{VOLUME_NAME}' not found in modal volume list output: {volume_names}"
+    vol_names = [v.get("Name", "") for v in volumes]
+    assert VOLUME_NAME in vol_names, (
+        f"Volume '{VOLUME_NAME}' not found in modal volume list. Found: {vol_names}"
     )
 
 
-def test_volume_has_experiment_files(deployed_app):
-    result = modal_cli("volume", "ls", VOLUME_NAME)
-    assert result.returncode == 0, f"modal volume ls failed: {result.stderr}"
-    output = result.stdout
-    assert len(output.strip()) > 0, (
-        f"Volume '{VOLUME_NAME}' appears to be empty — expected experiment JSON files."
-    )
-    # Check that there is at least one .json file or file listing
-    assert ".json" in output or len(output.strip().splitlines()) >= 1, (
-        f"Expected JSON files in volume '{VOLUME_NAME}', got:\n{output}"
+def test_secret_listed(deployed_app):
+    result = run_modal(["secret", "list", "--json"], timeout=60)
+    secrets = json.loads(result.stdout)
+    secret_names = [s.get("Name", "") for s in secrets]
+    assert SECRET_NAME in secret_names, (
+        f"Secret '{SECRET_NAME}' not found in modal secret list. Found: {secret_names}"
     )
 
 
-def test_dict_best_config_exists(deployed_app):
-    result = modal_cli("dict", "get", DICT_NAME, "best_config")
-    assert result.returncode == 0, (
-        f"Failed to get 'best_config' from Dict '{DICT_NAME}':\n{result.stderr}"
+def test_volume_all_trials_file_exists(deployed_app):
+    result = run_modal(
+        ["volume", "ls", VOLUME_NAME, "/"],
+        timeout=60,
+        check=False,
     )
-    output = result.stdout.strip()
-    assert len(output) > 0, (
-        f"'best_config' in Dict '{DICT_NAME}' is empty — expected a hyperparameter configuration."
-    )
-    # Should contain learning_rate or similar key indicating it's a hyperparameter config
-    assert any(keyword in output.lower() for keyword in ["learning_rate", "lr", "batch_size", "bs"]), (
-        f"'best_config' does not appear to contain hyperparameter data. Got: {output}"
+    assert "all_trials.json" in result.stdout, (
+        f"File 'all_trials.json' not found in volume. "
+        f"Output: {result.stdout}\nSTDERR: {result.stderr}"
     )
 
 
-def test_dict_experiment_count_exists(deployed_app):
-    result = modal_cli("dict", "get", DICT_NAME, "experiment_count")
-    assert result.returncode == 0, (
-        f"Failed to get 'experiment_count' from Dict '{DICT_NAME}':\n{result.stderr}"
+def test_volume_best_params_file_exists(deployed_app):
+    result = run_modal(
+        ["volume", "ls", VOLUME_NAME, "/"],
+        timeout=60,
+        check=False,
     )
-    output = result.stdout.strip()
-    assert len(output) > 0, (
-        f"'experiment_count' in Dict '{DICT_NAME}' is empty — expected an integer."
+    assert "best_params.json" in result.stdout, (
+        f"File 'best_params.json' not found in volume. "
+        f"Output: {result.stdout}\nSTDERR: {result.stderr}"
     )
+
+
+def test_dict_experiment_id(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "experiment_id"], timeout=60)
+    value = result.stdout.strip()
+    assert value == "sweep-run-001", (
+        f"Dict key 'experiment_id' must equal 'sweep-run-001', got '{value}'"
+    )
+
+
+def test_dict_total_trials(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "total_trials"], timeout=60)
+    raw = result.stdout.strip()
     try:
-        count = int(output)
+        value = int(raw)
     except ValueError:
-        raise AssertionError(
-            f"'experiment_count' is not a valid integer. Got: {output!r}"
-        )
-    assert count >= 9, (
-        f"Expected 'experiment_count' >= 9 (one per hyperparameter combination), got: {count}"
+        pytest.fail(f"Dict key 'total_trials' is not an integer. Got: '{raw}'")
+    assert value >= 9, (
+        f"Dict key 'total_trials' must be >= 9, got {value}"
     )
 
 
-def test_dict_items_present(deployed_app):
-    result = modal_cli("dict", "items", DICT_NAME, "--json")
-    assert result.returncode == 0, (
-        f"Failed to list Dict items for '{DICT_NAME}':\n{result.stderr}"
-    )
-    items = json.loads(result.stdout)
-    assert len(items) >= 2, (
-        f"Expected at least 2 items in Dict '{DICT_NAME}' (best_config + experiment_count), got {len(items)}: {items}"
-    )
+def test_dict_best_loss(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "best_loss"], timeout=60)
+    raw = result.stdout.strip()
+    try:
+        float(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'best_loss' is not parseable as float. Got: '{raw}'")
+
+
+def test_dict_best_lr(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "best_lr"], timeout=60)
+    raw = result.stdout.strip()
+    try:
+        float(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'best_lr' is not parseable as float. Got: '{raw}'")
+
+
+def test_dict_best_dropout(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "best_dropout"], timeout=60)
+    raw = result.stdout.strip()
+    try:
+        float(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'best_dropout' is not parseable as float. Got: '{raw}'")

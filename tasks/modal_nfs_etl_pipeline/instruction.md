@@ -1,49 +1,43 @@
-# Serverless ETL Pipeline with Network File System on Modal
+You are a data engineer building a batch processing pipeline on Modal. Your goal is to implement a production-grade ETL system that uses a shared Modal Volume to pass data between three distinct pipeline stages, simulating the cross-function file sharing pattern historically provided by Network File Systems.
 
-You are a platform engineer building a serverless ETL pipeline on Modal that uses a Network File System as a shared staging area. The entire system must be implemented in a single file: `/home/user/etl_pipeline/app.py`.
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` before running any modal commands.
 
-## System Requirements
+Create a Modal app named `modal-nfs-etl-pipeline` in the file `/home/user/modal_project/modal_nfs_etl_pipeline.py`.
 
-Build a Modal App named `"nfs-etl-pipeline"` with the following capabilities:
+**Pipeline Requirements:**
 
-### ETL Processor (Modal Class with Lifecycle Hooks)
-Define a stateful `ETLProcessor` class with lifecycle hooks that handles the extract-transform-load workflow.
+Build three separate Modal functions (extract, transform, load) that all mount the same Modal Volume (`modal-nfs-etl-pipeline-vol` at `/shared`) for shared file access. Use `modal.Image.debian_slim().pip_install("pandas")` as the image for all functions.
 
-### Shared Staging Area (Modal NFS)
-Use a **Modal NetworkFileSystem named `etl-shared-fs`** (with `create_if_missing=True`) as the shared staging area for data between pipeline stages.
+- The **extract** stage should generate synthetic CSV data with at least 10 rows containing string and numeric fields, then write it to `/shared/raw_data.csv` in the volume.
+- The **transform** stage should read `/shared/raw_data.csv`, apply transformations (e.g., uppercase all string fields, add a computed column), and write the result to `/shared/transformed_data.csv`.
+- The **load** stage should read `/shared/transformed_data.csv`, compute aggregate statistics, and write a final JSON report to `/shared/final_report.json`.
 
-### Database Credentials (Modal Secret)
-Use a **Modal Secret named `etl-db-config`** containing database credentials. The secret will be created with keys `DB_HOST` and `DB_PORT`. Your code should reference these keys from the secret (do NOT require any additional keys like `DB_USER` or `DB_PASSWORD` — only `DB_HOST` and `DB_PORT` are provided).
+All three functions must mount the same volume so each stage can read the files written by the previous stage.
 
-### Pipeline State Tracking (Modal Dict)
-Use a **Modal Dict named `etl-pipeline-state`** (with `create_if_missing=True`) to track pipeline run status across batches. The Dict must contain:
-- `last_run_status` — a string that includes `"success"` when the pipeline completes successfully
-- `batches_processed` — the number of data batches processed (must be `2` after a full run)
+**Secret:** Use a Modal Secret named `modal-nfs-etl-pipeline-secret` with keys `PIPELINE_ID` (value: `nfs-etl-2024`) and `BATCH_SIZE` (value: `50`). The pipeline functions must consume this secret.
 
-### Cron-Scheduled Trigger
-Include a cron-scheduled function that triggers the pipeline on a regular interval.
+**Dict:** After the pipeline completes, store the following in a Modal Dict named `modal-nfs-etl-pipeline-output`:
+- `rows_extracted`: number of rows written during extract (integer >= 10)
+- `rows_transformed`: number of rows written during transform (integer >= 10)
+- `rows_loaded`: number of rows processed during load (integer >= 10)
+- `pipeline_id`: the string `"nfs-etl-2024"`
+- `report_path`: the string `"/shared/final_report.json"`
 
-### Manual Trigger (Local Entrypoint)
-Implement a `@app.local_entrypoint()` that processes **two data batches** and records the outcome in the shared Dict, setting `last_run_status` to include `"success"` and `batches_processed` to `2`.
+**Local Entrypoint:** Implement a `@app.local_entrypoint()` that calls all three functions in sequence using `.remote()` calls (extract → transform → load), then stores all results in the Dict.
 
-## Deployment Instructions
+**Steps to deploy:**
 
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
-
+First, create the secret:
 ```
-export MODAL_ENVIRONMENT=modal-vsdatagen
+MODAL_ENVIRONMENT=modal-vsdatagen modal secret create modal-nfs-etl-pipeline-secret PIPELINE_ID=nfs-etl-2024 BATCH_SIZE=50 --force
 ```
 
 Deploy the app:
-
 ```
-MODAL_ENVIRONMENT=modal-vsdatagen modal deploy /home/user/etl_pipeline/app.py
-```
-
-After deployment, trigger a manual run to populate the NFS and Dict:
-
-```
-MODAL_ENVIRONMENT=modal-vsdatagen modal run /home/user/etl_pipeline/app.py
+MODAL_ENVIRONMENT=modal-vsdatagen modal deploy /home/user/modal_project/modal_nfs_etl_pipeline.py
 ```
 
-**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.
+Run the local entrypoint to execute the pipeline:
+```
+MODAL_ENVIRONMENT=modal-vsdatagen modal run /home/user/modal_project/modal_nfs_etl_pipeline.py
+```

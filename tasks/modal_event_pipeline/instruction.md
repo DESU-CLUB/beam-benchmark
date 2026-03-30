@@ -1,48 +1,35 @@
-# Event-Driven Processing Pipeline on Modal
+You are a platform engineer building internal tooling on Modal. Build and deploy an event pipeline that uses a Modal Queue for event buffering, a Modal Volume for persistence, a Modal Dict for status tracking, and a Modal Web Endpoint for observability.
 
-You are a platform engineer building an internal event-driven data processing pipeline on Modal for your organization's tooling infrastructure. The entire system must be implemented in a single file: `/home/user/event_pipeline/app.py`.
+Set `MODAL_ENVIRONMENT=modal-vsdatagen` before running any modal commands.
 
-## System Requirements
+Create a Modal app named `modal-event-pipeline` in the file `/home/user/modal_project/modal_event_pipeline.py`.
 
-Build a Modal App named `event-driven-pipeline` that operates as an end-to-end event buffering and processing system with the following capabilities:
+The pipeline must:
 
-### Event Queue (Modal Queue)
-Use a **Modal Queue named `pipeline-events`** to buffer incoming data submissions between the web API layer and the backend worker. The queue should be referenced with `create_if_missing=True` so it is automatically provisioned when the app deploys.
+1. Use a Modal Queue named `modal-event-pipeline-queue` (created via `modal.Queue.from_name("modal-event-pipeline-queue", create_if_missing=True)`) to buffer events between a producer and a consumer.
 
-### Web API (FastAPI)
-Expose a web API using Modal's FastAPI integration (`@modal.fastapi_app()`) that provides at minimum:
-- A **submission endpoint** (POST) that accepts a JSON body containing a `data` field, enqueues the submission into the pipeline queue, records the event in the shared pipeline registry, and returns a confirmation response.
-- A **status endpoint** (GET) that reads the current pipeline state from the registry dict and returns it as JSON.
+2. Implement a **producer** that generates exactly 10 synthetic events — each event is a dict containing `event_id` (int), `timestamp` (string), and `payload` (a non-empty string) — and pushes all 10 events to the Queue.
 
-### Pipeline Registry (Modal Dict)
-Use a **Modal Dict named `pipeline-registry`** (with `create_if_missing=True`) to maintain shared pipeline state. The registry must track at minimum:
-- A `total_submitted` counter that is incremented on each submission via the POST endpoint
-- A `total_processed` counter that reflects how many items have been successfully processed
+3. Implement a **consumer** that drains the Queue, enriches each event with `processed=True` and `word_count` (integer word count of the `payload` string), then writes all processed events as a JSON array to the Modal Volume `modal-event-pipeline-vol` at the path `/events/processed_events.json`.
 
-### Worker Function (Fault-Tolerant)
-Implement a worker function with **`retries=2`** that processes individual data items. For each item, compute a deterministic hash or checksum of the data string (e.g., using `hashlib`) and write the result to a **Modal Volume named `pipeline-artifacts`** (with `create_if_missing=True`) as a text file. The volume must be mounted inside the worker function.
+4. Implement a Modal **Web Endpoint** (GET) using FastAPI that reads from the Modal Dict `modal-event-pipeline-output` and returns the current processing status as JSON.
 
-### Manual Trigger (Local Entrypoint)
-Implement a `@app.local_entrypoint()` that allows the pipeline to be exercised without the web API — it should enqueue 3 data items, invoke the worker to process them, and update the `total_processed` counter in the registry to `3`.
+5. Use the Modal Dict named `modal-event-pipeline-output` to store these keys after the pipeline runs:
+   - `events_produced` → integer `10`
+   - `events_consumed` → integer `10`
+   - `processing_complete` → string `"true"`
+   - `output_path` → string `"/events/processed_events.json"`
 
-## Deployment Instructions
+6. Use `modal.Image.debian_slim().pip_install("fastapi")` as the image for all functions.
 
-Set `MODAL_ENVIRONMENT=modal-vsdatagen` in your shell before running any Modal commands:
+7. Implement a `@app.local_entrypoint()` that runs the producer, then the consumer, then stores the results in the Dict.
 
+Deploy with:
 ```
-export MODAL_ENVIRONMENT=modal-vsdatagen
+modal deploy /home/user/modal_project/modal_event_pipeline.py
 ```
 
-Deploy the app:
-
+Then run the local entrypoint with:
 ```
-modal deploy /home/user/event_pipeline/app.py
+modal run /home/user/modal_project/modal_event_pipeline.py
 ```
-
-After deployment, trigger a manual run to populate the Volume and Dict:
-
-```
-modal run /home/user/event_pipeline/app.py
-```
-
-**Do NOT use the `-e` CLI flag.** Always set `MODAL_ENVIRONMENT` as an environment variable instead.

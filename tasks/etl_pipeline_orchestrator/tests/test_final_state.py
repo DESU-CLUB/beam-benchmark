@@ -1,142 +1,149 @@
 import os
-import json
-import re
 import subprocess
+import json
 import pytest
 
+APP_NAME = "etl-pipeline-orchestrator"
+APP_FILE = "/home/user/modal_project/etl_pipeline_orchestrator.py"
+DICT_NAME = "etl-pipeline-orchestrator-output"
+VOLUME_NAME = "etl-pipeline-orchestrator-vol"
+SECRET_NAME = "etl-pipeline-orchestrator-secret"
+MODAL_ENV = os.environ.get("MODAL_ENVIRONMENT", "modal-vsdatagen")
 
-MODAL_ENV = "modal-vsdatagen"
-APP_FILE = "/home/user/modal_project/etl.py"
-APP_NAME = "etl-pipeline"
-NFS_NAME = "etl-nfs"
-DICT_NAME = "etl-pipeline-metadata"
 
-
-def modal_cli(*args, timeout=300):
-    """Run a Modal CLI command with MODAL_ENVIRONMENT set."""
-    env = {**os.environ, "MODAL_ENVIRONMENT": MODAL_ENV}
-    cmd = ["modal"] + list(args)
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+def run_modal(args, timeout=300, check=True):
+    env = os.environ.copy()
+    env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    result = subprocess.run(
+        ["modal"] + args,
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        env=env,
+    )
+    if check and result.returncode != 0:
+        raise RuntimeError(
+            f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+        )
     return result
 
 
 @pytest.fixture(scope="module")
 def deployed_app():
-    """Deploy the app and trigger a manual run before all tests."""
-    deploy_result = modal_cli("deploy", APP_FILE)
-    assert deploy_result.returncode == 0, (
-        f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+    # Create the secret
+    run_modal(
+        [
+            "secret",
+            "create",
+            SECRET_NAME,
+            "DB_URL=postgresql://localhost/etl_db",
+            "API_TOKEN=etl-secret-token-xyz",
+            "--force",
+        ],
+        timeout=60,
     )
-    run_result = modal_cli("run", APP_FILE, timeout=300)
-    assert run_result.returncode == 0, (
-        f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+
+    # Deploy the app
+    run_modal(
+        ["deploy", APP_FILE],
+        timeout=600,
     )
+
+    # Run the local entrypoint to populate the Dict and Volume
+    run_modal(
+        ["run", APP_FILE],
+        timeout=300,
+    )
+
     yield
-    modal_cli("app", "stop", APP_NAME)
+
+    # Teardown: stop the app
+    run_modal(["app", "stop", APP_NAME], timeout=60, check=False)
 
 
 def test_app_file_exists():
-    assert os.path.isfile(APP_FILE), f"Expected app file {APP_FILE} does not exist."
+    assert os.path.isfile(APP_FILE), f"App file {APP_FILE} does not exist"
 
 
 def test_deploy_succeeds(deployed_app):
-    """Deployment must succeed — this validates the code is correct Modal code."""
-    pass  # Assertion is in the fixture
+    # If the fixture completed without raising, deploy succeeded
+    pass
 
 
 def test_app_listed(deployed_app):
-    result = modal_cli("app", "list", "--json")
-    assert result.returncode == 0, f"modal app list failed: {result.stderr}"
+    result = run_modal(["app", "list", "--json"], timeout=60)
     apps = json.loads(result.stdout)
-    app_names = [a["Description"] for a in apps]
+    app_names = [a.get("Description", "") for a in apps]
     assert APP_NAME in app_names, (
-        f"App '{APP_NAME}' not found in modal app list output: {app_names}"
+        f"App '{APP_NAME}' not found in modal app list. Found: {app_names}"
     )
 
 
-def test_nfs_listed(deployed_app):
-    result = modal_cli("nfs", "list", "--json")
-    assert result.returncode == 0, f"modal nfs list failed: {result.stderr}"
-    nfs_list = json.loads(result.stdout)
-    nfs_names = [n["Name"] for n in nfs_list]
-    assert NFS_NAME in nfs_names, (
-        f"NFS '{NFS_NAME}' not found in modal nfs list output: {nfs_names}"
+def test_volume_listed(deployed_app):
+    result = run_modal(["volume", "list", "--json"], timeout=60)
+    volumes = json.loads(result.stdout)
+    vol_names = [v.get("Name", "") for v in volumes]
+    assert VOLUME_NAME in vol_names, (
+        f"Volume '{VOLUME_NAME}' not found in modal volume list. Found: {vol_names}"
     )
 
 
-def test_dict_run_count(deployed_app):
-    result = modal_cli("dict", "get", DICT_NAME, "run_count")
-    assert result.returncode == 0, (
-        f"Failed to get key 'run_count' from Dict '{DICT_NAME}': {result.stderr}"
+def test_secret_listed(deployed_app):
+    result = run_modal(["secret", "list", "--json"], timeout=60)
+    secrets = json.loads(result.stdout)
+    secret_names = [s.get("Name", "") for s in secrets]
+    assert SECRET_NAME in secret_names, (
+        f"Secret '{SECRET_NAME}' not found in modal secret list. Found: {secret_names}"
     )
+
+
+def test_volume_output_file_exists(deployed_app):
+    result = run_modal(
+        ["volume", "ls", VOLUME_NAME, "/"],
+        timeout=60,
+        check=False,
+    )
+    assert "output.csv" in result.stdout, (
+        f"File 'output.csv' not found in volume. "
+        f"Output: {result.stdout}\nSTDERR: {result.stderr}"
+    )
+
+
+def test_dict_records_extracted(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "records_extracted"], timeout=60)
     raw = result.stdout.strip()
-    assert raw != "", f"'run_count' value is empty in Dict '{DICT_NAME}'"
-    # Accept integer values >= 1 (may be returned as string or int representation)
     try:
-        count = int(float(raw))
+        value = int(raw)
     except ValueError:
-        pytest.fail(f"'run_count' is not a numeric value: {raw!r}")
-    assert count >= 1, (
-        f"Expected run_count >= 1 in '{DICT_NAME}', got: {count}"
+        pytest.fail(f"Dict key 'records_extracted' is not an integer. Got: '{raw}'")
+    assert value > 0, (
+        f"Dict key 'records_extracted' must be > 0, got {value}"
     )
 
 
-def test_dict_last_run_timestamp(deployed_app):
-    result = modal_cli("dict", "get", DICT_NAME, "last_run_timestamp")
-    assert result.returncode == 0, (
-        f"Failed to get key 'last_run_timestamp' from Dict '{DICT_NAME}': {result.stderr}"
+def test_dict_records_loaded(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "records_loaded"], timeout=60)
+    raw = result.stdout.strip()
+    try:
+        value = int(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'records_loaded' is not an integer. Got: '{raw}'")
+    assert value > 0, (
+        f"Dict key 'records_loaded' must be > 0, got {value}"
     )
+
+
+def test_dict_pipeline_status(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "pipeline_status"], timeout=60)
     value = result.stdout.strip()
-    assert value != "", (
-        f"'last_run_timestamp' is empty in Dict '{DICT_NAME}'"
+    assert value == "success", (
+        f"Dict key 'pipeline_status' must equal 'success', got '{value}'"
     )
 
 
-def test_nfs_has_raw_files(deployed_app):
-    result = modal_cli("nfs", "ls", NFS_NAME)
-    assert result.returncode == 0, f"modal nfs ls {NFS_NAME} failed: {result.stderr}"
-    output = result.stdout
-    # Check for at least one raw_*.json file
-    assert re.search(r"raw_\S+\.json", output), (
-        f"No raw_*.json files found in NFS '{NFS_NAME}':\n{output}"
-    )
-
-
-def test_nfs_has_processed_files(deployed_app):
-    result = modal_cli("nfs", "ls", NFS_NAME)
-    assert result.returncode == 0, f"modal nfs ls {NFS_NAME} failed: {result.stderr}"
-    output = result.stdout
-    # Check for at least one processed_*.json file
-    assert re.search(r"processed_\S+\.json", output), (
-        f"No processed_*.json files found in NFS '{NFS_NAME}':\n{output}"
-    )
-
-
-def test_etl_file_has_retries_and_timeout():
-    """Secondary verification: processing function must have retries=3 and timeout=120."""
-    with open(APP_FILE) as f:
-        source = f.read()
-    assert "retries=3" in source, (
-        "Processing function must be configured with retries=3 in @app.function decorator."
-    )
-    assert "timeout=120" in source, (
-        "Processing function must be configured with timeout=120 in @app.function decorator."
-    )
-
-
-def test_etl_file_has_cron_schedule():
-    """Secondary verification: cron function must use Period(minutes=5) schedule."""
-    with open(APP_FILE) as f:
-        source = f.read()
-    assert re.search(r"Period\s*\(\s*minutes\s*=\s*5\s*\)", source), (
-        "Cron function must use modal.Period(minutes=5) schedule."
-    )
-
-
-def test_etl_file_app_name():
-    """Secondary verification: app must be named 'etl-pipeline'."""
-    with open(APP_FILE) as f:
-        source = f.read()
-    assert "etl-pipeline" in source, (
-        "App must be named 'etl-pipeline' in modal.App() call."
+def test_dict_output_path(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "output_path"], timeout=60)
+    value = result.stdout.strip()
+    assert value == "/data/output.csv", (
+        f"Dict key 'output_path' must equal '/data/output.csv', got '{value}'"
     )

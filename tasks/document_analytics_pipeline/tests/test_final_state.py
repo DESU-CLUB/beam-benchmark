@@ -1,186 +1,130 @@
 import os
-import json
 import subprocess
+import json
 import pytest
-import re
 
-MODAL_ENV = "modal-vsdatagen"
-APP_FILE = "/home/user/modal_project/pipeline.py"
 APP_NAME = "document-analytics-pipeline"
-SECRET_NAME = "pipeline-credentials"
-DICT_NAME = "doc-analytics-output"
+APP_FILE = "/home/user/modal_project/document_analytics_pipeline.py"
+DICT_NAME = "document-analytics-pipeline-output"
+VOLUME_NAME = "document-analytics-pipeline-vol"
+MODAL_ENV = os.environ.get("MODAL_ENVIRONMENT", "modal-vsdatagen")
 
 
-def modal_cli(*args, timeout=300):
-    """Run a Modal CLI command with MODAL_ENVIRONMENT set."""
-    env = {**os.environ, "MODAL_ENVIRONMENT": MODAL_ENV}
-    cmd = ["modal"] + list(args)
-    result = subprocess.run(cmd, capture_output=True, text=True, timeout=timeout, env=env)
+def run_modal(args, timeout=300, check=True):
+    env = os.environ.copy()
+    env["MODAL_ENVIRONMENT"] = MODAL_ENV
+    result = subprocess.run(
+        ["modal"] + args,
+        capture_output=True,
+        text=True,
+        timeout=timeout,
+        env=env,
+    )
+    if check and result.returncode != 0:
+        raise RuntimeError(
+            f"modal {' '.join(args)} failed:\nSTDOUT: {result.stdout}\nSTDERR: {result.stderr}"
+        )
     return result
 
 
 @pytest.fixture(scope="module")
 def deployed_app():
-    """Create secret, deploy the app, run it to populate the dict, then clean up."""
-    # Create the pipeline secret before deploying
-    secret_result = modal_cli(
-        "secret", "create", SECRET_NAME,
-        "PIPELINE_API_KEY=super-secret-pipeline-key",
-        "--force"
-    )
-    assert secret_result.returncode == 0, (
-        f"Failed to create Modal secret '{SECRET_NAME}':\n"
-        f"stdout: {secret_result.stdout}\nstderr: {secret_result.stderr}"
-    )
-
     # Deploy the app
-    deploy_result = modal_cli("deploy", APP_FILE, timeout=300)
-    assert deploy_result.returncode == 0, (
-        f"modal deploy failed:\nstdout: {deploy_result.stdout}\nstderr: {deploy_result.stderr}"
+    run_modal(
+        ["deploy", APP_FILE],
+        timeout=600,
     )
 
-    # Trigger a pipeline run to populate the Modal Dict
-    run_result = modal_cli("run", APP_FILE, timeout=300)
-    assert run_result.returncode == 0, (
-        f"modal run failed:\nstdout: {run_result.stdout}\nstderr: {run_result.stderr}"
+    # Run the local entrypoint to populate the Dict and Volume
+    run_modal(
+        ["run", APP_FILE],
+        timeout=300,
     )
 
     yield
 
-    modal_cli("app", "stop", APP_NAME)
+    # Teardown: stop the app
+    run_modal(["app", "stop", APP_NAME], timeout=60, check=False)
 
 
-def test_pipeline_file_exists():
-    assert os.path.isfile(APP_FILE), (
-        f"Expected pipeline file {APP_FILE} does not exist."
-    )
+def test_app_file_exists():
+    assert os.path.isfile(APP_FILE), f"App file {APP_FILE} does not exist"
 
 
 def test_deploy_succeeds(deployed_app):
-    """Deployment must succeed — validated in the fixture."""
+    # If the fixture completed without raising, deploy succeeded
     pass
 
 
 def test_app_listed(deployed_app):
-    result = modal_cli("app", "list", "--json")
-    assert result.returncode == 0, f"modal app list --json failed: {result.stderr}"
+    result = run_modal(["app", "list", "--json"], timeout=60)
     apps = json.loads(result.stdout)
-    app_names = [a["Description"] for a in apps]
+    app_names = [a.get("Description", "") for a in apps]
     assert APP_NAME in app_names, (
         f"App '{APP_NAME}' not found in modal app list. Found: {app_names}"
     )
 
 
-def test_secret_exists(deployed_app):
-    result = modal_cli("secret", "list", "--json")
-    assert result.returncode == 0, f"modal secret list --json failed: {result.stderr}"
-    secrets = json.loads(result.stdout)
-    secret_names = [s["Name"] for s in secrets]
-    assert SECRET_NAME in secret_names, (
-        f"Secret '{SECRET_NAME}' not found in modal secret list. Found: {secret_names}"
+def test_volume_listed(deployed_app):
+    result = run_modal(["volume", "list", "--json"], timeout=60)
+    volumes = json.loads(result.stdout)
+    vol_names = [v.get("Name", "") for v in volumes]
+    assert VOLUME_NAME in vol_names, (
+        f"Volume '{VOLUME_NAME}' not found in modal volume list. Found: {vol_names}"
     )
 
 
-def test_dict_summary_exists(deployed_app):
-    result = modal_cli("dict", "get", DICT_NAME, "summary")
-    assert result.returncode == 0, (
-        f"Failed to get key 'summary' from Dict '{DICT_NAME}':\n"
-        f"stdout: {result.stdout}\nstderr: {result.stderr}"
+def test_volume_report_file_exists(deployed_app):
+    result = run_modal(
+        ["volume", "ls", VOLUME_NAME, "/"],
+        timeout=60,
+        check=False,
     )
-    assert result.stdout.strip() != "", (
-        f"Dict '{DICT_NAME}' key 'summary' returned empty output."
+    assert "analytics_report.json" in result.stdout, (
+        f"File 'analytics_report.json' not found in volume. "
+        f"Output: {result.stdout}\nSTDERR: {result.stderr}"
     )
 
 
-def test_dict_summary_has_required_fields(deployed_app):
-    result = modal_cli("dict", "get", DICT_NAME, "summary")
-    assert result.returncode == 0, (
-        f"Failed to retrieve 'summary' from Dict '{DICT_NAME}': {result.stderr}"
-    )
+def test_dict_total_documents(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "total_documents"], timeout=60)
     raw = result.stdout.strip()
-    assert "total_documents" in raw, (
-        f"'summary' dict does not contain 'total_documents'. Got: {raw}"
-    )
-    assert "total_words" in raw, (
-        f"'summary' dict does not contain 'total_words'. Got: {raw}"
-    )
-    assert "avg_words_per_doc" in raw or "avg_word" in raw, (
-        f"'summary' dict does not contain average word count field. Got: {raw}"
-    )
-    assert "timestamp" in raw, (
-        f"'summary' dict does not contain 'timestamp'. Got: {raw}"
+    try:
+        value = int(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'total_documents' is not an integer. Got: '{raw}'")
+    assert value >= 5, (
+        f"Dict key 'total_documents' must be >= 5, got {value}"
     )
 
 
-def test_dict_has_minimum_document_entries(deployed_app):
-    result = modal_cli("dict", "items", DICT_NAME, "--json")
-    assert result.returncode == 0, (
-        f"Failed to list Dict '{DICT_NAME}' items: {result.stderr}"
-    )
-    items = json.loads(result.stdout)
-    assert len(items) >= 11, (
-        f"Expected at least 11 entries in '{DICT_NAME}' (10 documents + 1 summary), "
-        f"but found {len(items)}."
-    )
-
-
-def test_dict_has_summary_key(deployed_app):
-    result = modal_cli("dict", "items", DICT_NAME, "--json")
-    assert result.returncode == 0, (
-        f"Failed to list Dict '{DICT_NAME}' items: {result.stderr}"
-    )
-    items = json.loads(result.stdout)
-    # items is a list of [key, value] pairs or dicts with key field
-    keys = []
-    for item in items:
-        if isinstance(item, list):
-            keys.append(str(item[0]))
-        elif isinstance(item, dict):
-            keys.append(str(item.get("key", item.get("Key", ""))))
-    assert "summary" in keys, (
-        f"Key 'summary' not found in Dict '{DICT_NAME}'. Keys found: {keys}"
+def test_dict_total_words(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "total_words"], timeout=60)
+    raw = result.stdout.strip()
+    try:
+        value = int(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'total_words' is not an integer. Got: '{raw}'")
+    assert value > 0, (
+        f"Dict key 'total_words' must be > 0, got {value}"
     )
 
 
-def test_dict_document_entries_have_analytics_fields(deployed_app):
-    result = modal_cli("dict", "items", DICT_NAME, "--json")
-    assert result.returncode == 0, (
-        f"Failed to list Dict '{DICT_NAME}' items: {result.stderr}"
-    )
-    items = json.loads(result.stdout)
-
-    # Find a non-summary document entry to validate
-    doc_entry_raw = None
-    for item in items:
-        if isinstance(item, list):
-            key = str(item[0])
-            val = item[1] if len(item) > 1 else None
-        elif isinstance(item, dict):
-            key = str(item.get("key", item.get("Key", "")))
-            val = item.get("value", item.get("Value", None))
-        else:
-            continue
-        if key != "summary" and val is not None:
-            doc_entry_raw = str(val)
-            break
-
-    assert doc_entry_raw is not None, (
-        f"No document entries (non-summary) found in Dict '{DICT_NAME}'."
-    )
-    assert "word_count" in doc_entry_raw, (
-        f"Document entry missing 'word_count'. Entry: {doc_entry_raw}"
-    )
-    assert "sentence_count" in doc_entry_raw, (
-        f"Document entry missing 'sentence_count'. Entry: {doc_entry_raw}"
-    )
-    assert "keywords" in doc_entry_raw, (
-        f"Document entry missing 'keywords'. Entry: {doc_entry_raw}"
-    )
-    assert "char_count" in doc_entry_raw, (
-        f"Document entry missing 'char_count'. Entry: {doc_entry_raw}"
+def test_dict_avg_words_per_doc(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "avg_words_per_doc"], timeout=60)
+    raw = result.stdout.strip()
+    try:
+        value = float(raw)
+    except ValueError:
+        pytest.fail(f"Dict key 'avg_words_per_doc' is not a float. Got: '{raw}'")
+    assert value > 0.0, (
+        f"Dict key 'avg_words_per_doc' must be > 0.0, got {value}"
     )
 
 
-def test_run_succeeds(deployed_app):
-    """Running the pipeline must succeed, confirming cron logic is executable."""
-    pass  # Assertion is in the fixture's run step
+def test_dict_report_path(deployed_app):
+    result = run_modal(["dict", "get", DICT_NAME, "report_path"], timeout=60)
+    value = result.stdout.strip()
+    assert value == "/reports/analytics_report.json", (
+        f"Dict key 'report_path' must equal '/reports/analytics_report.json', got '{value}'"
+    )
