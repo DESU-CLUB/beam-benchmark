@@ -1,99 +1,99 @@
 {
-    "id": "98e11944-894b-4f56-9023-23f703c61978",
-    "task_name": "modal_event_pipeline",
+  "id": "98e11944-894b-4f56-9023-23f703c61978",
+  "task_name": "modal_event_pipeline",
+  "trial_name": "modal_event_pipeline__s47eBLA",
+  "trial_uri": "file:///Users/warrenlow/Documents/projects/pochi-harbor/jobs/2026-03-29__21-08-10/modal_event_pipeline__s47eBLA",
+  "task_id": {
+    "path": "new-modal-tasks/modal_event_pipeline"
+  },
+  "source": "new-modal-tasks",
+  "task_checksum": "474f2696d1bcef80cec14a0458584628dfe3061a255455a13ed0a9536a57d8a1",
+  "config": {
+    "task": {
+      "path": "new-modal-tasks/modal_event_pipeline",
+      "git_url": null,
+      "git_commit_id": null,
+      "overwrite": false,
+      "download_dir": null,
+      "source": "new-modal-tasks"
+    },
     "trial_name": "modal_event_pipeline__s47eBLA",
-    "trial_uri": "file:///Users/warrenlow/Documents/projects/pochi-harbor/jobs/2026-03-29__21-08-10/modal_event_pipeline__s47eBLA",
-    "task_id": {
-        "path": "new-modal-tasks/modal_event_pipeline"
+    "trials_dir": "jobs/2026-03-29__21-08-10",
+    "timeout_multiplier": 1.0,
+    "agent_timeout_multiplier": null,
+    "verifier_timeout_multiplier": null,
+    "agent_setup_timeout_multiplier": null,
+    "environment_build_timeout_multiplier": null,
+    "agent": {
+      "name": null,
+      "import_path": "agents.pochi:Pochi",
+      "model_name": "openai/gpt-5.2-codex-with-skills",
+      "override_timeout_sec": null,
+      "override_setup_timeout_sec": null,
+      "max_timeout_sec": null,
+      "kwargs": {},
+      "env": {
+        "POCHI_CUSTOM_INSTRUCTIONS": "You are a Modal agent, please use /modal-serverless-gpu skill in order to solve Modal tasks"
+      }
     },
-    "source": "new-modal-tasks",
-    "task_checksum": "474f2696d1bcef80cec14a0458584628dfe3061a255455a13ed0a9536a57d8a1",
-    "config": {
-        "task": {
-            "path": "new-modal-tasks/modal_event_pipeline",
-            "git_url": null,
-            "git_commit_id": null,
-            "overwrite": false,
-            "download_dir": null,
-            "source": "new-modal-tasks"
-        },
-        "trial_name": "modal_event_pipeline__s47eBLA",
-        "trials_dir": "jobs/2026-03-29__21-08-10",
-        "timeout_multiplier": 1.0,
-        "agent_timeout_multiplier": null,
-        "verifier_timeout_multiplier": null,
-        "agent_setup_timeout_multiplier": null,
-        "environment_build_timeout_multiplier": null,
-        "agent": {
-            "name": null,
-            "import_path": "agents.pochi:Pochi",
-            "model_name": "openai/gpt-5.2-codex",
-            "override_timeout_sec": null,
-            "override_setup_timeout_sec": null,
-            "max_timeout_sec": null,
-            "kwargs": {},
-            "env": {
-                "POCHI_CUSTOM_INSTRUCTIONS": "You are a Modal agent, please use /modal-serverless-gpu skill in order to solve Modal tasks"
-            }
-        },
-        "environment": {
-            "type": "daytona",
-            "import_path": null,
-            "force_build": false,
-            "delete": true,
-            "override_cpus": null,
-            "override_memory_mb": null,
-            "override_storage_mb": null,
-            "override_gpus": null,
-            "suppress_override_warnings": false,
-            "kwargs": {}
-        },
-        "verifier": {
-            "override_timeout_sec": null,
-            "max_timeout_sec": null,
-            "disable": false
-        },
-        "artifacts": [],
-        "job_id": "ce6a4852-9fb8-4d6f-9c25-bf76dad7d83f"
-    },
-    "agent_info": {
-        "name": "pochi",
-        "version": "v0.6.6",
-        "model_info": {
-            "name": "gpt-5.2-codex",
-            "provider": "openai"
-        }
-    },
-    "agent_result": {
-        "n_input_tokens": 0,
-        "n_cache_tokens": 0,
-        "n_output_tokens": 19349,
-        "cost_usd": null,
-        "rollout_details": null,
-        "metadata": null
-    },
-    "verifier_result": {
-        "rewards": {
-            "reward": 1.0
-        }
-    },
-    "exception_info": null,
-    "started_at": "2026-03-30T04:08:10.691110Z",
-    "finished_at": "2026-03-30T04:10:59.172808Z",
-    "environment_setup": {
-        "started_at": "2026-03-30T04:08:10.691537Z",
-        "finished_at": "2026-03-30T04:08:13.754556Z"
-    },
-    "agent_setup": {
-        "started_at": "2026-03-30T04:08:13.754571Z",
-        "finished_at": "2026-03-30T04:08:45.946289Z"
-    },
-    "agent_execution": {
-        "started_at": "2026-03-30T04:08:45.946371Z",
-        "finished_at": "2026-03-30T04:10:25.593486Z"
+    "environment": {
+      "type": "daytona",
+      "import_path": null,
+      "force_build": false,
+      "delete": true,
+      "override_cpus": null,
+      "override_memory_mb": null,
+      "override_storage_mb": null,
+      "override_gpus": null,
+      "suppress_override_warnings": false,
+      "kwargs": {}
     },
     "verifier": {
-        "started_at": "2026-03-30T04:10:28.207776Z",
-        "finished_at": "2026-03-30T04:10:58.674990Z"
+      "override_timeout_sec": null,
+      "max_timeout_sec": null,
+      "disable": false
+    },
+    "artifacts": [],
+    "job_id": "ce6a4852-9fb8-4d6f-9c25-bf76dad7d83f"
+  },
+  "agent_info": {
+    "name": "pochi",
+    "version": "v0.6.6",
+    "model_info": {
+      "name": "gpt-5.2-codex-with-skills",
+      "provider": "openai"
     }
+  },
+  "agent_result": {
+    "n_input_tokens": 0,
+    "n_cache_tokens": 0,
+    "n_output_tokens": 19349,
+    "cost_usd": null,
+    "rollout_details": null,
+    "metadata": null
+  },
+  "verifier_result": {
+    "rewards": {
+      "reward": 1.0
+    }
+  },
+  "exception_info": null,
+  "started_at": "2026-03-30T04:08:10.691110Z",
+  "finished_at": "2026-03-30T04:10:59.172808Z",
+  "environment_setup": {
+    "started_at": "2026-03-30T04:08:10.691537Z",
+    "finished_at": "2026-03-30T04:08:13.754556Z"
+  },
+  "agent_setup": {
+    "started_at": "2026-03-30T04:08:13.754571Z",
+    "finished_at": "2026-03-30T04:08:45.946289Z"
+  },
+  "agent_execution": {
+    "started_at": "2026-03-30T04:08:45.946371Z",
+    "finished_at": "2026-03-30T04:10:25.593486Z"
+  },
+  "verifier": {
+    "started_at": "2026-03-30T04:10:28.207776Z",
+    "finished_at": "2026-03-30T04:10:58.674990Z"
+  }
 }
