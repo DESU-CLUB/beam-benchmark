@@ -1,8 +1,9 @@
 import tasksData from "@/zealt/tasks.json";
-import { TrajectoryPage } from "./components/trajectory-page";
+import { TrajectoryPage, type TabConfig } from "./components/trajectory-page";
 import zealtConfig from "@/zealt/config.json";
 import { redirect } from "next/navigation";
 import { AlertTriangle, Check, ExternalLink, HelpCircle, X as XIcon } from "lucide-react";
+import { Suspense } from "react";
 
 
 type RouteParams = {
@@ -24,6 +25,7 @@ type TrialEntry = {
     verifier?: number | null;
   };
   trajectory_id?: string;
+  browser_verification_cases?: string[];
 };
 
 function formatStartTime(jobName: string): string {
@@ -151,6 +153,16 @@ function buildClipUrl(jobName: string, trialName: string, title: string): string
   return url.toString();
 }
 
+function buildBrowserVerificationUrl(jobName: string, trialName: string, testCase: string): string {
+  const ownerRepo = getGithubOwnerRepo();
+  const branch = getGithubBranchName();
+  const url = new URL(
+    `/f/raw.githubusercontent.com/${ownerRepo}/refs/heads/${branch}/jobs/${jobName}/${trialName}/verifier/pochi/${testCase}/trajectory.jsonl`,
+    getServerBaseUrl(),
+  );
+  return url.toString();
+}
+
 function buildRawGithubContentUrl(jobName: string, trialName: string, filePath: string): string {
   const ownerRepo = getGithubOwnerRepo();
   const branch = getGithubBranchName();
@@ -262,14 +274,37 @@ export default async function TrajectoryRoutePage({
   const statusMeta = getStatusMeta(trialStatus);
   const StatusIcon = statusMeta.Icon;
   const taskDirUrl = buildTaskDirUrl(resolvedParams.name);
-  
+
   const trajectoryUrl = trialEntry
     ? buildClipUrl(trialEntry.job_name, trialEntry.trial_name, resolvedParams.name)
     : null;
-  
+  const browserVerificationUrls = trialEntry?.browser_verification_cases
+    ? trialEntry.browser_verification_cases.map((testCase) => ({
+      name: testCase,
+      url: buildBrowserVerificationUrl(trialEntry.job_name, trialEntry.trial_name, testCase),
+    }))
+    : [];
+
+
+  const tabsConfig: TabConfig[] = [
+    {
+      value: "trajectory",
+      label: "Trajectory",
+    },
+    {
+      value: "log",
+      label: "Log",
+    },
+    {
+      value: "test",
+      label: "Test",
+    }
+  ];
+
+
   // Redirect
   if (!trajectoryUrl || !trialEntry) {
-    redirect(fallbackUrl ?? '/tasks');
+    redirect(fallbackUrl ?? "/tasks");
   }
 
   const stderrLogUrl = trialEntry
@@ -278,6 +313,19 @@ export default async function TrajectoryRoutePage({
   const verifierLogUrl = trialEntry
     ? buildRawGithubContentUrl(trialEntry.job_name, trialEntry.trial_name, "verifier/test-stdout.txt")
     : null;
+
+
+  if (browserVerificationUrls.length) {
+    tabsConfig.push({
+      value: "browser-verification",
+      label: (
+        <span>
+          <span className="hidden sm:inline whitespace-nowrap">Browser Verification</span>
+          <span className="sm:hidden">Browser</span>
+        </span>
+      )
+    })
+  }
 
   return (
     <div className="flex h-screen w-full flex-col overflow-hidden bg-background text-foreground font-sans selection:bg-primary/20">
@@ -313,12 +361,16 @@ export default async function TrajectoryRoutePage({
         </div>
       </div>
       <div className="min-h-0 flex-1">
-        <TrajectoryPage
-          trajectoryUrl={trajectoryUrl}
-          fallbackUrl={fallbackUrl ?? ''}
-          stderrLogUrl={stderrLogUrl}
-          verifierLogUrl={verifierLogUrl}
-        />
+        <Suspense fallback={null}>
+          <TrajectoryPage
+            trajectoryUrl={trajectoryUrl}
+            browserVerificationUrls={browserVerificationUrls}
+            fallbackUrl={fallbackUrl ?? ''}
+            stderrLogUrl={stderrLogUrl}
+            verifierLogUrl={verifierLogUrl}
+            tabsConfig={tabsConfig}
+          />
+        </Suspense>
       </div>
     </div>
   );
